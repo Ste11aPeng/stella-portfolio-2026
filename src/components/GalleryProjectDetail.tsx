@@ -60,8 +60,8 @@ const GalleryProjectDetail = ({
       {/* Image Gallery */}
       <section className="px-8 md:px-16 lg:px-24 pb-24">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {images.map((image, index) => <motion.div key={index} className={image.span === "full" ? "md:col-span-2" : ""} initial={{
+          <div className="flex flex-wrap gap-2.5 w-full items-center justify-center">
+            {images.map((image, index) => <motion.div key={index} className={image.span === "full" ? "w-full" : "w-full md:w-[calc(50%-5px)]"} initial={{
             opacity: 0,
             y: 20
           }} whileInView={{
