@@ -20,7 +20,12 @@ import { getProjectById } from "@/data/projects";
 import tellToolImage from "@/assets/project-telltool.png";
 
 // Gallery images for Forgotten Sense
-import forgottenSenseImage from "@/assets/project-forgotten-sense.png";
+import fg1 from "@/assets/fg-1.png";
+import fg2 from "@/assets/fg-2.png";
+import fg3 from "@/assets/fg-3.png";
+import fg4 from "@/assets/fg-4.png";
+import fg5 from "@/assets/fg-5.png";
+import fg6 from "@/assets/fg-6.png";
 
 const sectionIds = ["overview", "challenge", "solution", "research", "testing", "reflection"];
 
@@ -32,7 +37,12 @@ const tellToolImages = [
 ];
 
 const forgottenSenseImages = [
-  { src: forgottenSenseImage, alt: "Forgotten Sense - Wearable Concept", span: "full" as const },
+  { src: fg1, alt: "Forgotten Sense - Wearable glove with electronics" },
+  { src: fg2, alt: "Forgotten Sense - LED and Haptic modules" },
+  { src: fg3, alt: "Forgotten Sense - App screens and UI design" },
+  { src: fg4, alt: "Forgotten Sense - Hardware components diagram" },
+  { src: fg5, alt: "Forgotten Sense - Making process" },
+  { src: fg6, alt: "Forgotten Sense - Final prototype" },
 ];
 
 const ProjectDetail = () => {
