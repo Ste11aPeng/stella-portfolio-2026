@@ -72,15 +72,15 @@ export const projects: Project[] = [
     image: philoImage,
     title: "Philo Design System",
     titleColor: "#C37933",
-    tagline: "a developer-ready UI library",
+    tagline: "delivering a developer-ready UI library for MVP delivery",
     description: "building consistent experiences at scale",
     type: "intern",
-    role: "Design System Designer",
-    team: "3 Designers, 5 Engineers",
-    timeline: "Mar 2024 - Aug 2024",
-    skills: ["Design Systems", "Component Design", "Documentation", "Accessibility"],
+    role: "Product Designer — audited existing screens, defined scalable patterns, built & documented the system, facilitated design–dev alignment.",
+    team: "Me (Designer), PM (Mingfei), 2 developers (Rexell, Danish), 2 Designers (Lauren, Anna)",
+    timeline: "July 2025 (3-week sprint)",
+    skills: ["Figma", "Slack", "Material 3 UI"],
     tags: ["design system", "UI library"],
-    overview: "Philo is a comprehensive design system built to ensure consistency across products while enabling rapid development through a well-documented, accessible component library."
+    overview: "In Summer 2025, I joined Philo Home as a product designer through a startup accelerator, where I supported multiple product initiatives. Philo Home is a furniture e-commerce platform powered by AI-driven recommendations. As the lead designer on this project, I built a reusable design system to help the team scale beyond the MVP."
   },
   {
     id: "tell-tool",
