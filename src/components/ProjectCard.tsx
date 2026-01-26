@@ -15,10 +15,14 @@ const ProjectCard = ({ image, title, description, type }: ProjectCardProps) => {
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="project-overlay bg-gradient-to-t from-white/90 via-white/60 to-transparent pt-16">
-        <span className="project-title">{title}</span>
-        <span className="project-description">{description}</span>
-        <span className="project-type">{type}</span>
+      <div className="project-overlay">
+        <div className="project-tag">
+          <span className="project-title">{title}</span>
+          <span className="project-divider"></span>
+          <span className="project-description">{description}</span>
+          <span className="project-divider"></span>
+          <span className="project-type">{type}</span>
+        </div>
       </div>
     </div>
   );
