@@ -51,7 +51,7 @@ export const projects: Project[] = [
     id: "stitchi",
     image: stitchiImage,
     title: "Stitchi.co",
-    tagline: "Helping merch buyers stop guessing, start finding on Stitchi.co",
+    tagline: "Better Search UX",
     description: "Better Search UX for B2B merch platform",
     type: "Intern",
     role: "Product Designer",
