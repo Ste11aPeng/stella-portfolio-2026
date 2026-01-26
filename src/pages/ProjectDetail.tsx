@@ -26,6 +26,7 @@ import fg3 from "@/assets/fg-3.png";
 import fg4 from "@/assets/fg-4.png";
 import fg5 from "@/assets/fg-5.png";
 import fg6 from "@/assets/fg-6.png";
+import forgottenSenseCover from "@/assets/project-forgotten-sense.png";
 
 const sectionIds = ["overview", "challenge", "solution", "research", "testing", "reflection"];
 
@@ -37,6 +38,7 @@ const tellToolImages = [
 ];
 
 const forgottenSenseImages = [
+  { src: forgottenSenseCover, alt: "Forgotten Sense - Wearable Cover", span: "full" as const },
   { src: fg1, alt: "Forgotten Sense - Wearable glove with electronics" },
   { src: fg2, alt: "Forgotten Sense - LED and Haptic modules" },
   { src: fg3, alt: "Forgotten Sense - App screens and UI design" },
