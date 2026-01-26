@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import profileImage from "@/assets/profile.png";
 const Hero = () => {
-  return <section className="px-8 py-16 lg:px-24 md:py-24 md:px-[32px]">
+  return <section className="px-8 py-16 lg:px-24 md:px-[32px] md:py-[64px]">
       <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12">
         <motion.div className="flex-shrink-0" style={{
         width: '136px',
