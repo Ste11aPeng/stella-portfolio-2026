@@ -17,7 +17,12 @@ import PhiloReflection from "@/components/philo/PhiloReflection";
 import { getProjectById } from "@/data/projects";
 
 // Gallery images for Tell Tool
-import tellToolImage from "@/assets/project-telltool.png";
+import telltool1 from "@/assets/telltool-1.png";
+import telltool2 from "@/assets/telltool-2.png";
+import telltool3 from "@/assets/telltool-3.png";
+import telltool4 from "@/assets/telltool-4.png";
+import telltool5 from "@/assets/telltool-5.png";
+import telltool6 from "@/assets/telltool-6.png";
 
 // Gallery images for Forgotten Sense
 import fg1 from "@/assets/fg-1.png";
@@ -33,7 +38,12 @@ const sectionIds = ["overview", "challenge", "solution", "research", "testing", 
 const galleryProjects = ["tell-tool", "forgotten-sense"];
 
 const tellToolImages = [
-  { src: tellToolImage, alt: "Tell Tool - Visualizing Care and Love", span: "full" as const },
+  { src: telltool1, alt: "Tell Tool - Logo variations" },
+  { src: telltool2, alt: "Tell Tool - Billboard posters", span: "full" as const },
+  { src: telltool3, alt: "Tell Tool - Hoodie and tote bag", span: "full" as const },
+  { src: telltool4, alt: "Tell Tool - Social media and app icon", span: "full" as const },
+  { src: telltool5, alt: "Tell Tool - Instagram posts", span: "full" as const },
+  { src: telltool6, alt: "Tell Tool - Brand collateral", span: "full" as const },
 ];
 
 const forgottenSenseImages = [
