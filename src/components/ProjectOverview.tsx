@@ -11,11 +11,7 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
   return (
     <section id="overview" className="pt-16">
       <motion.h2
-        className="text-3xl font-bold mb-4 tracking-tight"
-        style={{
-          fontFamily: 'Manrope',
-          color: '#161616'
-        }}
+        className="text-3xl font-bold mb-4 tracking-tight text-foreground"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
@@ -26,7 +22,6 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
       
       <motion.p
         className="text-lg text-foreground/60 mb-12 leading-relaxed"
-        style={{ fontFamily: 'Manrope' }}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
@@ -37,7 +32,6 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
       
       <motion.p
         className="text-base mb-16 max-w-3xl text-foreground/80 leading-relaxed"
-        style={{ fontFamily: 'Manrope' }}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
@@ -55,61 +49,37 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
         transition={{ duration: 0.5, ease: easeOut, delay: 0.3 }}
       >
         <div>
-          <span
-            className="text-sm text-foreground/50 block mb-2 uppercase tracking-wide"
-            style={{ fontFamily: 'Manrope' }}
-          >
+          <span className="text-sm text-muted-foreground block mb-2">
             role
           </span>
-          <p
-            className="text-base font-medium text-foreground/90"
-            style={{ fontFamily: 'Manrope' }}
-          >
+          <p className="text-base font-medium text-foreground/90">
             {project.role}
           </p>
         </div>
         
         <div>
-          <span
-            className="text-sm text-foreground/50 block mb-2 uppercase tracking-wide"
-            style={{ fontFamily: 'Manrope' }}
-          >
+          <span className="text-sm text-muted-foreground block mb-2">
             team
           </span>
-          <p
-            className="text-base font-medium text-foreground/90"
-            style={{ fontFamily: 'Manrope' }}
-          >
+          <p className="text-base font-medium text-foreground/90">
             {project.team}
           </p>
         </div>
         
         <div>
-          <span
-            className="text-sm text-foreground/50 block mb-2 uppercase tracking-wide"
-            style={{ fontFamily: 'Manrope' }}
-          >
+          <span className="text-sm text-muted-foreground block mb-2">
             timeline
           </span>
-          <p
-            className="text-base font-medium text-foreground/90"
-            style={{ fontFamily: 'Manrope' }}
-          >
+          <p className="text-base font-medium text-foreground/90">
             {project.timeline}
           </p>
         </div>
         
         <div>
-          <span
-            className="text-sm text-foreground/50 block mb-2 uppercase tracking-wide"
-            style={{ fontFamily: 'Manrope' }}
-          >
+          <span className="text-sm text-muted-foreground block mb-2">
             skills
           </span>
-          <p
-            className="text-base font-medium text-foreground/90"
-            style={{ fontFamily: 'Manrope' }}
-          >
+          <p className="text-base font-medium text-foreground/90">
             {project.skills.join(", ")}
           </p>
         </div>
