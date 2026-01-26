@@ -8,6 +8,11 @@ import StitchiSolution from "@/components/stitchi/StitchiSolution";
 import StitchiResearch from "@/components/stitchi/StitchiResearch";
 import StitchiTesting from "@/components/stitchi/StitchiTesting";
 import StitchiReflection from "@/components/stitchi/StitchiReflection";
+import PhiloChallenge from "@/components/philo/PhiloChallenge";
+import PhiloSolution from "@/components/philo/PhiloSolution";
+import PhiloResearch from "@/components/philo/PhiloResearch";
+import PhiloTesting from "@/components/philo/PhiloTesting";
+import PhiloReflection from "@/components/philo/PhiloReflection";
 import { getProjectById } from "@/data/projects";
 
 const sectionIds = ["overview", "challenge", "solution", "research", "testing", "reflection"];
@@ -88,12 +93,11 @@ const ProjectDetail = () => {
             {/* Challenge Section - project specific */}
             {id === "stitchi" ? (
               <StitchiChallenge />
+            ) : id === "philo" ? (
+              <PhiloChallenge />
             ) : (
               <section id="challenge" className="pt-24">
-                <h2 className="text-2xl font-bold mb-6" style={{
-                fontFamily: 'Manrope',
-                color: '#161616'
-              }}>
+                <h2 className="text-2xl font-bold mb-6 text-foreground">
                   Challenge
                 </h2>
                 <p className="text-muted-foreground">Content coming soon...</p>
@@ -103,12 +107,11 @@ const ProjectDetail = () => {
             {/* Solution Section - project specific */}
             {id === "stitchi" ? (
               <StitchiSolution />
+            ) : id === "philo" ? (
+              <PhiloSolution />
             ) : (
               <section id="solution" className="pt-24">
-                <h2 className="text-2xl font-bold mb-6" style={{
-                fontFamily: 'Manrope',
-                color: '#161616'
-              }}>
+                <h2 className="text-2xl font-bold mb-6 text-foreground">
                   Solution
                 </h2>
                 <p className="text-muted-foreground">Content coming soon...</p>
@@ -118,12 +121,11 @@ const ProjectDetail = () => {
             {/* Research Section - project specific */}
             {id === "stitchi" ? (
               <StitchiResearch />
+            ) : id === "philo" ? (
+              <PhiloResearch />
             ) : (
               <section id="research" className="pt-24">
-                <h2 className="text-2xl font-bold mb-6" style={{
-                fontFamily: 'Manrope',
-                color: '#161616'
-              }}>
+                <h2 className="text-2xl font-bold mb-6 text-foreground">
                   Research
                 </h2>
                 <p className="text-muted-foreground">Content coming soon...</p>
@@ -133,12 +135,11 @@ const ProjectDetail = () => {
             {/* Testing Section - project specific */}
             {id === "stitchi" ? (
               <StitchiTesting />
+            ) : id === "philo" ? (
+              <PhiloTesting />
             ) : (
               <section id="testing" className="pt-24">
-                <h2 className="text-2xl font-bold mb-6" style={{
-                fontFamily: 'Manrope',
-                color: '#161616'
-              }}>
+                <h2 className="text-2xl font-bold mb-6 text-foreground">
                   Testing & Iteration
                 </h2>
                 <p className="text-muted-foreground">Content coming soon...</p>
@@ -148,12 +149,11 @@ const ProjectDetail = () => {
             {/* Reflection Section - project specific */}
             {id === "stitchi" ? (
               <StitchiReflection />
+            ) : id === "philo" ? (
+              <PhiloReflection />
             ) : (
               <section id="reflection" className="pt-24 pb-24">
-                <h2 className="text-2xl font-bold mb-6" style={{
-                fontFamily: 'Manrope',
-                color: '#161616'
-              }}>
+                <h2 className="text-2xl font-bold mb-6 text-foreground">
                   Reflection
                 </h2>
                 <p className="text-muted-foreground">Content coming soon...</p>
