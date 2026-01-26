@@ -134,7 +134,8 @@
   }
 
   .project-description {
-    @apply text-foreground text-sm;
+    @apply text-sm;
+    color: #787777;
   }
 
   .project-type {
