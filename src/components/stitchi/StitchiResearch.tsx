@@ -1,61 +1,94 @@
+import { motion, type Easing } from "framer-motion";
+import { Separator } from "@/components/ui/separator";
+import ImageLightbox from "@/components/ImageLightbox";
 import researchPt1Image from "@/assets/stitchi-research-pt1.png";
 import researchPt2Image from "@/assets/stitchi-research-pt2.png";
+
+const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
 const StitchiResearch = () => {
   return (
     <section id="research" className="pt-24">
-      <h2 
-        className="text-2xl font-bold mb-6" 
+      <Separator className="mb-16 bg-border/60" />
+      
+      <motion.h2 
+        className="text-2xl font-bold mb-8 tracking-tight"
         style={{ fontFamily: 'Manrope', color: '#161616' }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut }}
       >
         Research
-      </h2>
+      </motion.h2>
       
-      <h3 
-        className="text-xl font-semibold mb-4"
-        style={{ fontFamily: 'Manrope', color: '#161616' }}
+      <motion.h3 
+        className="text-lg font-semibold mb-5 text-foreground/90"
+        style={{ fontFamily: 'Manrope' }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
         Backing Decisions with Real Signals
-      </h3>
+      </motion.h3>
       
-      <h4 
-        className="text-lg font-medium mb-4"
-        style={{ fontFamily: 'Manrope', color: '#161616' }}
+      <motion.h4 
+        className="text-base font-medium mb-4 text-foreground/85"
+        style={{ fontFamily: 'Manrope' }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut, delay: 0.15 }}
       >
         What I Did
-      </h4>
+      </motion.h4>
       
-      <p 
-        className="text-base mb-8 max-w-3xl"
-        style={{ fontFamily: 'Manrope', color: '#161616', lineHeight: '1.7' }}
+      <motion.p 
+        className="text-base mb-6 max-w-3xl text-foreground/80 leading-relaxed"
+        style={{ fontFamily: 'Manrope' }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
       >
         To ground the design in real behavior, I combined three research methods:
-      </p>
+      </motion.p>
       
-      <ul 
-        className="list-disc list-inside mb-8 max-w-3xl space-y-2"
-        style={{ fontFamily: 'Manrope', color: '#161616', lineHeight: '1.7' }}
+      <motion.ul 
+        className="list-none mb-10 max-w-3xl space-y-4"
+        style={{ fontFamily: 'Manrope' }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut, delay: 0.25 }}
       >
-        <li><strong>Benchmarking:</strong> Studied platforms like Redbubble, Amazon, Threadless to understand scalable filtering patterns.</li>
-        <li><strong>Technical exploration:</strong> Worked with our dev intern to assess Algolia's capabilities for smarter, more forgiving search.</li>
-        <li><strong>Usability testing:</strong> Observed 3 B2B users in task-based scenarios to uncover interaction pain points.</li>
-      </ul>
+        <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+          <strong className="text-foreground/90">Benchmarking:</strong> Studied platforms like Redbubble, Amazon, Threadless to understand scalable filtering patterns.
+        </li>
+        <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+          <strong className="text-foreground/90">Technical exploration:</strong> Worked with our dev intern to assess Algolia's capabilities for smarter, more forgiving search.
+        </li>
+        <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+          <strong className="text-foreground/90">Usability testing:</strong> Observed 3 B2B users in task-based scenarios to uncover interaction pain points.
+        </li>
+      </motion.ul>
       
       {/* Research Part 1 Image */}
-      <div className="mb-8">
-        <img 
-          src={researchPt1Image} 
-          alt="Usability Test - User feedback about filtering difficulties" 
-          className="w-full rounded-lg"
+      <div className="mb-10">
+        <ImageLightbox
+          src={researchPt1Image}
+          alt="Usability Test - User feedback about filtering difficulties"
+          className="w-full rounded-lg shadow-sm"
         />
       </div>
       
       {/* Research Part 2 Image */}
       <div className="mb-8">
-        <img 
-          src={researchPt2Image} 
-          alt="What I Found - Key insights from research" 
-          className="w-full rounded-lg"
+        <ImageLightbox
+          src={researchPt2Image}
+          alt="What I Found - Key insights from research"
+          className="w-full rounded-lg shadow-sm"
         />
       </div>
     </section>
