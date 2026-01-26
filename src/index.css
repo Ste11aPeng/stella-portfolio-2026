@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap');
 
 @layer base {
   :root {
@@ -118,9 +118,12 @@
     gap: 10px;
     border-radius: 0 12px 12px 12px;
     background: rgba(244, 244, 244, 0.60);
-    font-size: 14px;
-    font-weight: 500;
-    color: #787777;
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #393939;
     white-space: nowrap;
     z-index: 10;
     transition: left 0.15s ease-out, top 0.15s ease-out;
