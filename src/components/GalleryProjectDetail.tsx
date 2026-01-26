@@ -75,7 +75,7 @@ const GalleryProjectDetail = ({
             ease: easeOut,
             delay: index * 0.05
           }}>
-                <ImageLightbox src={image.src} alt={image.alt} className="w-full h-auto rounded-lg" />
+                <ImageLightbox src={image.src} alt={image.alt} className="w-full h-auto" />
               </motion.div>)}
           </div>
         </div>
