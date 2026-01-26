@@ -1,6 +1,6 @@
 import profileImage from "@/assets/profile.png";
 const Hero = () => {
-  return <section className="px-8 py-16 md:px-16 lg:px-24 md:py-24">
+  return <section className="px-8 py-16 lg:px-24 md:py-24 md:px-[32px]">
       <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12">
         <div className="flex-shrink-0" style={{
         width: '194px',
