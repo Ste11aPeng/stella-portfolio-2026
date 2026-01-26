@@ -4,7 +4,7 @@ import ImageLightbox from "@/components/ImageLightbox";
 import reflectionImage from "@/assets/philo-reflection.png";
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 const PhiloReflection = () => {
-  return <section id="reflection" className="pt-24 pb-24">
+  return <section id="reflection" className="pt-16 pb-16">
       <Separator className="mb-16 bg-border/60" />
       
       <motion.div initial={{

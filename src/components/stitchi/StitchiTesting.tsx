@@ -7,7 +7,7 @@ const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
 const StitchiTesting = () => {
   return (
-    <section id="testing" className="pt-24">
+    <section id="testing" className="pt-16">
       <Separator className="mb-16 bg-border/60" />
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
