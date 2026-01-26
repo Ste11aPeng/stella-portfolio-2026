@@ -1,42 +1,19 @@
 import ProjectCard from "./ProjectCard";
-import askSiaImage from "@/assets/project-asksia.png";
-import circleStatusImage from "@/assets/project-circle-status.png";
-import stitchiImage from "@/assets/project-stitchi.png";
-import philoImage from "@/assets/project-philo.png";
-
-const projects = [
-  {
-    image: askSiaImage,
-    title: "AskSia",
-    description: "Human - AI Interaction in EdTech",
-    type: "Intern"
-  },
-  {
-    image: circleStatusImage,
-    title: "Circle Status",
-    description: "A Smart Light System for Community Support",
-    type: "Concept"
-  },
-  {
-    image: stitchiImage,
-    title: "Stitchi",
-    description: "Better Search UX",
-    type: "Intern"
-  },
-  {
-    image: philoImage,
-    title: "Philo Design system",
-    description: "A developer-ready UI library",
-    type: "Intern"
-  }
-];
+import { projects } from "@/data/projects";
 
 const ProjectGrid = () => {
   return (
     <section id="work" className="px-8 md:px-16 lg:px-24 pb-24">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        {projects.map((project, index) => (
-          <ProjectCard key={index} {...project} />
+        {projects.map((project) => (
+          <ProjectCard 
+            key={project.id} 
+            id={project.id}
+            image={project.image}
+            title={project.title}
+            description={project.tagline}
+            type={project.type}
+          />
         ))}
       </div>
     </section>
