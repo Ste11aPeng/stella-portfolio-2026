@@ -1,26 +1,49 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Header from "@/components/Header";
 import ProjectSidebar from "@/components/ProjectSidebar";
 import ProjectOverview from "@/components/ProjectOverview";
 import { getProjectById } from "@/data/projects";
+
+const sectionIds = ["overview", "challenge", "solution", "research", "testing", "reflection"];
+
 const ProjectDetail = () => {
-  const {
-    id
-  } = useParams<{
-    id: string;
-  }>();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("overview");
   const project = id ? getProjectById(id) : undefined;
+
+  // Scroll spy effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 150; // offset for header
+
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const sectionId = sectionIds[i];
+        const element = document.getElementById(sectionId);
+        if (element && element.offsetTop <= scrollPosition) {
+          setActiveSection(sectionId);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   useEffect(() => {
     if (!project) {
       navigate("/");
     }
   }, [project, navigate]);
+
   if (!project) {
     return null;
   }
+
   const handleSectionClick = (section: string) => {
     setActiveSection(section);
     const element = document.getElementById(section);
