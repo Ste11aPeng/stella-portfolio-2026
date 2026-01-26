@@ -3,6 +3,8 @@ import { useState, useEffect, useCallback } from "react";
 import Header from "@/components/Header";
 import ProjectSidebar from "@/components/ProjectSidebar";
 import ProjectOverview from "@/components/ProjectOverview";
+import StitchiChallenge from "@/components/stitchi/StitchiChallenge";
+import StitchiSolution from "@/components/stitchi/StitchiSolution";
 import { getProjectById } from "@/data/projects";
 
 const sectionIds = ["overview", "challenge", "solution", "research", "testing", "reflection"];
@@ -80,26 +82,35 @@ const ProjectDetail = () => {
           <div className="flex-1 max-w-3xl">
             <ProjectOverview project={project} />
             
-            {/* Placeholder sections */}
-            <section id="challenge" className="pt-24">
-              <h2 className="text-2xl font-bold mb-6" style={{
-              fontFamily: 'Manrope',
-              color: '#161616'
-            }}>
-                Challenge
-              </h2>
-              <p className="text-muted-foreground">Content coming soon...</p>
-            </section>
+            {/* Challenge Section - project specific */}
+            {id === "stitchi" ? (
+              <StitchiChallenge />
+            ) : (
+              <section id="challenge" className="pt-24">
+                <h2 className="text-2xl font-bold mb-6" style={{
+                fontFamily: 'Manrope',
+                color: '#161616'
+              }}>
+                  Challenge
+                </h2>
+                <p className="text-muted-foreground">Content coming soon...</p>
+              </section>
+            )}
             
-            <section id="solution" className="pt-24">
-              <h2 className="text-2xl font-bold mb-6" style={{
-              fontFamily: 'Manrope',
-              color: '#161616'
-            }}>
-                Solution
-              </h2>
-              <p className="text-muted-foreground">Content coming soon...</p>
-            </section>
+            {/* Solution Section - project specific */}
+            {id === "stitchi" ? (
+              <StitchiSolution />
+            ) : (
+              <section id="solution" className="pt-24">
+                <h2 className="text-2xl font-bold mb-6" style={{
+                fontFamily: 'Manrope',
+                color: '#161616'
+              }}>
+                  Solution
+                </h2>
+                <p className="text-muted-foreground">Content coming soon...</p>
+              </section>
+            )}
             
             <section id="research" className="pt-24">
               <h2 className="text-2xl font-bold mb-6" style={{
