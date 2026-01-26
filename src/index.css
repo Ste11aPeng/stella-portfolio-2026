@@ -115,15 +115,21 @@
   }
 
   .project-tag {
-    @apply inline-flex items-center gap-4 bg-white/95 backdrop-blur-sm rounded-lg px-5 py-3 shadow-sm;
+    @apply inline-flex items-center gap-2.5;
+  }
+
+  .project-badge {
+    display: inline-flex;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    background: rgba(244, 244, 244, 0.77);
   }
 
   .project-title {
     @apply text-accent font-medium text-sm whitespace-nowrap;
-  }
-
-  .project-divider {
-    @apply w-px h-4 bg-border;
   }
 
   .project-description {

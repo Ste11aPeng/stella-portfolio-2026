@@ -17,11 +17,9 @@ const ProjectCard = ({ image, title, description, type }: ProjectCardProps) => {
       </div>
       <div className="project-overlay">
         <div className="project-tag">
-          <span className="project-title">{title}</span>
-          <span className="project-divider"></span>
-          <span className="project-description">{description}</span>
-          <span className="project-divider"></span>
-          <span className="project-type">{type}</span>
+          <span className="project-badge project-title">{title}</span>
+          <span className="project-badge project-description">{description}</span>
+          <span className="project-badge project-type">{type}</span>
         </div>
       </div>
     </div>
