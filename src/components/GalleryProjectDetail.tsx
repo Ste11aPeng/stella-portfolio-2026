@@ -1,6 +1,7 @@
 import { motion, type Easing } from "framer-motion";
 import { Project } from "@/data/projects";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import ImageLightbox from "@/components/ImageLightbox";
 interface GalleryProjectDetailProps {
   project: Project;
@@ -80,6 +81,8 @@ const GalleryProjectDetail = ({
           </div>
         </div>
       </section>
+      
+      <Footer />
     </div>;
 };
 export default GalleryProjectDetail;
