@@ -2,6 +2,8 @@ import askSiaImage from "@/assets/project-asksia.png";
 import circleStatusImage from "@/assets/project-circle-status.png";
 import stitchiImage from "@/assets/project-stitchi.png";
 import philoImage from "@/assets/project-philo.png";
+import tellToolImage from "@/assets/project-telltool.png";
+import forgottenSenseImage from "@/assets/project-forgotten-sense.png";
 
 export interface Project {
   id: string;
@@ -74,6 +76,34 @@ export const projects: Project[] = [
     skills: ["Design Systems", "Component Design", "Documentation", "Accessibility"],
     tags: ["Design System", "UI Library"],
     overview: "Philo is a comprehensive design system built to ensure consistency across products while enabling rapid development through a well-documented, accessible component library."
+  },
+  {
+    id: "tell-tool",
+    image: tellToolImage,
+    title: "Tell Tool",
+    tagline: "Visualizing Care and Love",
+    description: "Visualizing Care and Love",
+    type: "Concept",
+    role: "Designer",
+    team: "1 Designer",
+    timeline: "2024",
+    skills: ["Branding", "Visual Design", "Concept Development"],
+    tags: ["Branding", "Concept"],
+    overview: "Tell Tool is a concept project exploring how to visualize and communicate care and love through design."
+  },
+  {
+    id: "forgotten-sense",
+    image: forgottenSenseImage,
+    title: "Forgotten Sense",
+    tagline: "Wearable",
+    description: "Wearable",
+    type: "Concept",
+    role: "Designer",
+    team: "1 Designer",
+    timeline: "2024",
+    skills: ["Wearable Design", "Prototyping", "Concept Development"],
+    tags: ["Wearable", "Concept"],
+    overview: "Forgotten Sense is a concept wearable project exploring sensory experiences through technology."
   }
 ];
 
