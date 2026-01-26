@@ -86,7 +86,7 @@ const ProjectCard = ({ id, image, title, titleColor, description, type }: Projec
         </div>
         <div className="project-overlay">
           <div className="project-tag">
-            <span className="project-badge project-title font-semibold" style={{ color: titleColor }}>{title}</span>
+            <span className="project-badge project-title font-medium" style={{ color: titleColor }}>{title}</span>
             <span className="project-badge project-description">{description}</span>
             <span className="project-badge project-type">{type}</span>
           </div>
