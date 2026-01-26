@@ -1,10 +1,10 @@
-import profileImage from "@/assets/profile.jpg";
+import profileImage from "@/assets/profile.png";
 
 const Hero = () => {
   return (
     <section className="px-8 py-16 md:px-16 lg:px-24 md:py-24">
       <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12">
-        <div className="w-40 h-52 md:w-48 md:h-60 overflow-hidden flex-shrink-0">
+        <div className="flex-shrink-0" style={{ width: '194px', height: '194px' }}>
           <img 
             src={profileImage} 
             alt="Profile" 
