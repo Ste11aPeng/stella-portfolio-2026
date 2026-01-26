@@ -107,15 +107,23 @@
   }
 
   .project-overlay {
-    @apply absolute bottom-0 left-0 right-0 p-4 flex items-end gap-3 opacity-0 transition-opacity duration-300;
+    @apply absolute bottom-0 left-0 right-0 p-4 opacity-0 transition-opacity duration-300;
   }
 
   .project-card:hover .project-overlay {
     @apply opacity-100;
   }
 
+  .project-tag {
+    @apply inline-flex items-center gap-4 bg-white/95 backdrop-blur-sm rounded-lg px-5 py-3 shadow-sm;
+  }
+
   .project-title {
-    @apply text-accent font-medium text-sm;
+    @apply text-accent font-medium text-sm whitespace-nowrap;
+  }
+
+  .project-divider {
+    @apply w-px h-4 bg-border;
   }
 
   .project-description {
@@ -123,6 +131,6 @@
   }
 
   .project-type {
-    @apply text-muted-foreground text-sm;
+    @apply text-muted-foreground text-sm whitespace-nowrap;
   }
 }
