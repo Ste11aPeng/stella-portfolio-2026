@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import Header from "@/components/Header";
 import ProjectSidebar from "@/components/ProjectSidebar";
 import ProjectOverview from "@/components/ProjectOverview";
+import GalleryProjectDetail from "@/components/GalleryProjectDetail";
 import StitchiChallenge from "@/components/stitchi/StitchiChallenge";
 import StitchiSolution from "@/components/stitchi/StitchiSolution";
 import StitchiResearch from "@/components/stitchi/StitchiResearch";
@@ -15,7 +16,24 @@ import PhiloTesting from "@/components/philo/PhiloTesting";
 import PhiloReflection from "@/components/philo/PhiloReflection";
 import { getProjectById } from "@/data/projects";
 
+// Gallery images for Tell Tool
+import tellToolImage from "@/assets/project-telltool.png";
+
+// Gallery images for Forgotten Sense
+import forgottenSenseImage from "@/assets/project-forgotten-sense.png";
+
 const sectionIds = ["overview", "challenge", "solution", "research", "testing", "reflection"];
+
+// Gallery projects configuration
+const galleryProjects = ["tell-tool", "forgotten-sense"];
+
+const tellToolImages = [
+  { src: tellToolImage, alt: "Tell Tool - Visualizing Care and Love", span: "full" as const },
+];
+
+const forgottenSenseImages = [
+  { src: forgottenSenseImage, alt: "Forgotten Sense - Wearable Concept", span: "full" as const },
+];
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -52,6 +70,15 @@ const ProjectDetail = () => {
 
   if (!project) {
     return null;
+  }
+
+  // Use gallery layout for Tell Tool and Forgotten Sense
+  if (id === "tell-tool") {
+    return <GalleryProjectDetail project={project} images={tellToolImages} />;
+  }
+  
+  if (id === "forgotten-sense") {
+    return <GalleryProjectDetail project={project} images={forgottenSenseImages} />;
   }
 
   const handleSectionClick = (section: string) => {
