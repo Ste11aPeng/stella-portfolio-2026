@@ -60,12 +60,12 @@ export const projects: Project[] = [
     tagline: "better search UX",
     description: "better search UX for B2B merch platform",
     type: "intern",
-    role: "Product Designer",
-    team: "2 Designers, 2 Engineers, 4 Product Managers",
-    timeline: "Jun 2025 - Jul 2025",
-    skills: ["Product Design", "Interface Design", "Interaction Design", "Prototyping", "Usability Testing", "Thematic Analysis"],
+    role: "Product Designer – led research, defined interaction patterns, validated with users, aligned design with development.",
+    team: "Me (UX/UI), PM (Everest), 2 developers (Rexell, Danish)",
+    timeline: "June 2025 (4 weeks)",
+    skills: ["Figma", "Slack", "Algolia"],
     tags: ["UI/UX design", "B2B / SaaS", "e-commerce"],
-    overview: "In June 2025, our team ran a 4-week internal redesign sprint to tackle a growing usability problem on Stitchi, a B2B merch management platform. As the product scaled and supplier catalogs grew, users struggled to find what they needed due to cluttered filters, inconsistent interactions, and poor search guidance."
+    overview: "Helping B2B buyers stop guessing and start finding on Stitchi.co. In June 2025, we ran a 4-week internal redesign sprint to fix a growing usability issue on Stitchi. As supplier catalogs expanded, users struggled to find products because filters were cluttered, interactions were inconsistent, and search offered little guidance."
   },
   {
     id: "philo",
