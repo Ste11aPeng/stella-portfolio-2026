@@ -1,45 +1,64 @@
+import { motion, type Easing } from "framer-motion";
+import { Separator } from "@/components/ui/separator";
+import ImageLightbox from "@/components/ImageLightbox";
 import challengeUIImage from "@/assets/stitchi-challenge-ui.png";
 import challengeInteractionImage from "@/assets/stitchi-challenge-interaction.png";
+
+const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
 const StitchiChallenge = () => {
   return (
     <section id="challenge" className="pt-24">
-      <h2 
-        className="text-2xl font-bold mb-6" 
+      <Separator className="mb-16 bg-border/60" />
+      
+      <motion.h2 
+        className="text-2xl font-bold mb-8 tracking-tight"
         style={{ fontFamily: 'Manrope', color: '#161616' }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut }}
       >
         Challenge
-      </h2>
+      </motion.h2>
       
-      <h3 
-        className="text-xl font-semibold mb-4"
-        style={{ fontFamily: 'Manrope', color: '#161616' }}
+      <motion.h3 
+        className="text-lg font-semibold mb-5 text-foreground/90"
+        style={{ fontFamily: 'Manrope' }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
         Why Discovery Was Broken
-      </h3>
+      </motion.h3>
       
-      <p 
-        className="text-base mb-8 max-w-3xl"
-        style={{ fontFamily: 'Manrope', color: '#161616', lineHeight: '1.7' }}
+      <motion.p 
+        className="text-base mb-10 max-w-3xl text-foreground/80 leading-relaxed"
+        style={{ fontFamily: 'Manrope' }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
       >
         Filters became cluttered and unscalable as suppliers grew. As we onboarded more suppliers, filters became cluttered and inconsistent: overlapping categories and vendor-specific labels turned a UI built for 20 options into chaos at 200. The search bar offered little guidance or tolerance, so users had to guess queries and often got zero results even when matches existed.
-      </p>
+      </motion.p>
       
       {/* Challenge UI Image */}
-      <div className="mb-8">
-        <img 
-          src={challengeUIImage} 
-          alt="Current UI Problem - Filtering logic not scalable as supplier base grows" 
-          className="w-full rounded-lg"
+      <div className="mb-10">
+        <ImageLightbox
+          src={challengeUIImage}
+          alt="Current UI Problem - Filtering logic not scalable as supplier base grows"
+          className="w-full rounded-lg shadow-sm"
         />
       </div>
       
       {/* Challenge Interaction Image */}
       <div className="mb-8">
-        <img 
-          src={challengeInteractionImage} 
-          alt="Current Interaction Problem - Every click triggers a jarring reload, no filter summary" 
-          className="w-full rounded-lg"
+        <ImageLightbox
+          src={challengeInteractionImage}
+          alt="Current Interaction Problem - Every click triggers a jarring reload, no filter summary"
+          className="w-full rounded-lg shadow-sm"
         />
       </div>
     </section>
