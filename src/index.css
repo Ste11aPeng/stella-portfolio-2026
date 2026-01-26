@@ -111,19 +111,15 @@
     position: absolute;
     pointer-events: none;
     transform: translate(-50%, -50%);
-    display: inline-flex;
-    padding: 5px 10px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    background: rgba(244, 244, 244, 0.77);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 12px 20px;
     border-radius: 6px;
     font-size: 14px;
     font-weight: 500;
     color: #787777;
     white-space: nowrap;
     z-index: 10;
-    transition: left 0.15s ease-out, top 0.15s ease-out;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   .project-overlay {
