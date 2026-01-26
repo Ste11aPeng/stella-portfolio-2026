@@ -1,5 +1,7 @@
 import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
+import ImageLightbox from "@/components/ImageLightbox";
+import philoChallengeImage from "@/assets/philo-challenge.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
@@ -34,6 +36,12 @@ const PhiloChallenge = () => {
       >
         We initially relied on an open-source design system to speed up MVP delivery, but it lacked branding, scalability, and structure. When I onboarded a design engineer, our first task was to audit what existed. Together with a front-end developer, we cataloged all components, prioritized fixes based on how out-of-sync and business-critical they were, and quickly saw how much friction the lack of a system was creating.
       </motion.p>
+
+      <ImageLightbox
+        src={philoChallengeImage}
+        alt="Why a UI library is the right next step - diagram showing MVP vs UI Library positioning"
+        className="w-full rounded-lg mb-10"
+      />
     </section>
   );
 };
