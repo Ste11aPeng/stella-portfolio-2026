@@ -8,7 +8,7 @@ const Hero = () => {
       }}>
           <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
         </div>
-        <p className="max-w-md pt-0" style={{
+        <p className="max-w-md pt-0 font-sans text-base" style={{
         color: '#161616',
         fontFamily: 'Manrope',
         fontSize: '20px',
