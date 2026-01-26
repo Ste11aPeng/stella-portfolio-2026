@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 interface ProjectCardProps {
@@ -10,15 +10,62 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ id, image, title, description, type }: ProjectCardProps) => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const hintRef = useRef<HTMLDivElement>(null);
+  const position = useRef({ x: 0, y: 0 });
+  const target = useRef({ x: 0, y: 0 });
+  const animationRef = useRef<number>();
+
+  useEffect(() => {
+    const animate = () => {
+      const ease = 0.12;
+      
+      position.current.x += (target.current.x - position.current.x) * ease;
+      position.current.y += (target.current.y - position.current.y) * ease;
+
+      if (hintRef.current) {
+        hintRef.current.style.left = `${position.current.x}px`;
+        hintRef.current.style.top = `${position.current.y}px`;
+      }
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    if (isHovering) {
+      animationRef.current = requestAnimationFrame(animate);
+    }
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isHovering]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    setMousePosition({
+    target.current = {
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
-    });
+    };
+  };
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    position.current = { x, y };
+    target.current = { x, y };
+    setIsHovering(true);
+    
+    // Dispatch custom event to hide main cursor
+    window.dispatchEvent(new CustomEvent('projectCardHover', { detail: { hovering: true } }));
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    // Dispatch custom event to show main cursor
+    window.dispatchEvent(new CustomEvent('projectCardHover', { detail: { hovering: false } }));
   };
 
   return (
@@ -26,8 +73,8 @@ const ProjectCard = ({ id, image, title, description, type }: ProjectCardProps) 
       <div 
         className="project-card group"
         onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <div className="overflow-hidden" style={{ width: '645px', maxWidth: '100%', aspectRatio: '645/326' }}>
           <img 
@@ -45,11 +92,9 @@ const ProjectCard = ({ id, image, title, description, type }: ProjectCardProps) 
         </div>
         {isHovering && (
           <div 
+            ref={hintRef}
             className="project-cursor-hint"
-            style={{
-              left: mousePosition.x,
-              top: mousePosition.y,
-            }}
+            style={{ willChange: "left, top" }}
           >
             SEE PROJECT →
           </div>
