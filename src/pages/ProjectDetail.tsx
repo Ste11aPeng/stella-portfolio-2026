@@ -34,37 +34,8 @@ const ProjectDetail = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section with Title and Cover */}
+      {/* Cover Image */}
       <section className="pt-24 pb-12">
-        <div className="text-center px-8 md:px-16 lg:px-24 mb-12">
-          <h1 
-            className="text-4xl md:text-5xl font-bold mb-4"
-            style={{ fontFamily: 'Manrope', color: '#161616' }}
-          >
-            {project.title}: {project.description}
-          </h1>
-          <p 
-            className="text-lg text-muted-foreground mb-6"
-            style={{ fontFamily: 'Manrope' }}
-          >
-            {project.tagline}
-          </p>
-          
-          {/* Tags */}
-          <div className="flex justify-center gap-3 flex-wrap">
-            {project.tags.map((tag, index) => (
-              <span 
-                key={index}
-                className="px-4 py-2 border border-border rounded-full text-sm"
-                style={{ fontFamily: 'Manrope' }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-        
-        {/* Cover Image */}
         <div className="px-8 md:px-16 lg:px-24">
           <div className="w-full bg-[#e8ebe4] rounded-lg overflow-hidden">
             <img 
