@@ -72,7 +72,7 @@ export const projects: Project[] = [
     image: philoImage,
     title: "Philo Design System",
     titleColor: "#C37933",
-    tagline: "a developer-ready UI library",
+    tagline: "a dev-ready UI library",
     description: "building consistent experiences at scale",
     type: "intern",
     role: "Product Designer — audited existing screens, defined scalable patterns, built & documented the system, facilitated design–dev alignment.",
