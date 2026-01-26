@@ -5,6 +5,9 @@ import ProjectSidebar from "@/components/ProjectSidebar";
 import ProjectOverview from "@/components/ProjectOverview";
 import StitchiChallenge from "@/components/stitchi/StitchiChallenge";
 import StitchiSolution from "@/components/stitchi/StitchiSolution";
+import StitchiResearch from "@/components/stitchi/StitchiResearch";
+import StitchiTesting from "@/components/stitchi/StitchiTesting";
+import StitchiReflection from "@/components/stitchi/StitchiReflection";
 import { getProjectById } from "@/data/projects";
 
 const sectionIds = ["overview", "challenge", "solution", "research", "testing", "reflection"];
@@ -112,35 +115,50 @@ const ProjectDetail = () => {
               </section>
             )}
             
-            <section id="research" className="pt-24">
-              <h2 className="text-2xl font-bold mb-6" style={{
-              fontFamily: 'Manrope',
-              color: '#161616'
-            }}>
-                Research
-              </h2>
-              <p className="text-muted-foreground">Content coming soon...</p>
-            </section>
+            {/* Research Section - project specific */}
+            {id === "stitchi" ? (
+              <StitchiResearch />
+            ) : (
+              <section id="research" className="pt-24">
+                <h2 className="text-2xl font-bold mb-6" style={{
+                fontFamily: 'Manrope',
+                color: '#161616'
+              }}>
+                  Research
+                </h2>
+                <p className="text-muted-foreground">Content coming soon...</p>
+              </section>
+            )}
             
-            <section id="testing" className="pt-24">
-              <h2 className="text-2xl font-bold mb-6" style={{
-              fontFamily: 'Manrope',
-              color: '#161616'
-            }}>
-                Testing & Iteration
-              </h2>
-              <p className="text-muted-foreground">Content coming soon...</p>
-            </section>
+            {/* Testing Section - project specific */}
+            {id === "stitchi" ? (
+              <StitchiTesting />
+            ) : (
+              <section id="testing" className="pt-24">
+                <h2 className="text-2xl font-bold mb-6" style={{
+                fontFamily: 'Manrope',
+                color: '#161616'
+              }}>
+                  Testing & Iteration
+                </h2>
+                <p className="text-muted-foreground">Content coming soon...</p>
+              </section>
+            )}
             
-            <section id="reflection" className="pt-24 pb-24">
-              <h2 className="text-2xl font-bold mb-6" style={{
-              fontFamily: 'Manrope',
-              color: '#161616'
-            }}>
-                Reflection
-              </h2>
-              <p className="text-muted-foreground">Content coming soon...</p>
-            </section>
+            {/* Reflection Section - project specific */}
+            {id === "stitchi" ? (
+              <StitchiReflection />
+            ) : (
+              <section id="reflection" className="pt-24 pb-24">
+                <h2 className="text-2xl font-bold mb-6" style={{
+                fontFamily: 'Manrope',
+                color: '#161616'
+              }}>
+                  Reflection
+                </h2>
+                <p className="text-muted-foreground">Content coming soon...</p>
+              </section>
+            )}
           </div>
         </div>
       </section>
