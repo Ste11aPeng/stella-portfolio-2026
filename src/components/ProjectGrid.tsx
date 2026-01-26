@@ -1,8 +1,8 @@
 import ProjectCard from "./ProjectCard";
-import askSiaImage from "@/assets/project-asksia.jpg";
-import circleStatusImage from "@/assets/project-circle-status.jpg";
-import stitchiImage from "@/assets/project-stitchi.jpg";
-import philoImage from "@/assets/project-philo.jpg";
+import askSiaImage from "@/assets/project-asksia.png";
+import circleStatusImage from "@/assets/project-circle-status.png";
+import stitchiImage from "@/assets/project-stitchi.png";
+import philoImage from "@/assets/project-philo.png";
 
 const projects = [
   {

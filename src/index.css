@@ -103,7 +103,7 @@
   }
 
   .project-card {
-    @apply relative overflow-hidden rounded-lg cursor-pointer;
+    @apply relative overflow-hidden cursor-pointer;
   }
 
   .project-overlay {
