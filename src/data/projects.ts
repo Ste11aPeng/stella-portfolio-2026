@@ -42,7 +42,7 @@ export const projects: Project[] = [
     image: circleStatusImage,
     title: "Circle Status",
     titleColor: "#F08368",
-    tagline: "a smart light system for community support",
+    tagline: "light system for community support",
     description: "connecting neighbors through ambient awareness",
     type: "concept",
     role: "Lead Designer",
