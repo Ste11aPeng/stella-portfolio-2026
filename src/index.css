@@ -126,7 +126,6 @@
     line-height: normal;
     white-space: nowrap;
     z-index: 10;
-    transition: left 0.15s ease-out, top 0.15s ease-out;
   }
 
   .project-overlay {
