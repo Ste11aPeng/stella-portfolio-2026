@@ -93,11 +93,16 @@
 @layer base {
   * {
     @apply border-border;
+    cursor: none;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
+  }
+
+  a, button, [role="button"], input, textarea, select {
+    cursor: none;
   }
 }
 
