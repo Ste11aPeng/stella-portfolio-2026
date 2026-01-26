@@ -11,7 +11,17 @@ const Hero = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <p className="text-foreground text-lg md:text-xl leading-relaxed max-w-md pt-4">
+        <p 
+          className="max-w-md pt-4"
+          style={{ 
+            color: '#161616', 
+            fontFamily: 'Manrope', 
+            fontSize: '20px', 
+            fontStyle: 'normal', 
+            fontWeight: 400, 
+            lineHeight: 'normal' 
+          }}
+        >
           Stella P. is Product Designer making calm user experiences for messy, real life. Base in Ann Arbor.
         </p>
       </div>
