@@ -17,7 +17,7 @@ const sections = [
 const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) => {
   return (
     <nav className="sticky top-32 hidden lg:block">
-      <ul className="flex flex-col gap-2 text-right">
+      <ul className="flex flex-col text-right">
         {sections.map((section) => (
           <li key={section.id}>
             <button
@@ -26,7 +26,7 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
                 "text-sm transition-colors hover:text-foreground",
                 activeSection === section.id
                   ? "text-foreground font-medium"
-                  : "text-muted-foreground"
+                  : "text-muted-foreground/50"
               )}
             >
               {section.label}
