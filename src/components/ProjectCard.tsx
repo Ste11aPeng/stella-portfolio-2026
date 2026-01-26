@@ -5,11 +5,12 @@ interface ProjectCardProps {
   id: string;
   image: string;
   title: string;
+  titleColor: string;
   description: string;
   type: string;
 }
 
-const ProjectCard = ({ id, image, title, description, type }: ProjectCardProps) => {
+const ProjectCard = ({ id, image, title, titleColor, description, type }: ProjectCardProps) => {
   const [isHovering, setIsHovering] = useState(false);
   const hintRef = useRef<HTMLDivElement>(null);
   const position = useRef({ x: 0, y: 0 });
@@ -85,7 +86,7 @@ const ProjectCard = ({ id, image, title, description, type }: ProjectCardProps) 
         </div>
         <div className="project-overlay">
           <div className="project-tag">
-            <span className="project-badge project-title">{title}</span>
+            <span className="project-badge project-title font-semibold" style={{ color: titleColor }}>{title}</span>
             <span className="project-badge project-description">{description}</span>
             <span className="project-badge project-type">{type}</span>
           </div>

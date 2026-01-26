@@ -9,6 +9,7 @@ export interface Project {
   id: string;
   image: string;
   title: string;
+  titleColor: string;
   tagline: string;
   description: string;
   type: string;
@@ -25,6 +26,7 @@ export const projects: Project[] = [
     id: "asksia",
     image: askSiaImage,
     title: "AskSia",
+    titleColor: "#4E4DF4",
     tagline: "human - AI interaction in EdTech",
     description: "helping students learn smarter with AI-powered tutoring",
     type: "intern",
@@ -39,6 +41,7 @@ export const projects: Project[] = [
     id: "circle-status",
     image: circleStatusImage,
     title: "Circle Status",
+    titleColor: "#F08368",
     tagline: "a smart light system for community support",
     description: "connecting neighbors through ambient awareness",
     type: "concept",
@@ -53,6 +56,7 @@ export const projects: Project[] = [
     id: "stitchi",
     image: stitchiImage,
     title: "Stitchi.co",
+    titleColor: "#678877",
     tagline: "better search UX",
     description: "better search UX for B2B merch platform",
     type: "intern",
@@ -67,6 +71,7 @@ export const projects: Project[] = [
     id: "philo",
     image: philoImage,
     title: "Philo Design System",
+    titleColor: "#C37933",
     tagline: "a developer-ready UI library",
     description: "building consistent experiences at scale",
     type: "intern",
@@ -81,6 +86,7 @@ export const projects: Project[] = [
     id: "tell-tool",
     image: tellToolImage,
     title: "Tell Tool",
+    titleColor: "#F45F63",
     tagline: "visualizing care and love",
     description: "visualizing care and love",
     type: "concept",
@@ -95,6 +101,7 @@ export const projects: Project[] = [
     id: "forgotten-sense",
     image: forgottenSenseImage,
     title: "Forgotten Sense",
+    titleColor: "#678877",
     tagline: "wearable",
     description: "wearable",
     type: "concept",
