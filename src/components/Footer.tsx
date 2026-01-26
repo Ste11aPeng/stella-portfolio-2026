@@ -1,14 +1,12 @@
 const Footer = () => {
   return (
-    <footer className="w-full py-8 px-6 md:px-12 bg-muted/30">
+    <footer className="w-full py-8 px-6 md:px-12">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <p className="text-sm text-muted-foreground">Don't be a stranger</p>
         
-        <div className="w-3 h-3 rounded-full bg-muted-foreground/40" />
-        
         <nav className="flex items-center gap-6">
           <a 
-            href="https://linkedin.com" 
+            href="https://www.linkedin.com/in/stellapengrnr/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -16,7 +14,7 @@ const Footer = () => {
             linkedin
           </a>
           <a 
-            href="mailto:your@email.com"
+            href="mailto:stellanotfound@gmail.com"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             email
