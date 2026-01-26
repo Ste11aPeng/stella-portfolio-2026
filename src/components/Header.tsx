@@ -22,8 +22,7 @@ const Header = () => {
       <nav className="flex items-center gap-6 md:gap-8">
         <a href="#work" className="nav-link text-sm">work</a>
         <a href="#play" className="nav-link text-sm">play</a>
-        <a href="#me" className="nav-link text-sm">me</a>
-        <a href="#resume" className="nav-link text-sm">resume</a>
+        <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">resume</a>
       </nav>
     </header>
   );
