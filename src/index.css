@@ -129,7 +129,8 @@
   }
 
   .project-title {
-    @apply text-accent font-medium text-sm whitespace-nowrap;
+    @apply font-medium text-sm whitespace-nowrap;
+    color: #787777;
   }
 
   .project-description {
