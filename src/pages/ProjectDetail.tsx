@@ -137,7 +137,7 @@ const ProjectDetail = () => {
       
       {/* Content Section with Sidebar */}
       <section className="px-8 md:px-16 lg:px-24 pb-24">
-        <div className="flex gap-16">
+        <div className="flex gap-16 max-w-6xl mx-auto">
           {/* Sidebar */}
           <div className="w-48 flex-shrink-0">
             <ProjectSidebar activeSection={activeSection} onSectionClick={handleSectionClick} />
