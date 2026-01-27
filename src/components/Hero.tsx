@@ -36,7 +36,7 @@ const Hero = () => {
         ease: [0.0, 0.0, 0.2, 1],
         delay: 0.1
       }}>
-          Stella P. is Product Designer making calm user experiences for messy, real life. Base in Ann Arbor.
+          Stella P. is a Product Designer making calm user experiences for messy, real life. Based in Ann Arbor.
         </motion.p>
       </div>
     </section>;
