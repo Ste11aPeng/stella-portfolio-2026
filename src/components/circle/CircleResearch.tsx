@@ -21,7 +21,7 @@ const CircleResearch = () => {
           Understanding How Communities Cope When Power Fails
         </h2>
         <p className="text-base text-foreground/70 leading-relaxed mb-8">
-          Combining qualitative interviews with quantitative modeling to uncover the behavioral patterns that drive—or prevent—neighbor-to-neighbor support.
+          Combining qualitative interviews with quantitative modeling to uncover the behavioral patterns that drive, or prevent, neighbor-to-neighbor support.
         </p>
       </motion.div>
 
@@ -33,12 +33,9 @@ const CircleResearch = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        <h3 className="text-lg font-semibold mb-2 text-foreground">
+        <h3 className="text-xl font-semibold mb-4 text-foreground">
           50+ Voices from the Midwest
         </h3>
-        <p className="text-sm text-muted-foreground mb-4">
-          Semi-structured interviews & synthesis
-        </p>
         <p className="text-base text-foreground/80 leading-relaxed">
           We conducted <span className="font-medium text-foreground">50+ semi-structured interviews</span> to understand how Midwestern households experience and cope with outages. Using <span className="font-medium text-foreground">Affinity Diagramming</span> and <span className="font-medium text-foreground">Empathy Mapping</span>, we synthesized key insights about user behaviors and unmet needs.
         </p>
@@ -52,12 +49,9 @@ const CircleResearch = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
       >
-        <h3 className="text-lg font-semibold mb-2 text-foreground">
-          Quantifying Resilience Patterns
+        <h3 className="text-xl font-semibold mb-4 text-foreground">
+          200 Survey Respondents + CART Modeling
         </h3>
-        <p className="text-sm text-muted-foreground mb-4">
-          200 survey respondents + statistical modeling
-        </p>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           To complement our qualitative findings, we surveyed <span className="font-medium text-foreground">200 respondents</span> on household preparedness, digital access, health reliance, and willingness to help neighbors. After cleaning and standardizing the data, I performed exploratory analysis to identify behavioral patterns.
         </p>
@@ -84,12 +78,9 @@ const CircleResearch = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.3 }}
       >
-        <h3 className="text-lg font-semibold mb-2 text-foreground">
-          Mapping the Ecosystem of Care
+        <h3 className="text-xl font-semibold mb-4 text-foreground">
+          Stakeholder Analysis & Persona Development
         </h3>
-        <p className="text-sm text-muted-foreground mb-4">
-          Stakeholder analysis & persona development
-        </p>
         <p className="text-base text-foreground/80 leading-relaxed mb-4">
           Effective resilience relies on <span className="font-medium text-foreground">clear information flow</span> and <span className="font-medium text-foreground">mutual aid</span>. This insight shaped three key design decisions:
         </p>

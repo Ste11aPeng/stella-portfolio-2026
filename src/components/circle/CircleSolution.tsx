@@ -62,7 +62,7 @@ const CircleSolution = () => {
           Digital Experience: Turning Signals Into Support
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
-          The companion app extends the lamp's signals into a <span className="font-medium text-foreground">clear digital flow</span>—transforming outage detection into instant notifications, easy check-ins, and meaningful community support when it matters most.
+          The companion app extends the lamp's signals into a <span className="font-medium text-foreground">clear digital flow</span>: transforming outage detection into instant notifications, easy check-ins, and meaningful community support when it matters most.
         </p>
         <ImageLightbox
           src={solution2Image}
@@ -85,26 +85,28 @@ const CircleSolution = () => {
         <p className="text-base text-foreground/80 leading-relaxed mb-4">
           In just two days, I designed and launched a fully functional website using Webflow. It served as both a <span className="font-medium text-foreground">branding hub</span> and an <span className="font-medium text-foreground">online trade show booth</span>, helping us communicate the product story to investors and peers.
         </p>
-        <ImageLightbox
-          src={solution3Image}
-          alt="Circle Status Website - Connected In The Dark landing page"
-          className="w-full rounded-lg mb-4"
-        />
-        <Button 
-          asChild 
-          variant="outline" 
-          className="group hover:bg-foreground hover:text-background transition-all duration-300"
-        >
-          <a 
-            href="https://circlestatus.webflow.io/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2"
+        <div className="relative">
+          <ImageLightbox
+            src={solution3Image}
+            alt="Circle Status Website - Connected In The Dark landing page"
+            className="w-full rounded-lg"
+          />
+          <Button 
+            asChild 
+            size="sm"
+            className="absolute top-4 left-4 bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm"
           >
-            Visit Live Website
-            <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
-        </Button>
+            <a 
+              href="https://circlestatus.webflow.io/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2"
+            >
+              Visit Live Website
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </Button>
+        </div>
       </motion.div>
 
       {/* Making Waves at IPD Trade Show */}
