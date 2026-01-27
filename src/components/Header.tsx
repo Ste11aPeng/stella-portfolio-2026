@@ -18,10 +18,10 @@ const Header = () => {
         isScrolled ? "bg-background/95 backdrop-blur-sm border-b border-border" : "bg-transparent"
       }`}
     >
-      <a href="/" className="text-foreground font-medium text-base">Stella P.</a>
+      <a href="#/" className="text-foreground font-medium text-base">Stella P.</a>
       <nav className="flex items-center gap-6 md:gap-8">
-        <a href="/" className="nav-link text-sm">work</a>
-        <a href="#play" className="nav-link text-sm">play</a>
+        <a href="#/" className="nav-link text-sm">work</a>
+        <a href="#/play" className="nav-link text-sm">play</a>
         <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">resume</a>
       </nav>
     </header>
