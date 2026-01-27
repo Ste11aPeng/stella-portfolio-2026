@@ -16,20 +16,25 @@ const CircleChallenge = () => {
         <span className="text-sm text-muted-foreground block mb-2">
           challenge
         </span>
-        <h2 className="text-2xl font-bold mb-6 text-foreground">
-          When the Lights Go Out...
+        <h2 className="text-2xl font-bold mb-4 text-foreground">
+          Designing for Darkness: Keeping Communities Connected When Infrastructure Fails
         </h2>
       </motion.div>
 
-      <motion.p
-        className="text-base text-foreground/80 leading-relaxed mb-8"
+      <motion.div
+        className="mb-8"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        How might we help isolated communities stay connected and supported during power outages, without relying on expensive infrastructure or vulnerable mobile networks?
-      </motion.p>
+        <p className="text-lg text-foreground/90 leading-relaxed mb-4 font-medium">
+          How might we help isolated communities stay connected and supported during power outages?
+        </p>
+        <p className="text-base text-foreground/70 leading-relaxed">
+          Without relying on expensive infrastructure or vulnerable mobile networks, we set out to bridge the gap between neighbors when they need each other most.
+        </p>
+      </motion.div>
 
       <motion.div
         className="mb-8"
@@ -40,7 +45,7 @@ const CircleChallenge = () => {
       >
         <ImageLightbox
           src={challengeImage}
-          alt="Circle Status Challenge - Power Outages as a systemic problem"
+          alt="Power Outages Is Never A Local Problem - intersecting public health, infrastructure reliability, and climate resilience"
           className="w-full rounded-lg"
         />
       </motion.div>
