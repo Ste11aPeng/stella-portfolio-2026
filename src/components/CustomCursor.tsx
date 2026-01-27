@@ -1,10 +1,17 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const CustomCursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const position = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(true);
+  const location = useLocation();
+
+  // Reset cursor visibility when route changes
+  useEffect(() => {
+    setIsVisible(true);
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
