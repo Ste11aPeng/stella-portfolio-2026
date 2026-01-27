@@ -20,8 +20,8 @@ const Header = () => {
     >
       <a href="#/" className="text-foreground font-medium text-base">Stella P.</a>
       <nav className="flex items-center gap-6 md:gap-8">
-        <a href="#/" className="nav-link text-sm">work</a>
-        <span className="text-muted-foreground/50 text-sm cursor-not-allowed">play</span>
+        <a href="#/" className="nav-link text-sm">product</a>
+        <a href="#/visual" className="nav-link text-sm">visual</a>
         <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">resume</a>
       </nav>
     </header>
