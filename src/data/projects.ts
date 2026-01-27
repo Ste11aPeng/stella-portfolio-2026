@@ -89,15 +89,15 @@ export const projects: Project[] = [
     image: tellToolImage,
     title: "Tell Tool",
     titleColor: "#F45F63",
-    tagline: "visualizing care and love",
-    description: "visualizing care and love",
-    type: "concept",
-    role: "Designer",
-    team: "1 Designer",
+    tagline: "research brand identity",
+    description: "warm visual identity for donor conception research",
+    type: "academic",
+    role: "Visual Identity Designer — led logo, color, typography, and brand guidelines, collaborating with nursing researchers.",
+    team: "Me (Designer), Nursing Researchers (School of Nursing, UMich)",
     timeline: "2024",
-    skills: ["Branding", "Visual Design", "Concept Development"],
-    tags: ["branding", "concept"],
-    overview: "Tell Tool is a concept project exploring how to visualize and communicate care and love through design."
+    skills: ["Branding", "Visual Identity", "Typography", "Print Design"],
+    tags: ["branding", "visual identity", "research"],
+    overview: "A visual identity designed for a nursing research project on donor conception, balancing emotional warmth with clinical clarity to help families navigate sensitive conversations."
   },
   {
     id: "forgotten-sense",
