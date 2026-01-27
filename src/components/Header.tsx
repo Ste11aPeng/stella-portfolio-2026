@@ -21,7 +21,7 @@ const Header = () => {
       <a href="#/" className="text-foreground font-medium text-base">Stella P.</a>
       <nav className="flex items-center gap-6 md:gap-8">
         <a href="#/" className="nav-link text-sm">work</a>
-        <a href="#/play" className="nav-link text-sm">play</a>
+        <span className="text-muted-foreground/50 text-sm cursor-not-allowed">play</span>
         <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">resume</a>
       </nav>
     </header>
