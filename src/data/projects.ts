@@ -19,6 +19,7 @@ export interface Project {
   skills: string[];
   tags: string[];
   overview: string;
+  comingSoon?: boolean;
 }
 
 export const projects: Project[] = [
@@ -35,7 +36,8 @@ export const projects: Project[] = [
     timeline: "Jan 2025 - Mar 2025",
     skills: ["Product Design", "Interface Design", "Interaction Design", "Prototyping", "User Research"],
     tags: ["UI/UX design", "EdTech", "AI"],
-    overview: "In this project, our team worked on improving the learning experience for students using AI-powered tutoring. We focused on creating intuitive interfaces that make complex AI interactions feel natural and helpful."
+    overview: "In this project, our team worked on improving the learning experience for students using AI-powered tutoring. We focused on creating intuitive interfaces that make complex AI interactions feel natural and helpful.",
+    comingSoon: true
   },
   {
     id: "circle-status",
