@@ -19,7 +19,7 @@ const CircleTesting = () => {
           testing & iteration
         </span>
         <h2 className="text-2xl font-bold mb-6 text-foreground">
-          Design Iterations
+          From Feedback to Functional Prototype
         </h2>
       </motion.div>
 
@@ -31,8 +31,8 @@ const CircleTesting = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        <h3 className="text-lg font-semibold mb-3 text-foreground">
-          Iteration 1 — Design Critic
+        <h3 className="text-xl font-semibold mb-3 text-foreground">
+          Expert Review: Safety Meets Approachability
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           During the design review, industry and accessibility experts stressed that the product should feel as safe as it looks. We used affinity diagramming to synthesize feedback and prioritize improvements.
@@ -52,8 +52,8 @@ const CircleTesting = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
       >
-        <h3 className="text-lg font-semibold mb-3 text-foreground">
-          Iteration 2 — Concept Cards & Branding
+        <h3 className="text-xl font-semibold mb-3 text-foreground">
+          Concept Validation: 50-Person Survey
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-4">
           Sent out a survey to 50 people, asking about their purchase interest from 1 to 10. We found that the "Notify Light" concept scored the highest.
@@ -76,8 +76,8 @@ const CircleTesting = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.3 }}
       >
-        <h3 className="text-lg font-semibold mb-3 text-foreground">
-          Iteration 3 — Mechanism Prototyping
+        <h3 className="text-xl font-semibold mb-3 text-foreground">
+          Hardware Prototype: Arduino + ESP32
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-4">
           Detect power loss and pulse a light to Network Notification
