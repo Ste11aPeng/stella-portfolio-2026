@@ -20,7 +20,7 @@ const Hero = () => {
         </motion.div>
         <motion.p className="max-w-md pt-0 font-sans" style={{
         color: '#161616',
-        fontSize: '20px',
+        fontSize: '16px',
         fontWeight: 400,
         lineHeight: 'normal'
       }} initial={{
