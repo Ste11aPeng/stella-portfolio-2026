@@ -37,12 +37,9 @@ const CircleSolution = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        <h3 className="text-lg font-semibold mb-2 text-foreground">
+        <h3 className="text-xl font-semibold mb-4 text-foreground">
           Hardware Core: The Smart Outage Lamp
         </h3>
-        <p className="text-sm text-muted-foreground mb-4">
-          Ambient lighting meets emergency communication
-        </p>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           The lamp serves dual purposes: <span className="font-medium text-foreground">daily ambient lighting</span> and <span className="font-medium text-foreground">physical trigger</span> for the app's detection and notification flow. Its soft-serrated texture and battery backup ensure it remains functional and approachable even when everything else goes dark.
         </p>
@@ -61,12 +58,9 @@ const CircleSolution = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
       >
-        <h3 className="text-lg font-semibold mb-2 text-foreground">
+        <h3 className="text-xl font-semibold mb-4 text-foreground">
           Digital Experience: Turning Signals Into Support
         </h3>
-        <p className="text-sm text-muted-foreground mb-4">
-          Fully interactive Figma prototype
-        </p>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           The companion app extends the lamp's signals into a <span className="font-medium text-foreground">clear digital flow</span>—transforming outage detection into instant notifications, easy check-ins, and meaningful community support when it matters most.
         </p>
@@ -85,19 +79,21 @@ const CircleSolution = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.3 }}
       >
-        <h3 className="text-lg font-semibold mb-2 text-foreground">
+        <h3 className="text-xl font-semibold mb-4 text-foreground">
           Brand Presence: Built in 48 Hours
         </h3>
-        <p className="text-sm text-muted-foreground mb-4">
-          From concept to live website in a weekend
-        </p>
-        <p className="text-base text-foreground/80 leading-relaxed mb-5">
+        <p className="text-base text-foreground/80 leading-relaxed mb-4">
           In just two days, I designed and launched a fully functional website using Webflow. It served as both a <span className="font-medium text-foreground">branding hub</span> and an <span className="font-medium text-foreground">online trade show booth</span>, helping us communicate the product story to investors and peers.
         </p>
+        <ImageLightbox
+          src={solution3Image}
+          alt="Circle Status Website - Connected In The Dark landing page"
+          className="w-full rounded-lg mb-4"
+        />
         <Button 
           asChild 
           variant="outline" 
-          className="mb-6 group hover:bg-foreground hover:text-background transition-all duration-300"
+          className="group hover:bg-foreground hover:text-background transition-all duration-300"
         >
           <a 
             href="https://circlestatus.webflow.io/" 
@@ -109,11 +105,6 @@ const CircleSolution = () => {
             <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
         </Button>
-        <ImageLightbox
-          src={solution3Image}
-          alt="Circle Status Website - Connected In The Dark landing page"
-          className="w-full rounded-lg"
-        />
       </motion.div>
 
       {/* Making Waves at IPD Trade Show */}
@@ -124,12 +115,9 @@ const CircleSolution = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.4 }}
       >
-        <h3 className="text-lg font-semibold mb-2 text-foreground">
+        <h3 className="text-xl font-semibold mb-4 text-foreground">
           Market Validation: $1M+ in Trade Show Currency
         </h3>
-        <p className="text-sm text-muted-foreground mb-4">
-          Presented to 200+ entrepreneurs, investors, and peers
-        </p>
         <p className="text-base text-foreground/80 leading-relaxed mb-4">
           We showcased Circle Status at the <span className="font-medium text-foreground">Ross School of Business IPD Trade Show</span>, where over 200 attendees experienced our concept firsthand.
         </p>
@@ -145,9 +133,6 @@ const CircleSolution = () => {
             </div>
           </div>
         </div>
-        <p className="text-base text-foreground/70 leading-relaxed italic mb-6">
-          "It was a genuine test of market validation, bridging academic exploration with entrepreneurial practice."
-        </p>
         <ImageLightbox
           src={impactImage}
           alt="IPD Trade Show - Team presenting Circle Status to attendees"
