@@ -104,15 +104,15 @@ export const projects: Project[] = [
     image: forgottenSenseImage,
     title: "Forgotten Sense",
     titleColor: "#678877",
-    tagline: "wearable",
-    description: "wearable",
-    type: "concept",
-    role: "Designer",
-    team: "1 Designer",
+    tagline: "e-textile wearable",
+    description: "haptic wearable for anosmia patients",
+    type: "academic",
+    role: "Designer — wearable form design, interaction patterns, e-textile prototyping",
+    team: "Me (Designer)",
     timeline: "2024",
-    skills: ["Wearable Design", "Prototyping", "Concept Development"],
-    tags: ["wearable", "concept"],
-    overview: "Forgotten Sense is a concept wearable project exploring sensory experiences through technology."
+    skills: ["E-textile", "Wearable Design", "Prototyping", "Interaction Design"],
+    tags: ["wearable", "e-textile", "assistive tech"],
+    overview: "An e-textile wearable that translates scent-dependent moments into gentle haptic and visual cues, helping people with anosmia feel more confident and aware in daily life."
   }
 ];
 
