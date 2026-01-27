@@ -15,10 +15,14 @@ import visual9 from "@/assets/visual-9.png";
 import visual10 from "@/assets/visual-10.png";
 import visual11 from "@/assets/visual-11.png";
 import visual12 from "@/assets/visual-12.png";
+import visual13 from "@/assets/visual-13.png";
+import visual14 from "@/assets/visual-14.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
 const images = [
+  { src: visual13, alt: "YouTube Shorts UI redesign - Problem statement" },
+  { src: visual14, alt: "YouTube Shorts UI redesign - Solution" },
   { src: visual1, alt: "3D coral character artwork" },
   { src: visual2, alt: "Mechanical sketch illustration" },
   { src: visual3, alt: "Changsha typography design" },
