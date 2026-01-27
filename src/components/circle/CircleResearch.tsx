@@ -56,18 +56,18 @@ const CircleResearch = () => {
           To complement our qualitative findings, we surveyed <span className="font-medium text-foreground">200 respondents</span> on household preparedness, digital access, health reliance, and willingness to help neighbors. After cleaning and standardizing the data, I performed exploratory analysis to identify behavioral patterns.
         </p>
         
-        <div className="bg-muted/30 rounded-lg p-5 mb-6">
-          <h4 className="font-medium text-foreground mb-3">Key Finding: CART Analysis</h4>
-          <p className="text-sm text-foreground/80 leading-relaxed">
-            Using Classification and Regression Trees, we discovered that <span className="font-medium text-foreground">confidence, family reliance, and trust in neighbors</span> were the strongest predictors of support behavior—outweighing demographics like age or household size.
-          </p>
-        </div>
-        
         <ImageLightbox
           src={research1Image}
           alt="Exploratory Data Analysis and CART - Feature importance and help-seeking behavior charts"
-          className="w-full rounded-lg"
+          className="w-full rounded-lg mb-6"
         />
+        
+        <div className="bg-muted/30 rounded-lg p-5">
+          <h4 className="font-medium text-foreground mb-3">Key Finding: CART Analysis</h4>
+          <p className="text-sm text-foreground/80 leading-relaxed">
+            Using Classification and Regression Trees, we discovered that <span className="font-medium text-foreground">confidence, family reliance, and trust in neighbors</span> were the strongest predictors of support behavior, outweighing demographics like age or household size.
+          </p>
+        </div>
       </motion.div>
 
       {/* Stakeholder Analysis & Persona */}
