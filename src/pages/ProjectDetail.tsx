@@ -15,6 +15,11 @@ import PhiloSolution from "@/components/philo/PhiloSolution";
 import PhiloResearch from "@/components/philo/PhiloResearch";
 import PhiloTesting from "@/components/philo/PhiloTesting";
 import PhiloReflection from "@/components/philo/PhiloReflection";
+import CircleChallenge from "@/components/circle/CircleChallenge";
+import CircleSolution from "@/components/circle/CircleSolution";
+import CircleResearch from "@/components/circle/CircleResearch";
+import CircleTesting from "@/components/circle/CircleTesting";
+import CircleReflection from "@/components/circle/CircleReflection";
 import { getProjectById } from "@/data/projects";
 
 // Gallery images for Tell Tool
@@ -147,6 +152,8 @@ const ProjectDetail = () => {
               <StitchiChallenge />
             ) : id === "philo" ? (
               <PhiloChallenge />
+            ) : id === "circle-status" ? (
+              <CircleChallenge />
             ) : (
               <section id="challenge" className="pt-24">
                 <h2 className="text-2xl font-bold mb-6 text-foreground">
@@ -161,6 +168,8 @@ const ProjectDetail = () => {
               <StitchiSolution />
             ) : id === "philo" ? (
               <PhiloSolution />
+            ) : id === "circle-status" ? (
+              <CircleSolution />
             ) : (
               <section id="solution" className="pt-24">
                 <h2 className="text-2xl font-bold mb-6 text-foreground">
@@ -175,6 +184,8 @@ const ProjectDetail = () => {
               <StitchiResearch />
             ) : id === "philo" ? (
               <PhiloResearch />
+            ) : id === "circle-status" ? (
+              <CircleResearch />
             ) : (
               <section id="research" className="pt-24">
                 <h2 className="text-2xl font-bold mb-6 text-foreground">
@@ -189,6 +200,8 @@ const ProjectDetail = () => {
               <StitchiTesting />
             ) : id === "philo" ? (
               <PhiloTesting />
+            ) : id === "circle-status" ? (
+              <CircleTesting />
             ) : (
               <section id="testing" className="pt-24">
                 <h2 className="text-2xl font-bold mb-6 text-foreground">
@@ -203,6 +216,8 @@ const ProjectDetail = () => {
               <StitchiReflection />
             ) : id === "philo" ? (
               <PhiloReflection />
+            ) : id === "circle-status" ? (
+              <CircleReflection />
             ) : (
               <section id="reflection" className="pt-24 pb-24">
                 <h2 className="text-2xl font-bold mb-6 text-foreground">
