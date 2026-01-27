@@ -18,11 +18,9 @@ const Hero = () => {
       }}>
           <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
         </motion.div>
-        <motion.p className="max-w-md pt-0 text-sm font-normal" style={{
+        <motion.p className="max-w-md pt-0 font-sans" style={{
         color: '#161616',
-        fontFamily: 'Manrope',
         fontSize: '20px',
-        fontStyle: 'normal',
         fontWeight: 400,
         lineHeight: 'normal'
       }} initial={{
