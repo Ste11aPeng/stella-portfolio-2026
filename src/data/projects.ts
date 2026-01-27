@@ -46,13 +46,13 @@ export const projects: Project[] = [
     titleColor: "#F08368",
     tagline: "light system for community",
     description: "connecting neighbors through ambient awareness",
-    type: "concept",
-    role: "Lead Designer",
-    team: "1 Designer, 2 Engineers",
-    timeline: "Sep 2024 - Dec 2024",
-    skills: ["Product Design", "IoT Design", "User Research", "Prototyping"],
+    type: "academic",
+    role: "Product Designer: 3D Modeling, Prototyping, Website Design",
+    team: "Product Design (Me), PM (David C), SWE (Garima), Visual Design (Maggie), Lecturer (Etika B., Bruce T.)",
+    timeline: "Fall 2024 (15 weeks)",
+    skills: ["Figma", "Blender", "Rhino", "Webflow"],
     tags: ["UI/UX design", "IoT", "community"],
-    overview: "Circle Status is a concept project exploring how ambient technology can strengthen community bonds and provide non-intrusive support systems for neighbors."
+    overview: "This is a project for Integrated Product Development (IPD) course at University of Michigan. Theme of 2024 is When the Lights Go Out. As cross-disciplinary design and development teams, how might we help people deal with electrical power outages, to ensure that basic needs can be met, inconveniences of the disruption are reduced, and/or possible benefits of the situation are leveraged or embraced."
   },
   {
     id: "stitchi",
