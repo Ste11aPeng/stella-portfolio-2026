@@ -4,8 +4,8 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  // 👇 GitHub Pages: repo 项目必须设置 base 为 /仓库名/
-  base: mode === "development" ? "/" : "/stella-portfolio-2026/",
+  // 👇 使用自定义域名时，base 设置为 '/'
+  base: "/",
 
   server: {
     host: "::",
