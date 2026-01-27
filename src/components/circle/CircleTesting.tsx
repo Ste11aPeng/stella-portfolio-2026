@@ -16,7 +16,7 @@ const CircleTesting = () => {
         transition={{ duration: 0.5, ease: easeOut }}
       >
         <span className="text-sm text-muted-foreground block mb-2">
-          testing & iteration
+          iteration
         </span>
         <h2 className="text-2xl font-bold mb-6 text-foreground">
           From Feedback to Functional Prototype
