@@ -67,7 +67,7 @@ export const projects: Project[] = [
     timeline: "June 2025 (4 weeks)",
     skills: ["Figma", "Slack", "Algolia"],
     tags: ["UI/UX design", "B2B / SaaS", "e-commerce"],
-    overview: "Helping B2B buyers stop guessing and start finding on Stitchi.co. In June 2025, we ran a 4-week internal redesign sprint to fix a growing usability issue on Stitchi. As supplier catalogs expanded, users struggled to find products because filters were cluttered, interactions were inconsistent, and search offered little guidance."
+    overview: "Helping B2B buyers stop guessing and start finding. A 4-week sprint to fix product discovery as catalogs scaled."
   },
   {
     id: "philo",
