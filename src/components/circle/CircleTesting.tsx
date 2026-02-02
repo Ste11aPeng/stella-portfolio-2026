@@ -34,9 +34,14 @@ const CircleTesting = () => {
         <h3 className="text-xl font-semibold mb-3 text-foreground">
           Expert Review: Safety Meets Approachability
         </h3>
-        <p className="text-base text-foreground/80 leading-relaxed mb-6">
-          During the design review, industry and accessibility experts stressed that the product should feel as safe as it looks. We used affinity diagramming to synthesize feedback and prioritize improvements.
-        </p>
+        <ul className="list-none mb-6 space-y-3">
+          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+            Industry and accessibility experts stressed safety should feel intuitive
+          </li>
+          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+            Affinity diagramming to synthesize and prioritize feedback
+          </li>
+        </ul>
         <ImageLightbox
           src={iteration1Image}
           alt="Iteration 1 - Design review presentation and affinity mapping at University of Michigan"
@@ -55,12 +60,14 @@ const CircleTesting = () => {
         <h3 className="text-xl font-semibold mb-3 text-foreground">
           Concept Validation: 50-Person Survey
         </h3>
-        <p className="text-base text-foreground/80 leading-relaxed mb-4">
-          Sent out a survey to 50 people, asking about their purchase interest from 1 to 10. We found that the "Notify Light" concept scored the highest.
-        </p>
-        <p className="text-base text-foreground/80 leading-relaxed mb-4">
-          <span className="font-medium">Aligning Brand Direction:</span> Once the system structure was clear, I led a branding and form workshop to unify the product's visual and emotional tone. The results gave us a clear, shared brand voice.
-        </p>
+        <ul className="list-none mb-6 space-y-3">
+          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+            Surveyed 50 people on purchase interest; "Notify Light" scored highest
+          </li>
+          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+            Led branding workshop to unify visual and emotional tone
+          </li>
+        </ul>
         <ImageLightbox
           src={iteration2Image}
           alt="Iteration 2 - 100+ ideas refined to 9 concept cards, team branding sync, and sketches"
@@ -79,15 +86,17 @@ const CircleTesting = () => {
         <h3 className="text-xl font-semibold mb-3 text-foreground">
           Hardware Prototype: Arduino + ESP32
         </h3>
-        <p className="text-base text-foreground/80 leading-relaxed mb-4">
-          Detect power loss and pulse a light to Network Notification
-        </p>
-        <p className="text-base text-foreground/80 leading-relaxed mb-4">
-          Using an Arduino, photoresistor, and LED, I prototyped a light-based outage alert that detected darkness and responded instantly with gradual illumination.
-        </p>
-        <p className="text-base text-foreground/80 leading-relaxed mb-6">
-          I built it on a Feather HUZZAH32 (ESP32) with LiPo backup. The LED signals outages locally, while Wi-Fi sends real-time alerts to phones. Debouncing and a simple state machine prevent false alarms.
-        </p>
+        <ul className="list-none mb-6 space-y-3">
+          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+            Detects power loss and pulses a light for network notification
+          </li>
+          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+            Built on Feather HUZZAH32 (ESP32) with LiPo backup
+          </li>
+          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+            Debouncing and state machine prevent false alarms
+          </li>
+        </ul>
         <ImageLightbox
           src={iteration3Image}
           alt="Iteration 3 - Hardware prototyping with Arduino showing Normal, Outage, and Restore states"

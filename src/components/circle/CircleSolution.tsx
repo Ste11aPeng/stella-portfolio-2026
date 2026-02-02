@@ -21,12 +21,9 @@ const CircleSolution = () => {
         <span className="text-sm text-muted-foreground block mb-2">
           solution
         </span>
-        <h2 className="text-2xl font-bold mb-4 text-foreground">
+        <h2 className="text-2xl font-bold mb-8 text-foreground">
           Circle Status: A Lamp That Speaks When You Can't
         </h2>
-        <p className="text-base text-foreground/70 leading-relaxed mb-8">
-          An integrated hardware-software ecosystem that transforms power outages from isolating events into opportunities for community connection.
-        </p>
       </motion.div>
 
       {/* Smart Outage Lamp */}
@@ -41,7 +38,7 @@ const CircleSolution = () => {
           Hardware Core: The Smart Outage Lamp
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
-          The lamp serves dual purposes: <span className="font-medium text-foreground">daily ambient lighting</span> and <span className="font-medium text-foreground">physical trigger</span> for the app's detection and notification flow. Its soft-serrated texture and battery backup ensure it remains functional and approachable even when everything else goes dark.
+          A soft-textured lamp with battery backup that works as daily lighting and triggers the app's detection flow when power fails.
         </p>
         <ImageLightbox
           src={solution1Image}
@@ -62,7 +59,7 @@ const CircleSolution = () => {
           Digital Experience: Turning Signals Into Support
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
-          The companion app extends the lamp's signals into a <span className="font-medium text-foreground">clear digital flow</span>: transforming outage detection into instant notifications, easy check-ins, and meaningful community support when it matters most.
+          The companion app converts outage detection into instant notifications, easy check-ins, and community support.
         </p>
         <ImageLightbox
           src={solution2Image}
@@ -83,7 +80,7 @@ const CircleSolution = () => {
           Brand Presence: Built in 48 Hours
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-4">
-          In just two days, I designed and launched a fully functional website using Webflow. It served as both a <span className="font-medium text-foreground">branding hub</span> and an <span className="font-medium text-foreground">online trade show booth</span>, helping us communicate the product story to investors and peers.
+          Designed and launched a Webflow site in two days as a branding hub and online trade show booth.
         </p>
         <div className="relative">
           <ImageLightbox
@@ -121,7 +118,7 @@ const CircleSolution = () => {
           Market Validation: $1M+ in Trade Show Currency
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-4">
-          We showcased Circle Status at the <span className="font-medium text-foreground">Ross School of Business IPD Trade Show</span>, where over 200 attendees experienced our concept firsthand.
+          Showcased at the Ross School of Business IPD Trade Show with 200+ attendees.
         </p>
         <div className="bg-muted/30 rounded-lg p-5 mb-6">
           <div className="grid grid-cols-2 gap-4 text-center">
