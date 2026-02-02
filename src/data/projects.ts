@@ -82,7 +82,7 @@ export const projects: Project[] = [
     timeline: "July 2025 (3-week sprint)",
     skills: ["Figma", "Slack", "Material 3 UI"],
     tags: ["design system", "UI library"],
-    overview: "In Summer 2025, I joined Philo Home as a product designer through a startup accelerator, where I supported multiple product initiatives. Philo Home is a furniture e-commerce platform powered by AI-driven recommendations. As the lead designer on this project, I built a reusable design system to help the team scale beyond the MVP."
+    overview: "A 3-week sprint to build a reusable, dev-ready design system for Philo Home's furniture e-commerce platform."
   },
   {
     id: "tell-tool",

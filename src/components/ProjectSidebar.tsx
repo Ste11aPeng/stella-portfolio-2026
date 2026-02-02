@@ -18,10 +18,18 @@ const sections = [
 const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) => {
   const { id } = useParams<{ id: string }>();
   
-  // Filter out testing/iteration for Stitchi project
-  const visibleSections = id === "stitchi" 
-    ? sections.filter(s => s.id !== "testing") 
-    : sections;
+  // Customize sections based on project
+  const getVisibleSections = () => {
+    if (id === "stitchi") {
+      return sections.filter(s => s.id !== "testing");
+    }
+    if (id === "philo") {
+      return sections.map(s => s.id === "testing" ? { ...s, label: "Impact" } : s);
+    }
+    return sections;
+  };
+  
+  const visibleSections = getVisibleSections();
 
   return (
     <nav className="sticky top-32 hidden lg:block">
