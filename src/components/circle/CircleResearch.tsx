@@ -18,10 +18,10 @@ const CircleResearch = () => {
           research
         </span>
         <h2 className="text-2xl font-bold mb-4 text-foreground">
-          Understanding How Communities Cope When Power Fails
+          Understanding How Communities Cope
         </h2>
         <p className="text-base text-foreground/70 leading-relaxed mb-8">
-          Combining qualitative interviews with quantitative modeling to uncover the behavioral patterns that drive, or prevent, neighbor-to-neighbor support.
+          Mixed-methods research to uncover behavioral patterns during outages.
         </p>
       </motion.div>
 
@@ -36,9 +36,14 @@ const CircleResearch = () => {
         <h3 className="text-xl font-semibold mb-4 text-foreground">
           50+ Voices from the Midwest
         </h3>
-        <p className="text-base text-foreground/80 leading-relaxed">
-          We conducted <span className="font-medium text-foreground">50+ semi-structured interviews</span> to understand how Midwestern households experience and cope with outages. Using <span className="font-medium text-foreground">Affinity Diagramming</span> and <span className="font-medium text-foreground">Empathy Mapping</span>, we synthesized key insights about user behaviors and unmet needs.
-        </p>
+        <ul className="list-none mb-6 space-y-3">
+          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+            <strong className="text-foreground/90">Semi-structured interviews</strong> with 50+ households on outage experiences
+          </li>
+          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+            <strong className="text-foreground/90">Affinity Diagramming</strong> and <strong className="text-foreground/90">Empathy Mapping</strong> to synthesize insights
+          </li>
+        </ul>
       </motion.div>
 
       {/* EDA and CART */}
@@ -52,22 +57,20 @@ const CircleResearch = () => {
         <h3 className="text-xl font-semibold mb-4 text-foreground">
           200 Survey Respondents + CART Modeling
         </h3>
-        <p className="text-base text-foreground/80 leading-relaxed mb-6">
-          To complement our qualitative findings, we surveyed <span className="font-medium text-foreground">200 respondents</span> on household preparedness, digital access, health reliance, and willingness to help neighbors. After cleaning and standardizing the data, I performed exploratory analysis to identify behavioral patterns.
-        </p>
+        <ul className="list-none mb-6 space-y-3">
+          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+            Surveyed 200 respondents on preparedness, digital access, and willingness to help
+          </li>
+          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+            <strong className="text-foreground/90">CART analysis</strong> revealed confidence, family reliance, and neighbor trust as strongest predictors
+          </li>
+        </ul>
         
         <ImageLightbox
           src={research1Image}
           alt="Exploratory Data Analysis and CART - Feature importance and help-seeking behavior charts"
-          className="w-full rounded-lg mb-6"
+          className="w-full rounded-lg"
         />
-        
-        <div className="bg-muted/30 rounded-lg p-5">
-          <h4 className="font-medium text-foreground mb-3">Key Finding: CART Analysis</h4>
-          <p className="text-sm text-foreground/80 leading-relaxed">
-            Using Classification and Regression Trees, we discovered that <span className="font-medium text-foreground">confidence, family reliance, and trust in neighbors</span> were the strongest predictors of support behavior, outweighing demographics like age or household size.
-          </p>
-        </div>
       </motion.div>
 
       {/* Stakeholder Analysis & Persona */}
@@ -79,15 +82,18 @@ const CircleResearch = () => {
         transition={{ duration: 0.5, ease: easeOut, delay: 0.3 }}
       >
         <h3 className="text-xl font-semibold mb-4 text-foreground">
-          Stakeholder Analysis & Persona Development
+          Stakeholder Analysis & Personas
         </h3>
-        <p className="text-base text-foreground/80 leading-relaxed mb-4">
-          Effective resilience relies on <span className="font-medium text-foreground">clear information flow</span> and <span className="font-medium text-foreground">mutual aid</span>. This insight shaped three key design decisions:
-        </p>
-        <ul className="list-disc list-inside text-base text-foreground/80 leading-relaxed mb-6 space-y-1">
-          <li>Simplified caregiver notification flows</li>
-          <li>Community features designed for real, actionable support</li>
-          <li>Privacy controls balanced with institutional data needs</li>
+        <ul className="list-none mb-6 space-y-3">
+          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+            Simplified caregiver notification flows
+          </li>
+          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+            Community features designed for actionable support
+          </li>
+          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+            Privacy controls balanced with institutional data needs
+          </li>
         </ul>
         <ImageLightbox
           src={research2Image}
