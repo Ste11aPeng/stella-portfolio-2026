@@ -195,9 +195,9 @@ const ProjectDetail = () => {
               </section>
             )}
             
-            {/* Testing Section - project specific */}
+            {/* Testing Section - project specific (skip for Stitchi) */}
             {id === "stitchi" ? (
-              <StitchiTesting />
+              <section id="testing" className="hidden" />
             ) : id === "philo" ? (
               <PhiloTesting />
             ) : id === "circle-status" ? (
