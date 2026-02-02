@@ -12,10 +12,10 @@ const PhiloTesting = () => {
       <Separator className="mb-16 bg-border/60" />
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
-        <span className="text-sm text-muted-foreground mb-3 block">impact</span>
-        <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
-          Outcome
-        </h2>
+        <span className="text-sm text-muted-foreground mb-3 block">outcome</span>
+        <p className="text-base mb-10 max-w-3xl text-foreground/80 leading-relaxed">
+          Improved team efficiency and product consistency, enabling faster development cycles while delivering a cohesive user experience across the platform.
+        </p>
       </motion.div>
       
       {/* Iteration Image */}
@@ -40,9 +40,6 @@ const PhiloTesting = () => {
         </li>
         <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
           <strong className="text-foreground/90">For Designers</strong> — Streamlined future design work with reusable patterns
-        </li>
-        <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-          <strong className="text-foreground/90">For Hand-off</strong> — Smooth design-to-dev transitions with shared vocabulary
         </li>
         <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
           <strong className="text-foreground/90">For Users</strong> — Consistent, cohesive experience across the platform
