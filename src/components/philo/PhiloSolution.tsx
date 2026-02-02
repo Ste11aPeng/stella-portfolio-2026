@@ -15,7 +15,7 @@ const PhiloSolution = () => {
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
         <span className="text-sm text-muted-foreground mb-3 block">solution</span>
         <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
-          Building a Scalable, Developer-Friendly System
+          A Scalable, Dev-Ready System
         </h2>
       </motion.div>
       
@@ -26,7 +26,7 @@ const PhiloSolution = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
       >
-        To replace the generic, unbranded MVP UI, I designed a scalable and practical design system rooted in Philo's brand and optimized for React Native implementation. My goal was not just to deliver components, but to deliver clarity: a single source of truth that developers could confidently build on, balancing detail and simplicity while supporting future growth.
+        A component library built on Philo's brand, optimized for React Native, serving as a single source of truth for the team.
       </motion.p>
       
       {/* Solution Image 1 - Design System Table of Contents */}

@@ -12,21 +12,11 @@ const PhiloTesting = () => {
       <Separator className="mb-16 bg-border/60" />
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
-        <span className="text-sm text-muted-foreground mb-3 block">iteration</span>
+        <span className="text-sm text-muted-foreground mb-3 block">impact</span>
         <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
-          Iterating with the Team
+          Outcome
         </h2>
       </motion.div>
-      
-      <motion.p
-        className="text-base mb-10 max-w-3xl text-foreground/80 leading-relaxed"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
-      >
-        After delivering the first version, I facilitated a review session with developers to walk through the library and gather their feedback. Together, we identified areas that could be improved for implementation efficiency and clarity.
-      </motion.p>
       
       {/* Iteration Image */}
       <div className="mb-12">
@@ -36,6 +26,28 @@ const PhiloTesting = () => {
           className="w-full rounded-lg shadow-sm"
         />
       </div>
+      
+      {/* Impact Content */}
+      <motion.ul
+        className="list-none mb-10 space-y-3"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
+      >
+        <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+          <strong className="text-foreground/90">For Developers</strong> — Quick onboarding with clear, ready-to-use components
+        </li>
+        <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+          <strong className="text-foreground/90">For Designers</strong> — Streamlined future design work with reusable patterns
+        </li>
+        <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+          <strong className="text-foreground/90">For Hand-off</strong> — Smooth design-to-dev transitions with shared vocabulary
+        </li>
+        <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+          <strong className="text-foreground/90">For Users</strong> — Consistent, cohesive experience across the platform
+        </li>
+      </motion.ul>
       
       {/* Impact Image */}
       <div className="mb-8">
