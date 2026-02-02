@@ -35,7 +35,7 @@ const CircleSolution = () => {
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
         <h3 className="text-xl font-semibold mb-4 text-foreground">
-          Hardware Core: The Smart Outage Lamp
+          Hardware - Smart Night Lamp
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           A soft-textured lamp with battery backup that works as daily lighting and triggers the app's detection flow when power fails.
@@ -56,7 +56,7 @@ const CircleSolution = () => {
         transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
       >
         <h3 className="text-xl font-semibold mb-4 text-foreground">
-          Digital Experience: Turning Signals Into Support
+          Digital Product - Support
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           The companion app converts outage detection into instant notifications, easy check-ins, and community support.

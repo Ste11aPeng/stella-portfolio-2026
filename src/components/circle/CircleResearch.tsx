@@ -1,4 +1,5 @@
 import { motion, type Easing } from "framer-motion";
+import { Separator } from "@/components/ui/separator";
 import ImageLightbox from "@/components/ImageLightbox";
 import research1Image from "@/assets/circle-research-1.png";
 import research2Image from "@/assets/circle-research-2.png";
@@ -46,7 +47,9 @@ const CircleResearch = () => {
         </ul>
       </motion.div>
 
-      {/* EDA and CART */}
+      <Separator className="my-10" />
+
+      {/* Data Analysis & Stakeholders - Merged */}
       <motion.div
         className="mb-14"
         initial={{ opacity: 0, y: 20 }}
@@ -55,49 +58,28 @@ const CircleResearch = () => {
         transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
       >
         <h3 className="text-xl font-semibold mb-4 text-foreground">
-          200 Survey Respondents + CART Modeling
+          Survey Analysis & Stakeholder Mapping
         </h3>
         <ul className="list-none mb-6 space-y-3">
           <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            Surveyed 200 respondents on preparedness, digital access, and willingness to help
+            200 respondents surveyed on preparedness and willingness to help
           </li>
           <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            <strong className="text-foreground/90">CART analysis</strong> revealed confidence, family reliance, and neighbor trust as strongest predictors
+            <strong className="text-foreground/90">CART analysis</strong> identified confidence and neighbor trust as key predictors
+          </li>
+          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+            Simplified caregiver notification flows and privacy controls
           </li>
         </ul>
         
         <ImageLightbox
           src={research1Image}
           alt="Exploratory Data Analysis and CART - Feature importance and help-seeking behavior charts"
-          className="w-full rounded-lg"
+          className="w-full rounded-lg mb-6"
         />
-      </motion.div>
-
-      {/* Stakeholder Analysis & Persona */}
-      <motion.div
-        className="mb-8"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, ease: easeOut, delay: 0.3 }}
-      >
-        <h3 className="text-xl font-semibold mb-4 text-foreground">
-          Stakeholder Analysis & Personas
-        </h3>
-        <ul className="list-none mb-6 space-y-3">
-          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            Simplified caregiver notification flows
-          </li>
-          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            Community features designed for actionable support
-          </li>
-          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            Privacy controls balanced with institutional data needs
-          </li>
-        </ul>
         <ImageLightbox
           src={research2Image}
-          alt="Stakeholder analysis diagram and user personas - Luddite Robert and Young Jason"
+          alt="Stakeholder analysis diagram and user personas"
           className="w-full rounded-lg"
         />
       </motion.div>
