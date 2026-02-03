@@ -40,7 +40,15 @@ import fg5 from "@/assets/fg-5.png";
 import fg6 from "@/assets/fg-6.png";
 import forgottenSenseCover from "@/assets/project-forgotten-sense.png";
 
-const sectionIds = ["overview", "challenge", "solution", "research", "testing", "reflection"];
+const baseSectionIds = ["overview", "challenge", "solution", "research", "testing", "reflection"];
+
+// Get section IDs based on project type
+const getSectionIds = (projectId: string | undefined) => {
+  if (projectId === "stitchi") {
+    return baseSectionIds.filter(id => id !== "testing");
+  }
+  return baseSectionIds;
+};
 
 // Gallery projects configuration
 const galleryProjects = ["tell-tool", "forgotten-sense"];
@@ -71,13 +79,18 @@ const ProjectDetail = () => {
   const [activeSection, setActiveSection] = useState("overview");
   const project = id ? getProjectById(id) : undefined;
 
+  // Get section IDs for current project
+  const sectionIds = getSectionIds(id);
+
   // Scroll spy effect
   useEffect(() => {
+    const currentSectionIds = getSectionIds(id);
+    
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 150; // offset for header
 
-      for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const sectionId = sectionIds[i];
+      for (let i = currentSectionIds.length - 1; i >= 0; i--) {
+        const sectionId = currentSectionIds[i];
         const element = document.getElementById(sectionId);
         if (element && element.offsetTop <= scrollPosition) {
           setActiveSection(sectionId);
@@ -90,7 +103,7 @@ const ProjectDetail = () => {
     handleScroll(); // Initial check
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (!project) {
