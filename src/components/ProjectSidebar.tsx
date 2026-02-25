@@ -26,6 +26,17 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
     if (id === "philo") {
       return sections.map(s => s.id === "testing" ? { ...s, label: "Impact" } : s);
     }
+    if (id === "asksia") {
+      return [
+        { id: "overview", label: "Overview" },
+        { id: "challenge", label: "Challenge" },
+        { id: "solution", label: "Solution" },
+        { id: "impact", label: "Impact" },
+        { id: "research", label: "Research" },
+        { id: "design-analysis", label: "Design Analysis" },
+        { id: "reflection", label: "Reflection" },
+      ];
+    }
     return sections;
   };
   

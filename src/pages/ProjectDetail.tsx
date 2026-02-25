@@ -20,6 +20,12 @@ import CircleSolution from "@/components/circle/CircleSolution";
 import CircleResearch from "@/components/circle/CircleResearch";
 import CircleTesting from "@/components/circle/CircleTesting";
 import CircleReflection from "@/components/circle/CircleReflection";
+import AsksiaChallenge from "@/components/asksia/AsksiaChallenge";
+import AsksiaSolution from "@/components/asksia/AsksiaSolution";
+import AsksiaImpact from "@/components/asksia/AsksiaImpact";
+import AsksiaResearch from "@/components/asksia/AsksiaResearch";
+import AsksiaDesignAnalysis from "@/components/asksia/AsksiaDesignAnalysis";
+import AsksiaReflection from "@/components/asksia/AsksiaReflection";
 import { getProjectById } from "@/data/projects";
 
 // Gallery images for Tell Tool
@@ -46,6 +52,9 @@ const baseSectionIds = ["overview", "challenge", "solution", "research", "testin
 const getSectionIds = (projectId: string | undefined) => {
   if (projectId === "stitchi") {
     return baseSectionIds.filter(id => id !== "testing");
+  }
+  if (projectId === "asksia") {
+    return ["overview", "challenge", "solution", "impact", "research", "design-analysis", "reflection"];
   }
   return baseSectionIds;
 };
@@ -160,85 +169,70 @@ const ProjectDetail = () => {
           <div className="flex-1 max-w-3xl">
             <ProjectOverview project={project} />
             
-            {/* Challenge Section - project specific */}
-            {id === "stitchi" ? (
-              <StitchiChallenge />
-            ) : id === "philo" ? (
-              <PhiloChallenge />
-            ) : id === "circle-status" ? (
-              <CircleChallenge />
-            ) : (
-              <section id="challenge" className="pt-24">
-                <h2 className="text-2xl font-bold mb-6 text-foreground">
-                  Challenge
-                </h2>
-                <p className="text-muted-foreground">Content coming soon...</p>
-              </section>
-            )}
+            {/* Challenge Section */}
+            {id === "stitchi" ? <StitchiChallenge />
+              : id === "philo" ? <PhiloChallenge />
+              : id === "circle-status" ? <CircleChallenge />
+              : id === "asksia" ? <AsksiaChallenge />
+              : (
+                <section id="challenge" className="pt-24">
+                  <h2 className="text-2xl font-bold mb-6 text-foreground">Challenge</h2>
+                  <p className="text-muted-foreground">Content coming soon...</p>
+                </section>
+              )}
             
-            {/* Solution Section - project specific */}
-            {id === "stitchi" ? (
-              <StitchiSolution />
-            ) : id === "philo" ? (
-              <PhiloSolution />
-            ) : id === "circle-status" ? (
-              <CircleSolution />
-            ) : (
-              <section id="solution" className="pt-24">
-                <h2 className="text-2xl font-bold mb-6 text-foreground">
-                  Solution
-                </h2>
-                <p className="text-muted-foreground">Content coming soon...</p>
-              </section>
-            )}
+            {/* Solution Section */}
+            {id === "stitchi" ? <StitchiSolution />
+              : id === "philo" ? <PhiloSolution />
+              : id === "circle-status" ? <CircleSolution />
+              : id === "asksia" ? <AsksiaSolution />
+              : (
+                <section id="solution" className="pt-24">
+                  <h2 className="text-2xl font-bold mb-6 text-foreground">Solution</h2>
+                  <p className="text-muted-foreground">Content coming soon...</p>
+                </section>
+              )}
             
-            {/* Research Section - project specific */}
-            {id === "stitchi" ? (
-              <StitchiResearch />
-            ) : id === "philo" ? (
-              <PhiloResearch />
-            ) : id === "circle-status" ? (
-              <CircleResearch />
-            ) : (
-              <section id="research" className="pt-24">
-                <h2 className="text-2xl font-bold mb-6 text-foreground">
-                  Research
-                </h2>
-                <p className="text-muted-foreground">Content coming soon...</p>
-              </section>
-            )}
+            {/* AskSia-specific: Impact before Research */}
+            {id === "asksia" && <AsksiaImpact />}
             
-            {/* Testing Section - project specific (skip for Stitchi) */}
-            {id === "stitchi" ? (
-              <section id="testing" className="hidden" />
-            ) : id === "philo" ? (
-              <PhiloTesting />
-            ) : id === "circle-status" ? (
-              <CircleTesting />
-            ) : (
-              <section id="testing" className="pt-24">
-                <h2 className="text-2xl font-bold mb-6 text-foreground">
-                  Testing & Iteration
-                </h2>
-                <p className="text-muted-foreground">Content coming soon...</p>
-              </section>
-            )}
+            {/* Research Section */}
+            {id === "stitchi" ? <StitchiResearch />
+              : id === "philo" ? <PhiloResearch />
+              : id === "circle-status" ? <CircleResearch />
+              : id === "asksia" ? <AsksiaResearch />
+              : (
+                <section id="research" className="pt-24">
+                  <h2 className="text-2xl font-bold mb-6 text-foreground">Research</h2>
+                  <p className="text-muted-foreground">Content coming soon...</p>
+                </section>
+              )}
+
+            {/* AskSia-specific: Design Analysis */}
+            {id === "asksia" && <AsksiaDesignAnalysis />}
             
-            {/* Reflection Section - project specific */}
-            {id === "stitchi" ? (
-              <StitchiReflection />
-            ) : id === "philo" ? (
-              <PhiloReflection />
-            ) : id === "circle-status" ? (
-              <CircleReflection />
-            ) : (
-              <section id="reflection" className="pt-24 pb-24">
-                <h2 className="text-2xl font-bold mb-6 text-foreground">
-                  Reflection
-                </h2>
-                <p className="text-muted-foreground">Content coming soon...</p>
-              </section>
-            )}
+            {/* Testing Section (skip for Stitchi & AskSia) */}
+            {id === "stitchi" || id === "asksia" ? null
+              : id === "philo" ? <PhiloTesting />
+              : id === "circle-status" ? <CircleTesting />
+              : (
+                <section id="testing" className="pt-24">
+                  <h2 className="text-2xl font-bold mb-6 text-foreground">Testing & Iteration</h2>
+                  <p className="text-muted-foreground">Content coming soon...</p>
+                </section>
+              )}
+            
+            {/* Reflection Section */}
+            {id === "stitchi" ? <StitchiReflection />
+              : id === "philo" ? <PhiloReflection />
+              : id === "circle-status" ? <CircleReflection />
+              : id === "asksia" ? <AsksiaReflection />
+              : (
+                <section id="reflection" className="pt-24 pb-24">
+                  <h2 className="text-2xl font-bold mb-6 text-foreground">Reflection</h2>
+                  <p className="text-muted-foreground">Content coming soon...</p>
+                </section>
+              )}
           </div>
         </div>
       </section>

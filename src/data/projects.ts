@@ -37,7 +37,6 @@ export const projects: Project[] = [
     skills: ["Product Design", "Interface Design", "Interaction Design", "Prototyping", "User Research"],
     tags: ["UI/UX design", "EdTech", "AI"],
     overview: "In this project, our team worked on improving the learning experience for students using AI-powered tutoring. We focused on creating intuitive interfaces that make complex AI interactions feel natural and helpful.",
-    comingSoon: true
   },
   {
     id: "circle-status",
