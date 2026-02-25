@@ -22,7 +22,7 @@ const AsksiaReflection = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        Content coming soon...
+        These past 6 months were all about staying ahead of the curve. Instead of just waiting for requirements, I pushed myself to deep-dive into the rapidly evolving world of AI design patterns. I didn't just want to "fit" into a startup; I wanted to help define it. By building a habit of constantly scouting new trends and translating them into our system, I've realized that my most valuable asset isn't just my Figma toolkit, but this proactive mindset that keeps me always be curious and ready for what's next in AI.
       </motion.p>
     </section>
   );
