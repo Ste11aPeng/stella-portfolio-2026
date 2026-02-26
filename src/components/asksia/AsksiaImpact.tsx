@@ -12,49 +12,54 @@ const AsksiaImpact = () => {
         <span className="text-sm text-muted-foreground mb-3 block">impact</span>
       </motion.div>
 
-      <div className="space-y-12 mt-8">
+      {/* Top row: two cards side by side */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
         <motion.div
+          className="rounded-2xl border border-border/40 bg-muted/30 p-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
         >
-          <h3 className="text-xl font-bold mb-3 text-foreground">
-            35% → Increase in Chat Viewport
+          <h3 className="text-2xl font-bold mb-2 text-foreground">
+            35%
           </h3>
-          <p className="text-base text-foreground/80 leading-relaxed max-w-2xl">
-            Reclaimed significant screen real estate by implementing an adaptive collapsed state, directly solving the "cramped window" pain point.
+          <p className="text-base text-foreground/70 leading-relaxed">
+            Increase in chat viewport by implementing an adaptive collapsed state, directly solving the "cramped window" pain point.
           </p>
         </motion.div>
 
         <motion.div
+          className="rounded-2xl border border-border/40 bg-muted/30 p-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
         >
-          <h3 className="text-xl font-bold mb-3 text-foreground">
-            3 Teams / 2 Weeks / 3 Design Iterations
+          <h3 className="text-2xl font-bold mb-2 text-foreground">
+            3 Teams · 2 Weeks · 3 Iterations
           </h3>
-          <p className="text-base text-foreground/80 leading-relaxed max-w-2xl">
+          <p className="text-base text-foreground/70 leading-relaxed">
             Partnered with Engineering, Product, and AI Research to move from initial concept to a validated solution in a 14-day sprint.
           </p>
         </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, ease: easeOut, delay: 0.3 }}
-        >
-          <h3 className="text-xl font-bold mb-3 text-foreground">
-            Strategic Scalability
-          </h3>
-          <p className="text-base text-foreground/80 leading-relaxed max-w-2xl">
-            Established a universal navigation framework that now serves as the organizational standard for all AI-native tools in the product suite.
-          </p>
-        </motion.div>
       </div>
+
+      {/* Bottom row: full-width card */}
+      <motion.div
+        className="rounded-2xl border border-border/40 bg-muted/30 p-8 mt-4"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut, delay: 0.3 }}
+      >
+        <h3 className="text-2xl font-bold mb-2 text-foreground">
+          Strategic Scalability
+        </h3>
+        <p className="text-base text-foreground/70 leading-relaxed max-w-2xl">
+          Established a universal navigation framework that now serves as the organizational standard for all AI-native tools in the product suite.
+        </p>
+      </motion.div>
     </section>
   );
 };
