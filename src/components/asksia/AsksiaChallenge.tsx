@@ -13,7 +13,7 @@ const AsksiaChallenge = () => {
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
         <span className="text-sm text-muted-foreground mb-3 block">challenge</span>
         <h2 className="text-xl font-medium mb-10 tracking-tight text-foreground leading-relaxed max-w-2xl">
-          How might we maximize screen real estate for AI responses and file management, so students can stay focused on learning instead of navigating a cluttered interface?
+          How might we optimize screen real estate to help students focus on AI insights rather than navigating a cluttered UI?
         </h2>
       </motion.div>
 

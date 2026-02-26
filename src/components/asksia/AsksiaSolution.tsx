@@ -15,7 +15,7 @@ const AsksiaSolution = () => {
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
         <span className="text-sm text-muted-foreground mb-3 block">solution</span>
         <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
-          A Responsive File List That Adapts to How Students Work
+          The Adaptive Workspace
         </h2>
       </motion.div>
 
@@ -26,7 +26,7 @@ const AsksiaSolution = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        Content coming soon...
+        A responsive UI that dynamically reconfigures its layout based on user intent—seamlessly transitioning from immersive chat to side-by-side file inspection.
       </motion.p>
 
       <div className="space-y-8">
