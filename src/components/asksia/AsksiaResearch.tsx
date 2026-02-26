@@ -11,9 +11,9 @@ const AsksiaResearch = () => {
       <Separator className="mb-16 bg-border/60" />
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
-        <span className="text-sm text-muted-foreground mb-3 block">research iteration</span>
+        <span className="text-sm text-muted-foreground mb-3 block">UXR</span>
         <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
-          How Leading Tools Handle File Navigation at Scale
+          Competitive Benchmarking
         </h2>
       </motion.div>
 
@@ -24,7 +24,7 @@ const AsksiaResearch = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        Content coming soon...
+        I analyzed navigation patterns in Notion, NotebookLM, and YouLearn to identify the optimal balance between information density and cognitive load.
       </motion.p>
 
       <ImageLightbox src={researchImage} alt="AskSia - UX Research: Notion, NotebookLM, YouLearn" className="w-full rounded-lg shadow-sm" />

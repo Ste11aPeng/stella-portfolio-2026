@@ -15,7 +15,7 @@ const AsksiaDesignAnalysis = () => {
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
         <span className="text-sm text-muted-foreground mb-3 block">design decision analysis</span>
         <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
-          Side Drawer vs. Browser Tabs vs. Responsive Dropdown
+          Evaluating Navigation Scalability
         </h2>
       </motion.div>
 
@@ -26,7 +26,7 @@ const AsksiaDesignAnalysis = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        Content coming soon...
+        I explored Side Drawers and Tabs before pivoting to a Responsive Dropdown, prioritizing long-term scalability and maximum viewport for AI responses.
       </motion.p>
 
       <div className="space-y-8">
