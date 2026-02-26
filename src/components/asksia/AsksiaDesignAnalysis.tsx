@@ -30,9 +30,9 @@ const AsksiaDesignAnalysis = () => {
       </motion.p>
 
       <div className="space-y-8">
-        <ImageLightbox src={analysis1} alt="Design Decision - Side Drawer approach" className="w-full rounded-lg shadow-sm" />
-        <ImageLightbox src={analysis2} alt="Design Decision - Browser-like Tabs approach" className="w-full rounded-lg shadow-sm" />
-        <ImageLightbox src={analysis3} alt="Design Decision - Responsive Dropdown approach" className="w-full rounded-lg shadow-sm" />
+        <ImageLightbox src={analysis1} alt="Design Decision - Side Drawer approach" className="w-full rounded-lg border border-border/30" />
+        <ImageLightbox src={analysis2} alt="Design Decision - Browser-like Tabs approach" className="w-full rounded-lg border border-border/30" />
+        <ImageLightbox src={analysis3} alt="Design Decision - Responsive Dropdown approach" className="w-full rounded-lg border border-border/30" />
       </div>
     </section>
   );
