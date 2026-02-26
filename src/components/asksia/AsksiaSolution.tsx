@@ -30,9 +30,9 @@ const AsksiaSolution = () => {
       </motion.p>
 
       <div className="space-y-8">
-        <ImageLightbox src={solution1} alt="AskSia - Chat Focus" className="w-full rounded-lg shadow-sm" />
-        <ImageLightbox src={solution2} alt="AskSia - Chat + File List" className="w-full rounded-lg shadow-sm" />
-        <ImageLightbox src={solution3} alt="AskSia - Reading + Chat" className="w-full rounded-lg shadow-sm" />
+        <ImageLightbox src={solution1} alt="AskSia - Chat Focus" className="w-full rounded-lg border border-border/30" />
+        <ImageLightbox src={solution2} alt="AskSia - Chat + File List" className="w-full rounded-lg border border-border/30" />
+        <ImageLightbox src={solution3} alt="AskSia - Reading + Chat" className="w-full rounded-lg border border-border/30" />
       </div>
     </section>
   );

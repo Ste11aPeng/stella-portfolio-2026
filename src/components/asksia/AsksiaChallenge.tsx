@@ -26,7 +26,7 @@ const AsksiaChallenge = () => {
         <ImageLightbox
           src={challengeImage}
           alt="AskSia - Current design pain points"
-          className="w-full rounded-lg shadow-sm"
+          className="w-full rounded-lg border border-border/30"
         />
       </motion.div>
     </section>

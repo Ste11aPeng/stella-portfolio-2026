@@ -27,7 +27,7 @@ const AsksiaResearch = () => {
         I analyzed navigation patterns in Notion, NotebookLM, and YouLearn to identify the optimal balance between information density and cognitive load.
       </motion.p>
 
-      <ImageLightbox src={researchImage} alt="AskSia - UX Research: Notion, NotebookLM, YouLearn" className="w-full rounded-lg shadow-sm" />
+      <ImageLightbox src={researchImage} alt="AskSia - UX Research: Notion, NotebookLM, YouLearn" className="w-full rounded-lg border border-border/30" />
     </section>
   );
 };
