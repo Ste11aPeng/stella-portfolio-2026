@@ -36,7 +36,7 @@ export const projects: Project[] = [
     timeline: "Aug 2025 - Feb 2026",
     skills: ["Figma", "Prototyping", "User Research"],
     tags: ["UI/UX design", "EdTech", "AI"],
-    overview: "In this project, our team worked on improving the learning experience for students using AI-powered tutoring. We focused on creating intuitive interfaces that make complex AI interactions feel natural and helpful.",
+    overview: "AskSia is an AI study companion that transforms messy learning materials into actionable insights. I redesigned its workspace to balance deep reading with efficient file management, replacing a cluttered interface with an adaptive, responsive environment.",
   },
   {
     id: "circle-status",
