@@ -1,33 +1,49 @@
+import { motion } from "framer-motion";
+
 const Footer = () => {
   return (
     <footer className="w-full py-8 px-6 md:px-12">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <p className="text-sm text-muted-foreground">Don't be a stranger</p>
-        
-        <nav className="flex items-center gap-6">
-          <a 
-            href="https://www.linkedin.com/in/stellapengrnr/" 
-            target="_blank" 
+        <motion.p
+          className="text-sm text-muted-foreground"
+          initial={{ opacity: 0, filter: "blur(4px)" }}
+          whileInView={{ opacity: 1, filter: "blur(0px)" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          Don't be a stranger
+        </motion.p>
+
+        <motion.nav
+          className="flex items-center gap-6"
+          initial={{ opacity: 0, filter: "blur(4px)" }}
+          whileInView={{ opacity: 1, filter: "blur(0px)" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
+        >
+          <a
+            href="https://www.linkedin.com/in/stellapengrnr/"
+            target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             linkedin
           </a>
-          <a 
+          <a
             href="mailto:stellanotfound@gmail.com"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             email
           </a>
-          <a 
-            href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" 
-            target="_blank" 
+          <a
+            href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view"
+            target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             resume
           </a>
-        </nav>
+        </motion.nav>
       </div>
     </footer>
   );
