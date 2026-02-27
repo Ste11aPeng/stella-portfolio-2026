@@ -33,62 +33,52 @@ const experiences = [
 
 const WorkExperience = () => {
   return (
-    <section className="px-8 py-16 lg:px-24 md:px-[32px]">
-      <div className="flex flex-col md:flex-row gap-12 md:gap-20">
-        {/* Section Title */}
-        <motion.h2
-          className="font-serif text-muted-foreground/40 text-4xl md:text-5xl leading-tight flex-shrink-0 md:w-48"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: [0.0, 0.0, 0.2, 1] }}
-        >
-          Work
-          <br />
-          Experience
-        </motion.h2>
+    <section className="px-8 py-12 lg:px-24 md:px-[32px]">
+      <motion.p
+        className="font-sans text-[11px] tracking-widest uppercase text-muted-foreground/50 mb-10"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        Work Experience
+      </motion.p>
 
-        {/* Experience List */}
-        <div className="flex-1 flex flex-col">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={exp.company}
-              className={`flex flex-col md:flex-row gap-4 md:gap-12 py-8 ${
-                index !== experiences.length - 1 ? "border-b border-border/40" : ""
-              } ${index === 0 ? "pt-0" : ""}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.5,
-                ease: [0.0, 0.0, 0.2, 1],
-                delay: index * 0.08,
-              }}
-            >
-              {/* Left: Company + Role/Period */}
-              <div className="flex flex-col md:flex-row md:items-start gap-1 md:gap-12 md:w-[420px] flex-shrink-0">
-                <div className="flex-shrink-0 md:w-[180px]">
-                  <p className="font-sans font-semibold text-foreground text-[15px]">
-                    {exp.company}
-                  </p>
-                </div>
-                <div className="flex-shrink-0">
-                  <p className="font-sans font-medium text-foreground text-[15px]">
-                    {exp.role}
-                  </p>
-                  <p className="font-sans text-muted-foreground text-sm">
-                    {exp.period}
-                  </p>
-                </div>
-              </div>
-
-              {/* Right: Description */}
-              <p className="font-sans text-muted-foreground text-[14px] leading-relaxed flex-1">
-                {exp.description}
+      <div className="flex flex-col divide-y divide-border/30">
+        {experiences.map((exp, index) => (
+          <motion.div
+            key={exp.company}
+            className="flex flex-col md:flex-row gap-3 md:gap-10 py-6 first:pt-0"
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.4,
+              ease: [0.0, 0.0, 0.2, 1],
+              delay: index * 0.06,
+            }}
+          >
+            {/* Company + Role */}
+            <div className="flex flex-col md:flex-row gap-1 md:gap-8 md:w-[380px] flex-shrink-0">
+              <p className="font-sans font-medium text-foreground text-[14px] md:w-[160px] flex-shrink-0">
+                {exp.company}
               </p>
-            </motion.div>
-          ))}
-        </div>
+              <div>
+                <p className="font-sans text-muted-foreground text-[13px]">
+                  {exp.role}
+                </p>
+                <p className="font-sans text-muted-foreground/60 text-[12px]">
+                  {exp.period}
+                </p>
+              </div>
+            </div>
+
+            {/* Description */}
+            <p className="font-sans text-muted-foreground/70 text-[13px] leading-relaxed flex-1">
+              {exp.description}
+            </p>
+          </motion.div>
+        ))}
       </div>
     </section>
   );
