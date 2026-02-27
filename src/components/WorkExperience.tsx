@@ -5,29 +5,33 @@ const experiences = [
     company: "AskSia Inc.",
     role: "Product Designer",
     period: "2025 — 2026",
-    description:
-      "Defining the end-to-end experience for AI Study Copilot by scaling cross-platform design systems and optimizing growth-driven user flows to enhance product efficiency and engagement.",
+    description: (
+      <>Defining the end-to-end experience for <span className="text-foreground">AI Study Copilot</span> by scaling cross-platform design systems and optimizing growth-driven user flows to enhance product efficiency and engagement.</>
+    ),
   },
   {
     company: "Desai Accelerator",
     role: "Product Design Intern",
     period: "2025",
-    description:
-      "Architected 0-to-1 design systems and MVPs for various startups, balancing complex functional flows with technical constraints and business objectives.",
+    description: (
+      <>Architected <span className="text-foreground">0-to-1 design systems and MVPs</span> for various startups, balancing complex functional flows with technical constraints and business objectives.</>
+    ),
   },
   {
     company: "Michigan Engineering",
     role: "Social Media Intern",
     period: "2024 — 2026",
-    description:
-      "Leading brand communication and content strategy for the College of Engineering, leveraging visual storytelling to amplify social presence while maintaining multi-channel brand consistency.",
+    description: (
+      <>Leading brand communication and content strategy for the College of Engineering, leveraging <span className="text-foreground">visual storytelling</span> to amplify social presence while maintaining multi-channel brand consistency.</>
+    ),
   },
   {
     company: "Michigan Open UX",
     role: "Product Designer",
     period: "2023",
-    description:
-      "Spearheaded UX strategy and execution for university organizations, facilitating design reviews and workshops to deliver developer-ready component libraries and interaction patterns.",
+    description: (
+      <>Spearheaded <span className="text-foreground">UX strategy and execution</span> for university organizations, facilitating design reviews and workshops to deliver developer-ready component libraries and interaction patterns.</>
+    ),
   },
 ];
 
