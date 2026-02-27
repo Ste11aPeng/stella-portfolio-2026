@@ -38,28 +38,30 @@ const experiences = [
 const WorkExperience = () => {
   return (
     <section className="px-8 py-12 lg:px-24 md:px-[32px]">
-      <motion.p
-        className="font-sans text-[11px] tracking-widest uppercase text-muted-foreground/50 mb-10"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        Work Experience
-      </motion.p>
+      <div className="overflow-hidden">
+        <motion.p
+          className="font-sans text-[11px] tracking-widest uppercase text-muted-foreground/50 mb-10"
+          initial={{ y: "100%", opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          Work Experience
+        </motion.p>
+      </div>
 
       <div className="flex flex-col divide-y divide-border/30">
         {experiences.map((exp, index) => (
           <motion.div
             key={exp.company}
             className="flex flex-col md:flex-row gap-3 md:gap-10 py-6 first:pt-0"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -16, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
             transition={{
-              duration: 0.4,
-              ease: [0.0, 0.0, 0.2, 1],
-              delay: index * 0.06,
+              duration: 0.5,
+              ease: [0.25, 0.1, 0.25, 1],
+              delay: index * 0.08,
             }}
           >
             {/* Company + Role */}
