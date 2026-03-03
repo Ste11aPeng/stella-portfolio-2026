@@ -10,25 +10,31 @@ const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 const ProjectOverview = ({ project }: ProjectOverviewProps) => {
   return (
     <section id="overview" className="pt-16">
-      <motion.h2
-        className="text-3xl font-bold mb-4 tracking-tight text-foreground"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, ease: easeOut }}
-      >
-        {project.title}
-      </motion.h2>
+      <div className="overflow-hidden">
+        <motion.h2
+          className="text-3xl mb-4 tracking-tight text-foreground"
+          style={{ fontFamily: "'New Spirit', serif", fontWeight: 400 }}
+          initial={{ y: "100%", rotateX: 40 }}
+          whileInView={{ y: 0, rotateX: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {project.title}
+        </motion.h2>
+      </div>
       
-      <motion.p
-        className="text-lg text-foreground/60 mb-12 leading-relaxed"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
-      >
-        {project.tagline}
-      </motion.p>
+      <div className="overflow-hidden">
+        <motion.p
+          className="text-lg text-foreground/60 mb-12 leading-relaxed"
+          style={{ fontFamily: "'New Spirit', serif", fontWeight: 400 }}
+          initial={{ y: "100%", opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.12 }}
+        >
+          {project.tagline}
+        </motion.p>
+      </div>
       
       <motion.p
         className="text-base mb-16 max-w-3xl text-foreground/80 leading-relaxed"

@@ -24,21 +24,22 @@ const GalleryProjectDetail = ({
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8">
             {/* Left: Title + Tags */}
-            <motion.div initial={{
-            opacity: 0,
-            y: 20
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.5,
-            ease: easeOut
-          }}>
-              <h1 className="text-2xl font-bold mb-4 tracking-tight text-foreground">
-                {project.title}
-              </h1>
-              
-            </motion.div>
+            <div className="overflow-hidden">
+              <motion.div initial={{
+                y: "100%",
+                rotateX: 40
+              }} animate={{
+                y: 0,
+                rotateX: 0
+              }} transition={{
+                duration: 0.7,
+                ease: [0.16, 1, 0.3, 1]
+              }}>
+                <h1 className="text-2xl mb-4 tracking-tight text-foreground" style={{ fontFamily: "'New Spirit', serif", fontWeight: 400 }}>
+                  {project.title}
+                </h1>
+              </motion.div>
+            </div>
             
             {/* Right: Description */}
             <motion.p className="text-base text-foreground/70 leading-relaxed max-w-md md:text-right" initial={{
