@@ -37,7 +37,7 @@ const MobileSectionNav = ({ activeSection, onSectionClick }: MobileSectionNavPro
 
   return (
     <nav className="sticky top-[65px] z-30 bg-background/95 backdrop-blur-sm border-b border-border lg:hidden overflow-x-auto">
-      <div className="flex gap-1 px-4 py-2">
+      <div className="flex gap-1 px-4 py-2 justify-center">
         {visibleSections.map((section) => (
           <button
             key={section.id}
