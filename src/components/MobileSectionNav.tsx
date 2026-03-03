@@ -45,7 +45,7 @@ const MobileSectionNav = ({ activeSection, onSectionClick }: MobileSectionNavPro
             className={cn(
               "text-xs px-3 py-1.5 rounded-full whitespace-nowrap transition-colors",
               activeSection === section.id
-                ? "bg-foreground text-background font-medium"
+                ? "text-[#4a86e8] font-medium"
                 : "text-muted-foreground hover:text-foreground"
             )}
           >
