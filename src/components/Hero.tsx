@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import profileImage from "@/assets/profile.png";
 
-const sentence = "Stella P. is a Product Designer making calm user experiences for messy, real life. Based in Ann Arbor.";
-const words = sentence.split(" ");
+const parts = [
+  { text: "Stella P. is a ", color: undefined },
+  { text: "Product Designer", color: "#4a86e8" },
+  { text: " making calm user experiences for messy, real life. Based in Ann Arbor.", color: undefined },
+];
 
 const containerVariants = {
   hidden: {},
@@ -66,11 +69,19 @@ const Hero = () => {
           initial="hidden"
           animate="visible"
         >
-          {words.map((word, i) => (
-            <motion.span key={i} variants={wordVariants} className="inline-block">
-              {word}
-            </motion.span>
-          ))}
+          {parts.map((part, pi) => {
+            const partWords = part.text.split(" ").filter(Boolean);
+            return partWords.map((word, wi) => (
+              <motion.span
+                key={`${pi}-${wi}`}
+                variants={wordVariants}
+                className="inline-block"
+                style={part.color ? { color: part.color } : undefined}
+              >
+                {word}
+              </motion.span>
+            ));
+          })}
         </motion.p>
       </div>
     </section>
