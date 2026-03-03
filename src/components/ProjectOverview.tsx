@@ -12,7 +12,7 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
     <section id="overview" className="pt-16">
       <div className="overflow-hidden">
         <motion.h2
-          className="text-4xl mb-4 tracking-tight text-foreground"
+          className="text-3xl mb-4 tracking-tight text-foreground"
           style={{ fontFamily: "'New Spirit', serif", fontWeight: 400 }}
           initial={{ y: "100%", rotateX: 40 }}
           whileInView={{ y: 0, rotateX: 0 }}
@@ -25,7 +25,7 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
       
       <div className="overflow-hidden">
         <motion.p
-          className="text-xl text-foreground/60 mb-12 leading-relaxed"
+          className="text-lg text-foreground/60 mb-12 leading-relaxed"
           style={{ fontFamily: "'New Spirit', serif", fontWeight: 400 }}
           initial={{ y: "100%", opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
