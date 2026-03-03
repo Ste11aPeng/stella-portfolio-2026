@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProjectSidebar from "@/components/ProjectSidebar";
+import MobileSectionNav from "@/components/MobileSectionNav";
 import ProjectOverview from "@/components/ProjectOverview";
 import GalleryProjectDetail from "@/components/GalleryProjectDetail";
 import StitchiChallenge from "@/components/stitchi/StitchiChallenge";
@@ -147,8 +148,8 @@ const ProjectDetail = () => {
       <Header />
       
       {/* Cover Image */}
-      <section className="pt-[24px] pb-[24px]">
-        <div className="px-8 md:px-16 lg:px-24">
+      <section className="pt-4 pb-4 md:pt-[24px] md:pb-[24px]">
+        <div className="px-4 md:px-16 lg:px-24">
           <div className="w-full bg-[#e8ebe4] rounded-lg overflow-hidden">
             <img src={project.image} alt={project.title} className="w-full h-auto object-contain mx-auto" style={{
             maxHeight: '600px'
@@ -156,12 +157,15 @@ const ProjectDetail = () => {
           </div>
         </div>
       </section>
+
+      {/* Mobile Section Nav */}
+      <MobileSectionNav activeSection={activeSection} onSectionClick={handleSectionClick} />
       
       {/* Content Section with Sidebar */}
-      <section className="px-8 md:px-16 lg:px-24 pb-24">
+      <section className="px-4 md:px-16 lg:px-24 pb-24">
         <div className="flex gap-16 max-w-6xl mx-auto">
-          {/* Sidebar */}
-          <div className="w-48 flex-shrink-0">
+          {/* Sidebar - desktop only */}
+          <div className="w-48 flex-shrink-0 hidden lg:block">
             <ProjectSidebar activeSection={activeSection} onSectionClick={handleSectionClick} />
           </div>
           
