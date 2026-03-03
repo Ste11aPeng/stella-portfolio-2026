@@ -1,30 +1,80 @@
 import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
   return (
-    <header 
-      className={`sticky top-0 z-50 flex items-center justify-between px-8 py-6 md:px-16 lg:px-24 transition-colors duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-sm border-b border-border" : "bg-transparent"
-      }`}
-    >
-      <a href="#/" className="text-foreground font-medium text-base">Stella P.</a>
-      <nav className="flex items-center gap-6 md:gap-8">
-        <a href="#/" className="nav-link text-sm">product</a>
-        <a href="#/visual" className="nav-link text-sm">visual</a>
-        <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">resume</a>
-      </nav>
-    </header>
+    <>
+      <header
+        className={`sticky top-0 z-50 flex items-center justify-between px-6 py-5 md:px-16 lg:px-24 md:py-6 transition-colors duration-300 ${
+          isScrolled ? "bg-background/95 backdrop-blur-sm border-b border-border" : "bg-transparent"
+        }`}
+      >
+        <a href="#/" className="text-foreground font-medium text-base" onClick={() => setMenuOpen(false)}>Stella P.</a>
+        
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-8">
+          <a href="#/" className="nav-link text-sm">product</a>
+          <a href="#/visual" className="nav-link text-sm">visual</a>
+          <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">resume</a>
+        </nav>
+
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden p-1 text-foreground"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
+      </header>
+
+      {/* Mobile fullscreen menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="fixed inset-0 z-40 bg-background flex flex-col items-center justify-center gap-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <a href="#/" className="text-2xl text-foreground" onClick={() => setMenuOpen(false)}>product</a>
+            <a href="#/visual" className="text-2xl text-foreground" onClick={() => setMenuOpen(false)}>visual</a>
+            <a
+              href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl text-foreground"
+              onClick={() => setMenuOpen(false)}
+            >
+              resume
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
