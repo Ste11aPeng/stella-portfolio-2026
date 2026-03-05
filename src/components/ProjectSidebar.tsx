@@ -22,6 +22,11 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
   
   const [isVisible, setIsVisible] = useState(false);
 
+  // Reset visibility when project changes
+  useEffect(() => {
+    setIsVisible(false);
+  }, [id]);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 100) {
@@ -31,7 +36,7 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [id]);
 
   const getVisibleSections = () => {
     if (id === "stitchi") {
