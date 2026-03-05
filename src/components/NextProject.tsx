@@ -11,35 +11,35 @@ const NextProject = ({ currentProjectId }: NextProjectProps) => {
   const nextProject = projects[(currentIndex + 1) % projects.length];
 
   return (
-    <section className="pt-6 pb-24">
+    <section className="pt-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: [0.0, 0.0, 0.2, 1] }}
       >
-        <p className="text-sm text-muted-foreground/50 mb-4">Next Project</p>
+        <span className="text-sm text-muted-foreground mb-3 block">next project</span>
         <Link to={`/project/${nextProject.id}`} className="group block">
-          <div className="overflow-hidden rounded-lg">
+          <div className="relative overflow-hidden" style={{ aspectRatio: "645/326" }}>
             <img
               src={nextProject.image}
               alt={nextProject.title}
-              className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
             />
-          </div>
-          <div className="mt-4 flex items-baseline gap-3">
-            <h3
-              className="text-xl transition-colors"
-              style={{ fontFamily: "'New Spirit', serif", fontWeight: 400, color: nextProject.titleColor }}
-            >
-              {nextProject.title}
-            </h3>
-            <span className="text-sm text-muted-foreground/60">{nextProject.description}</span>
-          </div>
-          <div className="flex gap-2 mt-2">
-            {nextProject.tags.map((tag) => (
-              <span key={tag} className="project-badge text-xs">{tag}</span>
-            ))}
+            <div className="absolute bottom-0 left-0 right-0 p-3 flex flex-wrap gap-1.5">
+              <span
+                className="project-badge project-title font-medium"
+                style={{ color: nextProject.titleColor }}
+              >
+                {nextProject.title}
+              </span>
+              <span className="project-badge project-description">
+                {nextProject.description}
+              </span>
+              <span className="project-badge project-type">
+                {nextProject.type}
+              </span>
+            </div>
           </div>
         </Link>
       </motion.div>
