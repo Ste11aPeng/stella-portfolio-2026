@@ -70,14 +70,16 @@ const WorkExperience = () => {
           >
             {/* Company + Role */}
             <div className="flex flex-col md:flex-row gap-1 md:gap-8 md:w-[380px] flex-shrink-0">
-              <a
-                href={exp.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans font-medium text-foreground text-[14px] md:w-[160px] flex-shrink-0 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full after:bg-foreground after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.25,0.1,0.25,1)]"
-              >
-                {exp.company}
-              </a>
+              <span className="md:w-[160px] flex-shrink-0">
+                <a
+                  href={exp.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-sans font-medium text-foreground text-[14px] relative inline after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full after:bg-foreground after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+                >
+                  {exp.company}
+                </a>
+              </span>
               <div>
                 <p className="font-sans text-muted-foreground text-[13px]">
                   {exp.role}
