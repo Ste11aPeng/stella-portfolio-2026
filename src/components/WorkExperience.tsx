@@ -37,7 +37,7 @@ const experiences = [
 
 const WorkExperience = () => {
   return (
-    <section className="px-8 py-12 lg:px-24 md:px-[32px]">
+    <section className="px-8 pt-12 pb-6 lg:px-24 md:px-[32px]">
       <div className="overflow-hidden">
         <motion.p
           className="font-sans text-[11px] tracking-widest uppercase text-muted-foreground/50 mb-10"
