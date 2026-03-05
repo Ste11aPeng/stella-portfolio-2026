@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 interface ProjectSidebarProps {
   activeSection: string;
@@ -17,8 +19,25 @@ const sections = [
 
 const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) => {
   const { id } = useParams<{ id: string }>();
-  
-  // Customize sections based on project
+  const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const overviewEl = document.getElementById("overview");
+      if (overviewEl) {
+        const rect = overviewEl.getBoundingClientRect();
+        if (rect.top <= 200) {
+          setIsVisible(true);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const getVisibleSections = () => {
     if (id === "stitchi") {
       return sections.filter(s => s.id !== "testing");
@@ -43,10 +62,36 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
   const visibleSections = getVisibleSections();
 
   return (
-    <nav className="sticky top-32 hidden lg:block">
+    <nav className="sticky top-32 hidden md:block">
       <ul className="flex flex-col text-right">
-        {visibleSections.map((section) => (
-          <li key={section.id}>
+        {/* Home link */}
+        <motion.li
+          initial={{ opacity: 0, y: -8 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0 }}
+        >
+          <button
+            onClick={() => navigate("/")}
+            className="text-sm text-muted-foreground/50 transition-colors hover:text-foreground"
+          >
+            Home
+          </button>
+        </motion.li>
+
+        {/* Spacer */}
+        <li className="h-10" />
+
+        {visibleSections.map((section, index) => (
+          <motion.li
+            key={section.id}
+            initial={{ opacity: 0, y: -8 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
+            transition={{
+              duration: 0.4,
+              ease: [0.16, 1, 0.3, 1],
+              delay: 0.05 * (index + 1),
+            }}
+          >
             <button
               onClick={() => onSectionClick(section.id)}
               className={cn(
@@ -58,7 +103,7 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
             >
               {section.label}
             </button>
-          </li>
+          </motion.li>
         ))}
       </ul>
     </nav>
