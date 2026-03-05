@@ -74,7 +74,7 @@ const WorkExperience = () => {
                 href={exp.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-sans font-medium text-foreground text-[14px] md:w-[160px] flex-shrink-0 hover:underline underline-offset-2 transition-all"
+                className="font-sans font-medium text-foreground text-[14px] md:w-[160px] flex-shrink-0 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full after:bg-foreground after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.25,0.1,0.25,1)]"
               >
                 {exp.company}
               </a>
