@@ -6,6 +6,7 @@ import ProjectSidebar from "@/components/ProjectSidebar";
 import MobileSectionNav from "@/components/MobileSectionNav";
 import ProjectOverview from "@/components/ProjectOverview";
 import GalleryProjectDetail from "@/components/GalleryProjectDetail";
+import NextProject from "@/components/NextProject";
 import StitchiChallenge from "@/components/stitchi/StitchiChallenge";
 import StitchiSolution from "@/components/stitchi/StitchiSolution";
 import StitchiResearch from "@/components/stitchi/StitchiResearch";
@@ -237,6 +238,9 @@ const ProjectDetail = () => {
                   <p className="text-muted-foreground">Content coming soon...</p>
                 </section>
               )}
+            
+            {/* Next Project */}
+            {id && <NextProject currentProjectId={id} />}
           </div>
         </div>
       </section>
