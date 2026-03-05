@@ -31,11 +31,11 @@ const Header = () => {
           isScrolled ? "bg-background/95 backdrop-blur-sm border-b border-border" : "bg-transparent"
         }`}
       >
-        <a href="#/" className="text-foreground font-medium text-base" onClick={() => setMenuOpen(false)}>Stella P.</a>
+        <a href="#/" className="text-foreground font-medium text-base" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>Stella P.</a>
         
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#/" className="nav-link text-sm">product</a>
+          <a href="#/" className="nav-link text-sm" onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>product</a>
           <a href="#/visual" className="nav-link text-sm">visual</a>
           <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">resume</a>
         </nav>
@@ -60,7 +60,7 @@ const Header = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
           >
-            <a href="#/" className="text-2xl text-foreground" onClick={() => setMenuOpen(false)}>product</a>
+            <a href="#/" className="text-2xl text-foreground" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>product</a>
             <a href="#/visual" className="text-2xl text-foreground" onClick={() => setMenuOpen(false)}>visual</a>
             <a
               href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view"
