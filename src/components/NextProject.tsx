@@ -13,7 +13,7 @@ const NextProject = ({ currentProjectId }: NextProjectProps) => {
   if (!nextProject) return null;
 
   return (
-    <section className="pt-24 pb-8">
+    <section className="pt-12 pb-8">
       <motion.p
         className="text-sm text-muted-foreground mb-4"
         initial={{ opacity: 0 }}
