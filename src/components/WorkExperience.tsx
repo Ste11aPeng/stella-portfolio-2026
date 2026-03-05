@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 const experiences = [
   {
     company: "AskSia Inc.",
+    url: "https://www.asksia.ai/",
     role: "Product Designer",
     period: "2025 — 2026",
     description: (
@@ -11,6 +12,7 @@ const experiences = [
   },
   {
     company: "Desai Accelerator",
+    url: "https://www.desaiaccelerator.com/internship",
     role: "Product Design Intern",
     period: "2025",
     description: (
@@ -19,6 +21,7 @@ const experiences = [
   },
   {
     company: "Michigan Engineering",
+    url: "https://www.engin.umich.edu/",
     role: "Social Media Intern",
     period: "2024 — 2026",
     description: (
@@ -27,6 +30,7 @@ const experiences = [
   },
   {
     company: "Michigan Open UX",
+    url: "https://www.moux.club/",
     role: "Product Designer",
     period: "2023",
     description: (
@@ -66,9 +70,14 @@ const WorkExperience = () => {
           >
             {/* Company + Role */}
             <div className="flex flex-col md:flex-row gap-1 md:gap-8 md:w-[380px] flex-shrink-0">
-              <p className="font-sans font-medium text-foreground text-[14px] md:w-[160px] flex-shrink-0">
+              <a
+                href={exp.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-sans font-medium text-foreground text-[14px] md:w-[160px] flex-shrink-0 hover:underline underline-offset-2 transition-all"
+              >
                 {exp.company}
-              </p>
+              </a>
               <div>
                 <p className="font-sans text-muted-foreground text-[13px]">
                   {exp.role}
