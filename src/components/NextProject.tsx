@@ -34,7 +34,7 @@ const NextProject = ({ currentProjectId }: NextProjectProps) => {
                 {nextProject.title}
               </span>
               <span className="project-badge project-description">
-                {nextProject.description}
+                {nextProject.tagline}
               </span>
               <span className="project-badge project-type">
                 {nextProject.type}
