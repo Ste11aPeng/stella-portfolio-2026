@@ -8,7 +8,6 @@ import ProjectDetail from "./pages/ProjectDetail";
 import Visual from "./pages/Visual";
 import NotFound from "./pages/NotFound";
 import CustomCursor from "./components/CustomCursor";
-import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -18,7 +17,6 @@ const App = () => (
       <Toaster />
       <Sonner />
       <HashRouter>
-        <ScrollToTop />
         <CustomCursor />
         <Routes>
           <Route path="/" element={<Index />} />

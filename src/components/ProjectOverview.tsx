@@ -37,7 +37,7 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
       </div>
       
       <motion.p
-        className="text-base mb-16 max-w-3xl text-foreground/80 leading-relaxed whitespace-pre-line"
+        className="text-base mb-16 max-w-3xl text-foreground/80 leading-relaxed"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
