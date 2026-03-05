@@ -24,17 +24,12 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
 
   useEffect(() => {
     const handleScroll = () => {
-      const overviewEl = document.getElementById("overview");
-      if (overviewEl) {
-        const rect = overviewEl.getBoundingClientRect();
-        if (rect.top <= 200) {
-          setIsVisible(true);
-        }
+      if (window.scrollY > 100) {
+        setIsVisible(true);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
