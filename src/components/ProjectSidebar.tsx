@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -19,7 +19,7 @@ const sections = [
 
 const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) => {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+  
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -59,22 +59,6 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
   return (
     <nav className="sticky top-32 hidden md:block">
       <ul className="flex flex-col text-right">
-        {/* Home link */}
-        <motion.li
-          initial={{ opacity: 0, y: -8 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0 }}
-        >
-          <button
-            onClick={() => navigate("/")}
-            className="text-sm text-muted-foreground/50 transition-colors hover:text-foreground"
-          >
-            Home
-          </button>
-        </motion.li>
-
-        {/* Spacer */}
-        <li className="h-10" />
 
         {visibleSections.map((section, index) => (
           <motion.li

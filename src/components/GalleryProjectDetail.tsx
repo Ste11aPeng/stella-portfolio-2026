@@ -3,6 +3,7 @@ import { Project } from "@/data/projects";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ImageLightbox from "@/components/ImageLightbox";
+import NextProject from "@/components/NextProject";
 interface GalleryProjectDetailProps {
   project: Project;
   images: {
@@ -80,6 +81,13 @@ const GalleryProjectDetail = ({
                 <ImageLightbox src={image.src} alt={image.alt} className="w-full h-auto" />
               </motion.div>)}
           </div>
+        </div>
+      </section>
+
+      {/* Next Project */}
+      <section className="px-8 md:px-16 lg:px-24">
+        <div className="max-w-6xl mx-auto">
+          <NextProject currentProjectId={project.id} />
         </div>
       </section>
       
