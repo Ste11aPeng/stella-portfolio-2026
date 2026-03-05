@@ -36,7 +36,7 @@ const MobileSectionNav = ({ activeSection, onSectionClick }: MobileSectionNavPro
   const visibleSections = getVisibleSections();
 
   return (
-    <nav className="sticky top-[65px] z-30 bg-background/95 backdrop-blur-sm border-b border-border lg:hidden overflow-x-auto">
+    <nav className="sticky top-[65px] z-30 bg-background/95 backdrop-blur-sm border-b border-border md:hidden overflow-x-auto">
       <div className="flex gap-1 px-4 py-2 justify-center">
         {visibleSections.map((section) => (
           <button
