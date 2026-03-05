@@ -63,7 +63,7 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
         <motion.li
           initial={{ opacity: 0, y: -8 }}
           animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0 }}
         >
           <button
             onClick={() => navigate("/")}
@@ -82,9 +82,9 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
             initial={{ opacity: 0, y: -8 }}
             animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
             transition={{
-              duration: 0.4,
+              duration: 0.6,
               ease: [0.16, 1, 0.3, 1],
-              delay: 0.05 * (index + 1),
+              delay: 0.1 * (index + 1),
             }}
           >
             <button
