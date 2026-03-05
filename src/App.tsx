@@ -9,6 +9,7 @@ import Visual from "./pages/Visual";
 import NotFound from "./pages/NotFound";
 import CustomCursor from "./components/CustomCursor";
 import ScrollToTop from "./components/ScrollToTop";
+import ImagePreloader from "./components/ImagePreloader";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <HashRouter>
+        <ImagePreloader />
         <ScrollToTop />
         <CustomCursor />
         <Routes>
