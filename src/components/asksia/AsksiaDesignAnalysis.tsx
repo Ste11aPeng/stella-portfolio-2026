@@ -4,6 +4,7 @@ import ImageLightbox from "@/components/ImageLightbox";
 import analysis1 from "@/assets/sia-design-analysis-1.png";
 import analysis2 from "@/assets/sia-design-analysis-2.png";
 import analysis3 from "@/assets/sia-design-analysis-3.png";
+import analysis4 from "@/assets/sia-design-analysis-4.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
@@ -34,6 +35,31 @@ const AsksiaDesignAnalysis = () => {
         <ImageLightbox src={analysis2} alt="Design Decision - Browser-like Tabs approach" className="w-full rounded-lg border border-border/30" />
         <ImageLightbox src={analysis3} alt="Design Decision - Responsive Dropdown approach" className="w-full rounded-lg border border-border/30" />
       </div>
+
+      <motion.div
+        className="mt-16"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut }}
+      >
+        <span className="text-sm text-muted-foreground mb-3 block">engineering handoff</span>
+        <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
+          From Pixels to Production
+        </h2>
+      </motion.div>
+
+      <motion.p
+        className="text-base mb-10 max-w-3xl text-foreground/80 leading-relaxed"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
+      >
+        I documented every edge case—corrupted files, empty states, mixed formats—and wrote detailed specs with acceptance criteria so engineers could build without ambiguity.
+      </motion.p>
+
+      <ImageLightbox src={analysis4} alt="States & Edge Cases and Spec Writing & QA" className="w-full rounded-lg border border-border/30" />
     </section>
   );
 };
