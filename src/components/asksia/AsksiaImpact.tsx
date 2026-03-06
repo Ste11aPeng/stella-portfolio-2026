@@ -1,5 +1,6 @@
 import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
+import { Maximize2, Navigation, TrendingUp } from "lucide-react";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
@@ -21,12 +22,13 @@ const AsksiaImpact = () => {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
         >
+          <Maximize2 size={20} className="text-foreground/40 mb-4" />
           <p className="text-sm font-medium text-foreground/50 mb-2">Boosted Reading Focus</p>
           <h3 className="text-2xl font-bold mb-1 text-foreground">
             35% Viewport Gain
           </h3>
           <p className="text-base text-foreground/70 leading-relaxed">
-            Maximizing chat area solved the "cramped window" issue, significantly reducing visual fatigue during long study sessions.
+            We made the chat area way bigger — no more squinting at a tiny window during long study sessions.
           </p>
         </motion.div>
 
@@ -37,12 +39,13 @@ const AsksiaImpact = () => {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
         >
+          <Navigation size={20} className="text-foreground/40 mb-4" />
           <p className="text-sm font-medium text-foreground/50 mb-2">Optimized Time-to-Source</p>
           <h3 className="text-2xl font-bold mb-1 text-foreground">
             20% Faster Navigation
           </h3>
           <p className="text-base text-foreground/70 leading-relaxed">
-            The new IA streamlined the path between AI insights and original files, minimizing the interaction cost for cross-referencing.
+            Jumping between AI answers and your original files used to be clunky — now it's quick and painless.
           </p>
         </motion.div>
       </div>
@@ -55,12 +58,13 @@ const AsksiaImpact = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.3 }}
       >
+        <TrendingUp size={20} className="text-foreground/40 mb-4" />
         <p className="text-sm font-medium text-foreground/50 mb-2">Built for Growth</p>
         <h3 className="text-2xl font-bold mb-1 text-foreground">
           Scalable Retention
         </h3>
         <p className="text-base text-foreground/70 leading-relaxed max-w-2xl">
-          Established a robust layout framework that keeps the interface clean as users add more files, ensuring long-term product stickiness.
+          The layout stays clean even when users pile on more files — so the product doesn't get messier as it grows.
         </p>
       </motion.div>
     </section>
