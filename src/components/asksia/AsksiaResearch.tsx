@@ -13,7 +13,7 @@ const AsksiaResearch = () => {
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
         <span className="text-sm text-muted-foreground mb-3 block">UXR</span>
         <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
-          Competitive Benchmarking
+          How Other Tools Handle the Same Problem
         </h2>
       </motion.div>
 
