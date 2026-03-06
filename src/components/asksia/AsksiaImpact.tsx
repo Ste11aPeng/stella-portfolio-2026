@@ -21,10 +21,10 @@ const AsksiaImpact = () => {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
         >
+          <p className="text-sm font-medium text-foreground/50 mb-2">Boosted Reading Focus</p>
           <h3 className="text-2xl font-bold mb-1 text-foreground">
             35% Viewport Gain
           </h3>
-          <p className="text-sm font-medium text-foreground/50 mb-2">Boosted Reading Focus</p>
           <p className="text-base text-foreground/70 leading-relaxed">
             Maximizing chat area solved the "cramped window" issue, significantly reducing visual fatigue during long study sessions.
           </p>
@@ -37,10 +37,10 @@ const AsksiaImpact = () => {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
         >
+          <p className="text-sm font-medium text-foreground/50 mb-2">Optimized Time-to-Source</p>
           <h3 className="text-2xl font-bold mb-1 text-foreground">
             20% Faster Navigation
           </h3>
-          <p className="text-sm font-medium text-foreground/50 mb-2">Optimized Time-to-Source</p>
           <p className="text-base text-foreground/70 leading-relaxed">
             The new IA streamlined the path between AI insights and original files, minimizing the interaction cost for cross-referencing.
           </p>
@@ -55,10 +55,10 @@ const AsksiaImpact = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.3 }}
       >
+        <p className="text-sm font-medium text-foreground/50 mb-2">Built for Growth</p>
         <h3 className="text-2xl font-bold mb-1 text-foreground">
           Scalable Retention
         </h3>
-        <p className="text-sm font-medium text-foreground/50 mb-2">Built for Growth</p>
         <p className="text-base text-foreground/70 leading-relaxed max-w-2xl">
           Established a robust layout framework that keeps the interface clean as users add more files, ensuring long-term product stickiness.
         </p>
