@@ -56,7 +56,7 @@ const AsksiaDesignAnalysis = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        I documented every edge case—corrupted files, empty states, mixed formats—and wrote detailed specs with acceptance criteria so engineers could build without ambiguity.
+        I documented every edge case, from corrupted files to empty states, and wrote detailed specs with acceptance criteria so engineers could build without ambiguity.
       </motion.p>
 
       <ImageLightbox src={analysis4} alt="States & Edge Cases and Spec Writing & QA" className="w-full rounded-lg border border-border/30" />
