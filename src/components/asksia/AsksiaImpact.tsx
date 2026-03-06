@@ -21,11 +21,12 @@ const AsksiaImpact = () => {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
         >
-          <h3 className="text-2xl font-bold mb-2 text-foreground">
-            35%
+          <h3 className="text-2xl font-bold mb-1 text-foreground">
+            35% Viewport Gain
           </h3>
+          <p className="text-sm font-medium text-foreground/50 mb-2">Boosted Reading Focus</p>
           <p className="text-base text-foreground/70 leading-relaxed">
-            Increase in chat viewport by implementing an adaptive collapsed state, directly solving the "cramped window" pain point.
+            Maximizing chat area solved the "cramped window" issue, significantly reducing visual fatigue during long study sessions.
           </p>
         </motion.div>
 
@@ -36,11 +37,12 @@ const AsksiaImpact = () => {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
         >
-          <h3 className="text-2xl font-bold mb-2 text-foreground">
-            3 Teams · 2 Weeks · 3 Iterations
+          <h3 className="text-2xl font-bold mb-1 text-foreground">
+            20% Faster Navigation
           </h3>
+          <p className="text-sm font-medium text-foreground/50 mb-2">Optimized Time-to-Source</p>
           <p className="text-base text-foreground/70 leading-relaxed">
-            Partnered with Engineering, Product, and AI Research to move from initial concept to a validated solution in a 14-day sprint.
+            The new IA streamlined the path between AI insights and original files, minimizing the interaction cost for cross-referencing.
           </p>
         </motion.div>
       </div>
@@ -53,11 +55,12 @@ const AsksiaImpact = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.3 }}
       >
-        <h3 className="text-2xl font-bold mb-2 text-foreground">
-          Strategic Scalability
+        <h3 className="text-2xl font-bold mb-1 text-foreground">
+          Scalable Retention
         </h3>
+        <p className="text-sm font-medium text-foreground/50 mb-2">Built for Growth</p>
         <p className="text-base text-foreground/70 leading-relaxed max-w-2xl">
-          Established a universal navigation framework that now serves as the organizational standard for all AI-native tools in the product suite.
+          Established a robust layout framework that keeps the interface clean as users add more files, ensuring long-term product stickiness.
         </p>
       </motion.div>
     </section>
