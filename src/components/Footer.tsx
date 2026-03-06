@@ -1,6 +1,16 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const Footer = () => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    await navigator.clipboard.writeText("stellanotfound@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <footer className="w-full py-12 px-6 md:px-12 bg-[hsl(0,0%,5%)] text-[hsl(0,0%,90%)]">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -29,12 +39,12 @@ const Footer = () => {
           >
             linkedin
           </a>
-          <a
-            href="mailto:stellanotfound@gmail.com"
+          <button
+            onClick={handleCopyEmail}
             className="text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-colors"
           >
-            email
-          </a>
+            {copied ? "copied!" : "email"}
+          </button>
           <a
             href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view"
             target="_blank"

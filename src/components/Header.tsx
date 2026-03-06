@@ -38,6 +38,7 @@ const Header = () => {
           <a href="#/" className="nav-link text-sm" onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>product</a>
           <a href="#/visual" className="nav-link text-sm">visual</a>
           <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">resume</a>
+          <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">linkedin</a>
         </nav>
 
         {/* Mobile hamburger */}
@@ -70,6 +71,15 @@ const Header = () => {
               onClick={() => setMenuOpen(false)}
             >
               resume
+            </a>
+            <a
+              href="https://www.linkedin.com/in/stellapengrnr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl text-foreground"
+              onClick={() => setMenuOpen(false)}
+            >
+              linkedin
             </a>
           </motion.div>
         )}
