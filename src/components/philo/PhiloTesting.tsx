@@ -36,13 +36,13 @@ const PhiloTesting = () => {
         transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
       >
         <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-          <strong className="text-foreground/90">For Developers</strong> — Quick onboarding with clear, ready-to-use components
+          <strong className="text-foreground/90">For Developers</strong>: Quick onboarding with clear, ready-to-use components
         </li>
         <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-          <strong className="text-foreground/90">For Designers</strong> — Streamlined future design work with reusable patterns
+          <strong className="text-foreground/90">For Designers</strong>: Streamlined future design work with reusable patterns
         </li>
         <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-          <strong className="text-foreground/90">For Users</strong> — Consistent, cohesive experience across the platform
+          <strong className="text-foreground/90">For Users</strong>: Consistent, cohesive experience across the platform
         </li>
       </motion.ul>
       
