@@ -23,6 +23,18 @@ const AsksiaChallenge = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
+        <span className="text-sm text-muted-foreground mb-3 block">constraints</span>
+        <p className="text-xl font-medium mb-10 tracking-tight text-foreground leading-relaxed max-w-2xl">
+          Speed: 2-week Sprint / Team: Lean (4 pax) / Tech: Library-based / Goal: Growth-ready
+        </p>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
+      >
         <ImageLightbox
           src={challengeImage}
           alt="AskSia - Current design pain points"
