@@ -29,22 +29,6 @@ const AsksiaChallenge = () => {
           className="w-full rounded-lg border border-border/30"
         />
       </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, ease: easeOut, delay: 0.15 }}
-        className="mt-10"
-      >
-        <span className="text-sm text-muted-foreground mb-3 block">constraints</span>
-        <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
-          <span>Speed: 2-week Sprint</span>
-          <span>Team: Lean (4 pax)</span>
-          <span>Tech: Library-based</span>
-          <span>Goal: Growth-ready</span>
-        </div>
-      </motion.div>
     </section>
   );
 };
