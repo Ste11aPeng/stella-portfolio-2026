@@ -12,7 +12,7 @@ const experiences = [
   },
   {
     company: "Desai Accelerator",
-    url: "https://www.desaiaccelerator.com/internship",
+    url: "https://www.desaiaccelerator.com/",
     role: "Product Design Intern",
     period: "2025",
     description: (
