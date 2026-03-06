@@ -24,7 +24,7 @@ const AsksiaChallenge = () => {
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
         <span className="text-sm text-muted-foreground mb-3 block">constraints</span>
-        <p className="text-xl font-medium mb-10 tracking-tight text-foreground leading-relaxed max-w-2xl">
+        <p className="text-base mb-10 max-w-3xl text-foreground/80 leading-relaxed">
           Speed: 2-week Sprint / Team: Lean (4 pax) / Tech: Library-based / Goal: Growth-ready
         </p>
       </motion.div>
