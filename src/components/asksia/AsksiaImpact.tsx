@@ -28,7 +28,7 @@ const AsksiaImpact = () => {
             35% Viewport Gain
           </h3>
           <p className="text-base text-foreground/70 leading-relaxed">
-            We made the chat area way bigger — no more squinting at a tiny window during long study sessions.
+            We made the chat area way bigger, no more squinting at a tiny window during long study sessions.
           </p>
         </motion.div>
 
@@ -45,7 +45,7 @@ const AsksiaImpact = () => {
             20% Faster Navigation
           </h3>
           <p className="text-base text-foreground/70 leading-relaxed">
-            Jumping between AI answers and your original files used to be clunky — now it's quick and painless.
+            Jumping between AI answers and your original files used to be clunky, now it's quick and painless.
           </p>
         </motion.div>
       </div>
@@ -64,7 +64,7 @@ const AsksiaImpact = () => {
           Scalable Retention
         </h3>
         <p className="text-base text-foreground/70 leading-relaxed max-w-2xl">
-          The layout stays clean even when users pile on more files — so the product doesn't get messier as it grows.
+          The layout stays clean even when users pile on more files, so the product doesn't get messier as it grows.
         </p>
       </motion.div>
     </section>
