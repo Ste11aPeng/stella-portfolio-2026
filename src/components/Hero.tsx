@@ -56,7 +56,7 @@ const Hero = () => {
         </motion.div>
 
         <motion.p
-          className="max-w-md pt-0 font-sans flex flex-wrap"
+          className="max-w-lg pt-0 font-sans flex flex-wrap"
           style={{
             color: "#161616",
             fontFamily: "'New Spirit', serif",
