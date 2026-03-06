@@ -5,7 +5,7 @@ const experiences = [
     company: "AskSia Inc.",
     url: "https://www.asksia.ai/",
     role: "Product Designer",
-    period: "2025 — 2026",
+    period: "2025 – 2026",
     description: (
       <>Defining the end-to-end experience for <span className="text-foreground">AI Study Copilot</span> by scaling cross-platform design systems and optimizing growth-driven user flows to enhance product efficiency and engagement.</>
     ),
@@ -23,7 +23,7 @@ const experiences = [
     company: "Michigan Engineering",
     url: "https://www.engin.umich.edu/",
     role: "Social Media Intern",
-    period: "2024 — 2026",
+    period: "2024 – 2026",
     description: (
       <>Leading brand communication and content strategy for the College of Engineering, leveraging <span className="text-foreground">visual storytelling</span> to amplify social presence while maintaining multi-channel brand consistency.</>
     ),

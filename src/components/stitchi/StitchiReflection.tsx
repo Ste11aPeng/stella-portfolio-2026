@@ -34,7 +34,7 @@ const StitchiReflection = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
       >
-        I thought working with a technical PM and SWE would be hard, that we spoke different languages. But after learning how Algolia and the back-end worked, our conversations flowed more easily. I realized it's better to just ask when I don't know something — people are happy to help when you're engaged.
+        I thought working with a technical PM and SWE would be hard, that we spoke different languages. But after learning how Algolia and the back-end worked, our conversations flowed more easily. I realized it's better to just ask when I don't know something, people are happy to help when you're engaged.
       </motion.p>
       
       {/* Reflection Image */}

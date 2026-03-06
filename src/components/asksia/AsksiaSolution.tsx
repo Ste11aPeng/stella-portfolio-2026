@@ -26,7 +26,7 @@ const AsksiaSolution = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        A responsive UI that dynamically reconfigures its layout based on user intent—seamlessly transitioning from immersive chat to side-by-side file inspection.
+        A responsive UI that dynamically reconfigures its layout based on user intent, seamlessly transitioning from immersive chat to side-by-side file inspection.
       </motion.p>
 
       <div className="space-y-8">
