@@ -12,7 +12,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full py-12 px-6 md:px-12 bg-[hsl(0,0%,5%)] text-[hsl(0,0%,90%)]">
+    <footer className="w-full py-16 px-6 md:px-12 bg-[hsl(0,0%,5%)] text-[hsl(0,0%,90%)]">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <motion.p
           className="text-sm text-[hsl(0,0%,60%)]"
@@ -21,7 +21,7 @@ const Footer = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          Don't be a stranger
+          Let's make something together 😉
         </motion.p>
 
         <motion.nav
