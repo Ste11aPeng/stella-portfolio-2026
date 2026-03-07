@@ -144,7 +144,7 @@
   }
 
   .project-overlay {
-    @apply absolute bottom-0 left-0 right-0 p-6 pl-5 pb-5 opacity-0 transition-opacity duration-300;
+    @apply absolute bottom-0 left-0 right-0 p-[10px] opacity-0 transition-opacity duration-300;
   }
 
   .project-card:hover .project-overlay {
