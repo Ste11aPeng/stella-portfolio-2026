@@ -11,7 +11,7 @@ const experiences = [
 ];
 
 const education = [
-  { school: "University of Michigan", degree: "B.S. Information Science, Minor in Art & Design", period: "2022 – 2026" },
+  { school: "University of Michigan", degree: "BA in Art & Design, Minor in UX Design and Entrepreneurship", period: "Class of 2025" },
 ];
 
 const About = () => {
@@ -30,29 +30,16 @@ const About = () => {
               transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             >
               <h1 className="font-['New_Spirit'] text-3xl md:text-4xl font-normal text-foreground leading-snug">
-                Hi there, I'm Stella.
+                Hi, I'm Stella.
               </h1>
               <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
-                I'm an interdisciplinary designer with a love for prototyping, storytelling, and visual craft. I study design and consumer psychology at Penn. I'm currently on a gap semester to design at Perplexity.
+                A product designer drawn to visual clarity, new tools, and the messy questions behind how products actually work.
               </p>
-              <div>
-                <p className="font-sans text-[14px] leading-relaxed text-muted-foreground mb-2">
-                  Outside of design I'm:
-                </p>
-                <ul className="font-sans text-[14px] leading-relaxed text-muted-foreground list-disc pl-5 space-y-0.5">
-                  <li>Doodling on my iPad</li>
-                  <li>Painting gouache plein airs</li>
-                  <li>Building houses in the Sims 4</li>
-                  <li>Cafe hopping in pursuit of tasty matcha</li>
-                </ul>
-              </div>
               <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
-                I post my work on{" "}
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2">Twitter</a>
-                {" "}and{" "}
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2">Instagram</a>
-                . Say hello at stellanotfound@gmail.com or via{" "}
-                <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2">LinkedIn</a>.
+                TLDR of my life: I was born and raised in China, and now study design at the University of Michigan, which means I often see products through a mix of different contexts, habits, and expectations.
+              </p>
+              <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
+                More than anything, I'm trying to become the kind of designer who brings momentum, curiosity, and a strong point of view, someone who notices what's changing early, learns fast, and helps make the next version of a product feel more clear, more human, and more alive.
               </p>
             </motion.div>
 
