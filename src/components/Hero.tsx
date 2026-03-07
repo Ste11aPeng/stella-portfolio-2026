@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import profileImage from "@/assets/profile.png";
 
 const parts = [
-  { text: "stella p. is a ", color: undefined },
-  { text: "product designer", color: "#4a86e8" },
-  { text: " who spots new tools early, drives momentum, and stays curious about how products grow. currently based in michigan.", color: undefined },
+  { text: "Stella P. is a ", color: undefined },
+  { text: "Product Designer", color: "#4a86e8" },
+  { text: " who ships calm, scalable UX for fast-growing products. Based in Michigan.", color: undefined },
 ];
 
 const containerVariants = {
