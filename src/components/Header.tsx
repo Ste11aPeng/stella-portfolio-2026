@@ -37,6 +37,7 @@ const Header = () => {
         <nav className="hidden md:flex items-center gap-8">
           <a href="#/" className="nav-link text-sm" onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>product</a>
           <a href="#/visual" className="nav-link text-sm">visual</a>
+          <a href="#/about" className="nav-link text-sm">about</a>
           <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">resume</a>
           <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">linkedin</a>
         </nav>
@@ -63,6 +64,7 @@ const Header = () => {
           >
             <a href="#/" className="text-2xl text-foreground" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>product</a>
             <a href="#/visual" className="text-2xl text-foreground" onClick={() => setMenuOpen(false)}>visual</a>
+            <a href="#/about" className="text-2xl text-foreground" onClick={() => setMenuOpen(false)}>about</a>
             <a
               href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view"
               target="_blank"
