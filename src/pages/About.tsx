@@ -1,15 +1,17 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import WorkExperience from "@/components/WorkExperience";
 import { motion } from "framer-motion";
 import profileImg from "@/assets/profile.jpg";
 
+const experiences = [
+  { company: "AskSia Inc.", role: "Product Designer", period: "2025 – 2026" },
+  { company: "Desai Accelerator", role: "Product Design Intern", period: "2025" },
+  { company: "Michigan Engineering", role: "Social Media Intern", period: "2024 – 2026" },
+  { company: "Michigan Open UX", role: "Product Designer", period: "2023" },
+];
+
 const education = [
-  {
-    school: "University of Michigan",
-    degree: "B.S. in Information Science, Minor in Art & Design",
-    period: "2022 – 2026",
-  },
+  { school: "University of Michigan", degree: "B.S. Information Science, Minor in Art & Design", period: "2022 – 2026" },
 ];
 
 const About = () => {
@@ -18,9 +20,8 @@ const About = () => {
       <div className="min-h-screen bg-background relative z-10">
         <Header />
 
-        {/* Top section: Intro (left) + Experience & Education (right) */}
         <section className="px-8 pt-16 pb-12 lg:px-24 md:px-[32px]">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
             {/* Left – Introduction */}
             <motion.div
               className="flex flex-col gap-6"
@@ -28,26 +29,34 @@ const About = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              <div className="overflow-hidden">
-                <p className="font-sans text-[11px] tracking-widest uppercase text-muted-foreground/50 mb-6">
-                  About
-                </p>
-              </div>
-              <h1 className="font-sans text-2xl md:text-3xl font-medium text-foreground leading-snug">
-                Hi, I'm Stella —
+              <h1 className="font-['New_Spirit'] text-3xl md:text-4xl font-normal text-foreground leading-snug">
+                Hi there, I'm Stella.
               </h1>
-              <p className="font-sans text-[14px] leading-relaxed text-muted-foreground/80">
-                A product designer who believes great design lives at the intersection of empathy, systems thinking, and craft. I'm passionate about translating complex problems into intuitive, delightful experiences.
+              <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
+                I'm an interdisciplinary designer with a love for prototyping, storytelling, and visual craft. I study design and consumer psychology at Penn. I'm currently on a gap semester to design at Perplexity.
               </p>
-              <p className="font-sans text-[14px] leading-relaxed text-muted-foreground/80">
-                Currently studying Information Science at the University of Michigan, I bring a multidisciplinary lens — blending UX strategy, visual design, and front-end sensibility to ship products that matter.
-              </p>
-              <p className="font-sans text-[14px] leading-relaxed text-muted-foreground/80">
-                When I'm not designing, you'll find me exploring photography, experimenting with visual art, or diving into a good book.
+              <div>
+                <p className="font-sans text-[14px] leading-relaxed text-muted-foreground mb-2">
+                  Outside of design I'm:
+                </p>
+                <ul className="font-sans text-[14px] leading-relaxed text-muted-foreground list-disc pl-5 space-y-0.5">
+                  <li>Doodling on my iPad</li>
+                  <li>Painting gouache plein airs</li>
+                  <li>Building houses in the Sims 4</li>
+                  <li>Cafe hopping in pursuit of tasty matcha</li>
+                </ul>
+              </div>
+              <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
+                I post my work on{" "}
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2">Twitter</a>
+                {" "}and{" "}
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2">Instagram</a>
+                . Say hello at stellanotfound@gmail.com or via{" "}
+                <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2">LinkedIn</a>.
               </p>
             </motion.div>
 
-            {/* Right – Work Experience & Education */}
+            {/* Right – Experience & Education */}
             <motion.div
               className="flex flex-col gap-10"
               initial={{ opacity: 0, y: 20 }}
@@ -56,20 +65,19 @@ const About = () => {
             >
               {/* Experience */}
               <div>
-                <p className="font-sans text-[11px] tracking-widest uppercase text-muted-foreground/50 mb-6">
+                <h2 className="font-['New_Spirit'] text-xl md:text-2xl font-normal text-foreground mb-4">
                   Experience
-                </p>
-                <div className="flex flex-col divide-y divide-border/30">
-                  {[
-                    { company: "AskSia Inc.", role: "Product Designer", period: "2025 – 2026" },
-                    { company: "Desai Accelerator", role: "Product Design Intern", period: "2025" },
-                    { company: "Michigan Engineering", role: "Social Media Intern", period: "2024 – 2026" },
-                    { company: "Michigan Open UX", role: "Product Designer", period: "2023" },
-                  ].map((exp, i) => (
-                    <div key={i} className="py-4 first:pt-0">
-                      <p className="font-sans font-medium text-foreground text-[14px]">{exp.company}</p>
-                      <p className="font-sans text-muted-foreground text-[13px]">{exp.role}</p>
-                      <p className="font-sans text-muted-foreground/60 text-[12px]">{exp.period}</p>
+                </h2>
+                <div className="flex flex-col divide-y divide-border/40">
+                  {experiences.map((exp, i) => (
+                    <div key={i} className="flex items-baseline justify-between py-3 first:pt-0">
+                      <p className="font-sans text-[14px] text-foreground">
+                        <span className="font-medium">{exp.company}</span>
+                        <span className="text-muted-foreground"> / {exp.role}</span>
+                      </p>
+                      <p className="font-sans text-[13px] text-muted-foreground/60 whitespace-nowrap ml-4">
+                        {exp.period}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -77,15 +85,19 @@ const About = () => {
 
               {/* Education */}
               <div>
-                <p className="font-sans text-[11px] tracking-widest uppercase text-muted-foreground/50 mb-6">
+                <h2 className="font-['New_Spirit'] text-xl md:text-2xl font-normal text-foreground mb-4">
                   Education
-                </p>
-                <div className="flex flex-col divide-y divide-border/30">
+                </h2>
+                <div className="flex flex-col divide-y divide-border/40">
                   {education.map((edu, i) => (
-                    <div key={i} className="py-4 first:pt-0">
-                      <p className="font-sans font-medium text-foreground text-[14px]">{edu.school}</p>
-                      <p className="font-sans text-muted-foreground text-[13px]">{edu.degree}</p>
-                      <p className="font-sans text-muted-foreground/60 text-[12px]">{edu.period}</p>
+                    <div key={i} className="flex items-baseline justify-between py-3 first:pt-0">
+                      <p className="font-sans text-[14px] text-foreground">
+                        <span className="font-medium">{edu.school}</span>
+                        <span className="text-muted-foreground"> / {edu.degree}</span>
+                      </p>
+                      <p className="font-sans text-[13px] text-muted-foreground/60 whitespace-nowrap ml-4">
+                        {edu.period}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -96,17 +108,6 @@ const About = () => {
 
         {/* Bottom – Photo Gallery */}
         <section className="px-8 pt-6 pb-16 lg:px-24 md:px-[32px]">
-          <div className="overflow-hidden">
-            <motion.p
-              className="font-sans text-[11px] tracking-widest uppercase text-muted-foreground/50 mb-8"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-            >
-              A few moments
-            </motion.p>
-          </div>
           <motion.div
             className="grid grid-cols-2 md:grid-cols-4 gap-[10px]"
             initial={{ opacity: 0, y: 20 }}
@@ -114,7 +115,6 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            {/* Placeholder photos – replace with real ones */}
             {[profileImg, profileImg, profileImg, profileImg].map((src, i) => (
               <div key={i} className="aspect-[4/5] overflow-hidden bg-muted">
                 <img
