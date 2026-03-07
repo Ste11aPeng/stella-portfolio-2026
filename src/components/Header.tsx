@@ -64,6 +64,7 @@ const Header = () => {
           >
             <a href="#/" className="text-2xl text-foreground" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>product</a>
             <a href="#/visual" className="text-2xl text-foreground" onClick={() => setMenuOpen(false)}>visual</a>
+            <a href="#/about" className="text-2xl text-foreground" onClick={() => setMenuOpen(false)}>about</a>
             <a
               href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view"
               target="_blank"
