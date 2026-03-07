@@ -4,7 +4,7 @@ import profileImage from "@/assets/profile.png";
 const parts = [
   { text: "Stella P. is a ", color: undefined },
   { text: "Product Designer", color: "#4a86e8" },
-  { text: " who spots new tools early, drives momentum, and stays curious about how products grow. currently based in michigan.", color: undefined },
+  { text: " who ships calm, scalable UX for fast-growing products. Based in Michigan.", color: undefined },
 ];
 
 const containerVariants = {
@@ -56,7 +56,7 @@ const Hero = () => {
         </motion.div>
 
         <motion.p
-          className="max-w-xl pt-0 font-sans flex flex-wrap"
+          className="max-w-lg pt-0 font-sans flex flex-wrap"
           style={{
             color: "#161616",
             fontFamily: "'New Spirit', serif",
