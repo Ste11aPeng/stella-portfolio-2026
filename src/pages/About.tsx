@@ -1,7 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import profileImg from "@/assets/profile.jpg";
+import { useRef, useState, useCallback } from "react";
 
 const experiences = [
   { company: "AskSia Inc.", role: "Product Designer", period: "2025 – 2026" },
@@ -15,6 +16,18 @@ const education = [
 ];
 
 const About = () => {
+  const [stellaHovered, setStellaHovered] = useState(false);
+  const sayHelloRef = useRef<HTMLParagraphElement>(null);
+  const [highlight, setHighlight] = useState(false);
+
+  const handleReachOut = useCallback(() => {
+    if (sayHelloRef.current) {
+      sayHelloRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      setHighlight(true);
+      setTimeout(() => setHighlight(false), 1500);
+    }
+  }, []);
+
   return (
     <>
       <div className="min-h-screen bg-background relative z-10">
@@ -30,7 +43,28 @@ const About = () => {
               transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             >
               <h1 className="font-['New_Spirit'] text-3xl md:text-4xl font-normal text-foreground leading-snug">
-                Hi, I'm Stella.
+                Hi, I'm{" "}
+                <span
+                  className="relative inline-flex items-center cursor-pointer"
+                  onMouseEnter={() => setStellaHovered(true)}
+                  onMouseLeave={() => setStellaHovered(false)}
+                >
+                  Stella.
+                  <AnimatePresence>
+                    {stellaHovered && (
+                      <motion.button
+                        onClick={handleReachOut}
+                        className="absolute left-full ml-2 whitespace-nowrap text-[13px] font-sans font-medium text-primary underline underline-offset-2 cursor-pointer"
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -8 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        reach out!
+                      </motion.button>
+                    )}
+                  </AnimatePresence>
+                </span>
               </h1>
               <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
                 A product designer drawn to visual clarity, new tools, and the messy questions behind how products actually work.
@@ -38,8 +72,15 @@ const About = () => {
               <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
                 TLDR of my life: I was born and raised in China, and now study design at the University of Michigan, which means I often see products through a mix of different contexts, habits, and expectations.
               </p>
-              <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
-                More than anything, I'm trying to become a designer who brings clarity, momentum, and a point of view to the team. Say hello at stellanotfound@gmail.com or via{" "}
+              <p
+                ref={sayHelloRef}
+                className={`font-sans text-[14px] leading-relaxed text-muted-foreground transition-all duration-500 rounded-md px-1 -mx-1 ${
+                  highlight ? "bg-primary/10 text-foreground" : ""
+                }`}
+              >
+                More than anything, I'm trying to become a designer who brings clarity, momentum, and a point of view to the team. Say hello at{" "}
+                <a href="mailto:stellanotfound@gmail.com" className="text-foreground underline underline-offset-2">stellanotfound@gmail.com</a>
+                {" "}or via{" "}
                 <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2">LinkedIn</a>.
               </p>
             </motion.div>
