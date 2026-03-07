@@ -4,7 +4,7 @@ import profileImage from "@/assets/profile.png";
 const parts = [
   { text: "Stella P. is a ", color: undefined },
   { text: "Product Designer", color: "#4a86e8" },
-  { text: " who ships calm, scalable UX for fast-growing products. Based in Michigan.", color: undefined },
+  { text: " who spots new tools early, drives momentum, and stays curious about how products grow.", color: undefined },
 ];
 
 const containerVariants = {
