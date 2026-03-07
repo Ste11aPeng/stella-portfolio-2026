@@ -39,7 +39,8 @@ const About = () => {
                 TLDR of my life: I was born and raised in China, and now study design at the University of Michigan, which means I often see products through a mix of different contexts, habits, and expectations.
               </p>
               <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
-                More than anything, I'm trying to become the kind of designer who brings momentum, curiosity, and a strong point of view, someone who notices what's changing early, learns fast, and helps make the next version of a product feel more clear, more human, and more alive.
+                More than anything, I'm trying to become a designer who brings clarity, momentum, and a point of view to the team. Say hello at stellanotfound@gmail.com or via{" "}
+                <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2">LinkedIn</a>.
               </p>
             </motion.div>
 
