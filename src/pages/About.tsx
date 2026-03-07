@@ -54,7 +54,7 @@ const About = () => {
                     {stellaHovered && (
                       <motion.button
                         onClick={handleReachOut}
-                        className="absolute left-full ml-2 whitespace-nowrap text-[13px] font-sans font-medium text-primary underline underline-offset-2 cursor-pointer"
+                        className="absolute left-full ml-2 whitespace-nowrap text-[14px] font-sans font-normal text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer"
                         initial={{ opacity: 0, x: -8 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -8 }}
