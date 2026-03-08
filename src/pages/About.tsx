@@ -149,11 +149,11 @@ const About = () => {
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     WebkitTextFillColor: highlight ? "transparent" : undefined,
-                    transition: "background-size 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)",
+                    transition: "background-size 1.2s cubic-bezier(0.25, 0.1, 0.25, 1)",
                   }}
                 >
                   Say hello at{" "}
-                  <a href="mailto:stellanotfound@gmail.com" className="underline underline-offset-2" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>stellanotfound@gmail.com</a>
+                  <a href="mailto:stellanotfound@gmail.com" className="underline-offset-2" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>stellanotfound@gmail.com</a>
                   {" "}or via{" "}
                   <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>LinkedIn</a>.
                 </span>
