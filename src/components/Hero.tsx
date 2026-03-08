@@ -90,7 +90,7 @@ const Hero = () => {
                 exit={{ opacity: 0, y: 4 }}
                 transition={{ duration: 0.3 }}
               >
-                about me
+                about me →
               </motion.span>
             )}
           </AnimatePresence>
