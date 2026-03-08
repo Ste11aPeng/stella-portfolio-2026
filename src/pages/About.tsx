@@ -70,7 +70,7 @@ const About = () => {
                 A product designer drawn to visual clarity, new tools, and the messy questions behind how products actually work.
               </p>
               <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
-                TLDR of my life: i grew up in china and recently graduated in design from the university of michigan, so i naturally notice how people use things differently.
+                TLDR of my life: I grew up in China, and recently graduated in design from the University of Michigan, so I naturally notice how people use things differently.
               </p>
               <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
                 More than anything, I'm trying to become a designer who brings clarity, momentum, and a point of view to the team.{" "}
