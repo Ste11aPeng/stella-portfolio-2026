@@ -43,7 +43,7 @@ const Visual = () => {
       <Header />
       
       {/* Image Gallery */}
-      <section className="px-8 md:px-16 lg:px-24 pt-8 pb-24">
+      <section className="px-8 md:px-16 lg:px-24 pt-8 pb-24 max-w-[1440px] mx-auto">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
             {images.map((image, index) => (
