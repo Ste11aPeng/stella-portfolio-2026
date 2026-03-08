@@ -86,10 +86,20 @@ const About = () => {
   const [eduHovered, setEduHovered] = useState(false);
   const sayHelloRef = useRef<HTMLParagraphElement>(null);
   const [highlight, setHighlight] = useState(false);
+  const [fading, setFading] = useState(false);
 
   const handleReachOut = useCallback(() => {
+    setFading(false);
     setHighlight(true);
-    setTimeout(() => setHighlight(false), 2000);
+    // After sweep completes, start fade out
+    setTimeout(() => {
+      setFading(true);
+      setHighlight(false);
+    }, 1800);
+    // Reset fading state after fade completes
+    setTimeout(() => {
+      setFading(false);
+    }, 3500);
   }, []);
 
   return (
@@ -142,11 +152,19 @@ const About = () => {
                   ref={sayHelloRef}
                   className="inline"
                   style={{
-                    color: highlight ? "#3B82F6" : undefined,
-                    WebkitTextFillColor: highlight ? "#3B82F6" : undefined,
+                    backgroundImage: "linear-gradient(90deg, #3B82F6 0%, #3B82F6 100%)",
+                    backgroundSize: highlight ? "100% 100%" : (fading ? "100% 100%" : "0% 100%"),
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "left top",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: (highlight || fading) ? "transparent" : undefined,
+                    opacity: fading ? 0.4 : 1,
                     transition: highlight
-                      ? "color 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), -webkit-text-fill-color 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)"
-                      : "color 1.5s cubic-bezier(0.25, 0.1, 0.25, 1), -webkit-text-fill-color 1.5s cubic-bezier(0.25, 0.1, 0.25, 1)",
+                      ? "background-size 1.2s cubic-bezier(0.25, 0.1, 0.25, 1)"
+                      : fading
+                        ? "opacity 1.5s cubic-bezier(0.25, 0.1, 0.25, 1)"
+                        : "background-size 0s, opacity 0s",
                   }}
                 >
                   Say hello at{" "}
