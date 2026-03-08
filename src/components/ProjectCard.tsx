@@ -82,8 +82,9 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
         <img 
           src={image} 
           alt={title} 
-          width={1920}
-          height={972}
+          width={645}
+          height={326}
+          sizes="(max-width: 768px) 100vw, 564px"
           loading={index < 2 ? "eager" : "lazy"}
           decoding={index < 2 ? "sync" : "async"}
           fetchPriority={index === 0 ? "high" : undefined}
