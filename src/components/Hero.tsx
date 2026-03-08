@@ -89,54 +89,56 @@ const Hero = () => {
           </AnimatePresence>
         </motion.div>
 
-        <motion.p
-          className="max-w-2xl pt-0 font-sans flex flex-wrap"
-          style={{
-            color: "#161616",
-            fontFamily: "'New Spirit', serif",
-            fontSize: "24px",
-            fontWeight: 400,
-            lineHeight: "1.5",
-            gap: "0 5px",
-          }}
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {parts.map((part, pi) => {
-            const partWords = part.text.split(" ").filter(Boolean);
-            return partWords.map((word, wi) => (
-              <motion.span
-                key={`${pi}-${wi}`}
-                variants={wordVariants}
-                className="inline-block"
-                style={part.color ? { color: part.color } : undefined}
-              >
-                {word}
-              </motion.span>
-            ));
-          })}
-        </motion.p>
-      </div>
+        <div className="flex flex-col">
+          <motion.p
+            className="max-w-2xl pt-0 font-sans flex flex-wrap"
+            style={{
+              color: "#161616",
+              fontFamily: "'New Spirit', serif",
+              fontSize: "24px",
+              fontWeight: 400,
+              lineHeight: "1.5",
+              gap: "0 5px",
+            }}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {parts.map((part, pi) => {
+              const partWords = part.text.split(" ").filter(Boolean);
+              return partWords.map((word, wi) => (
+                <motion.span
+                  key={`${pi}-${wi}`}
+                  variants={wordVariants}
+                  className="inline-block"
+                  style={part.color ? { color: part.color } : undefined}
+                >
+                  {word}
+                </motion.span>
+              ));
+            })}
+          </motion.p>
 
-      <motion.div
-        className="flex items-center gap-3 mt-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.2 }}
-      >
-        <span className="flex items-center gap-1.5 text-[13px] font-sans text-muted-foreground">
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500" />
-          Available for work
-        </span>
-        <span className="text-border">·</span>
-        <a
-          href="mailto:stellanotfound@gmail.com"
-          className="text-[13px] font-sans text-muted-foreground/50 hover:text-muted-foreground transition-colors"
-        >
-          stellanotfound@gmail.com
-        </a>
-      </motion.div>
+          <motion.div
+            className="flex items-center gap-3 mt-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+          >
+            <span className="flex items-center gap-1.5 text-[13px] font-sans text-muted-foreground">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500" />
+              Available for work
+            </span>
+            <span className="text-border">·</span>
+            <a
+              href="mailto:stellanotfound@gmail.com"
+              className="text-[13px] font-sans text-muted-foreground/50 hover:text-muted-foreground transition-colors"
+            >
+              stellanotfound@gmail.com
+            </a>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 };
