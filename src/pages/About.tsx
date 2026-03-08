@@ -88,11 +88,8 @@ const About = () => {
   const [highlight, setHighlight] = useState(false);
 
   const handleReachOut = useCallback(() => {
-    if (sayHelloRef.current) {
-      sayHelloRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-      setHighlight(true);
-      setTimeout(() => setHighlight(false), 1500);
-    }
+    setHighlight(true);
+    setTimeout(() => setHighlight(false), 1500);
   }, []);
 
   return (
