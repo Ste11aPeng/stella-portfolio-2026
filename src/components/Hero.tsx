@@ -118,6 +118,25 @@ const Hero = () => {
           })}
         </motion.p>
       </div>
+
+      <motion.div
+        className="flex items-center gap-3 mt-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 1.2 }}
+      >
+        <span className="flex items-center gap-1.5 text-[13px] font-sans text-muted-foreground">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500" />
+          Available for work
+        </span>
+        <span className="text-border">·</span>
+        <a
+          href="mailto:stellanotfound@gmail.com"
+          className="text-[13px] font-sans text-muted-foreground/50 hover:text-muted-foreground transition-colors"
+        >
+          stellanotfound@gmail.com
+        </a>
+      </motion.div>
     </section>
   );
 };
