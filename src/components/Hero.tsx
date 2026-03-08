@@ -52,7 +52,7 @@ const Hero = () => {
       <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12">
         <motion.div
           className="flex-shrink-0 overflow-hidden cursor-pointer relative"
-          style={{ width: "100px", height: "100px" }}
+          style={{ width: "120px", height: "120px" }}
           initial={{ opacity: 0, scale: 0.92, filter: "blur(8px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{
