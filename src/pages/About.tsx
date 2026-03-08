@@ -86,6 +86,13 @@ const About = () => {
   const [eduHovered, setEduHovered] = useState(false);
   const sayHelloRef = useRef<HTMLParagraphElement>(null);
   const [highlight, setHighlight] = useState<'idle' | 'ready' | 'sweeping' | 'fading'>('idle');
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = useCallback(async () => {
+    await navigator.clipboard.writeText("stellanotfound@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }, []);
 
   const handleReachOut = useCallback(() => {
     setHighlight('ready');
@@ -170,7 +177,7 @@ const About = () => {
                   } : {}}
                 >
                   Say hello at{" "}
-                  <a href="mailto:stellanotfound@gmail.com" className="underline-offset-2" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>stellanotfound@gmail.com</a>
+                  <button onClick={handleCopyEmail} className="underline-offset-2 cursor-pointer" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>{copied ? "copied!" : "stellanotfound@gmail.com"}</button>
                   {" "}or via{" "}
                   <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>LinkedIn</a>.
                 </span>
