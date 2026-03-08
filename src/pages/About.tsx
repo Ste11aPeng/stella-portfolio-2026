@@ -5,7 +5,7 @@ import about1 from "@/assets/about-1.png";
 import about2 from "@/assets/about-2.png";
 import about3 from "@/assets/about-3.png";
 import about4 from "@/assets/about-4.png";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 
 const experiences = [
   { company: "AskSia Inc.", url: "https://www.asksia.ai/", role: "Product Designer", period: "2025 – 2026" },
@@ -158,14 +158,13 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
           >
-            {[about1, about2, about3, about4].map((src, i) => (
-              <div key={i} className="aspect-[4/5] overflow-hidden bg-muted">
-                <img
-                  src={src}
-                  alt={`Photo ${i + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            {[
+              { src: about1, label: "Hi~" },
+              { src: about2, label: "I love matcha" },
+              { src: about3, label: "I shoot with my fuji cam in AA" },
+              { src: about4, label: "brew time!" },
+            ].map((item, i) => (
+              <PhotoWithHover key={i} src={item.src} label={item.label} index={i} />
             ))}
           </motion.div>
         </section>
