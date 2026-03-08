@@ -83,6 +83,7 @@ const PhotoWithHover = ({ src, label, index }: { src: string; label: string; ind
 
 const About = () => {
   const [stellaHovered, setStellaHovered] = useState(false);
+  const [eduHovered, setEduHovered] = useState(false);
   const sayHelloRef = useRef<HTMLParagraphElement>(null);
   const [highlight, setHighlight] = useState(false);
 
@@ -191,8 +192,25 @@ const About = () => {
 
               {/* Education */}
               <div>
-                <h2 className="font-['New_Spirit'] text-xl md:text-2xl font-normal text-foreground mb-4">
+                <h2
+                  className="font-['New_Spirit'] text-xl md:text-2xl font-normal text-foreground mb-4 relative inline-flex items-center"
+                  onMouseEnter={() => setEduHovered(true)}
+                  onMouseLeave={() => setEduHovered(false)}
+                >
                   Education
+                  <AnimatePresence>
+                    {eduHovered && (
+                      <motion.span
+                        className="absolute left-full ml-2 whitespace-nowrap text-[14px] font-sans font-normal text-muted-foreground select-none pointer-events-none"
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -8 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        Go Blue
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
                 </h2>
                 <div className="flex flex-col divide-y divide-border/40">
                   {education.map((edu, i) => (
