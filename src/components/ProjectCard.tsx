@@ -72,7 +72,7 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
 
   const cardContent = (
     <div 
-      className={`project-card group ${comingSoon ? 'cursor-default' : ''}`}
+      className={`project-card group cursor-none ${comingSoon ? '' : ''}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -97,7 +97,7 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
           className="project-cursor-hint"
           style={{ willChange: "left, top" }}
         >
-          {comingSoon ? "COMING SOON" : "SEE PROJECT →"}
+          {comingSoon ? "coming soon" : "see project →"}
         </div>
       )}
     </div>
