@@ -61,19 +61,29 @@ const Hero = () => {
             alt="Profile"
             width={291}
             height={291}
-            className="w-full h-full object-cover transition-[filter] duration-500 ease-out"
-            style={{ filter: isHovered ? "blur(3px)" : "blur(0px)" }}
+            className="w-full h-full object-cover"
+          />
+          {/* Gradient blur overlay */}
+          <div
+            className="absolute inset-0 transition-opacity duration-500 ease-out pointer-events-none"
+            style={{
+              opacity: isHovered ? 1 : 0,
+              backdropFilter: "blur(4px)",
+              WebkitBackdropFilter: "blur(4px)",
+              maskImage: "linear-gradient(to bottom, transparent 20%, black 80%)",
+              WebkitMaskImage: "linear-gradient(to bottom, transparent 20%, black 80%)",
+            }}
           />
           <AnimatePresence>
             {isHovered && (
               <motion.span
-                className="absolute inset-0 flex items-center justify-center font-sans text-[13px] text-foreground/80 select-none"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+                className="absolute bottom-2 left-0 right-0 flex items-center justify-center font-sans text-[11px] text-white select-none"
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 4 }}
                 transition={{ duration: 0.3 }}
               >
-                more
+                about me
               </motion.span>
             )}
           </AnimatePresence>
