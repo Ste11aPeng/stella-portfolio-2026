@@ -1,7 +1,10 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
-import profileImg from "@/assets/profile.jpg";
+import about1 from "@/assets/about-1.png";
+import about2 from "@/assets/about-2.png";
+import about3 from "@/assets/about-3.png";
+import about4 from "@/assets/about-4.png";
 import { useRef, useState, useCallback } from "react";
 
 const experiences = [
@@ -155,12 +158,12 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
           >
-            {[profileImg, profileImg, profileImg, profileImg].map((src, i) => (
+            {[about1, about2, about3, about4].map((src, i) => (
               <div key={i} className="aspect-[4/5] overflow-hidden bg-muted">
                 <img
                   src={src}
                   alt={`Photo ${i + 1}`}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover"
                 />
               </div>
             ))}
