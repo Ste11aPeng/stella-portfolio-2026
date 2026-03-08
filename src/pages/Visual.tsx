@@ -1,4 +1,4 @@
-import { motion, type Easing } from "framer-motion";
+import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ImageLightbox from "@/components/ImageLightbox";
@@ -10,65 +10,79 @@ import visual4 from "@/assets/visual-4.png";
 import visual5 from "@/assets/visual-5.png";
 import visual6 from "@/assets/visual-6.png";
 import visual7 from "@/assets/visual-7.png";
-import visual8 from "@/assets/visual-8.png";
-import visual9 from "@/assets/visual-9.png";
-import visual10 from "@/assets/visual-10.png";
-import visual11 from "@/assets/visual-11.png";
-import visual12 from "@/assets/visual-12.png";
-import visual13 from "@/assets/visual-13.png";
-import visual14 from "@/assets/visual-14.png";
-
-const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
 const images = [
-  { src: visual13, alt: "YouTube Shorts UI redesign - Problem statement" },
-  { src: visual14, alt: "YouTube Shorts UI redesign - Solution" },
-  { src: visual1, alt: "3D coral character artwork" },
-  { src: visual2, alt: "Mechanical sketch illustration" },
-  { src: visual3, alt: "Changsha typography design" },
-  { src: visual4, alt: "Star city editorial design" },
-  { src: visual5, alt: "TouchDesigner generative art" },
-  { src: visual6, alt: "Abstract 3D visualization" },
-  { src: visual7, alt: "DailyRock app design" },
-  { src: visual8, alt: "Led Zeppelin interactive design" },
-  { src: visual9, alt: "Red tulips photography" },
-  { src: visual10, alt: "Architecture photography" },
-  { src: visual11, alt: "Transpacific Marxism publication" },
-  { src: visual12, alt: "MiKSSI branding" },
-];
+  { src: visual1, alt: "3D coral character render", span: "full" },
+  { src: visual2, alt: "Coral sculpture photo collection", span: "normal" },
+  { src: visual3, alt: "Character design iterations and sketches", span: "normal" },
+  { src: visual4, alt: "Mechanical creature sketch", span: "normal" },
+  { src: visual5, alt: "Changsha typography editorial design", span: "normal" },
+  { src: visual6, alt: "Star city editorial spread", span: "normal" },
+  { src: visual7, alt: "TouchDesigner generative art mind map", span: "full" },
+] as const;
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.97, filter: "blur(6px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.7,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
 
 const Visual = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
+      {/* Page title */}
+      <section className="px-8 md:px-16 lg:px-24 pt-16 pb-6 max-w-[1440px] mx-auto">
+        <motion.h1
+          className="font-['New_Spirit'] text-[28px] md:text-[36px] text-foreground"
+          initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
+          Visual
+        </motion.h1>
+        <motion.p
+          className="text-sm text-muted-foreground mt-2 max-w-md"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          A collection of 3D, editorial, and generative work.
+        </motion.p>
+      </section>
+
       {/* Image Gallery */}
-      <section className="px-8 md:px-16 lg:px-24 pt-8 pb-24 max-w-[1440px] mx-auto">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
-            {images.map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{
-                  duration: 0.5,
-                  ease: easeOut,
-                  delay: index * 0.05
-                }}
-              >
-                <ImageLightbox
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-auto"
-                />
-              </motion.div>
-            ))}
-          </div>
+      <section className="px-8 md:px-16 lg:px-24 pb-24 max-w-[1440px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
+          {images.map((image, index) => (
+            <motion.div
+              key={index}
+              className={image.span === "full" ? "md:col-span-2" : ""}
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ delay: index * 0.06 }}
+            >
+              <ImageLightbox
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-auto"
+              />
+            </motion.div>
+          ))}
         </div>
       </section>
-      
+
       <Footer />
     </div>
   );
