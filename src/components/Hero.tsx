@@ -51,6 +51,8 @@ const Hero = () => {
           <img
             src={profileImage}
             alt="Profile"
+            width={291}
+            height={291}
             className="w-full h-full object-cover"
           />
         </motion.div>

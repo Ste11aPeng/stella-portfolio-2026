@@ -25,6 +25,7 @@ const ProjectGrid = () => {
               description={project.tagline}
               type={project.type}
               comingSoon={project.comingSoon}
+              index={index}
             />
           </motion.div>
         ))}
