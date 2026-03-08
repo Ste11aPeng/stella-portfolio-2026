@@ -169,7 +169,7 @@ const About = () => {
             >
               {/* Experience */}
               <div>
-                <h2 className="font-['New_Spirit'] text-xl md:text-2xl font-normal text-foreground mb-4">
+                <h2 className="font-['New_Spirit'] text-xl md:text-2xl font-normal text-muted-foreground mb-4">
                   Experience
                 </h2>
                 <div className="flex flex-col divide-y divide-border/40">
@@ -190,7 +190,7 @@ const About = () => {
               {/* Education */}
               <div>
                 <h2
-                  className="font-['New_Spirit'] text-xl md:text-2xl font-normal text-foreground mb-4 relative inline-flex items-center"
+                  className="font-['New_Spirit'] text-xl md:text-2xl font-normal text-muted-foreground mb-4 relative inline-flex items-center"
                   onMouseEnter={() => setEduHovered(true)}
                   onMouseLeave={() => setEduHovered(false)}
                 >
