@@ -99,7 +99,6 @@
 @layer base {
   * {
     @apply border-border;
-    cursor: none;
   }
 
   body {
@@ -107,9 +106,6 @@
     font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
   }
 
-  a, button, [role="button"], input, textarea, select {
-    cursor: none;
-  }
 }
 
 @layer components {
@@ -119,7 +115,6 @@
 
   .project-card {
     @apply relative overflow-hidden;
-    cursor: none;
   }
 
   .project-cursor-hint {
