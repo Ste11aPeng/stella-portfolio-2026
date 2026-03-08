@@ -12,8 +12,17 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full py-16 px-6 md:px-12 bg-[hsl(0,0%,5%)] text-[hsl(0,0%,90%)]">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <footer className="w-full py-20 px-8 md:px-16 lg:px-24 bg-[hsl(0,0%,5%)] text-[hsl(0,0%,90%)] relative overflow-hidden">
+      {/* Dot pattern background */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.15]"
+        style={{
+          backgroundImage: "radial-gradient(circle, hsl(0,0%,60%) 1px, transparent 1px)",
+          backgroundSize: "24px 24px",
+        }}
+      />
+
+      <div className="max-w-[1440px] mx-auto flex items-center justify-between relative z-10">
         <motion.p
           className="text-sm text-[hsl(0,0%,60%)]"
           initial={{ opacity: 0, filter: "blur(4px)" }}
