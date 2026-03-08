@@ -38,9 +38,9 @@ const About = () => {
             {/* Left – Introduction */}
             <motion.div
               className="flex flex-col gap-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
             >
               <h1 className="font-['New_Spirit'] text-3xl md:text-4xl font-normal text-foreground leading-snug">
                 Hi, I'm{" "}
@@ -88,9 +88,9 @@ const About = () => {
             {/* Right – Experience & Education */}
             <motion.div
               className="flex flex-col gap-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 0.15 }}
+              initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.25 }}
             >
               {/* Experience */}
               <div>
@@ -139,10 +139,10 @@ const About = () => {
         <section className="px-8 pt-6 pb-16 lg:px-24 md:px-[32px]">
           <motion.div
             className="grid grid-cols-2 md:grid-cols-4 gap-[10px]"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
           >
             {[profileImg, profileImg, profileImg, profileImg].map((src, i) => (
               <div key={i} className="aspect-[4/5] overflow-hidden bg-muted">
