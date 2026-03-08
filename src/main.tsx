@@ -3,7 +3,7 @@ import App from "./App.tsx";
 import "./index.css";
 
 // Preload LCP image (first project card) for faster discovery
-import askSiaImage from "@/assets/project-asksia.png";
+import askSiaImage from "@/assets/project-asksia.jpg";
 const preloadLink = document.createElement("link");
 preloadLink.rel = "preload";
 preloadLink.as = "image";

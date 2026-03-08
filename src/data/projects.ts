@@ -1,9 +1,9 @@
-import askSiaImage from "@/assets/project-asksia.png";
-import circleStatusImage from "@/assets/project-circle-status.png";
-import stitchiImage from "@/assets/project-stitchi.png";
-import philoImage from "@/assets/project-philo.png";
-import tellToolImage from "@/assets/project-telltool.png";
-import forgottenSenseImage from "@/assets/project-forgotten-sense.png";
+import askSiaImage from "@/assets/project-asksia.jpg";
+import circleStatusImage from "@/assets/project-circle-status.jpg";
+import stitchiImage from "@/assets/project-stitchi.jpg";
+import philoImage from "@/assets/project-philo.jpg";
+import tellToolImage from "@/assets/project-telltool.jpg";
+import forgottenSenseImage from "@/assets/project-forgotten-sense.jpg";
 
 export interface Project {
   id: string;

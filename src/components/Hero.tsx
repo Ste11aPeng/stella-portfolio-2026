@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import profileImage from "@/assets/profile.png";
+import profileImage from "@/assets/profile.jpg";
 
 const parts = [
   { text: "Stella P. is a ", color: undefined },
