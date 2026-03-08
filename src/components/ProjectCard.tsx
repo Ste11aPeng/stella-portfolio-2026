@@ -97,7 +97,7 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
           className="project-cursor-hint"
           style={{ willChange: "left, top" }}
         >
-          {comingSoon ? "coming soon" : "see project →"}
+          {comingSoon ? "coming soon" : "see project"}
         </div>
       )}
     </div>
