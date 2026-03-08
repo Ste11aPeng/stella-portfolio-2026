@@ -89,7 +89,7 @@ const About = () => {
 
   const handleReachOut = useCallback(() => {
     setHighlight(true);
-    setTimeout(() => setHighlight(false), 1500);
+    setTimeout(() => setHighlight(false), 2000);
   }, []);
 
   return (
@@ -142,14 +142,11 @@ const About = () => {
                   ref={sayHelloRef}
                   className="inline"
                   style={{
-                    backgroundImage: "linear-gradient(90deg, #3B82F6 0%, #3B82F6 100%)",
-                    backgroundSize: highlight ? "100% 100%" : "0% 100%",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "left top",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    WebkitTextFillColor: highlight ? "transparent" : undefined,
-                    transition: "background-size 1.2s cubic-bezier(0.25, 0.1, 0.25, 1)",
+                    color: highlight ? "#3B82F6" : undefined,
+                    WebkitTextFillColor: highlight ? "#3B82F6" : undefined,
+                    transition: highlight
+                      ? "color 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), -webkit-text-fill-color 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)"
+                      : "color 1.5s cubic-bezier(0.25, 0.1, 0.25, 1), -webkit-text-fill-color 1.5s cubic-bezier(0.25, 0.1, 0.25, 1)",
                   }}
                 >
                   Say hello at{" "}
