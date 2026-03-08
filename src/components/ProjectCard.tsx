@@ -82,6 +82,11 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
         <img 
           src={image} 
           alt={title} 
+          width={1920}
+          height={972}
+          loading={index < 2 ? "eager" : "lazy"}
+          decoding={index < 2 ? "sync" : "async"}
+          fetchPriority={index === 0 ? "high" : undefined}
           className="w-full h-full object-cover"
         />
       </div>
