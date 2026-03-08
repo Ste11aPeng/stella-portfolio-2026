@@ -32,7 +32,7 @@ const Header = () => {
         }`}
       >
         <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-5 md:px-16 lg:px-24 md:py-6">
-        <a href="#/" className="flex items-center gap-1.5 text-foreground font-normal text-base" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>
+        <a href="#/" className="flex items-center gap-1.5 text-foreground font-light text-base font-['New_Spirit']" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>
           <img src="/favicon-dark.svg" alt="" className="w-4 h-4" />
           Stella P.
         </a>
