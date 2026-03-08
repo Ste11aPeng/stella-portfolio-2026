@@ -86,6 +86,13 @@ const About = () => {
   const [eduHovered, setEduHovered] = useState(false);
   const sayHelloRef = useRef<HTMLParagraphElement>(null);
   const [highlight, setHighlight] = useState<'idle' | 'ready' | 'sweeping' | 'fading'>('idle');
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = useCallback(async () => {
+    await navigator.clipboard.writeText("stellanotfound@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }, []);
 
   const handleReachOut = useCallback(() => {
     setHighlight('ready');
