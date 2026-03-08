@@ -85,21 +85,12 @@ const About = () => {
   const [stellaHovered, setStellaHovered] = useState(false);
   const [eduHovered, setEduHovered] = useState(false);
   const sayHelloRef = useRef<HTMLParagraphElement>(null);
-  const [highlight, setHighlight] = useState(false);
-  const [fading, setFading] = useState(false);
+  const [highlight, setHighlight] = useState<'idle' | 'sweeping' | 'fading'>('idle');
 
   const handleReachOut = useCallback(() => {
-    setFading(false);
-    setHighlight(true);
-    // After sweep completes, start fade out
-    setTimeout(() => {
-      setFading(true);
-      setHighlight(false);
-    }, 1800);
-    // Reset fading state after fade completes
-    setTimeout(() => {
-      setFading(false);
-    }, 3500);
+    setHighlight('sweeping');
+    setTimeout(() => setHighlight('fading'), 1800);
+    setTimeout(() => setHighlight('idle'), 3800);
   }, []);
 
   return (
@@ -151,21 +142,19 @@ const About = () => {
                 <span
                   ref={sayHelloRef}
                   className="inline"
-                  style={{
+                  style={highlight === 'sweeping' ? {
                     backgroundImage: "linear-gradient(90deg, #3B82F6 0%, #3B82F6 100%)",
-                    backgroundSize: highlight ? "100% 100%" : (fading ? "100% 100%" : "0% 100%"),
+                    backgroundSize: "100% 100%",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "left top",
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
-                    WebkitTextFillColor: (highlight || fading) ? "transparent" : undefined,
-                    opacity: fading ? 0.4 : 1,
-                    transition: highlight
-                      ? "background-size 1.2s cubic-bezier(0.25, 0.1, 0.25, 1)"
-                      : fading
-                        ? "opacity 1.5s cubic-bezier(0.25, 0.1, 0.25, 1)"
-                        : "background-size 0s, opacity 0s",
-                  }}
+                    WebkitTextFillColor: "transparent",
+                    transition: "background-size 1.2s cubic-bezier(0.25, 0.1, 0.25, 1)",
+                  } : highlight === 'fading' ? {
+                    color: "hsl(var(--muted-foreground))",
+                    transition: "color 1.8s cubic-bezier(0.25, 0.1, 0.25, 1)",
+                  } : {}}
                 >
                   Say hello at{" "}
                   <a href="mailto:stellanotfound@gmail.com" className="underline-offset-2" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>stellanotfound@gmail.com</a>
