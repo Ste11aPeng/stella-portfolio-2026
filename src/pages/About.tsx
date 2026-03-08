@@ -101,7 +101,7 @@ const About = () => {
                   {experiences.map((exp, i) => (
                     <div key={i} className="flex items-baseline justify-between py-3 first:pt-0">
                       <p className="font-sans text-[14px] text-foreground">
-                        <span className="font-medium">{exp.company}</span>
+                        <a href={exp.url} target="_blank" rel="noopener noreferrer" className="font-medium relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[1.5px] after:bottom-0 after:left-0 after:bg-foreground after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">{exp.company}</a>
                         <span className="text-muted-foreground"> / {exp.role}</span>
                       </p>
                       <p className="font-sans text-[13px] text-muted-foreground/60 whitespace-nowrap ml-4">
