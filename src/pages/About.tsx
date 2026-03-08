@@ -240,7 +240,7 @@ const About = () => {
               { src: about1, label: "Hi~" },
               { src: about2, label: "I love matcha" },
               { src: about3, label: "Shoot with my Fuji" },
-              { src: about4, label: "brew time!" },
+              { src: about4, label: "Brew time!" },
             ].map((item, i) => (
               <PhotoWithHover key={i} src={item.src} label={item.label} index={i} />
             ))}
