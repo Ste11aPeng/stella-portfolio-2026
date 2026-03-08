@@ -100,7 +100,7 @@ const About = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-background relative z-10 max-w-[1440px] mx-auto">
+      <div className="min-h-screen bg-background relative z-10">
         <Header />
 
         <section className="px-8 pt-16 pb-12 lg:px-24 md:px-[32px]">

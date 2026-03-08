@@ -145,7 +145,7 @@ const ProjectDetail = () => {
       });
     }
   };
-  return <div className="min-h-screen bg-background max-w-[1440px] mx-auto">
+  return <div className="min-h-screen bg-background">
       <Header />
       
       {/* Cover Image */}
