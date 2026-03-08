@@ -207,7 +207,7 @@ const About = () => {
                         exit={{ opacity: 0, x: -8 }}
                         transition={{ duration: 0.2 }}
                       >
-                        Go Blue
+                        go blue!
                       </motion.span>
                     )}
                   </AnimatePresence>
