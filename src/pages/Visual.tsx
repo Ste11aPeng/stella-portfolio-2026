@@ -18,7 +18,7 @@ const images: { src: string; alt: string; span: "full" | "normal" }[] = [
   { src: visual4, alt: "Mechanical creature sketch", span: "normal" },
   { src: visual5, alt: "Changsha typography editorial design", span: "normal" },
   { src: visual6, alt: "Star city editorial spread", span: "normal" },
-  { src: visual7, alt: "TouchDesigner generative art mind map", span: "full" },
+  { src: visual7, alt: "TouchDesigner generative art mind map", span: "normal" },
 ];
 
 const itemVariants = {
