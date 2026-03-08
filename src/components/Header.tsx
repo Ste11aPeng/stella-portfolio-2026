@@ -31,7 +31,7 @@ const Header = () => {
           isScrolled ? "bg-background/95 backdrop-blur-sm border-b border-border" : "bg-transparent"
         }`}
       >
-        <a href="#/" className="flex items-center gap-1.5 text-foreground font-medium text-base" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>
+        <a href="#/" className="flex items-center gap-1.5 text-foreground font-normal text-base" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>
           <img src="/favicon-dark.svg" alt="" className="w-4 h-4" />
           Stella P.
         </a>
