@@ -76,21 +76,13 @@ const About = () => {
                 More than anything, I'm trying to become a designer who brings clarity, momentum, and a point of view to the team.{" "}
                 <span
                   ref={sayHelloRef}
-                  className="relative inline"
+                  className="inline transition-colors duration-500"
+                  style={{ color: highlight ? "#3B82F6" : undefined }}
                 >
-                  <span
-                    className="absolute left-0 bottom-[2px] h-[40%] w-full origin-left bg-accent/25 rounded-sm"
-                    style={{
-                      transform: highlight ? "scaleX(1)" : "scaleX(0)",
-                      transition: "transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)",
-                    }}
-                  />
-                  <span className="relative">
-                    Say hello at{" "}
-                    <a href="mailto:stellanotfound@gmail.com" className="text-foreground underline underline-offset-2">stellanotfound@gmail.com</a>
-                    {" "}or via{" "}
-                    <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2">LinkedIn</a>.
-                  </span>
+                  Say hello at{" "}
+                  <a href="mailto:stellanotfound@gmail.com" className={`underline underline-offset-2 transition-colors duration-500 ${highlight ? "" : "text-foreground"}`}>stellanotfound@gmail.com</a>
+                  {" "}or via{" "}
+                  <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className={`underline underline-offset-2 transition-colors duration-500 ${highlight ? "" : "text-foreground"}`}>LinkedIn</a>.
                 </span>
               </p>
             </motion.div>
