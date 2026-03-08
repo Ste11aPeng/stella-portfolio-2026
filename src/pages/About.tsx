@@ -72,16 +72,26 @@ const About = () => {
               <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
                 TLDR of my life: I was born and raised in China, and now study design at the University of Michigan, which means I often see products through a mix of different contexts, habits, and expectations.
               </p>
-              <p
-                ref={sayHelloRef}
-                className={`font-sans text-[14px] leading-relaxed text-muted-foreground transition-all duration-500 rounded-md px-1 -mx-1 ${
-                  highlight ? "bg-primary/10 text-foreground" : ""
-                }`}
-              >
-                More than anything, I'm trying to become a designer who brings clarity, momentum, and a point of view to the team. Say hello at{" "}
-                <a href="mailto:stellanotfound@gmail.com" className="text-foreground underline underline-offset-2">stellanotfound@gmail.com</a>
-                {" "}or via{" "}
-                <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2">LinkedIn</a>.
+              <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
+                More than anything, I'm trying to become a designer who brings clarity, momentum, and a point of view to the team.{" "}
+                <span
+                  ref={sayHelloRef}
+                  className="relative inline"
+                >
+                  <span
+                    className="absolute left-0 bottom-[2px] h-[40%] w-full origin-left bg-accent/25 rounded-sm"
+                    style={{
+                      transform: highlight ? "scaleX(1)" : "scaleX(0)",
+                      transition: "transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)",
+                    }}
+                  />
+                  <span className="relative">
+                    Say hello at{" "}
+                    <a href="mailto:stellanotfound@gmail.com" className="text-foreground underline underline-offset-2">stellanotfound@gmail.com</a>
+                    {" "}or via{" "}
+                    <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2">LinkedIn</a>.
+                  </span>
+                </span>
               </p>
             </motion.div>
 
