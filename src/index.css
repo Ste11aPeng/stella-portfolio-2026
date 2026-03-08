@@ -122,7 +122,7 @@
     pointer-events: none;
     transform: translate(-50%, -50%);
     display: inline-flex;
-    padding: 5px 10px;
+    padding: 8px 16px;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -130,7 +130,7 @@
     background: rgba(255, 255, 255, 0.95);
     color: #393939;
     font-family: 'Manrope', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
