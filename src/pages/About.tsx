@@ -100,10 +100,10 @@ const About = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-background relative z-10 max-w-[1440px] mx-auto">
+      <div className="min-h-screen bg-background relative z-10">
         <Header />
 
-        <section className="px-8 pt-16 pb-12 lg:px-24 md:px-[32px]">
+        <section className="px-8 pt-16 pb-12 lg:px-24 md:px-[32px] max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
             {/* Left – Introduction */}
             <motion.div
