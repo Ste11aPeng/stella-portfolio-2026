@@ -84,13 +84,13 @@ const Hero = () => {
           <AnimatePresence>
             {isHovered && (
               <motion.span
-                className="absolute bottom-2 left-0 right-0 flex items-center justify-center font-['New_Spirit'] text-[14px] text-white/90 select-none"
+                className="absolute bottom-2 left-0 right-0 flex items-center justify-center font-['New_Spirit'] text-[16px] text-white/90 select-none"
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 4 }}
                 transition={{ duration: 0.3 }}
               >
-                about me →
+                about me
               </motion.span>
             )}
           </AnimatePresence>
