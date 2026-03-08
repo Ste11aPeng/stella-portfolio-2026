@@ -149,7 +149,7 @@ const ProjectDetail = () => {
       <Header />
       
       {/* Cover Image */}
-      <section className="pt-4 pb-4 md:pt-[24px] md:pb-[24px]">
+      <section className="pt-4 pb-4 md:pt-[24px] md:pb-[24px] max-w-[1440px] mx-auto">
         <div className="px-4 md:px-16 lg:px-24">
           <div className="w-full bg-[#e8ebe4] rounded-lg overflow-hidden">
             <img
