@@ -18,6 +18,69 @@ const education = [
   { school: "University of Michigan", degree: "B.A. Design, Minor in UX Design and Entrepreneurship", period: "Class of 2025" },
 ];
 
+const PhotoWithHover = ({ src, label, index }: { src: string; label: string; index: number }) => {
+  const [isHovering, setIsHovering] = useState(false);
+  const hintRef = useRef<HTMLDivElement>(null);
+  const position = useRef({ x: 0, y: 0 });
+  const target = useRef({ x: 0, y: 0 });
+  const animationRef = useRef<number>();
+
+  useEffect(() => {
+    const animate = () => {
+      const ease = 0.12;
+      position.current.x += (target.current.x - position.current.x) * ease;
+      position.current.y += (target.current.y - position.current.y) * ease;
+      if (hintRef.current) {
+        hintRef.current.style.left = `${position.current.x}px`;
+        hintRef.current.style.top = `${position.current.y}px`;
+      }
+      animationRef.current = requestAnimationFrame(animate);
+    };
+    if (isHovering) {
+      animationRef.current = requestAnimationFrame(animate);
+    }
+    return () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, [isHovering]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    target.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  };
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    position.current = { x, y };
+    target.current = { x, y };
+    setIsHovering(true);
+    window.dispatchEvent(new CustomEvent('projectCardHover', { detail: { hovering: true } }));
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    window.dispatchEvent(new CustomEvent('projectCardHover', { detail: { hovering: false } }));
+  };
+
+  return (
+    <div
+      className="aspect-[4/5] overflow-hidden bg-muted relative"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <img src={src} alt={`Photo ${index + 1}`} className="w-full h-full object-cover" />
+      {isHovering && (
+        <div ref={hintRef} className="project-cursor-hint" style={{ willChange: "left, top" }}>
+          {label}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const About = () => {
   const [stellaHovered, setStellaHovered] = useState(false);
   const sayHelloRef = useRef<HTMLParagraphElement>(null);
