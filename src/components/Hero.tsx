@@ -37,11 +37,14 @@ const wordVariants = {
 };
 
 const Hero = () => {
+  const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
+
   return (
     <section className="px-8 py-16 lg:px-24 md:px-[32px] md:py-[64px] max-w-[1440px] mx-auto">
       <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12">
         <motion.div
-          className="flex-shrink-0 overflow-hidden"
+          className="flex-shrink-0 overflow-hidden cursor-pointer relative"
           style={{ width: "100px", height: "100px" }}
           initial={{ opacity: 0, scale: 0.92, filter: "blur(8px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
@@ -49,14 +52,31 @@ const Hero = () => {
             duration: 0.7,
             ease: [0.25, 0.1, 0.25, 1],
           }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onClick={() => navigate("/about")}
         >
           <img
             src={profileImage}
             alt="Profile"
             width={291}
             height={291}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-[filter] duration-500 ease-out"
+            style={{ filter: isHovered ? "blur(3px)" : "blur(0px)" }}
           />
+          <AnimatePresence>
+            {isHovered && (
+              <motion.span
+                className="absolute inset-0 flex items-center justify-center font-sans text-[13px] text-foreground/80 select-none"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                more
+              </motion.span>
+            )}
+          </AnimatePresence>
         </motion.div>
 
         <motion.p
