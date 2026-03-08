@@ -12,7 +12,7 @@ const experiences = [
 ];
 
 const education = [
-  { school: "University of Michigan", degree: "BA in Art & Design, Minor in UX Design and Entrepreneurship", period: "Class of 2025" },
+  { school: "University of Michigan", degree: "B.A. Design, Minor in UX Design and Entrepreneurship", period: "Class of 2025" },
 ];
 
 const About = () => {
