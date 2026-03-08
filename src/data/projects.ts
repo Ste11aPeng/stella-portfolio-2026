@@ -1,4 +1,4 @@
-import askSiaImage from "@/assets/project-asksia.jpg";
+const askSiaImage = "/images/project-asksia.jpg";
 import circleStatusImage from "@/assets/project-circle-status.jpg";
 import stitchiImage from "@/assets/project-stitchi.jpg";
 import philoImage from "@/assets/project-philo.jpg";
