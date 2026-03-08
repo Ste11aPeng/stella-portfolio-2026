@@ -42,21 +42,13 @@ const Visual = () => {
 
       {/* Page title */}
       <section className="px-8 md:px-16 lg:px-24 pt-16 pb-6 max-w-[1440px] mx-auto">
-        <motion.h1
-          className="font-['New_Spirit'] text-[28px] md:text-[36px] text-foreground"
-          initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Visual
-        </motion.h1>
         <motion.p
-          className="text-sm text-muted-foreground mt-2 max-w-md"
+          className="text-sm text-muted-foreground"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6 }}
         >
-          A collection of 3D, editorial, and generative work.
+          When I'm not designing products, I make 3D characters, editorial zines, and generative visuals.
         </motion.p>
       </section>
 
