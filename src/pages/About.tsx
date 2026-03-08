@@ -85,10 +85,15 @@ const About = () => {
   const [stellaHovered, setStellaHovered] = useState(false);
   const [eduHovered, setEduHovered] = useState(false);
   const sayHelloRef = useRef<HTMLParagraphElement>(null);
-  const [highlight, setHighlight] = useState<'idle' | 'sweeping' | 'fading'>('idle');
+  const [highlight, setHighlight] = useState<'idle' | 'ready' | 'sweeping' | 'fading'>('idle');
 
   const handleReachOut = useCallback(() => {
-    setHighlight('sweeping');
+    setHighlight('ready');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setHighlight('sweeping');
+      });
+    });
     setTimeout(() => setHighlight('fading'), 1800);
     setTimeout(() => setHighlight('idle'), 3800);
   }, []);
@@ -142,7 +147,15 @@ const About = () => {
                 <span
                   ref={sayHelloRef}
                   className="inline"
-                  style={highlight === 'sweeping' ? {
+                  style={highlight === 'ready' ? {
+                    backgroundImage: "linear-gradient(90deg, #3B82F6 0%, #3B82F6 100%)",
+                    backgroundSize: "0% 100%",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "left top",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  } : highlight === 'sweeping' ? {
                     backgroundImage: "linear-gradient(90deg, #3B82F6 0%, #3B82F6 100%)",
                     backgroundSize: "100% 100%",
                     backgroundRepeat: "no-repeat",
