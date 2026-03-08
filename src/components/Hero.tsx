@@ -36,7 +36,7 @@ const wordVariants = {
 
 const Hero = () => {
   return (
-    <section className="px-8 py-16 lg:px-24 md:px-[32px] md:py-[64px]">
+    <section className="px-8 py-16 lg:px-24 md:px-[32px] md:py-[64px] max-w-[1440px] mx-auto">
       <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12">
         <motion.div
           className="flex-shrink-0 overflow-hidden"
