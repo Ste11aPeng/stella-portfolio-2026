@@ -9,6 +9,7 @@ interface ProjectCardProps {
   description: string;
   type: string;
   comingSoon?: boolean;
+  index?: number;
 }
 
 const ProjectCard = ({ id, image, title, titleColor, description, type, comingSoon = false }: ProjectCardProps) => {
