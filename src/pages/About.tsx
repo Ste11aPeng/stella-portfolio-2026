@@ -76,13 +76,22 @@ const About = () => {
                 More than anything, I'm trying to become a designer who brings clarity, momentum, and a point of view to the team.{" "}
                 <span
                   ref={sayHelloRef}
-                  className="inline transition-colors duration-500"
-                  style={{ color: highlight ? "#3B82F6" : undefined }}
+                  className="inline"
+                  style={{
+                    backgroundImage: "linear-gradient(90deg, #3B82F6 0%, #3B82F6 100%)",
+                    backgroundSize: highlight ? "100% 100%" : "0% 100%",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "left top",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: highlight ? "transparent" : undefined,
+                    transition: "background-size 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)",
+                  }}
                 >
                   Say hello at{" "}
-                  <a href="mailto:stellanotfound@gmail.com" className={`underline underline-offset-2 transition-colors duration-500 ${highlight ? "" : "text-foreground"}`}>stellanotfound@gmail.com</a>
+                  <a href="mailto:stellanotfound@gmail.com" className="underline underline-offset-2" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>stellanotfound@gmail.com</a>
                   {" "}or via{" "}
-                  <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className={`underline underline-offset-2 transition-colors duration-500 ${highlight ? "" : "text-foreground"}`}>LinkedIn</a>.
+                  <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>LinkedIn</a>.
                 </span>
               </p>
             </motion.div>
