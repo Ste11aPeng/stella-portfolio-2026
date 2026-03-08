@@ -127,7 +127,7 @@ const Hero = () => {
           </motion.p>
 
           <motion.div
-            className="flex items-center gap-3 mt-4"
+            className="flex items-center gap-3 mt-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.2 }}
@@ -137,12 +137,12 @@ const Hero = () => {
               Available for work
             </span>
             <span className="text-border">·</span>
-            <a
-              href="mailto:stellanotfound@gmail.com"
-              className="text-[13px] font-sans text-muted-foreground/50 hover:text-muted-foreground transition-colors"
+            <button
+              onClick={handleCopyEmail}
+              className="text-[13px] font-sans text-muted-foreground/50 hover:text-muted-foreground transition-colors cursor-pointer"
             >
-              stellanotfound@gmail.com
-            </a>
+              {copied ? "copied!" : "stellanotfound@gmail.com"}
+            </button>
           </motion.div>
         </div>
       </div>
