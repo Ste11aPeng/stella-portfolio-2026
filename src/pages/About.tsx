@@ -66,7 +66,7 @@ const PhotoWithHover = ({ src, label, index }: { src: string; label: string; ind
 
   return (
     <div
-      className="aspect-[4/5] overflow-hidden bg-muted relative"
+      className="aspect-[4/5] overflow-hidden bg-muted relative cursor-none"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -224,7 +224,7 @@ const About = () => {
             {[
               { src: about1, label: "Hi~" },
               { src: about2, label: "I love matcha" },
-              { src: about3, label: "I shoot with my fuji cam in AA" },
+              { src: about3, label: "I shoot with my Fuji" },
               { src: about4, label: "brew time!" },
             ].map((item, i) => (
               <PhotoWithHover key={i} src={item.src} label={item.label} index={i} />
