@@ -78,7 +78,7 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="overflow-hidden w-full" style={{ aspectRatio: '645/326' }}>
+      <div className="overflow-hidden w-full relative" style={{ aspectRatio: '645/326' }}>
         <img 
           src={image} 
           alt={`${title} – ${description}`} 
@@ -89,6 +89,17 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
           decoding={index < 2 ? "sync" : "async"}
           fetchPriority={index === 0 ? "high" : undefined}
           className="w-full h-full object-cover"
+        />
+        {/* Gradient blur overlay on hover */}
+        <div
+          className="absolute inset-0 transition-opacity duration-500 ease-out pointer-events-none"
+          style={{
+            opacity: isHovering ? 1 : 0,
+            backdropFilter: "blur(4px)",
+            WebkitBackdropFilter: "blur(4px)",
+            maskImage: "linear-gradient(to bottom, transparent 40%, black 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 40%, black 100%)",
+          }}
         />
       </div>
       <div className="project-overlay">
