@@ -90,6 +90,14 @@ const ProjectDetail = () => {
   const [activeSection, setActiveSection] = useState("overview");
   const project = id ? getProjectById(id) : undefined;
 
+  // Dynamic page title
+  useEffect(() => {
+    if (project) {
+      document.title = `${project.title} – Stella P. | Product Designer`;
+    }
+    return () => { document.title = "Stella P. | Product Designer Portfolio"; };
+  }, [project]);
+
   // Get section IDs for current project
   const sectionIds = getSectionIds(id);
 

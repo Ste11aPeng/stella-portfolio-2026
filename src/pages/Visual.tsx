@@ -37,6 +37,11 @@ const itemVariants = {
 };
 
 const Visual = () => {
+  useEffect(() => {
+    document.title = "Visual Work | Stella P. – 3D, Editorial & Generative Art";
+    return () => { document.title = "Stella P. | Product Designer Portfolio"; };
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />

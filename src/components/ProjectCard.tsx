@@ -81,7 +81,7 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
       <div className="overflow-hidden w-full" style={{ aspectRatio: '645/326' }}>
         <img 
           src={image} 
-          alt={title} 
+          alt={`${title} – ${description}`} 
           width={645}
           height={326}
           sizes="(max-width: 768px) 100vw, 564px"

@@ -90,6 +90,7 @@ const PhotoWithHover = ({ src, label, index }: { src: string; label: string; ind
 };
 
 const About = () => {
+  usePageTitle("About Stella P. | Product Designer");
   const [stellaHovered, setStellaHovered] = useState(false);
   const [eduHovered, setEduHovered] = useState(false);
   const sayHelloRef = useRef<HTMLParagraphElement>(null);
