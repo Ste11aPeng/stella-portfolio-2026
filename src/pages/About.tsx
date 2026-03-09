@@ -7,6 +7,14 @@ import about3 from "@/assets/about-3.png";
 import about4 from "@/assets/about-4.png";
 import { useRef, useState, useCallback, useEffect } from "react";
 
+// Set page title
+const usePageTitle = (title: string) => {
+  useEffect(() => {
+    document.title = title;
+    return () => { document.title = "Stella P. | Product Designer Portfolio"; };
+  }, [title]);
+};
+
 const experiences = [
   { company: "AskSia Inc.", url: "https://www.asksia.ai/", role: "Product Designer", period: "2025 – 2026" },
   { company: "Desai Accelerator", url: "https://www.desaiaccelerator.com/", role: "Product Design Intern", period: "2025" },
