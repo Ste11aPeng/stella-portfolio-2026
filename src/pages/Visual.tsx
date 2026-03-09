@@ -10,6 +10,7 @@ import visual4 from "@/assets/visual-4.png";
 import visual5 from "@/assets/visual-5.png";
 import visual6 from "@/assets/visual-6.png";
 import visual7 from "@/assets/visual-7.png";
+import { useEffect } from "react";
 
 const images: { src: string; alt: string; span: "full" | "normal" }[] = [
   { src: visual1, alt: "3D coral character render", span: "full" },
