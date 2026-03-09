@@ -125,8 +125,8 @@
     align-items: center;
     gap: 10px;
     border-radius: 0 12px 12px 12px;
-    background: rgba(255, 255, 255, 0.95);
-    color: #393939;
+    background: hsl(var(--background) / 0.95);
+    color: hsl(var(--foreground));
     font-family: 'Manrope', sans-serif;
     font-size: 16px;
     font-style: normal;
@@ -156,17 +156,15 @@
     align-items: center;
     gap: 10px;
     border-radius: 5px;
-    background: rgba(255, 255, 255, 0.95);
+    background: hsl(var(--background) / 0.95);
   }
 
   .project-title {
-    @apply font-medium text-sm whitespace-nowrap;
-    color: #787777;
+    @apply font-medium text-sm whitespace-nowrap text-muted-foreground;
   }
 
   .project-description {
-    @apply text-sm;
-    color: #787777;
+    @apply text-sm text-muted-foreground;
   }
 
   .project-type {

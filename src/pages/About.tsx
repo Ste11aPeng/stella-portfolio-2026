@@ -7,6 +7,14 @@ import about3 from "@/assets/about-3.png";
 import about4 from "@/assets/about-4.png";
 import { useRef, useState, useCallback, useEffect } from "react";
 
+// Set page title
+const usePageTitle = (title: string) => {
+  useEffect(() => {
+    document.title = title;
+    return () => { document.title = "Stella P. | Product Designer Portfolio"; };
+  }, [title]);
+};
+
 const experiences = [
   { company: "AskSia Inc.", url: "https://www.asksia.ai/", role: "Product Designer", period: "2025 – 2026" },
   { company: "Desai Accelerator", url: "https://www.desaiaccelerator.com/", role: "Product Design Intern", period: "2025" },
@@ -71,7 +79,7 @@ const PhotoWithHover = ({ src, label, index }: { src: string; label: string; ind
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <img src={src} alt={`Photo ${index + 1}`} className="w-full h-full object-cover" />
+      <img src={src} alt={label} className="w-full h-full object-cover" />
       {isHovering && (
         <div ref={hintRef} className="project-cursor-hint" style={{ willChange: "left, top" }}>
           {label}
@@ -82,6 +90,7 @@ const PhotoWithHover = ({ src, label, index }: { src: string; label: string; ind
 };
 
 const About = () => {
+  usePageTitle("About Stella P. | Product Designer");
   const [stellaHovered, setStellaHovered] = useState(false);
   const [eduHovered, setEduHovered] = useState(false);
   const sayHelloRef = useRef<HTMLParagraphElement>(null);
@@ -155,7 +164,7 @@ const About = () => {
                   ref={sayHelloRef}
                   className="inline"
                   style={highlight === 'ready' ? {
-                    backgroundImage: "linear-gradient(90deg, #3B82F6 0%, #3B82F6 100%)",
+                    backgroundImage: "linear-gradient(90deg, hsl(var(--accent)) 0%, hsl(var(--accent)) 100%)",
                     backgroundSize: "0% 100%",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "left top",
@@ -163,7 +172,7 @@ const About = () => {
                     backgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                   } : highlight === 'sweeping' ? {
-                    backgroundImage: "linear-gradient(90deg, #3B82F6 0%, #3B82F6 100%)",
+                    backgroundImage: "linear-gradient(90deg, hsl(var(--accent)) 0%, hsl(var(--accent)) 100%)",
                     backgroundSize: "100% 100%",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "left top",
