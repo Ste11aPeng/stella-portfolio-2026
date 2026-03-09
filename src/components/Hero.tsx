@@ -23,7 +23,6 @@ const wordVariants = {
   hidden: {
     opacity: 0,
     y: 8,
-    filter: "blur(4px)",
   },
   visible: {
     opacity: 1,
