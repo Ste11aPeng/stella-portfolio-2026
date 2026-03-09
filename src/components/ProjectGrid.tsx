@@ -9,8 +9,8 @@ const ProjectGrid = () => {
         {projects.map((project, index) => (
           <motion.div
             key={project.id}
-            initial={{ opacity: 0, scale: 0.97, filter: "blur(6px)" }}
-            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{
               duration: 0.6,
               ease: [0.25, 0.1, 0.25, 1],

@@ -35,8 +35,8 @@ const Footer = () => {
 
         <motion.nav
           className="flex items-center gap-6"
-          initial={{ opacity: 0, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, filter: "blur(0px)" }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
         >

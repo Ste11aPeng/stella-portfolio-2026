@@ -59,8 +59,8 @@ const WorkExperience = () => {
           <motion.div
             key={exp.company}
             className="flex flex-col md:flex-row gap-3 md:gap-10 py-6 first:pt-0"
-            initial={{ opacity: 0, x: -16, filter: "blur(4px)" }}
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, x: -16 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{
               duration: 0.5,
