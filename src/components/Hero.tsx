@@ -53,8 +53,8 @@ const Hero = () => {
         <motion.div
           className="flex-shrink-0 overflow-hidden cursor-pointer relative"
           style={{ width: "120px", height: "120px" }}
-          initial={{ opacity: 0, scale: 0.92, filter: "blur(8px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{
             duration: 0.7,
             ease: [0.25, 0.1, 0.25, 1],
