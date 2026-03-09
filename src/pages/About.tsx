@@ -155,7 +155,7 @@ const About = () => {
                   ref={sayHelloRef}
                   className="inline"
                   style={highlight === 'ready' ? {
-                    backgroundImage: "linear-gradient(90deg, #3B82F6 0%, #3B82F6 100%)",
+                    backgroundImage: "linear-gradient(90deg, hsl(var(--accent)) 0%, hsl(var(--accent)) 100%)",
                     backgroundSize: "0% 100%",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "left top",
@@ -163,7 +163,7 @@ const About = () => {
                     backgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                   } : highlight === 'sweeping' ? {
-                    backgroundImage: "linear-gradient(90deg, #3B82F6 0%, #3B82F6 100%)",
+                    backgroundImage: "linear-gradient(90deg, hsl(var(--accent)) 0%, hsl(var(--accent)) 100%)",
                     backgroundSize: "100% 100%",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "left top",
