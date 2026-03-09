@@ -25,8 +25,8 @@ const Footer = () => {
       <div className="max-w-[1440px] mx-auto flex items-center justify-between relative z-10">
         <motion.p
           className="text-sm text-[hsl(0,0%,60%)]"
-          initial={{ opacity: 0, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, filter: "blur(0px)" }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         >
