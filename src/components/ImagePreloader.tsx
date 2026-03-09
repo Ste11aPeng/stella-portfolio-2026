@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { projects } from "@/data/projects";
 
 /**
- * Preloads all project cover images into browser cache on mount
- * to prevent flash/flicker when navigating between pages.
+ * Preloads only the first 2 project cover images (visible in viewport)
+ * to prevent flash/flicker without wasting bandwidth.
  */
 const ImagePreloader = () => {
   useEffect(() => {
-    projects.forEach((project) => {
+    projects.slice(0, 2).forEach((project) => {
       const img = new Image();
       img.src = project.image;
     });
