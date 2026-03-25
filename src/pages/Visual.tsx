@@ -8,8 +8,9 @@ import visual2 from "@/assets/visual-2.png";
 import visual3 from "@/assets/visual-3.png";
 import visual4 from "@/assets/visual-4.png";
 import visual5 from "@/assets/visual-5.png";
-import visual6 from "@/assets/visual-6.png";
 import visual7 from "@/assets/visual-7.png";
+import lottieAnimation from "@/assets/visual-lottie.json";
+import Lottie from "lottie-react";
 import { useEffect } from "react";
 
 const images: { src: string; alt: string; span: "full" | "normal" }[] = [
