@@ -10,8 +10,8 @@ import visual4 from "@/assets/visual-4.png";
 import visual5 from "@/assets/visual-5.png";
 import visual7 from "@/assets/visual-7.png";
 import lottieAnimation from "@/assets/visual-lottie.json";
-import Lottie from "lottie-react";
-import { useEffect } from "react";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
+import { useEffect, useRef } from "react";
 
 const images: { src?: string; alt: string; span: "full" | "normal"; lottie?: boolean }[] = [
   { src: visual1, alt: "3D coral character render", span: "full" },
@@ -38,6 +38,14 @@ const itemVariants = {
 };
 
 const Visual = () => {
+  const lottieRef = useRef<LottieRefCurrentProps>(null);
+
+  useEffect(() => {
+    if (lottieRef.current) {
+      lottieRef.current.setSpeed(0.9);
+    }
+  }, []);
+
   useEffect(() => {
     document.title = "Visual Work | Stella P. – 3D, Editorial & Generative Art";
     return () => { document.title = "Stella P. | Product Designer Portfolio"; };
@@ -111,7 +119,9 @@ const Visual = () => {
               transition={{ delay: index * 0.06 }}
             >
               {image.lottie ? (
-                <Lottie animationData={lottieAnimation} loop className="w-full h-auto" />
+                <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-muted">
+                  <Lottie animationData={lottieAnimation} loop lottieRef={lottieRef} className="w-full h-full" />
+                </div>
               ) : (
                 <ImageLightbox
                   src={image.src!}
