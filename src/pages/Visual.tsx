@@ -10,6 +10,7 @@ import visual4 from "@/assets/visual-4.png";
 import visual5 from "@/assets/visual-5.png";
 import visual7 from "@/assets/visual-7.png";
 import lottieAnimation from "@/assets/visual-lottie.json";
+import lottieAnimation2 from "@/assets/visual-lottie-2.json";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { useEffect, useRef } from "react";
 
