@@ -120,7 +120,12 @@ const Visual = () => {
             >
               {image.lottie ? (
                 <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-muted">
-                  <Lottie animationData={lottieAnimation} loop lottieRef={lottieRef} className="w-full h-full" />
+                  <Lottie
+                    animationData={image.lottie === 1 ? lottieAnimation : lottieAnimation2}
+                    loop
+                    lottieRef={image.lottie === 1 ? lottieRef : undefined}
+                    className="w-full h-full"
+                  />
                 </div>
               ) : (
                 <ImageLightbox
