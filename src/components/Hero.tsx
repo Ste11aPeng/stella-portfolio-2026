@@ -37,6 +37,7 @@ const wordVariants = {
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [emailHovered, setEmailHovered] = useState(false);
   const navigate = useNavigate();
 
   const handleCopyEmail = useCallback(async () => {
@@ -132,15 +133,32 @@ const Hero = () => {
           >
             <span className="flex items-center gap-1.5 text-[13px] font-sans text-muted-foreground">
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500" />
-              Available for work
+              Open to work
             </span>
             <span className="text-border">·</span>
-            <button
-              onClick={handleCopyEmail}
-              className="text-[13px] font-sans text-muted-foreground/50 hover:text-muted-foreground transition-colors cursor-pointer"
-            >
-              {copied ? "copied!" : "stellanotfound@gmail.com"}
-            </button>
+            <div className="relative inline-block">
+              <button
+                onClick={handleCopyEmail}
+                onMouseEnter={() => setEmailHovered(true)}
+                onMouseLeave={() => setEmailHovered(false)}
+                className="text-[13px] font-sans text-muted-foreground/50 hover:text-muted-foreground transition-colors cursor-pointer"
+              >
+                {copied ? "copied!" : "stellanotfound@gmail.com"}
+              </button>
+              <AnimatePresence>
+                {emailHovered && !copied && (
+                  <motion.span
+                    className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap font-['New_Spirit'] text-[13px] px-2 py-1 rounded bg-white/95 text-foreground shadow-sm pointer-events-none"
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 4 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    click to copy
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </div>
           </motion.div>
         </div>
       </div>
