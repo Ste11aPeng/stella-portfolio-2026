@@ -8,17 +8,18 @@ import visual2 from "@/assets/visual-2.png";
 import visual3 from "@/assets/visual-3.png";
 import visual4 from "@/assets/visual-4.png";
 import visual5 from "@/assets/visual-5.png";
-import visual6 from "@/assets/visual-6.png";
 import visual7 from "@/assets/visual-7.png";
+import lottieAnimation from "@/assets/visual-lottie.json";
+import Lottie from "lottie-react";
 import { useEffect } from "react";
 
-const images: { src: string; alt: string; span: "full" | "normal" }[] = [
+const images: { src?: string; alt: string; span: "full" | "normal"; lottie?: boolean }[] = [
   { src: visual1, alt: "3D coral character render", span: "full" },
   { src: visual2, alt: "Coral sculpture photo collection", span: "normal" },
   { src: visual3, alt: "Character design iterations and sketches", span: "normal" },
   { src: visual4, alt: "Mechanical creature sketch", span: "normal" },
   { src: visual5, alt: "Changsha typography editorial design", span: "normal" },
-  { src: visual6, alt: "Star city editorial spread", span: "normal" },
+  { lottie: true, alt: "Motion design animation", span: "normal" },
   { src: visual7, alt: "TouchDesigner generative art mind map", span: "normal" },
 ];
 
@@ -109,11 +110,15 @@ const Visual = () => {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ delay: index * 0.06 }}
             >
-              <ImageLightbox
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-auto"
-              />
+              {image.lottie ? (
+                <Lottie animationData={lottieAnimation} loop className="w-full h-auto" />
+              ) : (
+                <ImageLightbox
+                  src={image.src!}
+                  alt={image.alt}
+                  className="w-full h-auto"
+                />
+              )}
             </motion.div>
           ))}
         </div>
