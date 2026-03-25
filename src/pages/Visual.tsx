@@ -110,11 +110,15 @@ const Visual = () => {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ delay: index * 0.06 }}
             >
-              <ImageLightbox
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-auto"
-              />
+              {image.lottie ? (
+                <Lottie animationData={lottieAnimation} loop className="w-full h-auto" />
+              ) : (
+                <ImageLightbox
+                  src={image.src!}
+                  alt={image.alt}
+                  className="w-full h-auto"
+                />
+              )}
             </motion.div>
           ))}
         </div>
