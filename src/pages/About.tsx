@@ -23,7 +23,8 @@ const experiences = [
 ];
 
 const education = [
-  { school: "University of Michigan", degree: "B.A. Design, Minor in UX Design and Entrepreneurship", period: "Class of 2025" },
+  { school: "University of Michigan", degree: "B.A. Design, Minor in UX and Entre", period: "Class of 2025" },
+  { school: "University of Washington", degree: "M.S of Human-Computer Interaction + Design", period: "Class of 2027" },
 ];
 
 const PhotoWithHover = ({ src, label, index }: { src: string; label: string; index: number }) => {
