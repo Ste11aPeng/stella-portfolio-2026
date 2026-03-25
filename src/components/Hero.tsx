@@ -37,6 +37,7 @@ const wordVariants = {
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [emailHovered, setEmailHovered] = useState(false);
   const navigate = useNavigate();
 
   const handleCopyEmail = useCallback(async () => {
