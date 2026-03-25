@@ -58,9 +58,47 @@ const Visual = () => {
         </motion.p>
       </section>
 
-      {/* Image Gallery */}
+      {/* Image & Video Gallery */}
       <section className="px-8 md:px-16 lg:px-24 pb-24 max-w-[1440px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
+          {/* Two looping videos */}
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+          >
+            <video
+              src="/videos/accordion.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              disablePictureInPicture
+              controlsList="nodownload nofullscreen noremoteplayback"
+              className="w-full h-auto rounded-none pointer-events-none select-none"
+            />
+          </motion.div>
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ delay: 0.06 }}
+          >
+            <video
+              src="/videos/music.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              disablePictureInPicture
+              controlsList="nodownload nofullscreen noremoteplayback"
+              className="w-full h-auto rounded-none pointer-events-none select-none"
+            />
+          </motion.div>
+
+          {/* Images */}
           {images.map((image, index) => (
             <motion.div
               key={index}
