@@ -42,7 +42,7 @@ const Visual = () => {
 
   useEffect(() => {
     if (lottieRef.current) {
-      lottieRef.current.setSpeed(0.8);
+      lottieRef.current.setSpeed(0.6);
     }
   }, []);
 
