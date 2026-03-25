@@ -8,19 +8,19 @@ import visual2 from "@/assets/visual-2.png";
 import visual3 from "@/assets/visual-3.png";
 import visual4 from "@/assets/visual-4.png";
 import visual5 from "@/assets/visual-5.png";
-import visual7 from "@/assets/visual-7.png";
 import lottieAnimation from "@/assets/visual-lottie.json";
+import lottieAnimation2 from "@/assets/visual-lottie-2.json";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { useEffect, useRef } from "react";
 
-const images: { src?: string; alt: string; span: "full" | "normal"; lottie?: boolean }[] = [
+const images: { src?: string; alt: string; span: "full" | "normal"; lottie?: 1 | 2 }[] = [
   { src: visual1, alt: "3D coral character render", span: "full" },
   { src: visual2, alt: "Coral sculpture photo collection", span: "normal" },
   { src: visual3, alt: "Character design iterations and sketches", span: "normal" },
   { src: visual4, alt: "Mechanical creature sketch", span: "normal" },
   { src: visual5, alt: "Changsha typography editorial design", span: "normal" },
-  { lottie: true, alt: "Motion design animation", span: "normal" },
-  { src: visual7, alt: "TouchDesigner generative art mind map", span: "normal" },
+  { lottie: 1, alt: "Motion design animation", span: "normal" },
+  { lottie: 2, alt: "Motion design animation 2", span: "normal" },
 ];
 
 const itemVariants = {
@@ -120,7 +120,12 @@ const Visual = () => {
             >
               {image.lottie ? (
                 <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-muted">
-                  <Lottie animationData={lottieAnimation} loop lottieRef={lottieRef} className="w-full h-full" />
+                  <Lottie
+                    animationData={image.lottie === 1 ? lottieAnimation : lottieAnimation2}
+                    loop
+                    lottieRef={image.lottie === 1 ? lottieRef : undefined}
+                    className="w-full h-full"
+                  />
                 </div>
               ) : (
                 <ImageLightbox
