@@ -38,6 +38,14 @@ const itemVariants = {
 };
 
 const Visual = () => {
+  const lottieRef = useRef<LottieRefCurrentProps>(null);
+
+  useEffect(() => {
+    if (lottieRef.current) {
+      lottieRef.current.setSpeed(0.9);
+    }
+  }, []);
+
   useEffect(() => {
     document.title = "Visual Work | Stella P. – 3D, Editorial & Generative Art";
     return () => { document.title = "Stella P. | Product Designer Portfolio"; };
