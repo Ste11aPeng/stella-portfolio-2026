@@ -8,7 +8,6 @@ import visual2 from "@/assets/visual-2.png";
 import visual3 from "@/assets/visual-3.png";
 import visual4 from "@/assets/visual-4.png";
 import visual5 from "@/assets/visual-5.png";
-import visual7 from "@/assets/visual-7.png";
 import lottieAnimation from "@/assets/visual-lottie.json";
 import lottieAnimation2 from "@/assets/visual-lottie-2.json";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
