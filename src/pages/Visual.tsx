@@ -111,8 +111,8 @@ const Visual = () => {
               transition={{ delay: index * 0.06 }}
             >
               {image.lottie ? (
-                <div className="w-full aspect-[4/3] overflow-hidden">
-                  <Lottie animationData={lottieAnimation} loop className="w-full h-full object-cover" style={{ speed: 0.9 } as any} />
+                <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-muted">
+                  <Lottie animationData={lottieAnimation} loop speed={0.9} className="w-full h-full" />
                 </div>
               ) : (
                 <ImageLightbox
