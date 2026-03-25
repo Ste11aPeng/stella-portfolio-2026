@@ -10,8 +10,8 @@ import visual4 from "@/assets/visual-4.png";
 import visual5 from "@/assets/visual-5.png";
 import visual7 from "@/assets/visual-7.png";
 import lottieAnimation from "@/assets/visual-lottie.json";
-import Lottie from "lottie-react";
-import { useEffect } from "react";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
+import { useEffect, useRef } from "react";
 
 const images: { src?: string; alt: string; span: "full" | "normal"; lottie?: boolean }[] = [
   { src: visual1, alt: "3D coral character render", span: "full" },
