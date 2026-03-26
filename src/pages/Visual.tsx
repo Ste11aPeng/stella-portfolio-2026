@@ -41,6 +41,8 @@ const itemVariants = {
 
 const Visual = () => {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
+  const [hoverVideo1, setHoverVideo1] = useState(false);
+  const [hoverVideo2, setHoverVideo2] = useState(false);
 
   useEffect(() => {
     if (lottieRef.current) {
