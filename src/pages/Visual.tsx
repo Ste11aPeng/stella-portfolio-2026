@@ -69,6 +69,9 @@ const Visual = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
+            className="relative"
+            onMouseEnter={() => setHoverVideo1(true)}
+            onMouseLeave={() => setHoverVideo1(false)}
           >
             <video
               src="/videos/accordion.mp4"
@@ -80,6 +83,19 @@ const Visual = () => {
               controlsList="nodownload nofullscreen noremoteplayback"
               className="w-full h-auto rounded-none pointer-events-none select-none"
             />
+            <motion.div
+              initial={{ opacity: 0, y: -4 }}
+              animate={{ opacity: hoverVideo1 ? 1 : 0, y: hoverVideo1 ? 0 : -4 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-4 left-4"
+            >
+              <Button asChild size="sm" className="bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm">
+                <a href="https://ste11apeng.github.io/accordion-expand-ui/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                  try it urself
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </Button>
+            </motion.div>
           </motion.div>
           <motion.div
             variants={itemVariants}
@@ -87,6 +103,9 @@ const Visual = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             transition={{ delay: 0.06 }}
+            className="relative"
+            onMouseEnter={() => setHoverVideo2(true)}
+            onMouseLeave={() => setHoverVideo2(false)}
           >
             <video
               src="/videos/music.mp4"
@@ -98,6 +117,19 @@ const Visual = () => {
               controlsList="nodownload nofullscreen noremoteplayback"
               className="w-full h-auto rounded-none pointer-events-none select-none"
             />
+            <motion.div
+              initial={{ opacity: 0, y: -4 }}
+              animate={{ opacity: hoverVideo2 ? 1 : 0, y: hoverVideo2 ? 0 : -4 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-4 left-4"
+            >
+              <Button asChild size="sm" className="bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm">
+                <a href="https://ste11apeng.github.io/music-slider-ui/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                  try it urself
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </Button>
+            </motion.div>
           </motion.div>
 
           {/* Images */}
