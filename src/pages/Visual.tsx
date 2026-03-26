@@ -3,6 +3,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ImageLightbox from "@/components/ImageLightbox";
 
+import { ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import visual1 from "@/assets/visual-1.png";
 import visual2 from "@/assets/visual-2.png";
 import visual3 from "@/assets/visual-3.png";
@@ -11,7 +13,7 @@ import visual5 from "@/assets/visual-5.png";
 import lottieAnimation from "@/assets/visual-lottie.json";
 import lottieAnimation2 from "@/assets/visual-lottie-2.json";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const images: { src?: string; alt: string; span: "full" | "normal"; lottie?: 1 | 2 }[] = [
   { lottie: 1, alt: "Motion design animation", span: "normal" },
@@ -39,6 +41,8 @@ const itemVariants = {
 
 const Visual = () => {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
+  const [hoverVideo1, setHoverVideo1] = useState(false);
+  const [hoverVideo2, setHoverVideo2] = useState(false);
 
   useEffect(() => {
     if (lottieRef.current) {
@@ -65,6 +69,9 @@ const Visual = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
+            className="relative"
+            onMouseEnter={() => setHoverVideo1(true)}
+            onMouseLeave={() => setHoverVideo1(false)}
           >
             <video
               src="/videos/accordion.mp4"
@@ -76,6 +83,19 @@ const Visual = () => {
               controlsList="nodownload nofullscreen noremoteplayback"
               className="w-full h-auto rounded-none pointer-events-none select-none"
             />
+            <motion.div
+              initial={{ opacity: 0, y: -4 }}
+              animate={{ opacity: hoverVideo1 ? 1 : 0, y: hoverVideo1 ? 0 : -4 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-4 left-4"
+            >
+              <Button asChild size="sm" className="bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm">
+                <a href="https://ste11apeng.github.io/accordion-expand-ui/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                  try it urself
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </Button>
+            </motion.div>
           </motion.div>
           <motion.div
             variants={itemVariants}
@@ -83,6 +103,9 @@ const Visual = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             transition={{ delay: 0.06 }}
+            className="relative"
+            onMouseEnter={() => setHoverVideo2(true)}
+            onMouseLeave={() => setHoverVideo2(false)}
           >
             <video
               src="/videos/music.mp4"
@@ -94,6 +117,19 @@ const Visual = () => {
               controlsList="nodownload nofullscreen noremoteplayback"
               className="w-full h-auto rounded-none pointer-events-none select-none"
             />
+            <motion.div
+              initial={{ opacity: 0, y: -4 }}
+              animate={{ opacity: hoverVideo2 ? 1 : 0, y: hoverVideo2 ? 0 : -4 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-4 left-4"
+            >
+              <Button asChild size="sm" className="bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm">
+                <a href="https://ste11apeng.github.io/music-slider-ui/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                  try it urself
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </Button>
+            </motion.div>
           </motion.div>
 
           {/* Images */}
