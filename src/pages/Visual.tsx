@@ -3,6 +3,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ImageLightbox from "@/components/ImageLightbox";
 
+import { ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import visual1 from "@/assets/visual-1.png";
 import visual2 from "@/assets/visual-2.png";
 import visual3 from "@/assets/visual-3.png";
@@ -11,7 +13,7 @@ import visual5 from "@/assets/visual-5.png";
 import lottieAnimation from "@/assets/visual-lottie.json";
 import lottieAnimation2 from "@/assets/visual-lottie-2.json";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const images: { src?: string; alt: string; span: "full" | "normal"; lottie?: 1 | 2 }[] = [
   { lottie: 1, alt: "Motion design animation", span: "normal" },
