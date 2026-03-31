@@ -210,8 +210,7 @@ const About = () => {
                 visible: { transition: { staggerChildren: 0.15, delayChildren: 0.3 } },
               }}
             >
-              {/* Experience */}
-              <div>
+              <motion.div variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } } }}>
                 <h2 className="font-['New_Spirit'] text-xl md:text-2xl font-normal text-muted-foreground mb-4">
                   Experience
                 </h2>
@@ -228,7 +227,7 @@ const About = () => {
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
               {/* Education */}
               <div>
