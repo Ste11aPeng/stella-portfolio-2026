@@ -132,7 +132,10 @@ const About = () => {
                 visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
               }}
             >
-              <h1 className="font-['New_Spirit'] text-3xl md:text-4xl font-normal text-foreground leading-snug">
+              <motion.h1
+                className="font-['New_Spirit'] text-3xl md:text-4xl font-normal text-foreground leading-snug"
+                variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } } }}
+              >
                 Hi, I'm{" "}
                 <span
                   className="relative inline-flex items-center cursor-pointer"
