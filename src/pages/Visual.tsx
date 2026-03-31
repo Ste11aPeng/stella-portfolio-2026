@@ -25,13 +25,22 @@ const images: { src?: string; alt: string; span: "full" | "normal"; lottie?: 1 |
   { src: visual5, alt: "Changsha typography editorial design", span: "normal" },
 ];
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
 const itemVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.97, filter: "blur(6px)" },
+  hidden: { opacity: 0, y: 30, scale: 0.97 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    filter: "blur(0px)",
     transition: {
       duration: 0.7,
       ease: [0.16, 1, 0.3, 1] as const,
