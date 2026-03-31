@@ -125,17 +125,11 @@ const About = () => {
             {/* Left – Introduction */}
             <motion.div
               className="flex flex-col gap-6"
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
-              }}
+              initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
             >
-              <motion.h1
-                className="font-['New_Spirit'] text-3xl md:text-4xl font-normal text-foreground leading-snug"
-                variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } } }}
-              >
+              <h1 className="font-['New_Spirit'] text-3xl md:text-4xl font-normal text-foreground leading-snug">
                 Hi, I'm{" "}
                 <span
                   className="relative inline-flex items-center cursor-pointer"
@@ -158,14 +152,14 @@ const About = () => {
                     )}
                   </AnimatePresence>
                 </span>
-              </motion.h1>
-              <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } } }}>
+              </h1>
+              <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
                 A product designer drawn to visual clarity, new tools, and the messy questions behind how products actually work.
-              </motion.p>
-              <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } } }}>
+              </p>
+              <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
                 TLDR of my life: I grew up in China, and recently graduated in design from the University of Michigan, so I naturally notice how people use things differently.
-              </motion.p>
-              <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } } }}>
+              </p>
+              <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
                 More than anything, I'm trying to become a designer who brings clarity, momentum, and a point of view to the team.{" "}
                 <span
                   ref={sayHelloRef}
@@ -197,20 +191,18 @@ const About = () => {
                   {" "}or via{" "}
                   <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>LinkedIn</a>.
                 </span>
-              </motion.p>
+              </p>
             </motion.div>
 
             {/* Right – Experience & Education */}
             <motion.div
               className="flex flex-col gap-10"
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.15, delayChildren: 0.3 } },
-              }}
+              initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.25 }}
             >
-              <motion.div variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } } }}>
+              {/* Experience */}
+              <div>
                 <h2 className="font-['New_Spirit'] text-xl md:text-2xl font-normal text-muted-foreground mb-4">
                   Experience
                 </h2>
@@ -227,9 +219,10 @@ const About = () => {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } } }}>
+              {/* Education */}
+              <div>
                 <h2
                   className="font-['New_Spirit'] text-xl md:text-2xl font-normal text-muted-foreground mb-4 relative inline-flex items-center"
                   onMouseEnter={() => setEduHovered(true)}
@@ -263,7 +256,7 @@ const About = () => {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             </motion.div>
           </div>
         </section>
