@@ -159,13 +159,13 @@ const About = () => {
                   </AnimatePresence>
                 </span>
               </motion.h1>
-              <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
+              <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } } }}>
                 A product designer drawn to visual clarity, new tools, and the messy questions behind how products actually work.
-              </p>
-              <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
+              </motion.p>
+              <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } } }}>
                 TLDR of my life: I grew up in China, and recently graduated in design from the University of Michigan, so I naturally notice how people use things differently.
-              </p>
-              <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
+              </motion.p>
+              <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } } }}>
                 More than anything, I'm trying to become a designer who brings clarity, momentum, and a point of view to the team.{" "}
                 <span
                   ref={sayHelloRef}
