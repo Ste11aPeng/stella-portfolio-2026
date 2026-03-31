@@ -175,7 +175,7 @@ const Visual = () => {
               )}
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       <Footer />
