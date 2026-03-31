@@ -84,9 +84,6 @@ const Visual = () => {
             onMouseEnter={() => setHoverVideo1(true)}
             onMouseLeave={() => setHoverVideo1(false)}
           >
-            onMouseEnter={() => setHoverVideo1(true)}
-            onMouseLeave={() => setHoverVideo1(false)}
-          >
             <video
               src="/videos/accordion.mp4"
               autoPlay
