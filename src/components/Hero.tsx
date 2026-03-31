@@ -132,7 +132,7 @@ const Hero = () => {
           >
             <span className="flex items-center gap-1.5 text-[13px] font-sans text-muted-foreground">
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500" />
-              Open to work
+              Open to work · Seeking Apr–Sep internship
             </span>
             <span className="text-border">·</span>
             <button
