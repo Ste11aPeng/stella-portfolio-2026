@@ -25,13 +25,22 @@ const images: { src?: string; alt: string; span: "full" | "normal"; lottie?: 1 |
   { src: visual5, alt: "Changsha typography editorial design", span: "normal" },
 ];
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
 const itemVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.97, filter: "blur(6px)" },
+  hidden: { opacity: 0, y: 30, scale: 0.97 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    filter: "blur(0px)",
     transition: {
       duration: 0.7,
       ease: [0.16, 1, 0.3, 1] as const,
@@ -62,13 +71,15 @@ const Visual = () => {
 
       {/* Image & Video Gallery */}
       <section className="px-8 md:px-16 lg:px-24 pb-24 max-w-[1440px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-[10px]"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {/* Two looping videos */}
           <motion.div
             variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
             className="relative"
             onMouseEnter={() => setHoverVideo1(true)}
             onMouseLeave={() => setHoverVideo1(false)}
@@ -99,10 +110,6 @@ const Visual = () => {
           </motion.div>
           <motion.div
             variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ delay: 0.06 }}
             className="relative"
             onMouseEnter={() => setHoverVideo2(true)}
             onMouseLeave={() => setHoverVideo2(false)}
@@ -138,10 +145,6 @@ const Visual = () => {
               key={index}
               className={image.span === "full" ? "md:col-span-2" : ""}
               variants={itemVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ delay: index * 0.06 }}
             >
               {image.lottie ? (
                 <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-muted">
@@ -161,7 +164,7 @@ const Visual = () => {
               )}
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       <Footer />
