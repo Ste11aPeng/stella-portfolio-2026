@@ -203,9 +203,12 @@ const About = () => {
             {/* Right – Experience & Education */}
             <motion.div
               className="flex flex-col gap-10"
-              initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.25 }}
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.15, delayChildren: 0.3 } },
+              }}
             >
               {/* Experience */}
               <div>
