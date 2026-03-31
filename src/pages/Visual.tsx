@@ -110,10 +110,6 @@ const Visual = () => {
           </motion.div>
           <motion.div
             variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ delay: 0.06 }}
             className="relative"
             onMouseEnter={() => setHoverVideo2(true)}
             onMouseLeave={() => setHoverVideo2(false)}
