@@ -71,7 +71,12 @@ const Visual = () => {
 
       {/* Image & Video Gallery */}
       <section className="px-8 md:px-16 lg:px-24 pb-24 max-w-[1440px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-[10px]"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {/* Two looping videos */}
           <motion.div
             variants={itemVariants}
