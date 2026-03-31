@@ -228,10 +228,10 @@ const About = () => {
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
               {/* Education */}
-              <div>
+              <motion.div variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
                 <h2
                   className="font-['New_Spirit'] text-xl md:text-2xl font-normal text-muted-foreground mb-4 relative inline-flex items-center"
                   onMouseEnter={() => setEduHovered(true)}
