@@ -12,12 +12,12 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full py-32 px-8 md:px-16 lg:px-24 bg-[hsl(0,0%,5%)] text-[hsl(0,0%,90%)] relative overflow-hidden">
+    <footer className="w-full py-24 px-8 md:px-16 lg:px-24 bg-[hsl(0,0%,5%)] text-[hsl(0,0%,90%)] relative overflow-hidden">
       {/* Dot pattern background */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.35]"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: "radial-gradient(circle, hsl(0,0%,85%) 1.2px, transparent 1.2px)",
+          backgroundImage: "radial-gradient(circle, hsl(0,0%,85%) 1px, transparent 1px)",
           backgroundSize: "24px 24px",
         }}
       />
