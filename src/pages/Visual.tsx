@@ -80,10 +80,10 @@ const Visual = () => {
           {/* Two looping videos */}
           <motion.div
             variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
             className="relative"
+            onMouseEnter={() => setHoverVideo1(true)}
+            onMouseLeave={() => setHoverVideo1(false)}
+          >
             onMouseEnter={() => setHoverVideo1(true)}
             onMouseLeave={() => setHoverVideo1(false)}
           >
