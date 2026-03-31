@@ -158,7 +158,7 @@ const About = () => {
                     )}
                   </AnimatePresence>
                 </span>
-              </h1>
+              </motion.h1>
               <p className="font-sans text-[14px] leading-relaxed text-muted-foreground">
                 A product designer drawn to visual clarity, new tools, and the messy questions behind how products actually work.
               </p>
