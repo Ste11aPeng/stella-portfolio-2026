@@ -197,7 +197,7 @@ const About = () => {
                   {" "}or via{" "}
                   <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>LinkedIn</a>.
                 </span>
-              </p>
+              </motion.p>
             </motion.div>
 
             {/* Right – Experience & Education */}
