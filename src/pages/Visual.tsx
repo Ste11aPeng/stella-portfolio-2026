@@ -145,10 +145,6 @@ const Visual = () => {
               key={index}
               className={image.span === "full" ? "md:col-span-2" : ""}
               variants={itemVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ delay: index * 0.06 }}
             >
               {image.lottie ? (
                 <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-muted">
