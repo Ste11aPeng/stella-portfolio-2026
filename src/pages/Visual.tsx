@@ -93,7 +93,6 @@ const Visual = () => {
               disablePictureInPicture
               controlsList="nodownload nofullscreen noremoteplayback"
               className="w-full h-auto rounded-none pointer-events-none select-none"
-              style={{ transform: "scale(1.4)", transformOrigin: "center center" }}
             />
             <motion.div
               initial={{ opacity: 0, y: -4 }}
