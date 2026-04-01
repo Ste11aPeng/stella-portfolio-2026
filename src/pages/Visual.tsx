@@ -84,16 +84,18 @@ const Visual = () => {
             onMouseEnter={() => setHoverVideo1(true)}
             onMouseLeave={() => setHoverVideo1(false)}
           >
-            <video
-              src="/videos/accordion.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              disablePictureInPicture
-              controlsList="nodownload nofullscreen noremoteplayback"
-              className="w-full h-auto scale-[1.4] pointer-events-none select-none"
-            />
+            <div className="w-full aspect-video overflow-hidden">
+              <video
+                src="/videos/accordion.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                disablePictureInPicture
+                controlsList="nodownload nofullscreen noremoteplayback"
+                className="w-full h-full object-cover scale-[1.4] pointer-events-none select-none"
+              />
+            </div>
             <motion.div
               initial={{ opacity: 0, y: -4 }}
               animate={{ opacity: hoverVideo1 ? 1 : 0, y: hoverVideo1 ? 0 : -4 }}
