@@ -31,7 +31,7 @@ import AsksiaReflection from "@/components/asksia/AsksiaReflection";
 import { getProjectById } from "@/data/projects";
 
 // Gallery images for Tell Tool
-import tellToolCover from "@/assets/project-telltool.png";
+import tellToolCover from "@/assets/project-telltool.webp";
 import telltool1 from "@/assets/telltool-1.png";
 import telltool2 from "@/assets/telltool-2.png";
 import telltool3 from "@/assets/telltool-3.png";
@@ -46,7 +46,7 @@ import fg3 from "@/assets/fg-3.png";
 import fg4 from "@/assets/fg-4.png";
 import fg5 from "@/assets/fg-5.png";
 import fg6 from "@/assets/fg-6.png";
-import forgottenSenseCover from "@/assets/project-forgotten-sense.png";
+import forgottenSenseCover from "@/assets/project-forgotten-sense.webp";
 
 const baseSectionIds = ["overview", "challenge", "solution", "research", "testing", "reflection"];
 
