@@ -52,6 +52,7 @@ const Visual = () => {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
   const [hoverVideo1, setHoverVideo1] = useState(false);
   const [hoverVideo2, setHoverVideo2] = useState(false);
+  const [hoverVideo4, setHoverVideo4] = useState(false);
 
   useEffect(() => {
     if (lottieRef.current) {
@@ -156,7 +157,12 @@ const Visual = () => {
               />
             </div>
           </motion.div>
-          <motion.div variants={itemVariants}>
+          <motion.div
+            variants={itemVariants}
+            className="relative"
+            onMouseEnter={() => setHoverVideo4(true)}
+            onMouseLeave={() => setHoverVideo4(false)}
+          >
             <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
               <video
                 src="/videos/visual-video-2.mp4"
@@ -169,6 +175,19 @@ const Visual = () => {
                 className="w-full h-full object-cover object-center pointer-events-none select-none"
               />
             </div>
+            <motion.div
+              initial={{ opacity: 0, y: -4 }}
+              animate={{ opacity: hoverVideo4 ? 1 : 0, y: hoverVideo4 ? 0 : -4 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-4 left-4"
+            >
+              <Button asChild size="sm" className="bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm">
+                <a href="https://ste11apeng.github.io/knob-ui-component/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                  try it urself
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </Button>
+            </motion.div>
           </motion.div>
 
           {/* Images */}
