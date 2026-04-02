@@ -1,9 +1,9 @@
-const askSiaImage = "/images/project-asksia.jpg";
-import circleStatusImage from "@/assets/project-circle-status.jpg";
-import stitchiImage from "@/assets/project-stitchi.jpg";
-import philoImage from "@/assets/project-philo.jpg";
-import tellToolImage from "@/assets/project-telltool.jpg";
-import forgottenSenseImage from "@/assets/project-forgotten-sense.jpg";
+const askSiaImage = "/images/project-asksia.webp";
+import circleStatusImage from "@/assets/project-circle-status.webp";
+import stitchiImage from "@/assets/project-stitchi.webp";
+import philoImage from "@/assets/project-philo.webp";
+import tellToolImage from "@/assets/project-telltool.webp";
+import forgottenSenseImage from "@/assets/project-forgotten-sense.webp";
 
 export interface Project {
   id: string;
