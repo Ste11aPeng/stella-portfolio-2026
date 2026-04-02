@@ -31,7 +31,7 @@ import AsksiaReflection from "@/components/asksia/AsksiaReflection";
 import { getProjectById } from "@/data/projects";
 
 // Gallery images for Tell Tool
-import tellToolCover from "@/assets/project-telltool.png";
+import tellToolCover from "@/assets/project-telltool.webp";
 import telltool1 from "@/assets/telltool-1.png";
 import telltool2 from "@/assets/telltool-2.png";
 import telltool3 from "@/assets/telltool-3.png";
