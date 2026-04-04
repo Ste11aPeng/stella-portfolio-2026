@@ -70,160 +70,162 @@ const Visual = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <>
+      <div className="min-h-screen bg-background relative z-10">
+        <Header />
 
-
-      {/* Image & Video Gallery */}
-      <section className="px-8 md:px-16 lg:px-24 pb-24 max-w-[1440px] mx-auto">
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-[10px]"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* Two looping videos */}
+        {/* Image & Video Gallery */}
+        <section className="px-8 md:px-16 lg:px-24 pb-24 max-w-[1440px] mx-auto">
           <motion.div
-            variants={itemVariants}
-            className="relative"
-            onMouseEnter={() => setHoverVideo1(true)}
-            onMouseLeave={() => setHoverVideo1(false)}
+            className="grid grid-cols-1 md:grid-cols-2 gap-[10px]"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
           >
-            <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
-              <video
-                src="/videos/accordion.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                disablePictureInPicture
-                controlsList="nodownload nofullscreen noremoteplayback"
-                className="w-full h-full object-cover object-center scale-[1.4] pointer-events-none select-none"
-              />
-            </div>
+            {/* Two looping videos */}
             <motion.div
-              initial={{ opacity: 0, y: -4 }}
-              animate={{ opacity: hoverVideo1 ? 1 : 0, y: hoverVideo1 ? 0 : -4 }}
-              transition={{ duration: 0.2 }}
-              className="absolute top-4 left-4"
-            >
-              <Button asChild size="sm" className="bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm">
-                <a href="https://ste11apeng.github.io/accordion-expand-ui/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-                  try it urself
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </Button>
-            </motion.div>
-          </motion.div>
-          <motion.div
-            variants={itemVariants}
-            className="relative"
-            onMouseEnter={() => setHoverVideo2(true)}
-            onMouseLeave={() => setHoverVideo2(false)}
-          >
-            <video
-              src="/videos/music.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              disablePictureInPicture
-              controlsList="nodownload nofullscreen noremoteplayback"
-              className="w-full h-auto rounded-none pointer-events-none select-none"
-            />
-            <motion.div
-              initial={{ opacity: 0, y: -4 }}
-              animate={{ opacity: hoverVideo2 ? 1 : 0, y: hoverVideo2 ? 0 : -4 }}
-              transition={{ duration: 0.2 }}
-              className="absolute top-4 left-4"
-            >
-              <Button asChild size="sm" className="bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm">
-                <a href="https://ste11apeng.github.io/music-slider-ui/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-                  try it urself
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </Button>
-            </motion.div>
-          </motion.div>
-
-          {/* Additional looping videos */}
-          <motion.div variants={itemVariants}>
-            <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
-              <video
-                src="/videos/visual-video-1.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                disablePictureInPicture
-                controlsList="nodownload nofullscreen noremoteplayback"
-                className="w-full h-full object-cover object-center pointer-events-none select-none"
-              />
-            </div>
-          </motion.div>
-          <motion.div
-            variants={itemVariants}
-            className="relative"
-            onMouseEnter={() => setHoverVideo4(true)}
-            onMouseLeave={() => setHoverVideo4(false)}
-          >
-            <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
-              <video
-                src="/videos/visual-video-2.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                disablePictureInPicture
-                controlsList="nodownload nofullscreen noremoteplayback"
-                className="w-full h-full object-cover object-center pointer-events-none select-none"
-              />
-            </div>
-            <motion.div
-              initial={{ opacity: 0, y: -4 }}
-              animate={{ opacity: hoverVideo4 ? 1 : 0, y: hoverVideo4 ? 0 : -4 }}
-              transition={{ duration: 0.2 }}
-              className="absolute top-4 left-4"
-            >
-              <Button asChild size="sm" className="bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm">
-                <a href="https://ste11apeng.github.io/knob-ui-component/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-                  try it urself
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </Button>
-            </motion.div>
-          </motion.div>
-
-          {/* Images */}
-          {images.map((image, index) => (
-            <motion.div
-              key={index}
-              className={image.span === "full" ? "md:col-span-2" : ""}
               variants={itemVariants}
+              className="relative"
+              onMouseEnter={() => setHoverVideo1(true)}
+              onMouseLeave={() => setHoverVideo1(false)}
             >
-              {image.lottie ? (
-                <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-muted">
-                  <Lottie
-                    animationData={image.lottie === 1 ? lottieAnimation : lottieAnimation2}
-                    loop
-                    lottieRef={image.lottie === 1 ? lottieRef : undefined}
-                    className="w-full h-full"
-                  />
-                </div>
-              ) : (
-                <ImageLightbox
-                  src={image.src!}
-                  alt={image.alt}
-                  className="w-full h-auto"
+              <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
+                <video
+                  src="/videos/accordion.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  disablePictureInPicture
+                  controlsList="nodownload nofullscreen noremoteplayback"
+                  className="w-full h-full object-cover object-center scale-[1.4] pointer-events-none select-none"
                 />
-              )}
+              </div>
+              <motion.div
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: hoverVideo1 ? 1 : 0, y: hoverVideo1 ? 0 : -4 }}
+                transition={{ duration: 0.2 }}
+                className="absolute top-4 left-4"
+              >
+                <Button asChild size="sm" className="bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm">
+                  <a href="https://ste11apeng.github.io/accordion-expand-ui/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                    try it urself
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </Button>
+              </motion.div>
             </motion.div>
-          ))}
-        </motion.div>
-      </section>
+            <motion.div
+              variants={itemVariants}
+              className="relative"
+              onMouseEnter={() => setHoverVideo2(true)}
+              onMouseLeave={() => setHoverVideo2(false)}
+            >
+              <video
+                src="/videos/music.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                disablePictureInPicture
+                controlsList="nodownload nofullscreen noremoteplayback"
+                className="w-full h-auto rounded-none pointer-events-none select-none"
+              />
+              <motion.div
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: hoverVideo2 ? 1 : 0, y: hoverVideo2 ? 0 : -4 }}
+                transition={{ duration: 0.2 }}
+                className="absolute top-4 left-4"
+              >
+                <Button asChild size="sm" className="bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm">
+                  <a href="https://ste11apeng.github.io/music-slider-ui/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                    try it urself
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </Button>
+              </motion.div>
+            </motion.div>
 
-      <Footer />
-    </div>
+            {/* Additional looping videos */}
+            <motion.div variants={itemVariants}>
+              <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
+                <video
+                  src="/videos/visual-video-1.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  disablePictureInPicture
+                  controlsList="nodownload nofullscreen noremoteplayback"
+                  className="w-full h-full object-cover object-center pointer-events-none select-none"
+                />
+              </div>
+            </motion.div>
+            <motion.div
+              variants={itemVariants}
+              className="relative"
+              onMouseEnter={() => setHoverVideo4(true)}
+              onMouseLeave={() => setHoverVideo4(false)}
+            >
+              <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
+                <video
+                  src="/videos/visual-video-2.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  disablePictureInPicture
+                  controlsList="nodownload nofullscreen noremoteplayback"
+                  className="w-full h-full object-cover object-center pointer-events-none select-none"
+                />
+              </div>
+              <motion.div
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: hoverVideo4 ? 1 : 0, y: hoverVideo4 ? 0 : -4 }}
+                transition={{ duration: 0.2 }}
+                className="absolute top-4 left-4"
+              >
+                <Button asChild size="sm" className="bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm">
+                  <a href="https://ste11apeng.github.io/knob-ui-component/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                    try it urself
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </Button>
+              </motion.div>
+            </motion.div>
+
+            {/* Images */}
+            {images.map((image, index) => (
+              <motion.div
+                key={index}
+                className={image.span === "full" ? "md:col-span-2" : ""}
+                variants={itemVariants}
+              >
+                {image.lottie ? (
+                  <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-muted">
+                    <Lottie
+                      animationData={image.lottie === 1 ? lottieAnimation : lottieAnimation2}
+                      loop
+                      lottieRef={image.lottie === 1 ? lottieRef : undefined}
+                      className="w-full h-full"
+                    />
+                  </div>
+                ) : (
+                  <ImageLightbox
+                    src={image.src!}
+                    alt={image.alt}
+                    className="w-full h-auto"
+                  />
+                )}
+              </motion.div>
+            ))}
+          </motion.div>
+        </section>
+      </div>
+      <div className="sticky bottom-0 z-0">
+        <Footer />
+      </div>
+    </>
   );
 };
 
