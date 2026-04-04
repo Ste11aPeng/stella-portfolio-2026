@@ -10,6 +10,8 @@ import visual2 from "@/assets/visual-2.png";
 import visual3 from "@/assets/visual-3.png";
 import visual4 from "@/assets/visual-4.png";
 import visual5 from "@/assets/visual-5.png";
+import visual6 from "@/assets/visual-6.png";
+import visual7 from "@/assets/visual-7.png";
 import lottieAnimation from "@/assets/visual-lottie.json";
 import lottieAnimation2 from "@/assets/visual-lottie-2.json";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
@@ -18,6 +20,8 @@ import { useEffect, useRef, useState } from "react";
 const images: { src?: string; alt: string; span: "full" | "normal"; lottie?: 1 | 2 }[] = [
   { lottie: 1, alt: "Motion design animation", span: "normal" },
   { lottie: 2, alt: "Motion design animation 2", span: "normal" },
+  { src: visual6, alt: "Humane Society shelter branding design", span: "normal" },
+  { src: visual7, alt: "Humane Society shelter app design", span: "normal" },
   { src: visual1, alt: "3D coral character render", span: "full" },
   { src: visual2, alt: "Coral sculpture photo collection", span: "normal" },
   { src: visual3, alt: "Character design iterations and sketches", span: "normal" },
