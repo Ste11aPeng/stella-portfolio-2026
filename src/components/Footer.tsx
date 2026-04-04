@@ -17,7 +17,7 @@ const Footer = () => {
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.25]"
         style={{
-          backgroundImage: "radial-gradient(circle, hsl(0,0%,60%) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, hsl(0,0%,40%) 0.8px, transparent 0.8px)",
           backgroundSize: "24px 24px",
         }}
       />
