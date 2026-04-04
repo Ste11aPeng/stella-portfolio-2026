@@ -15,9 +15,9 @@ const Footer = () => {
     <footer className="w-full py-24 px-8 md:px-16 lg:px-24 bg-[hsl(0,0%,5%)] text-[hsl(0,0%,90%)] relative overflow-hidden">
       {/* Dot pattern background */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.25]"
+        className="absolute inset-0 pointer-events-none opacity-[0.15]"
         style={{
-          backgroundImage: "radial-gradient(circle, hsl(0,0%,60%) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, hsl(0,0%,40%) 0.8px, transparent 0.8px)",
           backgroundSize: "24px 24px",
         }}
       />
@@ -30,7 +30,7 @@ const Footer = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          Let's make something together 😉
+          Let's build together
         </motion.p>
 
         <motion.nav
