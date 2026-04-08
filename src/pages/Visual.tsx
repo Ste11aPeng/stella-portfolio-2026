@@ -57,6 +57,7 @@ const Visual = () => {
   const [hoverVideo1, setHoverVideo1] = useState(false);
   const [hoverVideo2, setHoverVideo2] = useState(false);
   const [hoverVideo4, setHoverVideo4] = useState(false);
+  const [hoverVideoClock, setHoverVideoClock] = useState(false);
 
   useEffect(() => {
     if (lottieRef.current) {
