@@ -36,9 +36,9 @@ const AsksiaResearch = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        <span className="text-xs font-semibold uppercase tracking-widest text-primary/80 mb-2 block">Key Insight</span>
-        <p className="text-base text-foreground/90 leading-relaxed italic">
-          "Navigation visibility should adapt to the user's current intent — not remain static."
+        <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/70 mb-2 block">Key Insight</span>
+        <p className="text-base text-foreground/90 leading-relaxed">
+          "Navigation visibility should adapt to the user's current intent, not remain static."
         </p>
       </motion.div>
     </section>
