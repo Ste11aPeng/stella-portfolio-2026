@@ -188,16 +188,7 @@ const ProjectDetail = () => {
           <div className="flex-1 max-w-3xl">
             <ProjectOverview project={project} />
 
-            {/* AskSia Intro Image */}
-            {id === "asksia" && (
-              <div className="pt-16">
-                <img
-                  src={siaIntroImage}
-                  alt="AskSia - Learning journey overview"
-                  className="w-full rounded-lg border border-border/30"
-                />
-              </div>
-            )}
+            
             
             {/* Challenge Section */}
             {id === "stitchi" ? <StitchiChallenge />

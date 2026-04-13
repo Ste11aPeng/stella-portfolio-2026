@@ -2,6 +2,7 @@ import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import ImageLightbox from "@/components/ImageLightbox";
 import challengeImage from "@/assets/sia-challenge.png";
+import introImage from "@/assets/sia-intro.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
@@ -27,6 +28,20 @@ const AsksiaChallenge = () => {
         <p className="text-base mb-10 max-w-3xl text-foreground/80 leading-relaxed">
           Speed: 2-week Sprint / Team: Lean (4 pax) / Tech: Library-based / Goal: Growth-ready
         </p>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut, delay: 0.15 }}
+        className="mb-6"
+      >
+        <ImageLightbox
+          src={introImage}
+          alt="AskSia - Learning journey overview"
+          className="w-full rounded-lg border border-border/30"
+        />
       </motion.div>
 
       <motion.div
