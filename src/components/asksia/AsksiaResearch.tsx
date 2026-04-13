@@ -28,6 +28,19 @@ const AsksiaResearch = () => {
       </motion.p>
 
       <ImageLightbox src={researchImage} alt="AskSia - UX Research: Notion, NotebookLM, YouLearn" className="w-full rounded-lg border border-border/30" />
+
+      <motion.div
+        className="mt-8 border-l-2 border-primary/60 bg-muted/40 rounded-r-lg px-6 py-5"
+        initial={{ opacity: 0, x: -10 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
+      >
+        <span className="text-xs font-semibold uppercase tracking-widest text-primary/80 mb-2 block">Key Insight</span>
+        <p className="text-base text-foreground/90 leading-relaxed italic">
+          "Navigation visibility should adapt to the user's current intent — not remain static."
+        </p>
+      </motion.div>
     </section>
   );
 };
