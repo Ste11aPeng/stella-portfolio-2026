@@ -53,6 +53,7 @@ const Hero = () => {
           style={{ width: "120px", height: "120px" }}
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.03, rotate: 2 }}
           transition={{
             duration: 0.7,
             ease: [0.25, 0.1, 0.25, 1],
