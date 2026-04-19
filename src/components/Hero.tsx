@@ -53,7 +53,7 @@ const Hero = () => {
           style={{ width: "120px", height: "120px" }}
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
-          whileHover={{ scale: 1.03, rotate: 2 }}
+          whileHover={{ scale: 1.03, rotate: 0.8 }}
           transition={{
             duration: 0.7,
             ease: [0.25, 0.1, 0.25, 1],
@@ -75,10 +75,10 @@ const Hero = () => {
               className="absolute inset-0 transition-opacity duration-500 ease-out pointer-events-none"
               style={{
                 opacity: isHovered ? 1 : 0,
-                backdropFilter: "blur(4px)",
-                WebkitBackdropFilter: "blur(4px)",
-                maskImage: "linear-gradient(to bottom, transparent 20%, black 80%)",
-                WebkitMaskImage: "linear-gradient(to bottom, transparent 20%, black 80%)",
+                backdropFilter: "blur(6px)",
+                WebkitBackdropFilter: "blur(6px)",
+                maskImage: "linear-gradient(to bottom, transparent 50%, black 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, transparent 50%, black 100%)",
               }}
             />
             <AnimatePresence>
