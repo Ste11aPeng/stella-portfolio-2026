@@ -75,10 +75,10 @@ const Hero = () => {
               className="absolute inset-0 transition-opacity duration-500 ease-out pointer-events-none"
               style={{
                 opacity: isHovered ? 1 : 0,
-                backdropFilter: "blur(4px)",
-                WebkitBackdropFilter: "blur(4px)",
-                maskImage: "linear-gradient(to bottom, transparent 20%, black 80%)",
-                WebkitMaskImage: "linear-gradient(to bottom, transparent 20%, black 80%)",
+                backdropFilter: "blur(6px)",
+                WebkitBackdropFilter: "blur(6px)",
+                maskImage: "linear-gradient(to bottom, transparent 50%, black 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, transparent 50%, black 100%)",
               }}
             />
             <AnimatePresence>
