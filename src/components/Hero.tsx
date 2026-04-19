@@ -76,13 +76,13 @@ const Hero = () => {
               alt=""
               aria-hidden="true"
               className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-500 ease-out"
-              style={{
-                opacity: isHovered ? 1 : 0,
-                filter: "blur(10px)",
-                transform: "scale(1.06)",
-                maskImage: "linear-gradient(to top, black 0%, black 42%, transparent 100%)",
-                WebkitMaskImage: "linear-gradient(to top, black 0%, black 42%, transparent 100%)",
-              }}
+                style={{
+                  opacity: isHovered ? 1 : 0,
+                  filter: "blur(10px)",
+                  transform: "scale(1.06)",
+                  maskImage: "linear-gradient(to top, black 0%, black 28%, rgba(0, 0, 0, 0.55) 40%, transparent 68%)",
+                  WebkitMaskImage: "linear-gradient(to top, black 0%, black 28%, rgba(0, 0, 0, 0.55) 40%, transparent 68%)",
+                }}
             />
             <AnimatePresence>
               {isHovered && (
