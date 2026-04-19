@@ -49,7 +49,7 @@ const Hero = () => {
     <section className="px-8 py-16 lg:px-24 md:px-[32px] md:py-[64px] max-w-[1440px] mx-auto">
       <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12">
         <motion.div
-          className="flex-shrink-0 overflow-hidden cursor-pointer relative"
+          className="flex-shrink-0 cursor-pointer relative"
           style={{ width: "120px", height: "120px" }}
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -62,37 +62,39 @@ const Hero = () => {
           onMouseLeave={() => setIsHovered(false)}
           onClick={() => navigate("/about")}
         >
-          <img
-            src={profileImage}
-            alt="Profile"
-            width={291}
-            height={291}
-            className="w-full h-full object-cover"
-          />
-          {/* Gradient blur overlay */}
-          <div
-            className="absolute inset-0 transition-opacity duration-500 ease-out pointer-events-none"
-            style={{
-              opacity: isHovered ? 1 : 0,
-              backdropFilter: "blur(4px)",
-              WebkitBackdropFilter: "blur(4px)",
-              maskImage: "linear-gradient(to bottom, transparent 20%, black 80%)",
-              WebkitMaskImage: "linear-gradient(to bottom, transparent 20%, black 80%)",
-            }}
-          />
-          <AnimatePresence>
-            {isHovered && (
-              <motion.span
-                className="absolute bottom-2 left-0 right-0 flex items-center justify-center font-['New_Spirit'] text-[16px] text-white/90 select-none"
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 4 }}
-                transition={{ duration: 0.3 }}
-              >
-                about me
-              </motion.span>
-            )}
-          </AnimatePresence>
+          <div className="relative w-full h-full overflow-hidden">
+            <img
+              src={profileImage}
+              alt="Profile"
+              width={291}
+              height={291}
+              className="w-full h-full object-cover"
+            />
+            {/* Gradient blur overlay - stays aligned with image bottom */}
+            <div
+              className="absolute inset-0 transition-opacity duration-500 ease-out pointer-events-none"
+              style={{
+                opacity: isHovered ? 1 : 0,
+                backdropFilter: "blur(4px)",
+                WebkitBackdropFilter: "blur(4px)",
+                maskImage: "linear-gradient(to bottom, transparent 20%, black 80%)",
+                WebkitMaskImage: "linear-gradient(to bottom, transparent 20%, black 80%)",
+              }}
+            />
+            <AnimatePresence>
+              {isHovered && (
+                <motion.span
+                  className="absolute bottom-2 left-0 right-0 flex items-center justify-center font-['New_Spirit'] text-[16px] text-white/90 select-none"
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 4 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  about me
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </div>
         </motion.div>
 
         <div className="flex flex-col">
