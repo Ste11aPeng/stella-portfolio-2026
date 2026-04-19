@@ -71,14 +71,17 @@ const Hero = () => {
               className="w-full h-full object-cover"
             />
             {/* Gradient blur overlay - stays aligned with image bottom */}
-            <div
-              className="absolute inset-0 transition-opacity duration-500 ease-out pointer-events-none"
+            <img
+              src={profileImage}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-500 ease-out"
               style={{
                 opacity: isHovered ? 1 : 0,
-                backdropFilter: "blur(6px)",
-                WebkitBackdropFilter: "blur(6px)",
-                maskImage: "linear-gradient(to bottom, transparent 50%, black 100%)",
-                WebkitMaskImage: "linear-gradient(to bottom, transparent 50%, black 100%)",
+                filter: "blur(10px)",
+                transform: "scale(1.06)",
+                maskImage: "linear-gradient(to top, black 0%, black 42%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to top, black 0%, black 42%, transparent 100%)",
               }}
             />
             <AnimatePresence>
