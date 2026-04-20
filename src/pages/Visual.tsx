@@ -253,18 +253,34 @@ const Visual = () => {
               </motion.div>
             </motion.div>
 
-            {/* Final visual-video-1 – full width */}
-            <motion.div variants={itemVariants} className="md:col-span-2">
-              <video
-                src="/videos/visual-video-1.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                disablePictureInPicture
-                controlsList="nodownload nofullscreen noremoteplayback"
-                className="w-full h-auto pointer-events-none select-none"
-              />
+            {/* Final visual-video-1 – paired with seedance */}
+            <motion.div variants={itemVariants}>
+              <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
+                <video
+                  src="/videos/visual-video-1.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  disablePictureInPicture
+                  controlsList="nodownload nofullscreen noremoteplayback"
+                  className="w-full h-full object-cover object-center pointer-events-none select-none"
+                />
+              </div>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
+                <video
+                  src="/videos/seedance.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  disablePictureInPicture
+                  controlsList="nodownload nofullscreen noremoteplayback"
+                  className="w-full h-full object-cover object-center pointer-events-none select-none"
+                />
+              </div>
             </motion.div>
           </motion.div>
         </section>
