@@ -151,7 +151,7 @@ const Visual = () => {
             <motion.div variants={itemVariants}>
               <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
                 <video
-                  src="/videos/visual-video-1.mp4"
+                  src="/videos/textmode.mov"
                   autoPlay
                   loop
                   muted
