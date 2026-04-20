@@ -252,6 +252,20 @@ const Visual = () => {
                 </Button>
               </motion.div>
             </motion.div>
+
+            {/* Final visual-video-1 – full width */}
+            <motion.div variants={itemVariants} className="md:col-span-2">
+              <video
+                src="/videos/visual-video-1.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                disablePictureInPicture
+                controlsList="nodownload nofullscreen noremoteplayback"
+                className="w-full h-auto pointer-events-none select-none"
+              />
+            </motion.div>
           </motion.div>
         </section>
       </div>
