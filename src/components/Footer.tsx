@@ -48,6 +48,14 @@ const Footer = () => {
           >
             linkedin
           </a>
+          <a
+            href="https://x.com/PengSte11a41091"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-colors"
+          >
+            x
+          </a>
           <button
             onClick={handleCopyEmail}
             className="text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-colors"
