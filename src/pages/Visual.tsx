@@ -17,11 +17,14 @@ import lottieAnimation2 from "@/assets/visual-lottie-2.json";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { useEffect, useRef, useState } from "react";
 
-const images: { src?: string; alt: string; span: "full" | "normal"; lottie?: 1 | 2 }[] = [
+const imagesBeforeBig: { src?: string; alt: string; span: "full" | "normal"; lottie?: 1 | 2 }[] = [
   { lottie: 1, alt: "Motion design animation", span: "normal" },
   { lottie: 2, alt: "Motion design animation 2", span: "normal" },
   { src: visual6, alt: "Humane Society shelter branding design", span: "normal" },
   { src: visual7, alt: "Humane Society shelter app design", span: "normal" },
+];
+
+const imagesAfterBig: { src?: string; alt: string; span: "full" | "normal"; lottie?: 1 | 2 }[] = [
   { src: visual1, alt: "3D coral character render", span: "full" },
   { src: visual2, alt: "Coral sculpture photo collection", span: "normal" },
   { src: visual3, alt: "Character design iterations and sketches", span: "normal" },
@@ -214,10 +217,10 @@ const Visual = () => {
               </motion.div>
             </motion.div>
 
-            {/* Images */}
-            {images.map((image, index) => (
+            {/* Images before big image */}
+            {imagesBeforeBig.map((image, index) => (
               <motion.div
-                key={index}
+                key={`before-${index}`}
                 className={image.span === "full" ? "md:col-span-2" : ""}
                 variants={itemVariants}
               >
@@ -237,7 +240,63 @@ const Visual = () => {
                     className="w-full h-auto"
                   />
                 )}
-          </motion.div>
+              </motion.div>
+            ))}
+
+            {/* Paired videos – moved to positions 9 & 10 (before the big image) */}
+            <motion.div variants={itemVariants}>
+              <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
+                <video
+                  src="/videos/visual-video-1.mov"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  disablePictureInPicture
+                  controlsList="nodownload nofullscreen noremoteplayback"
+                  className="w-full h-full object-cover object-center pointer-events-none select-none"
+                />
+              </div>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
+                <video
+                  src="/videos/seedance.mov"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  disablePictureInPicture
+                  controlsList="nodownload nofullscreen noremoteplayback"
+                  className="w-full h-full object-cover object-center pointer-events-none select-none"
+                />
+              </div>
+            </motion.div>
+
+            {/* Images after big image */}
+            {imagesAfterBig.map((image, index) => (
+              <motion.div
+                key={`after-${index}`}
+                className={image.span === "full" ? "md:col-span-2" : ""}
+                variants={itemVariants}
+              >
+                {image.lottie ? (
+                  <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-muted">
+                    <Lottie
+                      animationData={image.lottie === 1 ? lottieAnimation : lottieAnimation2}
+                      loop
+                      lottieRef={image.lottie === 1 ? lottieRef : undefined}
+                      className="w-full h-full"
+                    />
+                  </div>
+                ) : (
+                  <ImageLightbox
+                    src={image.src!}
+                    alt={image.alt}
+                    className="w-full h-auto"
+                  />
+                )}
+              </motion.div>
             ))}
 
             {/* Final clock video – full width */}
@@ -272,35 +331,6 @@ const Visual = () => {
               </motion.div>
             </motion.div>
 
-            {/* Final visual-video-1 – paired with seedance */}
-            <motion.div variants={itemVariants}>
-              <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
-                <video
-                  src="/videos/visual-video-1.mov"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  disablePictureInPicture
-                  controlsList="nodownload nofullscreen noremoteplayback"
-                  className="w-full h-full object-cover object-center pointer-events-none select-none"
-                />
-              </div>
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
-                <video
-                  src="/videos/seedance.mov"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  disablePictureInPicture
-                  controlsList="nodownload nofullscreen noremoteplayback"
-                  className="w-full h-full object-cover object-center pointer-events-none select-none"
-                />
-              </div>
-            </motion.div>
           </motion.div>
         </section>
       </div>
