@@ -46,50 +46,31 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
         {project.overview}
       </motion.p>
       
-      {/* Info Grid - 2x2 layout */}
-      <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-12"
+      {/* Compact meta row */}
+      <motion.dl
+        className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.3 }}
       >
-        <div>
-          <span className="text-sm text-muted-foreground block mb-2">
-            role
-          </span>
-          <p className="text-base font-medium text-foreground/90">
-            {project.role}
-          </p>
+        <div className="flex gap-1.5">
+          <dt className="text-muted-foreground/70">role</dt>
+          <dd className="text-foreground/70">{project.role}</dd>
         </div>
-        
-        <div>
-          <span className="text-sm text-muted-foreground block mb-2">
-            team
-          </span>
-          <p className="text-base font-medium text-foreground/90">
-            {project.team}
-          </p>
+        <div className="flex gap-1.5">
+          <dt className="text-muted-foreground/70">team</dt>
+          <dd className="text-foreground/70">{project.team}</dd>
         </div>
-        
-        <div>
-          <span className="text-sm text-muted-foreground block mb-2">
-            timeline
-          </span>
-          <p className="text-base font-medium text-foreground/90">
-            {project.timeline}
-          </p>
+        <div className="flex gap-1.5">
+          <dt className="text-muted-foreground/70">timeline</dt>
+          <dd className="text-foreground/70">{project.timeline}</dd>
         </div>
-        
-        <div>
-          <span className="text-sm text-muted-foreground block mb-2">
-            skills
-          </span>
-          <p className="text-base font-medium text-foreground/90">
-            {project.skills.join(", ")}
-          </p>
+        <div className="flex gap-1.5">
+          <dt className="text-muted-foreground/70">skills</dt>
+          <dd className="text-foreground/70">{project.skills.join(", ")}</dd>
         </div>
-      </motion.div>
+      </motion.dl>
     </section>
   );
 };
