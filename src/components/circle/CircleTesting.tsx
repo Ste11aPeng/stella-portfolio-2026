@@ -37,6 +37,13 @@ const iterationSlides = [
     title: "Hardware",
     caption: "Arduino + ESP32 prototype detecting power loss across Normal, Outage, Restore, and Final Proto states.",
   },
+  {
+    src: iterationCarousel5,
+    alt: "Branding moodboard, brand voice spectrum, and UI/UX wireframes evolving from low-fi to high-fi",
+    title: "Branding",
+    caption:
+      "We aligned on a shared brand voice — warm, calm, trustworthy — then translated it into UI/UX, moving from low-fi wireframes to high-fi screens that feel approachable for both elderly users and their caregivers.",
+  },
 ];
 
 const IterationCarousel = () => {
