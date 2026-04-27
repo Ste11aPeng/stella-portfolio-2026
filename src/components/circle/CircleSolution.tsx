@@ -130,7 +130,7 @@ const CircleSolution = () => {
         <SolutionCarousel />
       </motion.div>
 
-      {/* Making Waves at IPD Trade Show */}
+      {/* Impact */}
       <motion.div className="mb-8" initial={{
       opacity: 0,
       y: 20
