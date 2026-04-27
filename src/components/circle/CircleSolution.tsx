@@ -29,9 +29,12 @@ const CircleSolution = () => {
         <span className="text-sm text-muted-foreground block mb-2">
           solution
         </span>
-        <h2 className="text-2xl font-bold mb-8 text-foreground">
-          Circle Status: A Lamp That Speaks When You Can't
-        </h2>
+        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2 mb-8">
+          <h2 className="text-2xl font-bold text-foreground">
+            A Lamp That Speaks When You Can't
+          </h2>
+          <span className="text-sm text-muted-foreground">2 deliverables</span>
+        </div>
       </motion.div>
 
       {/* Smart Outage Lamp */}
