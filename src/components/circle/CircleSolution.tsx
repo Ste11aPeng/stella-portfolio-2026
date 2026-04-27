@@ -29,9 +29,6 @@ const CircleSolution = () => {
         <span className="text-sm text-muted-foreground block mb-2">
           solution
         </span>
-        <h2 className="text-2xl font-bold mb-8 text-foreground">
-          A Lamp That Speaks When You Can't
-        </h2>
       </motion.div>
 
       {/* Smart Outage Lamp */}
@@ -49,17 +46,18 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.1
     }}>
-        <h3 className="text-xl font-semibold mb-4 text-foreground">
-          01 — The Lamp
+        <h3 className="text-2xl font-bold mb-4 text-foreground">
+          01 — The Lamp That Speaks When You Can't
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           A soft-textured lamp with battery backup that works as daily lighting and triggers the app's detection flow when power fails.
         </p>
         <div className="group relative overflow-hidden rounded-lg">
           <ImageLightbox src={solution1Image} alt="Smart Outage Lamp - Product renders showing soft-serrated texture and night light with battery backup" className="w-full rounded-lg" />
-          {/* Hover overlay: progressive bottom blur (top weakest, bottom strongest) */}
+          {/* Hover overlay: progressive bottom blur + text, synced fade */}
           <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-3/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-3/5 opacity-0 group-hover:opacity-100"
+            style={{ transition: "opacity 700ms cubic-bezier(0.4, 0, 0.2, 1)" }}
             aria-hidden="true"
           >
             <div
@@ -91,7 +89,10 @@ const CircleSolution = () => {
               }}
             />
           </div>
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 md:p-6 opacity-0 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 p-5 md:p-6 opacity-0 group-hover:opacity-100"
+            style={{ transition: "opacity 700ms cubic-bezier(0.4, 0, 0.2, 1)" }}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5 text-white">
               <div>
                 <h4 className="text-xs md:text-sm font-semibold mb-1">Soft-Serrated Texture for Safe Handling</h4>
@@ -121,8 +122,8 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.2
     }}>
-        <h3 className="text-xl font-semibold mb-4 text-foreground">
-          02 — The App
+        <h3 className="text-2xl font-bold mb-4 text-foreground">
+          02 — The App That Turns Signals Into Support
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           The companion app converts outage detection into instant notifications, easy check-ins, and community support.
