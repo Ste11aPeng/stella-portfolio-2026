@@ -8,7 +8,7 @@ import solution1Image from "@/assets/circle-solution-1.png";
 import solution2Carousel1 from "@/assets/circle-solution-2-carousel-1.png";
 import solution2Carousel2 from "@/assets/circle-solution-2-carousel-2.png";
 import solution2Carousel3 from "@/assets/circle-solution-2-carousel-3.png";
-import solution3Image from "@/assets/circle-solution-3.png";
+
 import impactImage from "@/assets/circle-solution-impact.png";
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 const CircleSolution = () => {
