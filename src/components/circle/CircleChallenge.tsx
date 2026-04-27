@@ -16,25 +16,15 @@ const CircleChallenge = () => {
         </span>
       </motion.div>
 
-      <motion.p
-        className="text-base text-muted-foreground mb-8 leading-relaxed"
+      <motion.h3
+        className="text-xl font-semibold text-muted-foreground leading-relaxed"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.05 }}
       >
-        The brief was open: <span className="text-foreground">help communities cope with power outages</span>. Our job was to find a <span className="text-foreground">niche user</span> and a <span className="text-foreground">specific moment</span> worth designing for.
-      </motion.p>
-
-      <motion.p
-        className="text-lg md:text-xl text-muted-foreground leading-relaxed"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
-      >
-        How might we help <span className="text-foreground font-medium">neighbors who don't know each other</span> feel <span className="text-foreground font-medium">safe enough to ask for help</span> when the <span className="text-foreground font-medium">power goes out</span>?
-      </motion.p>
+        How might we help <span className="text-foreground">neighbors who don't know each other</span> feel <span className="text-foreground">safe enough to ask for help</span> when the <span className="text-foreground">power goes out</span>?
+      </motion.h3>
     </section>
   );
 };
