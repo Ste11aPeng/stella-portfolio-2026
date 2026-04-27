@@ -1,10 +1,93 @@
 import { motion, type Easing } from "framer-motion";
+import { useEffect, useState } from "react";
 import ImageLightbox from "@/components/ImageLightbox";
-import iteration1Image from "@/assets/circle-iteration-1.png";
-import iteration2Image from "@/assets/circle-iteration-2.png";
-import iteration3Image from "@/assets/circle-iteration-3.png";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
+import iterationCarousel1 from "@/assets/circle-iteration-carousel-1.png";
+import iterationCarousel2 from "@/assets/circle-iteration-carousel-2.png";
+import iterationCarousel3 from "@/assets/circle-iteration-carousel-3.png";
+import iterationCarousel4 from "@/assets/circle-iteration-carousel-4.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
+
+const iterationSlides = [
+  {
+    src: iterationCarousel1,
+    alt: "Personas - Luddite Robert and Young Jason",
+    title: "Personas",
+    caption:
+      "Low-tech users are the primary risk group. Personas surfaced a cluster of elderly, low-digital-confidence users who wouldn't open an app, which is why the lamp needed to work without any app interaction at all.",
+  },
+  {
+    src: iterationCarousel2,
+    alt: "Expert review presentation at University of Michigan",
+    title: "Expert review",
+    caption:
+      "2 rounds of design reviews pushed us to make safety feel like furniture, not a device. Accessibility experts flagged that flashing lights could trigger anxiety, so we moved to a slow pulse.",
+  },
+  {
+    src: iterationCarousel3,
+    alt: "100+ ideas refined to 9 concept cards and form-factor sketches",
+    title: "100+ ideas, 9 refined concept cards",
+    caption:
+      'Concept validation with 50 people confirmed the direction: "Notify Light" scored highest on both desirability and trust.',
+  },
+  {
+    src: iterationCarousel4,
+    alt: "Hardware prototyping with Arduino and ESP32 across Normal, Outage, Restore, and Final Proto states",
+    title: "Hardware",
+    caption: "Arduino + ESP32 prototype detecting power loss across Normal, Outage, Restore, and Final Proto states.",
+  },
+];
+
+const IterationCarousel = () => {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
+    api.on("select", () => setCurrent(api.selectedScrollSnap()));
+  }, [api]);
+
+  return (
+    <div className="relative">
+      <Carousel setApi={setApi} opts={{ loop: true }} className="w-full">
+        <CarouselContent>
+          {iterationSlides.map((slide, i) => (
+            <CarouselItem key={i}>
+              <div className="space-y-5">
+                <ImageLightbox src={slide.src} alt={slide.alt} className="w-full rounded-lg" />
+                <div>
+                  <h3 className="text-xl font-semibold mb-2 text-foreground">{slide.title}</h3>
+                  <p className="text-base text-foreground/80 leading-relaxed">{slide.caption}</p>
+                </div>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="left-3 hidden sm:flex" />
+        <CarouselNext className="right-3 hidden sm:flex" />
+      </Carousel>
+
+      {/* Indicators */}
+      <div className="flex justify-center gap-2 mt-6">
+        {Array.from({ length: count }).map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Go to slide ${i + 1}`}
+            onClick={() => api?.scrollTo(i)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              i === current ? "w-6 bg-foreground" : "w-1.5 bg-foreground/30 hover:bg-foreground/50"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const CircleTesting = () => {
   return (
@@ -18,90 +101,18 @@ const CircleTesting = () => {
         <span className="text-sm text-muted-foreground block mb-2">
           iteration
         </span>
-        <h2 className="text-2xl font-bold mb-6 text-foreground">
+        <h2 className="text-2xl font-bold mb-8 text-foreground">
           From Feedback to Functional Prototype
         </h2>
       </motion.div>
 
-      {/* Iteration 1 */}
       <motion.div
-        className="mb-12"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        <h3 className="text-xl font-semibold mb-3 text-foreground">
-          Expert Review: Safety Meets Approachability
-        </h3>
-        <ul className="list-none mb-6 space-y-3">
-          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            Industry and accessibility experts stressed safety should feel intuitive
-          </li>
-          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            Affinity diagramming to synthesize and prioritize feedback
-          </li>
-        </ul>
-        <ImageLightbox
-          src={iteration1Image}
-          alt="Iteration 1 - Design review presentation and affinity mapping at University of Michigan"
-          className="w-full rounded-lg"
-        />
-      </motion.div>
-
-      {/* Iteration 2 */}
-      <motion.div
-        className="mb-12"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
-      >
-        <h3 className="text-xl font-semibold mb-3 text-foreground">
-          Concept Validation: 50-Person Survey
-        </h3>
-        <ul className="list-none mb-6 space-y-3">
-          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            Surveyed 50 people on purchase interest; "Notify Light" scored highest
-          </li>
-          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            Led branding workshop to unify visual and emotional tone
-          </li>
-        </ul>
-        <ImageLightbox
-          src={iteration2Image}
-          alt="Iteration 2 - 100+ ideas refined to 9 concept cards, team branding sync, and sketches"
-          className="w-full rounded-lg"
-        />
-      </motion.div>
-
-      {/* Iteration 3 */}
-      <motion.div
-        className="mb-8"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, ease: easeOut, delay: 0.3 }}
-      >
-        <h3 className="text-xl font-semibold mb-3 text-foreground">
-          Hardware Prototype: Arduino + ESP32
-        </h3>
-        <ul className="list-none mb-6 space-y-3">
-          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            Detects power loss and pulses a light for network notification
-          </li>
-          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            Built on Feather HUZZAH32 (ESP32) with LiPo backup
-          </li>
-          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            Debouncing and state machine prevent false alarms
-          </li>
-        </ul>
-        <ImageLightbox
-          src={iteration3Image}
-          alt="Iteration 3 - Hardware prototyping with Arduino showing Normal, Outage, and Restore states"
-          className="w-full rounded-lg"
-        />
+        <IterationCarousel />
       </motion.div>
     </section>
   );

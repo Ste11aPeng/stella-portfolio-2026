@@ -1,8 +1,6 @@
 import { motion, type Easing } from "framer-motion";
-import { Separator } from "@/components/ui/separator";
 import ImageLightbox from "@/components/ImageLightbox";
 import research1Image from "@/assets/circle-research-1.png";
-import research2Image from "@/assets/circle-research-2.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
@@ -19,67 +17,22 @@ const CircleResearch = () => {
           research
         </span>
         <h2 className="text-2xl font-bold mb-4 text-foreground">
-          Understanding How Communities Cope
+          Research & User Modeling
         </h2>
-        <p className="text-base text-foreground/70 leading-relaxed mb-8">
-          Mixed-methods research to uncover behavioral patterns during outages.
+        <p className="text-base text-foreground/80 leading-relaxed mb-8">
+          We ran 50+ household interviews and surveyed 200 Midwest residents, then used CART analysis to find what actually predicts help-seeking behavior during outages.
         </p>
       </motion.div>
 
-      {/* UX Research */}
       <motion.div
-        className="mb-14"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        <h3 className="text-xl font-semibold mb-4 text-foreground">
-          50+ Voices from the Midwest
-        </h3>
-        <ul className="list-none mb-6 space-y-3">
-          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            <strong className="text-foreground/90">Semi-structured interviews</strong> with 50+ households on outage experiences
-          </li>
-          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            <strong className="text-foreground/90">Affinity Diagramming</strong> and <strong className="text-foreground/90">Empathy Mapping</strong> to synthesize insights
-          </li>
-        </ul>
-      </motion.div>
-
-      <Separator className="my-10" />
-
-      {/* Data Analysis & Stakeholders - Merged */}
-      <motion.div
-        className="mb-14"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
-      >
-        <h3 className="text-xl font-semibold mb-4 text-foreground">
-          Survey Analysis & Stakeholder Mapping
-        </h3>
-        <ul className="list-none mb-6 space-y-3">
-          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            200 respondents surveyed on preparedness and willingness to help
-          </li>
-          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            <strong className="text-foreground/90">CART analysis</strong> identified confidence and neighbor trust as key predictors
-          </li>
-          <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
-            Simplified caregiver notification flows and privacy controls
-          </li>
-        </ul>
-        
         <ImageLightbox
           src={research1Image}
-          alt="Exploratory Data Analysis and CART - Feature importance and help-seeking behavior charts"
-          className="w-full rounded-lg mb-6"
-        />
-        <ImageLightbox
-          src={research2Image}
-          alt="Stakeholder analysis diagram and user personas"
+          alt="Research findings: interviews, affinity diagram, empathy map, and CART feature importance"
           className="w-full rounded-lg"
         />
       </motion.div>
