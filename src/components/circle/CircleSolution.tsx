@@ -152,13 +152,7 @@ const CircleSolution = () => {
         </p>
         <div className="flex flex-wrap gap-x-16 gap-y-8 mb-8">
           <div>
-            <p
-              className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 bg-clip-text text-transparent"
-              style={{
-                backgroundImage:
-                  "linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.55) 100%)",
-              }}
-            >
+            <p className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 text-foreground">
               <AnimatedNumber value={264} />
             </p>
             <p className="text-sm text-muted-foreground">
@@ -166,13 +160,7 @@ const CircleSolution = () => {
             </p>
           </div>
           <div>
-            <p
-              className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 bg-clip-text text-transparent"
-              style={{
-                backgroundImage:
-                  "linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.55) 100%)",
-              }}
-            >
+            <p className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 text-foreground">
               $1M+
             </p>
             <p className="text-sm text-muted-foreground">
@@ -195,13 +183,41 @@ const SolutionCarousel = () => {
   return (
     <ProjectCarousel>
       {carouselSlides.map((slide, i) => (
-        <div className="relative" key={i}>
+        <div className="group relative overflow-hidden rounded-lg" key={i}>
           <ImageLightbox
             src={slide.src}
             alt={slide.alt}
             className="w-full rounded-lg"
             disableMotion
           />
+          {/* Hover overlay: progressive bottom blur + soft gradient */}
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 opacity-0 group-hover:opacity-100 rounded-b-lg overflow-hidden"
+            style={{ transition: "opacity 700ms cubic-bezier(0.4, 0, 0.2, 1)" }}
+            aria-hidden="true"
+          >
+            <div
+              className="absolute inset-0 backdrop-blur-[2px]"
+              style={{
+                maskImage: "linear-gradient(to bottom, transparent 0%, black 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 100%)",
+              }}
+            />
+            <div
+              className="absolute inset-0 backdrop-blur-[6px]"
+              style={{
+                maskImage: "linear-gradient(to bottom, transparent 30%, black 80%)",
+                WebkitMaskImage: "linear-gradient(to bottom, transparent 30%, black 80%)",
+              }}
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to bottom, hsl(0 0% 0% / 0) 0%, hsl(0 0% 0% / 0.18) 50%, hsl(0 0% 0% / 0.45) 100%)",
+              }}
+            />
+          </div>
           {i === 2 && (
             <Button
               asChild
