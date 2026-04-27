@@ -81,13 +81,6 @@ const CircleSolution = () => {
                 WebkitMaskImage: "linear-gradient(to bottom, transparent 55%, black 90%)",
               }}
             />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(to bottom, hsl(0 0% 0% / 0) 0%, hsl(0 0% 0% / 0.25) 45%, hsl(0 0% 0% / 0.65) 100%)",
-              }}
-            />
           </div>
           <div
             className="pointer-events-none absolute inset-x-0 bottom-0 p-5 md:p-6 opacity-0 group-hover:opacity-100"
