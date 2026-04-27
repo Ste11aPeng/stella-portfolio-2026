@@ -79,7 +79,7 @@ const CircleSolution = () => {
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           The companion app converts outage detection into instant notifications, easy check-ins, and community support.
         </p>
-        <ImageLightbox src={solution2Image} alt="Circle Status App - Smart device status, community map, and easy check-in features" className="w-full rounded-lg" />
+        <SolutionCarousel />
       </motion.div>
 
       {/* Fully Functional Website */}
