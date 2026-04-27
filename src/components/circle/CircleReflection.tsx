@@ -11,10 +11,10 @@ const CircleReflection = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut }}
       >
-        <span className="text-sm text-muted-foreground block mb-2">
+        <span className="text-sm text-muted-foreground mb-3 block">
           reflection
         </span>
-        <h2 className="text-2xl font-bold mb-6 text-foreground">
+        <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
           What I Learned
         </h2>
       </motion.div>
