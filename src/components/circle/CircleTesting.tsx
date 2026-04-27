@@ -1,7 +1,6 @@
 import { motion, type Easing } from "framer-motion";
-import { useEffect, useState } from "react";
 import ImageLightbox from "@/components/ImageLightbox";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
+import ProjectCarousel from "@/components/ProjectCarousel";
 import iterationCarousel1 from "@/assets/circle-iteration-carousel-1.png";
 import iterationCarousel2 from "@/assets/circle-iteration-carousel-2.png";
 import iterationCarousel3 from "@/assets/circle-iteration-carousel-3.png";
@@ -40,52 +39,27 @@ const iterationSlides = [
 ];
 
 const IterationCarousel = () => {
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!api) return;
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap());
-    api.on("select", () => setCurrent(api.selectedScrollSnap()));
-  }, [api]);
-
   return (
-    <div className="relative">
-      <Carousel setApi={setApi} opts={{ loop: true }} className="w-full">
-        <CarouselContent>
-          {iterationSlides.map((slide, i) => (
-            <CarouselItem key={i}>
-              <div className="space-y-5">
-                <ImageLightbox src={slide.src} alt={slide.alt} className="w-full rounded-lg" />
-                <div>
-                  <h3 className="text-xl font-semibold mb-2 text-foreground">{slide.title}</h3>
-                  <p className="text-base text-foreground/80 leading-relaxed">{slide.caption}</p>
-                </div>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious className="left-3 hidden sm:flex" />
-        <CarouselNext className="right-3 hidden sm:flex" />
-      </Carousel>
-
-      {/* Indicators */}
-      <div className="flex justify-center gap-2 mt-6">
-        {Array.from({ length: count }).map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            aria-label={`Go to slide ${i + 1}`}
-            onClick={() => api?.scrollTo(i)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === current ? "w-6 bg-foreground" : "w-1.5 bg-foreground/30 hover:bg-foreground/50"
-            }`}
+    <ProjectCarousel>
+      {iterationSlides.map((slide, i) => (
+        <div className="space-y-5" key={i}>
+          <ImageLightbox
+            src={slide.src}
+            alt={slide.alt}
+            className="w-full rounded-lg"
+            disableMotion
           />
-        ))}
-      </div>
-    </div>
+          <div>
+            <h3 className="text-xl font-semibold mb-2 text-foreground">
+              {slide.title}
+            </h3>
+            <p className="text-base text-foreground/80 leading-relaxed">
+              {slide.caption}
+            </p>
+          </div>
+        </div>
+      ))}
+    </ProjectCarousel>
   );
 };
 
