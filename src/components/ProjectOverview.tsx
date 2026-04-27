@@ -12,28 +12,17 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
     <section id="overview" className="pt-16">
       <div className="overflow-hidden">
         <motion.h2
-          className="text-4xl mb-4 tracking-tight text-foreground"
+          className="text-4xl mb-12 tracking-tight text-foreground flex flex-wrap items-baseline gap-x-3"
           style={{ fontFamily: "'New Spirit', serif", fontWeight: 400 }}
           initial={{ y: "100%", rotateX: 40 }}
           whileInView={{ y: 0, rotateX: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          {project.title}
+          <span>{project.title}</span>
+          <span className="text-foreground/40" aria-hidden="true">·</span>
+          <span className="text-foreground/60">{project.tagline}</span>
         </motion.h2>
-      </div>
-      
-      <div className="overflow-hidden">
-        <motion.p
-          className="text-3xl text-foreground/60 mb-12 leading-relaxed"
-          style={{ fontFamily: "'New Spirit', serif", fontWeight: 400 }}
-          initial={{ y: "100%", opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.12 }}
-        >
-          {project.tagline}
-        </motion.p>
       </div>
       
       <motion.p
