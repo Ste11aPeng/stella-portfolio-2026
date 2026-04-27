@@ -1,5 +1,5 @@
-import { motion, type Easing } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, type Easing, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import ImageLightbox from "@/components/ImageLightbox";
