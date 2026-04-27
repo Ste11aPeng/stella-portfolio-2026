@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import ImageLightbox from "@/components/ImageLightbox";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
-import solution1Image from "@/assets/circle-solution-1.png";
+import solution1Image from "@/assets/circle-solution-1-new.png";
 import solution2Carousel1 from "@/assets/circle-solution-2-carousel-1.png";
 import solution2Carousel2 from "@/assets/circle-solution-2-carousel-2.png";
 import solution2Carousel3 from "@/assets/circle-solution-2-carousel-3.png";
@@ -58,7 +58,31 @@ const CircleSolution = () => {
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           A soft-textured lamp with battery backup that works as daily lighting and triggers the app's detection flow when power fails.
         </p>
-        <ImageLightbox src={solution1Image} alt="Smart Outage Lamp - Product renders showing soft-serrated texture and night light with battery backup" className="w-full rounded-lg" />
+        <div className="group relative overflow-hidden rounded-lg">
+          <ImageLightbox src={solution1Image} alt="Smart Outage Lamp - Product renders showing soft-serrated texture and night light with battery backup" className="w-full rounded-lg" />
+          {/* Hover overlay: bottom gradient blur + text */}
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100 backdrop-blur-md"
+            style={{
+              maskImage: "linear-gradient(to bottom, transparent 0%, black 40%)",
+              WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 40%)",
+              backgroundColor: "hsl(var(--background) / 0.4)",
+            }}
+            aria-hidden="true"
+          />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6 md:p-8 opacity-0 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-foreground">
+              <div>
+                <h4 className="text-sm md:text-base font-semibold mb-1">Soft-Serrated Texture for Safe Handling</h4>
+                <p className="text-xs md:text-sm text-foreground/80 leading-relaxed">It increases friction, making it easier to grip, unplug, and carry.</p>
+              </div>
+              <div>
+                <h4 className="text-sm md:text-base font-semibold mb-1">Everyday Night Light with Battery Backup</h4>
+                <p className="text-xs md:text-sm text-foreground/80 leading-relaxed">Works as a simple night lamp every day.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </motion.div>
 
       {/* Product Prototype */}
