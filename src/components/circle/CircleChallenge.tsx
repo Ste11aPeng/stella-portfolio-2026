@@ -17,7 +17,7 @@ const CircleChallenge = () => {
       </motion.div>
 
       <motion.p
-        className="text-sm text-muted-foreground mb-6 leading-relaxed"
+        className="text-base text-foreground/80 mb-6 leading-relaxed"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
@@ -27,7 +27,7 @@ const CircleChallenge = () => {
       </motion.p>
 
       <motion.p
-        className="text-base text-foreground/80 leading-relaxed"
+        className="text-lg md:text-xl text-foreground leading-relaxed font-medium"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}

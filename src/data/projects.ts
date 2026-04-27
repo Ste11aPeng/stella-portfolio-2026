@@ -47,7 +47,7 @@ export const projects: Project[] = [
     description: "connecting neighbors through ambient awareness",
     type: "school project",
     role: "Product Designer: 3D Modeling, Prototyping, Website Design",
-    team: "Product Design (Me), PM (David C), SWE (Garima), Visual Design (Maggie), Lecturer (Etika B., Bruce T.)",
+    team: "2 designer, 1 PM, 1 SWE",
     timeline: "Fall 2024 (15 weeks)",
     skills: ["Figma", "Blender", "Rhino", "Webflow"],
     tags: ["UI/UX design", "IoT", "community"],

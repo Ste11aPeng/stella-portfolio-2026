@@ -82,34 +82,6 @@ const CircleSolution = () => {
         <SolutionCarousel />
       </motion.div>
 
-      {/* Fully Functional Website */}
-      <motion.div className="mb-14" initial={{
-      opacity: 0,
-      y: 20
-    }} whileInView={{
-      opacity: 1,
-      y: 0
-    }} viewport={{
-      once: true,
-      margin: "-50px"
-    }} transition={{
-      duration: 0.5,
-      ease: easeOut,
-      delay: 0.3
-    }}>
-        <h3 className="text-xl font-semibold mb-4 text-foreground">Brand Presence - Built in 48 Hours</h3>
-        <p className="text-base text-foreground/80 leading-relaxed mb-4">I designed and launched a Webflow site in two days (...before ai era) as a branding hub and online trade show booth.</p>
-        <div className="relative">
-          <ImageLightbox src={solution3Image} alt="Circle Status Website - Connected In The Dark landing page" className="w-full rounded-lg" />
-          <Button asChild size="sm" className="absolute top-4 left-4 bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm">
-            <a href="https://circlestatus.webflow.io/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-              Visit Live Website
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          </Button>
-        </div>
-      </motion.div>
-
       {/* Making Waves at IPD Trade Show */}
       <motion.div className="mb-8" initial={{
       opacity: 0,
@@ -168,7 +140,17 @@ const SolutionCarousel = () => {
         <CarouselContent>
           {carouselSlides.map((slide, i) => (
             <CarouselItem key={i}>
-              <ImageLightbox src={slide.src} alt={slide.alt} className="w-full rounded-lg" />
+              <div className="relative">
+                <ImageLightbox src={slide.src} alt={slide.alt} className="w-full rounded-lg" />
+                {i === 2 && (
+                  <Button asChild size="sm" className="absolute top-4 left-4 bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm z-10">
+                    <a href="https://circlestatus.webflow.io/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                      Visit Live Website
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </Button>
+                )}
+              </div>
             </CarouselItem>
           ))}
         </CarouselContent>
