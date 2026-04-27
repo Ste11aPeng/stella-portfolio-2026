@@ -17,6 +17,12 @@ interface ProjectCarouselProps {
    * captions below the image).
    */
   alignArrowsToImage?: boolean;
+  /**
+   * When provided, renders a step progress indicator above the carousel:
+   * "Step 0X of 0N · {step name}" plus a thin progress bar that fills as
+   * the user advances. Length should match the number of slides.
+   */
+  steps?: string[];
 }
 
 /**
@@ -24,7 +30,11 @@ interface ProjectCarouselProps {
  * Visual rules: subtle backdrop-blur arrows that fade in on hover,
  * thin animated indicators below, smooth embla scroll.
  */
-const ProjectCarousel = ({ children, alignArrowsToImage = false }: ProjectCarouselProps) => {
+const ProjectCarousel = ({
+  children,
+  alignArrowsToImage = false,
+  steps,
+}: ProjectCarouselProps) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
