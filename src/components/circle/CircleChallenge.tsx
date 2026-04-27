@@ -1,6 +1,4 @@
 import { motion, type Easing } from "framer-motion";
-import ImageLightbox from "@/components/ImageLightbox";
-import challengeImage from "@/assets/circle-challenge.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
@@ -16,24 +14,27 @@ const CircleChallenge = () => {
         <span className="text-sm text-muted-foreground block mb-2">
           challenge
         </span>
-        <h2 className="text-2xl font-bold mb-8 text-foreground">
-          How might we help isolated communities stay connected and supported during power outages?
-        </h2>
       </motion.div>
 
-      <motion.div
-        className="mb-8"
+      <motion.p
+        className="text-sm text-muted-foreground mb-6 leading-relaxed"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: easeOut, delay: 0.05 }}
+      >
+        The brief: Help communities cope with power outages.
+      </motion.p>
+
+      <motion.p
+        className="text-base text-foreground/80 leading-relaxed"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        <ImageLightbox
-          src={challengeImage}
-          alt="Power Outages Is Never A Local Problem - intersecting public health, infrastructure reliability, and climate resilience"
-          className="w-full rounded-lg"
-        />
-      </motion.div>
+        What we actually discovered: People know what to do during an outage. What stops them from asking for help is not lack of resources, it's low confidence and distrust of neighbors. The real problem isn't darkness. It's silence.
+      </motion.p>
     </section>
   );
 };

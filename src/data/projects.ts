@@ -1,5 +1,5 @@
 const askSiaImage = "/images/project-asksia.webp";
-import circleStatusImage from "@/assets/project-circle-status.webp";
+import circleStatusImage from "@/assets/project-circle-status.png";
 import stitchiImage from "@/assets/project-stitchi.webp";
 import philoImage from "@/assets/project-philo.webp";
 import tellToolImage from "@/assets/project-telltool.webp";
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     timeline: "Fall 2024 (15 weeks)",
     skills: ["Figma", "Blender", "Rhino", "Webflow"],
     tags: ["UI/UX design", "IoT", "community"],
-    overview: "This is a project for Integrated Product Development (IPD) course at University of Michigan. Theme of 2024 is When the Lights Go Out. As cross-disciplinary design and development teams, how might we help people deal with electrical power outages, to ensure that basic needs can be met, inconveniences of the disruption are reduced, and/or possible benefits of the situation are leveraged or embraced."
+    overview: "Circle Status is a smart lamp and companion app that turns passive outage detection into active community connection. Built in 15 weeks as part of Michigan's IPD program, it launched at a 200-person trade show and sold 264 units in 3 days."
   },
   {
     id: "stitchi",
