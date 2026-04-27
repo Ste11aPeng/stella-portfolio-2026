@@ -29,9 +29,6 @@ const CircleSolution = () => {
         <span className="text-sm text-muted-foreground block mb-2">
           solution
         </span>
-        <h2 className="text-2xl font-bold mb-8 text-foreground">
-          A Lamp That Speaks When You Can't
-        </h2>
       </motion.div>
 
       {/* Smart Outage Lamp */}
