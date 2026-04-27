@@ -149,22 +149,34 @@ const CircleSolution = () => {
         <span className="text-sm text-muted-foreground block mb-2">impact</span>
         <h3 className="text-2xl font-bold mb-3 text-foreground">$1M+ in Trade Show Currency</h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">Showcased at the Ross School of Business IPD Trade Show with 200+ attendees</p>
-        <div className="rounded-lg border border-border/40 bg-muted/20 p-8 mb-6">
-          <div className="grid grid-cols-2 gap-6 text-center">
-            <div className="flex flex-col items-center">
-              <p className="text-5xl md:text-6xl font-bold tracking-tight text-foreground leading-none mb-3">
-                <AnimatedNumber value={264} />
-                <span className="text-foreground/50 font-medium"> Units</span>
-              </p>
-              <p className="text-sm text-muted-foreground">Sold in 3 days</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <p className="text-5xl md:text-6xl font-bold tracking-tight text-foreground leading-none mb-3">
-                $<AnimatedNumber value={1} />
-                <span>M+</span>
-              </p>
-              <p className="text-sm text-muted-foreground">Trade Currency</p>
-            </div>
+        <div className="flex flex-wrap gap-x-16 gap-y-8 mb-8">
+          <div>
+            <p
+              className="text-6xl md:text-7xl font-bold tracking-tight leading-none mb-2 bg-clip-text text-transparent"
+              style={{
+                backgroundImage:
+                  "linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.55) 100%)",
+              }}
+            >
+              <AnimatedNumber value={264} />
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Units sold in 3 days
+            </p>
+          </div>
+          <div>
+            <p
+              className="text-6xl md:text-7xl font-bold tracking-tight leading-none mb-2 bg-clip-text text-transparent"
+              style={{
+                backgroundImage:
+                  "linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.55) 100%)",
+              }}
+            >
+              $1M+
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Trade show currency
+            </p>
           </div>
         </div>
         <ImageLightbox src={impactImage} alt="IPD Trade Show - Team presenting Circle Status to attendees" className="w-full rounded-lg" />
