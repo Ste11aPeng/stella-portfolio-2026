@@ -5,6 +5,7 @@ import iterationCarousel1 from "@/assets/circle-iteration-carousel-1.png";
 import iterationCarousel2 from "@/assets/circle-iteration-carousel-2.png";
 import iterationCarousel3 from "@/assets/circle-iteration-carousel-3.png";
 import iterationCarousel4 from "@/assets/circle-iteration-carousel-4.png";
+import iterationCarousel5 from "@/assets/circle-iteration-carousel-5.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
