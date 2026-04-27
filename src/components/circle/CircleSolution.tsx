@@ -183,8 +183,12 @@ const SolutionCarousel = () => {
   }, [api]);
 
   return (
-    <div className="relative">
-      <Carousel setApi={setApi} opts={{ loop: true }} className="w-full">
+    <div className="relative group/carousel">
+      <Carousel
+        setApi={setApi}
+        opts={{ loop: true, duration: 35, align: "start" }}
+        className="w-full"
+      >
         <CarouselContent>
           {carouselSlides.map((slide, i) => (
             <CarouselItem key={i}>
@@ -202,20 +206,24 @@ const SolutionCarousel = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-3 hidden sm:flex" />
-        <CarouselNext className="right-3 hidden sm:flex" />
+        <CarouselPrevious
+          className="left-3 hidden sm:flex h-9 w-9 border-0 bg-background/40 text-foreground/70 backdrop-blur-md shadow-none opacity-0 group-hover/carousel:opacity-100 hover:bg-background/70 hover:text-foreground transition-all duration-300"
+        />
+        <CarouselNext
+          className="right-3 hidden sm:flex h-9 w-9 border-0 bg-background/40 text-foreground/70 backdrop-blur-md shadow-none opacity-0 group-hover/carousel:opacity-100 hover:bg-background/70 hover:text-foreground transition-all duration-300"
+        />
       </Carousel>
 
       {/* Indicators */}
-      <div className="flex justify-center gap-2 mt-4">
+      <div className="flex justify-center gap-1.5 mt-4">
         {Array.from({ length: count }).map((_, i) => (
           <button
             key={i}
             type="button"
             aria-label={`Go to slide ${i + 1}`}
             onClick={() => api?.scrollTo(i)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === current ? "w-6 bg-foreground" : "w-1.5 bg-foreground/30 hover:bg-foreground/50"
+            className={`h-1 rounded-full transition-all duration-500 ease-out ${
+              i === current ? "w-5 bg-foreground/80" : "w-1 bg-foreground/20 hover:bg-foreground/40"
             }`}
           />
         ))}
