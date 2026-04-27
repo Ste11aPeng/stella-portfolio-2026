@@ -1,5 +1,5 @@
-import { motion, type Easing } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, type Easing, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import ImageLightbox from "@/components/ImageLightbox";
@@ -130,7 +130,7 @@ const CircleSolution = () => {
         <SolutionCarousel />
       </motion.div>
 
-      {/* Making Waves at IPD Trade Show */}
+      {/* Impact */}
       <motion.div className="mb-8" initial={{
       opacity: 0,
       y: 20
@@ -145,16 +145,23 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.4
     }}>
-        <h3 className="text-xl font-semibold mb-4 text-foreground">Market Impact - $1M+ in Trade Show Currency</h3>
-        <p className="text-base text-foreground/80 leading-relaxed mb-4">Showcased at the Ross School of Business IPD Trade Show with 200+ attendees</p>
-        <div className="bg-muted/30 rounded-lg p-5 mb-6">
-          <div className="grid grid-cols-2 gap-4 text-center">
-            <div>
-              <p className="text-2xl font-bold text-foreground">264 Units</p>
-              <p className="text-sm text-muted-foreground">Sold in 3 days</p>
+        <span className="text-sm text-muted-foreground block mb-2">impact</span>
+        <h3 className="text-2xl font-bold mb-3 text-foreground">$1M+ in Trade Show Currency</h3>
+        <p className="text-base text-foreground/80 leading-relaxed mb-6">Showcased at the Ross School of Business IPD Trade Show with 200+ attendees</p>
+        <div className="rounded-lg border border-border/40 bg-muted/20 p-8 mb-6">
+          <div className="grid grid-cols-2 gap-6 text-center">
+            <div className="flex flex-col items-center">
+              <p className="text-5xl md:text-6xl font-bold tracking-tight text-foreground leading-none mb-3">
+                <AnimatedNumber value={264} />
+                <span className="text-foreground/50 font-medium"> Units</span>
+              </p>
+              <p className="text-sm text-muted-foreground">Sold in 3 days</p>
             </div>
-            <div>
-              <p className="text-2xl font-bold text-foreground">$1M+</p>
+            <div className="flex flex-col items-center">
+              <p className="text-5xl md:text-6xl font-bold tracking-tight text-foreground leading-none mb-3">
+                $<AnimatedNumber value={1} />
+                <span>M+</span>
+              </p>
               <p className="text-sm text-muted-foreground">Trade Currency</p>
             </div>
           </div>
@@ -230,6 +237,37 @@ const SolutionCarousel = () => {
       </div>
     </div>
   );
+};
+
+interface AnimatedNumberProps {
+  value: number;
+  duration?: number;
+}
+
+const AnimatedNumber = ({ value, duration = 1.6 }: AnimatedNumberProps) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const motionValue = useMotionValue(0);
+  const rounded = useTransform(motionValue, (latest) =>
+    Math.round(latest).toLocaleString()
+  );
+  const [display, setDisplay] = useState("0");
+
+  useEffect(() => {
+    const unsub = rounded.on("change", (v) => setDisplay(v));
+    return () => unsub();
+  }, [rounded]);
+
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(motionValue, value, {
+      duration,
+      ease: [0.16, 1, 0.3, 1],
+    });
+    return () => controls.stop();
+  }, [inView, value, duration, motionValue]);
+
+  return <span ref={ref}>{display}</span>;
 };
 
 export default CircleSolution;
