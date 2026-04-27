@@ -54,9 +54,10 @@ const CircleSolution = () => {
         </p>
         <div className="group relative overflow-hidden rounded-lg">
           <ImageLightbox src={solution1Image} alt="Smart Outage Lamp - Product renders showing soft-serrated texture and night light with battery backup" className="w-full rounded-lg" />
-          {/* Hover overlay: progressive bottom blur (top weakest, bottom strongest) */}
+          {/* Hover overlay: progressive bottom blur + text, synced fade */}
           <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-3/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-3/5 opacity-0 group-hover:opacity-100"
+            style={{ transition: "opacity 700ms cubic-bezier(0.4, 0, 0.2, 1)" }}
             aria-hidden="true"
           >
             <div
@@ -88,7 +89,10 @@ const CircleSolution = () => {
               }}
             />
           </div>
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 md:p-6 opacity-0 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 p-5 md:p-6 opacity-0 group-hover:opacity-100"
+            style={{ transition: "opacity 700ms cubic-bezier(0.4, 0, 0.2, 1)" }}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5 text-white">
               <div>
                 <h4 className="text-xs md:text-sm font-semibold mb-1">Soft-Serrated Texture for Safe Handling</h4>
