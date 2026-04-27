@@ -1,9 +1,13 @@
 import { motion, type Easing } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import ImageLightbox from "@/components/ImageLightbox";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import solution1Image from "@/assets/circle-solution-1.png";
-import solution2Image from "@/assets/circle-solution-2.png";
+import solution2Carousel1 from "@/assets/circle-solution-2-carousel-1.png";
+import solution2Carousel2 from "@/assets/circle-solution-2-carousel-2.png";
+import solution2Carousel3 from "@/assets/circle-solution-2-carousel-3.png";
 import solution3Image from "@/assets/circle-solution-3.png";
 import impactImage from "@/assets/circle-solution-impact.png";
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
