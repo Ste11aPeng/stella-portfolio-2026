@@ -13,13 +13,13 @@ const CircleResearch = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut }}
       >
-        <span className="text-sm text-muted-foreground block mb-2">
+        <span className="text-sm text-muted-foreground mb-3 block">
           research
         </span>
-        <h2 className="text-2xl font-bold mb-4 text-foreground">
+        <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
           Research & User Modeling
         </h2>
-        <p className="text-base text-foreground/80 leading-relaxed mb-8">
+        <p className="text-base text-foreground/80 leading-relaxed mb-10">
           We ran 50+ household interviews and surveyed 200 Midwest residents, then used CART analysis to find what actually predicts help-seeking behavior during outages.
         </p>
       </motion.div>
