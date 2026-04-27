@@ -147,12 +147,13 @@ const CircleSolution = () => {
       delay: 0.4
     }}>
         <span className="text-sm text-muted-foreground block mb-2">impact</span>
-        <h3 className="text-2xl font-bold mb-3 text-foreground">$1M+ in Trade Show Currency</h3>
-        <p className="text-base text-foreground/80 leading-relaxed mb-6">Showcased at the Ross School of Business IPD Trade Show with 200+ attendees</p>
+        <p className="text-base text-foreground/80 leading-relaxed mb-8">
+          Showcased at the Ross School of Business IPD Trade Show with 200+ attendees.
+        </p>
         <div className="flex flex-wrap gap-x-16 gap-y-8 mb-8">
           <div>
             <p
-              className="text-6xl md:text-7xl font-bold tracking-tight leading-none mb-2 bg-clip-text text-transparent"
+              className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 bg-clip-text text-transparent"
               style={{
                 backgroundImage:
                   "linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.55) 100%)",
@@ -166,7 +167,7 @@ const CircleSolution = () => {
           </div>
           <div>
             <p
-              className="text-6xl md:text-7xl font-bold tracking-tight leading-none mb-2 bg-clip-text text-transparent"
+              className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 bg-clip-text text-transparent"
               style={{
                 backgroundImage:
                   "linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.55) 100%)",
