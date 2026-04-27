@@ -29,9 +29,6 @@ const CircleSolution = () => {
         <span className="text-sm text-muted-foreground mb-3 block">
           solution
         </span>
-        <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
-          A Lamp and an App That Work Together
-        </h2>
       </motion.div>
 
       {/* Smart Outage Lamp */}
@@ -49,9 +46,9 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.1
     }}>
-        <h3 className="text-xl font-semibold mb-3 text-foreground">
-          01 — The Lamp That Speaks When You Can't
-        </h3>
+        <h2 className="text-2xl font-bold mb-4 tracking-tight text-foreground">
+          01: The Lamp That Speaks When You Can't
+        </h2>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           A soft-textured lamp with battery backup that works as daily lighting and triggers the app's detection flow when power fails.
         </p>
