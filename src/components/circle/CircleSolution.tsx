@@ -143,4 +143,55 @@ const CircleSolution = () => {
       </motion.div>
     </section>;
 };
+
+const carouselSlides = [
+  { src: solution2Carousel1, alt: "Circle Status App - Smart device, community map, and easy check-in" },
+  { src: solution2Carousel2, alt: "Circle Status App - Main tabs and key user flows" },
+  { src: solution2Carousel3, alt: "Circle Status - Connected In The Dark website" },
+];
+
+const SolutionCarousel = () => {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
+    api.on("select", () => setCurrent(api.selectedScrollSnap()));
+  }, [api]);
+
+  return (
+    <div className="relative">
+      <Carousel setApi={setApi} opts={{ loop: true }} className="w-full">
+        <CarouselContent>
+          {carouselSlides.map((slide, i) => (
+            <CarouselItem key={i}>
+              <ImageLightbox src={slide.src} alt={slide.alt} className="w-full rounded-lg" />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="left-3 hidden sm:flex" />
+        <CarouselNext className="right-3 hidden sm:flex" />
+      </Carousel>
+
+      {/* Indicators */}
+      <div className="flex justify-center gap-2 mt-4">
+        {Array.from({ length: count }).map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Go to slide ${i + 1}`}
+            onClick={() => api?.scrollTo(i)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              i === current ? "w-6 bg-foreground" : "w-1.5 bg-foreground/30 hover:bg-foreground/50"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default CircleSolution;
