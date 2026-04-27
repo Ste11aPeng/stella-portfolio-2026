@@ -7,10 +7,22 @@ interface ImageLightboxProps {
   alt: string;
   className?: string;
   disableMotion?: boolean;
+  /** When true, removes the default hover:opacity-90 effect on the trigger image. */
+  disableHoverEffect?: boolean;
 }
 
-const ImageLightbox = ({ src, alt, className = "", disableMotion = false }: ImageLightboxProps) => {
+const ImageLightbox = ({
+  src,
+  alt,
+  className = "",
+  disableMotion = false,
+  disableHoverEffect = false,
+}: ImageLightboxProps) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const triggerClasses = `cursor-pointer ${
+    disableHoverEffect ? "" : "hover:opacity-90 transition-opacity"
+  } ${className}`;
 
   return (
     <>
@@ -18,14 +30,14 @@ const ImageLightbox = ({ src, alt, className = "", disableMotion = false }: Imag
         <img
           src={src}
           alt={alt}
-          className={`cursor-pointer hover:opacity-90 transition-opacity ${className}`}
+          className={triggerClasses}
           onClick={() => setIsOpen(true)}
         />
       ) : (
         <motion.img
           src={src}
           alt={alt}
-          className={`cursor-pointer hover:opacity-90 transition-opacity ${className}`}
+          className={triggerClasses}
           onClick={() => setIsOpen(true)}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
