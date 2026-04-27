@@ -40,7 +40,7 @@ const iterationSlides = [
 
 const IterationCarousel = () => {
   return (
-    <ProjectCarousel>
+    <ProjectCarousel alignArrowsToImage>
       {iterationSlides.map((slide, i) => (
         <div className="space-y-5" key={i}>
           <ImageLightbox
