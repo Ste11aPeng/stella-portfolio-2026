@@ -11,20 +11,20 @@ const CircleChallenge = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut }}
       >
-        <span className="text-sm text-muted-foreground block mb-2">
+        <span className="text-sm text-muted-foreground mb-3 block">
           challenge
         </span>
       </motion.div>
 
-      <motion.h3
-        className="text-xl font-semibold text-muted-foreground leading-relaxed"
+      <motion.h2
+        className="text-2xl font-bold tracking-tight text-foreground leading-snug"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.05 }}
       >
-        How might we help <span className="text-foreground">neighbors who don't know each other</span> feel <span className="text-foreground">safe enough to ask for help</span> when the <span className="text-foreground">power goes out</span>?
-      </motion.h3>
+        How might we help <span className="text-foreground/60">neighbors who don't know each other</span> feel safe enough to ask for help when the <span className="text-foreground/60">power goes out</span>?
+      </motion.h2>
     </section>
   );
 };

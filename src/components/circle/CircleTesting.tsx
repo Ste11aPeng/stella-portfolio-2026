@@ -59,7 +59,7 @@ const IterationCarousel = () => {
             disableHoverEffect
           />
           <div>
-            <h3 className="text-xl font-semibold mb-2 text-foreground">
+            <h3 className="text-xl font-semibold mb-3 text-foreground">
               {slide.title}
             </h3>
             <p className="text-base text-foreground/80 leading-relaxed">
@@ -81,10 +81,10 @@ const CircleTesting = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut }}
       >
-        <span className="text-sm text-muted-foreground block mb-2">
+        <span className="text-sm text-muted-foreground mb-3 block">
           iteration
         </span>
-        <h2 className="text-2xl font-bold mb-8 text-foreground">
+        <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
           From Feedback to Functional Prototype
         </h2>
       </motion.div>
