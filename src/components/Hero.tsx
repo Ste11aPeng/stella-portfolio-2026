@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import profileImage from "@/assets/profile.webp";
 
 const parts = [
-  { text: "Stella P. is a ", color: undefined },
+  { text: "Stella is a ", color: undefined },
   { text: "Product Designer", color: "#4a86e8" },
-  { text: " who spots new tools early, drives momentum, and stays curious about how products grow.", color: undefined },
+  { text: " who spots new tools early and stays curious about how products&human grow.", color: undefined },
 ];
 
 const containerVariants = {
