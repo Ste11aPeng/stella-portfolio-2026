@@ -60,16 +60,40 @@ const CircleSolution = () => {
         </p>
         <div className="group relative overflow-hidden rounded-lg">
           <ImageLightbox src={solution1Image} alt="Smart Outage Lamp - Product renders showing soft-serrated texture and night light with battery backup" className="w-full rounded-lg" />
-          {/* Hover overlay: bottom gradient blur + text */}
+          {/* Hover overlay: progressive bottom blur (top weakest, bottom strongest) */}
           <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100 backdrop-blur-md"
-            style={{
-              maskImage: "linear-gradient(to bottom, transparent 0%, black 40%)",
-              WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 40%)",
-              backgroundColor: "hsl(0 0% 0% / 0.55)",
-            }}
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-3/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
             aria-hidden="true"
-          />
+          >
+            <div
+              className="absolute inset-0 backdrop-blur-[2px]"
+              style={{
+                maskImage: "linear-gradient(to bottom, transparent 0%, black 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 100%)",
+              }}
+            />
+            <div
+              className="absolute inset-0 backdrop-blur-[6px]"
+              style={{
+                maskImage: "linear-gradient(to bottom, transparent 25%, black 70%)",
+                WebkitMaskImage: "linear-gradient(to bottom, transparent 25%, black 70%)",
+              }}
+            />
+            <div
+              className="absolute inset-0 backdrop-blur-[14px]"
+              style={{
+                maskImage: "linear-gradient(to bottom, transparent 55%, black 90%)",
+                WebkitMaskImage: "linear-gradient(to bottom, transparent 55%, black 90%)",
+              }}
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to bottom, hsl(0 0% 0% / 0) 0%, hsl(0 0% 0% / 0.25) 45%, hsl(0 0% 0% / 0.65) 100%)",
+              }}
+            />
+          </div>
           <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 md:p-6 opacity-0 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5 text-white">
               <div>
