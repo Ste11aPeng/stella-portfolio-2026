@@ -42,10 +42,10 @@ const Header = () => {
         
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8 group/nav">
-          <Link to="/" className={`nav-link text-sm transition-all duration-300 group-hover/nav:opacity-40 group-hover/nav:blur-[1.5px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/" ? "text-foreground" : ""}`} onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>product</Link>
-          <Link to="/visual" className={`nav-link text-sm transition-all duration-300 group-hover/nav:opacity-40 group-hover/nav:blur-[1.5px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/visual" ? "text-foreground" : ""}`}>visual</Link>
-          <Link to="/about" className={`nav-link text-sm transition-all duration-300 group-hover/nav:opacity-40 group-hover/nav:blur-[1.5px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/about" ? "text-foreground" : ""}`}>about</Link>
-          <span className="flex items-center gap-1 transition-all duration-300 group-hover/nav:opacity-40 group-hover/nav:blur-[1.5px] hover:!opacity-100 hover:!blur-0">
+          <Link to="/" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-60 group-hover/nav:blur-[0.6px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/" ? "text-foreground" : ""}`} onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>product</Link>
+          <Link to="/visual" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-60 group-hover/nav:blur-[0.6px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/visual" ? "text-foreground" : ""}`}>visual</Link>
+          <Link to="/about" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-60 group-hover/nav:blur-[0.6px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/about" ? "text-foreground" : ""}`}>about</Link>
+          <span className="flex items-center gap-1 transition-all duration-700 ease-out group-hover/nav:opacity-60 group-hover/nav:blur-[0.6px] hover:!opacity-100 hover:!blur-0">
             <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">resume</a>
             <span className="text-sm text-muted-foreground/40">/</span>
             <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">linkedin</a>
