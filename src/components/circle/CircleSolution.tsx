@@ -54,32 +54,40 @@ const CircleSolution = () => {
         </p>
         <div className="group relative overflow-hidden rounded-lg">
           <ImageLightbox src={solution1Image} alt="Smart Outage Lamp - Product renders showing soft-serrated texture and night light with battery backup" className="w-full rounded-lg" />
-          {/* Hover overlay: progressive bottom blur + text, synced fade */}
+          {/* Hover overlay: progressive bottom blur — animates backdrop-filter directly so it triggers instantly on hover */}
           <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-3/5 opacity-0 group-hover:opacity-100"
-            style={{ transition: "opacity 700ms cubic-bezier(0.4, 0, 0.2, 1)" }}
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-3/5"
             aria-hidden="true"
           >
             <div
-              className="absolute inset-0 backdrop-blur-[2px]"
+              className="absolute inset-0 transition-[backdrop-filter,-webkit-backdrop-filter] duration-500 ease-out"
               style={{
+                backdropFilter: "blur(0px)",
+                WebkitBackdropFilter: "blur(0px)",
                 maskImage: "linear-gradient(to bottom, transparent 0%, black 100%)",
                 WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 100%)",
               }}
+              data-blur-layer="1"
             />
             <div
-              className="absolute inset-0 backdrop-blur-[6px]"
+              className="absolute inset-0 transition-[backdrop-filter,-webkit-backdrop-filter] duration-500 ease-out"
               style={{
+                backdropFilter: "blur(0px)",
+                WebkitBackdropFilter: "blur(0px)",
                 maskImage: "linear-gradient(to bottom, transparent 25%, black 70%)",
                 WebkitMaskImage: "linear-gradient(to bottom, transparent 25%, black 70%)",
               }}
+              data-blur-layer="2"
             />
             <div
-              className="absolute inset-0 backdrop-blur-[14px]"
+              className="absolute inset-0 transition-[backdrop-filter,-webkit-backdrop-filter] duration-500 ease-out"
               style={{
+                backdropFilter: "blur(0px)",
+                WebkitBackdropFilter: "blur(0px)",
                 maskImage: "linear-gradient(to bottom, transparent 55%, black 90%)",
                 WebkitMaskImage: "linear-gradient(to bottom, transparent 55%, black 90%)",
               }}
+              data-blur-layer="3"
             />
           </div>
           <div
