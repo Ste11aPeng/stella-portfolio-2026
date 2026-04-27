@@ -38,7 +38,7 @@ const NotFound = () => {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="#/"
+              href="/"
               className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-sans text-primary-foreground bg-primary rounded-md hover:bg-primary/90 transition-colors"
             >
               Back to home

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,16 +35,16 @@ const Header = () => {
         }`}
       >
         <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-5 md:px-16 lg:px-24 md:py-6">
-        <a href="#/" className="flex items-center gap-1.5 text-foreground font-light text-base font-['New_Spirit']" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>
+        <Link to="/" className="flex items-center gap-1.5 text-foreground font-light text-base font-['New_Spirit']" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>
           <img src="/favicon-dark.svg" alt="" className="w-4 h-4" />
           Stella P.
-        </a>
+        </Link>
         
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#/" className={`nav-link text-sm ${currentPath === "/" ? "text-foreground" : ""}`} onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>product</a>
-          <a href="#/visual" className={`nav-link text-sm ${currentPath === "/visual" ? "text-foreground" : ""}`}>visual</a>
-          <a href="#/about" className={`nav-link text-sm ${currentPath === "/about" ? "text-foreground" : ""}`}>about</a>
+          <Link to="/" className={`nav-link text-sm ${currentPath === "/" ? "text-foreground" : ""}`} onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>product</Link>
+          <Link to="/visual" className={`nav-link text-sm ${currentPath === "/visual" ? "text-foreground" : ""}`}>visual</Link>
+          <Link to="/about" className={`nav-link text-sm ${currentPath === "/about" ? "text-foreground" : ""}`}>about</Link>
           <span className="flex items-center gap-1">
             <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">resume</a>
             <span className="text-sm text-muted-foreground/40">/</span>
@@ -73,9 +73,9 @@ const Header = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
           >
-            <a href="#/" className="text-2xl text-foreground" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>product</a>
-            <a href="#/visual" className="text-2xl text-foreground" onClick={() => setMenuOpen(false)}>visual</a>
-            <a href="#/about" className="text-2xl text-foreground" onClick={() => setMenuOpen(false)}>about</a>
+            <Link to="/" className="text-2xl text-foreground" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>product</Link>
+            <Link to="/visual" className="text-2xl text-foreground" onClick={() => setMenuOpen(false)}>visual</Link>
+            <Link to="/about" className="text-2xl text-foreground" onClick={() => setMenuOpen(false)}>about</Link>
             <a
               href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view"
               target="_blank"
