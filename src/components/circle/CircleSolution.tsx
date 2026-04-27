@@ -66,19 +66,19 @@ const CircleSolution = () => {
             style={{
               maskImage: "linear-gradient(to bottom, transparent 0%, black 40%)",
               WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 40%)",
-              backgroundColor: "hsl(var(--background) / 0.4)",
+              backgroundColor: "hsl(0 0% 0% / 0.55)",
             }}
             aria-hidden="true"
           />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6 md:p-8 opacity-0 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-foreground">
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 md:p-6 opacity-0 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5 text-white">
               <div>
-                <h4 className="text-sm md:text-base font-semibold mb-1">Soft-Serrated Texture for Safe Handling</h4>
-                <p className="text-xs md:text-sm text-foreground/80 leading-relaxed">It increases friction, making it easier to grip, unplug, and carry.</p>
+                <h4 className="text-xs md:text-sm font-semibold mb-1">Soft-Serrated Texture for Safe Handling</h4>
+                <p className="text-[11px] md:text-xs text-white/80 leading-relaxed">It increases friction, making it easier to grip, unplug, and carry.</p>
               </div>
               <div>
-                <h4 className="text-sm md:text-base font-semibold mb-1">Everyday Night Light with Battery Backup</h4>
-                <p className="text-xs md:text-sm text-foreground/80 leading-relaxed">Works as a simple night lamp every day.</p>
+                <h4 className="text-xs md:text-sm font-semibold mb-1">Everyday Night Light with Battery Backup</h4>
+                <p className="text-[11px] md:text-xs text-white/80 leading-relaxed">Works as a simple night lamp every day.</p>
               </div>
             </div>
           </div>
