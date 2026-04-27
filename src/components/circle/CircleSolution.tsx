@@ -239,4 +239,35 @@ const SolutionCarousel = () => {
   );
 };
 
+interface AnimatedNumberProps {
+  value: number;
+  duration?: number;
+}
+
+const AnimatedNumber = ({ value, duration = 1.6 }: AnimatedNumberProps) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const motionValue = useMotionValue(0);
+  const rounded = useTransform(motionValue, (latest) =>
+    Math.round(latest).toLocaleString()
+  );
+  const [display, setDisplay] = useState("0");
+
+  useEffect(() => {
+    const unsub = rounded.on("change", (v) => setDisplay(v));
+    return () => unsub();
+  }, [rounded]);
+
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(motionValue, value, {
+      duration,
+      ease: [0.16, 1, 0.3, 1],
+    });
+    return () => controls.stop();
+  }, [inView, value, duration, motionValue]);
+
+  return <span ref={ref}>{display}</span>;
+};
+
 export default CircleSolution;
