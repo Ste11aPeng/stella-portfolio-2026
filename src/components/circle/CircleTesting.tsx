@@ -42,13 +42,13 @@ const iterationSlides = [
     alt: "Branding moodboard, brand voice spectrum, and UI/UX wireframes evolving from low-fi to high-fi",
     title: "Branding",
     caption:
-      "We aligned on a shared brand voice — warm, calm, trustworthy — then translated it into UI/UX, moving from low-fi wireframes to high-fi screens that feel approachable for both elderly users and their caregivers.",
+      "We aligned on a shared brand voice that feels warm, calm, and trustworthy, then translated it into UI/UX by moving from low-fi wireframes to high-fi screens that feel approachable for both elderly users and their caregivers.",
   },
 ];
 
 const IterationCarousel = () => {
   return (
-    <ProjectCarousel alignArrowsToImage steps={iterationSlides.map((s) => s.title)}>
+    <ProjectCarousel alignArrowsToImage>
       {iterationSlides.map((slide, i) => (
         <div className="space-y-5" key={i}>
           <ImageLightbox
