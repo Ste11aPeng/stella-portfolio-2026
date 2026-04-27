@@ -48,6 +48,7 @@ const IterationCarousel = () => {
             alt={slide.alt}
             className="w-full rounded-lg"
             disableMotion
+            disableHoverEffect
           />
           <div>
             <h3 className="text-xl font-semibold mb-2 text-foreground">
