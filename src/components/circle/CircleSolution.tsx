@@ -114,9 +114,9 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.2
     }}>
-        <h3 className="text-xl font-semibold mb-3 text-foreground">
-          02 — The App That Turns Signals Into Support
-        </h3>
+        <h2 className="text-2xl font-bold mb-4 tracking-tight text-foreground">
+          02: The App That Turns Signals Into Support
+        </h2>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           The companion app converts outage detection into instant notifications, easy check-ins, and community support.
         </p>
@@ -142,9 +142,6 @@ const CircleSolution = () => {
         <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
           Showcased at the Ross IPD Trade Show
         </h2>
-        <p className="text-base text-foreground/80 leading-relaxed mb-10">
-          Showcased at the Ross School of Business IPD Trade Show with 200+ attendees.
-        </p>
         <div className="flex flex-wrap gap-x-16 gap-y-8 mb-8">
           <div>
             <p className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 text-foreground">
