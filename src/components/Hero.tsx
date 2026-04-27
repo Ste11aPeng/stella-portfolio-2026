@@ -138,7 +138,7 @@ const Hero = () => {
           >
             <span className="flex items-center gap-1.5 text-[13px] font-sans text-muted-foreground">
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500" />
-              Available for Internship | Apr – Sep 2026
+              Available for Intern | Summer 26
             </span>
             <span className="text-border">·</span>
             <button
