@@ -29,9 +29,12 @@ const CircleSolution = () => {
         <span className="text-sm text-muted-foreground block mb-2">
           solution
         </span>
-        <h2 className="text-2xl font-bold mb-8 text-foreground">
-          Circle Status: A Lamp That Speaks When You Can't
-        </h2>
+        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2 mb-8">
+          <h2 className="text-2xl font-bold text-foreground">
+            A Lamp That Speaks When You Can't
+          </h2>
+          <span className="text-sm text-muted-foreground">2 deliverables</span>
+        </div>
       </motion.div>
 
       {/* Smart Outage Lamp */}
@@ -50,7 +53,7 @@ const CircleSolution = () => {
       delay: 0.1
     }}>
         <h3 className="text-xl font-semibold mb-4 text-foreground">
-          Hardware Core: The Smart Outage Lamp
+          01 — The Lamp
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           A soft-textured lamp with battery backup that works as daily lighting and triggers the app's detection flow when power fails.
@@ -74,7 +77,7 @@ const CircleSolution = () => {
       delay: 0.2
     }}>
         <h3 className="text-xl font-semibold mb-4 text-foreground">
-          Digital Experience: Turning Signals Into Support
+          02 — The App
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           The companion app converts outage detection into instant notifications, easy check-ins, and community support.
