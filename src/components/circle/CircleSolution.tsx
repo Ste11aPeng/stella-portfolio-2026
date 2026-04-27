@@ -118,8 +118,8 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.2
     }}>
-        <h3 className="text-xl font-semibold mb-4 text-foreground">
-          02 — The App
+        <h3 className="text-2xl font-bold mb-4 text-foreground">
+          02 — The App That Turns Signals Into Support
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           The companion app converts outage detection into instant notifications, easy check-ins, and community support.
