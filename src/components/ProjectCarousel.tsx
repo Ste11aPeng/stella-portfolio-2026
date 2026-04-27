@@ -17,6 +17,12 @@ interface ProjectCarouselProps {
    * captions below the image).
    */
   alignArrowsToImage?: boolean;
+  /**
+   * When provided, renders a step progress indicator above the carousel:
+   * "Step 0X of 0N · {step name}" plus a thin progress bar that fills as
+   * the user advances. Length should match the number of slides.
+   */
+  steps?: string[];
 }
 
 /**
@@ -24,7 +30,11 @@ interface ProjectCarouselProps {
  * Visual rules: subtle backdrop-blur arrows that fade in on hover,
  * thin animated indicators below, smooth embla scroll.
  */
-const ProjectCarousel = ({ children, alignArrowsToImage = false }: ProjectCarouselProps) => {
+const ProjectCarousel = ({
+  children,
+  alignArrowsToImage = false,
+  steps,
+}: ProjectCarouselProps) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -76,6 +86,32 @@ const ProjectCarousel = ({ children, alignArrowsToImage = false }: ProjectCarous
 
   return (
     <div className="relative group/carousel" ref={containerRef}>
+      {steps && steps.length > 0 && (
+        <div className="mb-5">
+          <div className="flex items-baseline justify-between gap-4 mb-2">
+            <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
+              <span className="tabular-nums text-foreground/80">
+                Step {String(Math.min(current, steps.length - 1) + 1).padStart(2, "0")}
+              </span>
+              <span className="text-muted-foreground/60">
+                {" "}of {String(steps.length).padStart(2, "0")}
+              </span>
+              <span className="text-muted-foreground/40 mx-2">·</span>
+              <span className="text-foreground/80 normal-case tracking-normal">
+                {steps[Math.min(current, steps.length - 1)]}
+              </span>
+            </p>
+          </div>
+          <div className="relative h-[2px] w-full bg-foreground/10 rounded-full overflow-hidden">
+            <div
+              className="absolute inset-y-0 left-0 bg-foreground/70 rounded-full transition-[width] duration-500 ease-out"
+              style={{
+                width: `${((Math.min(current, steps.length - 1) + 1) / steps.length) * 100}%`,
+              }}
+            />
+          </div>
+        </div>
+      )}
       <Carousel
         setApi={setApi}
         opts={{ loop: true, duration: 35, align: "start" }}
