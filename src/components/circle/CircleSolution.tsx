@@ -145,8 +145,9 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.4
     }}>
-        <h3 className="text-xl font-semibold mb-4 text-foreground">Market Impact - $1M+ in Trade Show Currency</h3>
-        <p className="text-base text-foreground/80 leading-relaxed mb-4">Showcased at the Ross School of Business IPD Trade Show with 200+ attendees</p>
+        <span className="text-sm text-muted-foreground block mb-2">impact</span>
+        <h3 className="text-2xl font-bold mb-3 text-foreground">$1M+ in Trade Show Currency</h3>
+        <p className="text-base text-foreground/80 leading-relaxed mb-6">Showcased at the Ross School of Business IPD Trade Show with 200+ attendees</p>
         <div className="bg-muted/30 rounded-lg p-5 mb-6">
           <div className="grid grid-cols-2 gap-4 text-center">
             <div>
