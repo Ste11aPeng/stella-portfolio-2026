@@ -31,7 +31,7 @@ const ProjectCarousel = ({ children }: ProjectCarouselProps) => {
   }, [api]);
 
   return (
-    <div className="relative group/carousel">
+    <div className="relative">
       <Carousel
         setApi={setApi}
         opts={{ loop: true, duration: 35, align: "start" }}
@@ -43,10 +43,10 @@ const ProjectCarousel = ({ children }: ProjectCarouselProps) => {
           ))}
         </CarouselContent>
         <CarouselPrevious
-          className="left-3 hidden sm:flex h-9 w-9 border-0 bg-background/40 text-foreground/70 backdrop-blur-md shadow-none opacity-0 group-hover/carousel:opacity-100 hover:bg-background/70 hover:text-foreground transition-all duration-300"
+          className="left-3 hidden sm:flex h-9 w-9 border-0 bg-background/60 text-foreground/70 backdrop-blur-md shadow-none hover:bg-background/80 hover:text-foreground transition-colors duration-300"
         />
         <CarouselNext
-          className="right-3 hidden sm:flex h-9 w-9 border-0 bg-background/40 text-foreground/70 backdrop-blur-md shadow-none opacity-0 group-hover/carousel:opacity-100 hover:bg-background/70 hover:text-foreground transition-all duration-300"
+          className="right-3 hidden sm:flex h-9 w-9 border-0 bg-background/60 text-foreground/70 backdrop-blur-md shadow-none hover:bg-background/80 hover:text-foreground transition-colors duration-300"
         />
       </Carousel>
 

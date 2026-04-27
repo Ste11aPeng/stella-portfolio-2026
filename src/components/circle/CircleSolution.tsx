@@ -152,13 +152,7 @@ const CircleSolution = () => {
         </p>
         <div className="flex flex-wrap gap-x-16 gap-y-8 mb-8">
           <div>
-            <p
-              className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 bg-clip-text text-transparent"
-              style={{
-                backgroundImage:
-                  "linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.55) 100%)",
-              }}
-            >
+            <p className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 text-foreground">
               <AnimatedNumber value={264} />
             </p>
             <p className="text-sm text-muted-foreground">
@@ -166,13 +160,7 @@ const CircleSolution = () => {
             </p>
           </div>
           <div>
-            <p
-              className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 bg-clip-text text-transparent"
-              style={{
-                backgroundImage:
-                  "linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.55) 100%)",
-              }}
-            >
+            <p className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 text-foreground">
               $1M+
             </p>
             <p className="text-sm text-muted-foreground">
