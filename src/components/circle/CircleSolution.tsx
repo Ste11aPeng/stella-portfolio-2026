@@ -181,6 +181,7 @@ const SolutionCarousel = () => {
             alt={slide.alt}
             className="w-full rounded-lg"
             disableMotion
+            disableHoverEffect
           />
 
           {i === 2 && (
