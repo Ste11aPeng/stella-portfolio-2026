@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import ImageLightbox from "@/components/ImageLightbox";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
+import ProjectCarousel from "@/components/ProjectCarousel";
 import solution1Image from "@/assets/circle-solution-1-new.png";
 import solution2Carousel1 from "@/assets/circle-solution-2-carousel-1.png";
 import solution2Carousel2 from "@/assets/circle-solution-2-carousel-2.png";
@@ -147,12 +147,13 @@ const CircleSolution = () => {
       delay: 0.4
     }}>
         <span className="text-sm text-muted-foreground block mb-2">impact</span>
-        <h3 className="text-2xl font-bold mb-3 text-foreground">$1M+ in Trade Show Currency</h3>
-        <p className="text-base text-foreground/80 leading-relaxed mb-6">Showcased at the Ross School of Business IPD Trade Show with 200+ attendees</p>
+        <p className="text-base text-foreground/80 leading-relaxed mb-8">
+          Showcased at the Ross School of Business IPD Trade Show with 200+ attendees.
+        </p>
         <div className="flex flex-wrap gap-x-16 gap-y-8 mb-8">
           <div>
             <p
-              className="text-6xl md:text-7xl font-bold tracking-tight leading-none mb-2 bg-clip-text text-transparent"
+              className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 bg-clip-text text-transparent"
               style={{
                 backgroundImage:
                   "linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.55) 100%)",
@@ -166,7 +167,7 @@ const CircleSolution = () => {
           </div>
           <div>
             <p
-              className="text-6xl md:text-7xl font-bold tracking-tight leading-none mb-2 bg-clip-text text-transparent"
+              className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 bg-clip-text text-transparent"
               style={{
                 backgroundImage:
                   "linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.55) 100%)",
@@ -191,64 +192,36 @@ const carouselSlides = [
 ];
 
 const SolutionCarousel = () => {
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!api) return;
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap());
-    api.on("select", () => setCurrent(api.selectedScrollSnap()));
-  }, [api]);
-
   return (
-    <div className="relative group/carousel">
-      <Carousel
-        setApi={setApi}
-        opts={{ loop: true, duration: 35, align: "start" }}
-        className="w-full"
-      >
-        <CarouselContent>
-          {carouselSlides.map((slide, i) => (
-            <CarouselItem key={i}>
-              <div className="relative">
-                <ImageLightbox src={slide.src} alt={slide.alt} className="w-full rounded-lg" disableMotion />
-                {i === 2 && (
-                  <Button asChild size="sm" className="absolute top-4 left-4 bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm z-10">
-                    <a href="https://circlestatus.webflow.io/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-                      Visit Live Website
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  </Button>
-                )}
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious
-          className="left-3 hidden sm:flex h-9 w-9 border-0 bg-background/40 text-foreground/70 backdrop-blur-md shadow-none opacity-0 group-hover/carousel:opacity-100 hover:bg-background/70 hover:text-foreground transition-all duration-300"
-        />
-        <CarouselNext
-          className="right-3 hidden sm:flex h-9 w-9 border-0 bg-background/40 text-foreground/70 backdrop-blur-md shadow-none opacity-0 group-hover/carousel:opacity-100 hover:bg-background/70 hover:text-foreground transition-all duration-300"
-        />
-      </Carousel>
-
-      {/* Indicators */}
-      <div className="flex justify-center gap-1.5 mt-4">
-        {Array.from({ length: count }).map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            aria-label={`Go to slide ${i + 1}`}
-            onClick={() => api?.scrollTo(i)}
-            className={`h-1 rounded-full transition-all duration-500 ease-out ${
-              i === current ? "w-5 bg-foreground/80" : "w-1 bg-foreground/20 hover:bg-foreground/40"
-            }`}
+    <ProjectCarousel>
+      {carouselSlides.map((slide, i) => (
+        <div className="relative" key={i}>
+          <ImageLightbox
+            src={slide.src}
+            alt={slide.alt}
+            className="w-full rounded-lg"
+            disableMotion
           />
-        ))}
-      </div>
-    </div>
+          {i === 2 && (
+            <Button
+              asChild
+              size="sm"
+              className="absolute top-4 left-4 bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm z-10"
+            >
+              <a
+                href="https://circlestatus.webflow.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2"
+              >
+                Visit Live Website
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </Button>
+          )}
+        </div>
+      ))}
+    </ProjectCarousel>
   );
 };
 
