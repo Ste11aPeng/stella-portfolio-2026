@@ -46,8 +46,8 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.1
     }}>
-        <h3 className="text-xl font-semibold mb-4 text-foreground">
-          01 — The Lamp
+        <h3 className="text-2xl font-bold mb-4 text-foreground">
+          01 — The Lamp That Speaks When You Can't
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
           A soft-textured lamp with battery backup that works as daily lighting and triggers the app's detection flow when power fails.
