@@ -5,6 +5,7 @@ import iterationCarousel1 from "@/assets/circle-iteration-carousel-1.png";
 import iterationCarousel2 from "@/assets/circle-iteration-carousel-2.png";
 import iterationCarousel3 from "@/assets/circle-iteration-carousel-3.png";
 import iterationCarousel4 from "@/assets/circle-iteration-carousel-4.png";
+import iterationCarousel5 from "@/assets/circle-iteration-carousel-5.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
@@ -35,6 +36,13 @@ const iterationSlides = [
     alt: "Hardware prototyping with Arduino and ESP32 across Normal, Outage, Restore, and Final Proto states",
     title: "Hardware",
     caption: "Arduino + ESP32 prototype detecting power loss across Normal, Outage, Restore, and Final Proto states.",
+  },
+  {
+    src: iterationCarousel5,
+    alt: "Branding moodboard, brand voice spectrum, and UI/UX wireframes evolving from low-fi to high-fi",
+    title: "Branding",
+    caption:
+      "We aligned on a shared brand voice — warm, calm, trustworthy — then translated it into UI/UX, moving from low-fi wireframes to high-fi screens that feel approachable for both elderly users and their caregivers.",
   },
 ];
 
