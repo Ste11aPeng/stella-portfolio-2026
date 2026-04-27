@@ -145,8 +145,8 @@ const CircleSolution = () => {
         <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
           Showcased at the Ross IPD Trade Show
         </h2>
-        <p className="text-base text-foreground/80 leading-relaxed mb-8">
-          Presented to 200+ attendees over three days at the Ross School of Business.
+        <p className="text-base text-foreground/80 leading-relaxed mb-10">
+          Showcased at the Ross School of Business IPD Trade Show with 200+ attendees.
         </p>
         <div className="flex flex-wrap gap-x-16 gap-y-8 mb-8">
           <div>
