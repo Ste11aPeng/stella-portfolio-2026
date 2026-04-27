@@ -201,7 +201,7 @@ const SolutionCarousel = () => {
           {carouselSlides.map((slide, i) => (
             <CarouselItem key={i}>
               <div className="relative">
-                <ImageLightbox src={slide.src} alt={slide.alt} className="w-full rounded-lg" />
+                <ImageLightbox src={slide.src} alt={slide.alt} className="w-full rounded-lg" disableMotion />
                 {i === 2 && (
                   <Button asChild size="sm" className="absolute top-4 left-4 bg-background/90 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm z-10">
                     <a href="https://circlestatus.webflow.io/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
