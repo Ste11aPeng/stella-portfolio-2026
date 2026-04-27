@@ -153,7 +153,7 @@ const CircleSolution = () => {
           </div>
           <div>
             <p className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 text-foreground">
-              $1M+
+              $<AnimatedNumber value={1055736} />
             </p>
             <p className="text-sm text-muted-foreground">
               Trade show currency
