@@ -26,9 +26,12 @@ const CircleSolution = () => {
       duration: 0.5,
       ease: easeOut
     }}>
-        <span className="text-sm text-muted-foreground block mb-2">
+        <span className="text-sm text-muted-foreground mb-3 block">
           solution
         </span>
+        <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
+          A Lamp and an App That Work Together
+        </h2>
       </motion.div>
 
       {/* Smart Outage Lamp */}
@@ -46,7 +49,7 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.1
     }}>
-        <h3 className="text-2xl font-bold mb-4 text-foreground">
+        <h3 className="text-xl font-semibold mb-3 text-foreground">
           01 — The Lamp That Speaks When You Can't
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
@@ -114,7 +117,7 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.2
     }}>
-        <h3 className="text-2xl font-bold mb-4 text-foreground">
+        <h3 className="text-xl font-semibold mb-3 text-foreground">
           02 — The App That Turns Signals Into Support
         </h3>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
@@ -138,9 +141,12 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.4
     }}>
-        <span className="text-sm text-muted-foreground block mb-2">impact</span>
+        <span className="text-sm text-muted-foreground mb-3 block">impact</span>
+        <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
+          Showcased at the Ross IPD Trade Show
+        </h2>
         <p className="text-base text-foreground/80 leading-relaxed mb-8">
-          Showcased at the Ross School of Business IPD Trade Show with 200+ attendees.
+          Presented to 200+ attendees over three days at the Ross School of Business.
         </p>
         <div className="flex flex-wrap gap-x-16 gap-y-8 mb-8">
           <div>
