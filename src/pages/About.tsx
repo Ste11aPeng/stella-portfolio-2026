@@ -150,13 +150,13 @@ const About = () => {
                 A designer who notices the tiny things. Into Nintendo, kittens, film cameras, and products that make me say "ohhh that's clever".
               </motion.p>
               <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
-                Grew up in China, studied design at Michigan, now at UW for HCI. Summer '26 product design intern at TikTok, shipping weird little things with Figma and Claude Code every day.
+                Grew up in China, studied design at Michigan, now at UW for HCI. Summer '26 intern at TikTok — shipping internal prototypes with Figma and Claude Code.
               </motion.p>
               <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
                 Say hello to{" "}
-                <button onClick={handleCopyEmail} className="underline underline-offset-2 cursor-pointer text-muted-foreground hover:text-foreground transition-colors duration-200">{copied ? "copied!" : "stellanotfound@gmail.com"}</button>
+                <button onClick={handleCopyEmail} className="cursor-pointer text-muted-foreground hover:text-foreground transition-colors duration-200">{copied ? "copied!" : "stellanotfound@gmail.com"}</button>
                 {" "}or{" "}
-                <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 text-muted-foreground hover:text-foreground transition-colors duration-200">LinkedIn</a>.
+                <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors duration-200">LinkedIn</a>.
               </motion.p>
             </motion.div>
 
