@@ -23,7 +23,7 @@ const experiences = [
     company: "Desai Accelerator",
     url: "https://www.desaiaccelerator.com/",
     role: "Product Design Intern",
-    period: "2025",
+    period: "Summer 2025",
     description: (
       <>Architected <span className="text-foreground">0-to-1 design systems and MVPs</span> for various startups, balancing complex functional flows with technical constraints and business objectives.</>
     ),
