@@ -7,7 +7,7 @@ const experiences = [
     role: "Product Design Intern",
     period: "Summer 2026",
     description: (
-      <>Designing <span className="text-foreground">end-to-end product experiences</span> at scale, collaborating across cross-functional teams to shape features that engage a global community of users.</>
+      <>Partnering with the social team to ship lightweight solutions through <span className="text-foreground">vibe-coding tools</span>, accelerating delivery from concept to production-ready prototypes.</>
     ),
   },
   {
@@ -26,24 +26,6 @@ const experiences = [
     period: "Summer 2025",
     description: (
       <>Architected <span className="text-foreground">0-to-1 design systems and MVPs</span> for various startups, balancing complex functional flows with technical constraints and business objectives.</>
-    ),
-  },
-  {
-    company: "Michigan Engineering",
-    url: "https://www.engin.umich.edu/",
-    role: "Social Media Intern",
-    period: "2024 – 2026",
-    description: (
-      <>Leading brand communication and content strategy for the College of Engineering, leveraging <span className="text-foreground">visual storytelling</span> to amplify social presence while maintaining multi-channel brand consistency.</>
-    ),
-  },
-  {
-    company: "Michigan Open UX",
-    url: "https://www.moux.club/",
-    role: "Product Designer",
-    period: "2023",
-    description: (
-      <>Spearheaded <span className="text-foreground">UX strategy and execution</span> for university organizations, facilitating design reviews and workshops to deliver developer-ready component libraries and interaction patterns.</>
     ),
   },
 ];
