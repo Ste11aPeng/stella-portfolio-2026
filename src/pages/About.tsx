@@ -19,8 +19,6 @@ const experiences = [
   { company: "TikTok", url: "https://www.tiktok.com/", role: "Product Design Intern", period: "Summer 2026" },
   { company: "AskSia Inc.", url: "https://www.asksia.ai/", role: "Product Designer", period: "2025 – 2026" },
   { company: "Desai Accelerator", url: "https://www.desaiaccelerator.com/", role: "Product Design Intern", period: "Summer 2025" },
-  { company: "Michigan Engineering", url: "https://www.engin.umich.edu/", role: "Social Media Intern", period: "2024 – 2026" },
-  { company: "Michigan Open UX", url: "https://www.moux.club/", role: "Product Designer", period: "2023" },
 ];
 
 const education = [
