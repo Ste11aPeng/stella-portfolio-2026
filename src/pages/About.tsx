@@ -159,13 +159,13 @@ const About = () => {
                 </span>
               </motion.h1>
               <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
-                Hi, I'm Stella — a <span className="text-foreground font-medium">designer who notices the tiny things</span>.
+                A product designer drawn to visual clarity, new tools, and the messy questions behind how products actually work.
               </motion.p>
               <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
-                Grew up in <span className="text-foreground font-medium">China</span>, studied design at <span className="text-foreground font-medium">Michigan</span>, now doing <span className="text-foreground font-medium">HCI at UW</span>. Summer 2026 I'll be a <span className="text-foreground font-medium">product design intern at TikTok</span>, spending my days in <span className="text-foreground font-medium">Figma</span> and <span className="text-foreground font-medium">Claude Code</span> shipping all kinds of weird little things.
+                TLDR of my life: I grew up in China, and recently graduated in design from the University of Michigan, so I naturally notice how people use things differently.
               </motion.p>
               <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
-                Big fan of <span className="text-foreground font-medium">Nintendo</span>, <span className="text-foreground font-medium">cats</span>, <span className="text-foreground font-medium">film cameras</span>, and products that make me go <span className="text-foreground font-medium">"ohhh that's clever."</span>{" "}
+                More than anything, I'm trying to become a designer who brings clarity, momentum, and a point of view to the team.{" "}
                 <span
                   ref={sayHelloRef}
                   className="inline"
@@ -191,13 +191,12 @@ const About = () => {
                     transition: "color 1.8s cubic-bezier(0.25, 0.1, 0.25, 1)",
                   } : {}}
                 >
-                  Say hello →{" "}
+                  Say hello at{" "}
                   <button onClick={handleCopyEmail} className="underline-offset-2 cursor-pointer" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>{copied ? "copied!" : "stellanotfound@gmail.com"}</button>
                   {" "}or via{" "}
                   <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>LinkedIn</a>.
                 </span>
               </motion.p>
-
             </motion.div>
 
             {/* Right – Experience & Education */}
