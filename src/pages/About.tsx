@@ -93,8 +93,6 @@ const About = () => {
   usePageTitle("About Stella P. | Product Designer");
   const [stellaHovered, setStellaHovered] = useState(false);
   const [eduHovered, setEduHovered] = useState(false);
-  const sayHelloRef = useRef<HTMLParagraphElement>(null);
-  const [highlight, setHighlight] = useState<'idle' | 'ready' | 'sweeping' | 'fading'>('idle');
   const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = useCallback(async () => {
@@ -103,16 +101,6 @@ const About = () => {
     setTimeout(() => setCopied(false), 2000);
   }, []);
 
-  const handleReachOut = useCallback(() => {
-    setHighlight('ready');
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        setHighlight('sweeping');
-      });
-    });
-    setTimeout(() => setHighlight('fading'), 1800);
-    setTimeout(() => setHighlight('idle'), 3800);
-  }, []);
 
   return (
     <>
@@ -145,7 +133,7 @@ const About = () => {
                   <AnimatePresence>
                     {stellaHovered && (
                       <motion.button
-                        onClick={handleReachOut}
+                        onClick={handleCopyEmail}
                         className="absolute left-full ml-2 whitespace-nowrap text-[14px] font-sans font-normal text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer"
                         initial={{ opacity: 0, x: -8 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -159,43 +147,16 @@ const About = () => {
                 </span>
               </motion.h1>
               <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
-                A product designer drawn to visual clarity, new tools, and the messy questions behind how products actually work.
+                A designer who notices the tiny things. Into Nintendo, kittens, film cameras, and products that make me say "ohhh that's clever".
               </motion.p>
               <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
-                TLDR of my life: I grew up in China, and recently graduated in design from the University of Michigan, so I naturally notice how people use things differently.
+                Grew up in China, studied design at Michigan, now at UW for HCI. Summer '26 product design intern at TikTok, shipping weird little things with Figma and Claude Code every day.
               </motion.p>
               <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
-                More than anything, I'm trying to become a designer who brings clarity, momentum, and a point of view to the team.{" "}
-                <span
-                  ref={sayHelloRef}
-                  className="inline"
-                  style={highlight === 'ready' ? {
-                    backgroundImage: "linear-gradient(90deg, #3B82F6 0%, #3B82F6 100%)",
-                    backgroundSize: "0% 100%",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "left top",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  } : highlight === 'sweeping' ? {
-                    backgroundImage: "linear-gradient(90deg, #3B82F6 0%, #3B82F6 100%)",
-                    backgroundSize: "100% 100%",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "left top",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    transition: "background-size 1.2s cubic-bezier(0.25, 0.1, 0.25, 1)",
-                  } : highlight === 'fading' ? {
-                    color: "hsl(var(--muted-foreground))",
-                    transition: "color 1.8s cubic-bezier(0.25, 0.1, 0.25, 1)",
-                  } : {}}
-                >
-                  Say hello at{" "}
-                  <button onClick={handleCopyEmail} className="underline-offset-2 cursor-pointer" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>{copied ? "copied!" : "stellanotfound@gmail.com"}</button>
-                  {" "}or via{" "}
-                  <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>LinkedIn</a>.
-                </span>
+                Say hello to{" "}
+                <button onClick={handleCopyEmail} className="underline underline-offset-2 cursor-pointer text-muted-foreground hover:text-foreground transition-colors duration-200">{copied ? "copied!" : "stellanotfound@gmail.com"}</button>
+                {" "}or{" "}
+                <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 text-muted-foreground hover:text-foreground transition-colors duration-200">LinkedIn</a>.
               </motion.p>
             </motion.div>
 
