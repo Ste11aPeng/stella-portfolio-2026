@@ -2,6 +2,15 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
+    company: "TikTok",
+    url: "https://www.tiktok.com/",
+    role: "Product Design Intern",
+    period: "Summer 2026",
+    description: (
+      <>Designing <span className="text-foreground">end-to-end product experiences</span> at scale, collaborating across cross-functional teams to shape features that engage a global community of users.</>
+    ),
+  },
+  {
     company: "AskSia Inc.",
     url: "https://www.asksia.ai/",
     role: "Product Designer",
