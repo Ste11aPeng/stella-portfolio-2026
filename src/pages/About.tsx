@@ -159,10 +159,13 @@ const About = () => {
                 </span>
               </motion.h1>
               <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
-                A designer who notices the tiny things. Grew up in China, studied design at Michigan, now doing HCI at UW. Summer '26 Product Design Intern at TikTok — shipping oddball things with Figma and Claude Code every day.
+                A product designer drawn to visual clarity, new tools, and the messy questions behind how products actually work.
               </motion.p>
               <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
-                Into Nintendo, tiny cats, film cameras, and products that make you go "ohhh, that's clever."{" "}
+                TLDR of my life: I grew up in China, and recently graduated in design from the University of Michigan, so I naturally notice how people use things differently.
+              </motion.p>
+              <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
+                More than anything, I'm trying to become a designer who brings clarity, momentum, and a point of view to the team.{" "}
                 <span
                   ref={sayHelloRef}
                   className="inline"
@@ -188,9 +191,9 @@ const About = () => {
                     transition: "color 1.8s cubic-bezier(0.25, 0.1, 0.25, 1)",
                   } : {}}
                 >
-                  Say hello →{" "}
+                  Say hello at{" "}
                   <button onClick={handleCopyEmail} className="underline-offset-2 cursor-pointer" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>{copied ? "copied!" : "stellanotfound@gmail.com"}</button>
-                  {" "}or{" "}
+                  {" "}or via{" "}
                   <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2" style={{ color: "inherit", WebkitTextFillColor: "inherit" }}>LinkedIn</a>.
                 </span>
               </motion.p>
