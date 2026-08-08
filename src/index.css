@@ -112,6 +112,12 @@
     font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
   }
 
+  h1, h2, h3 {
+    font-family: 'Exposure', 'New Spirit', ui-serif, serif;
+    font-weight: 650 !important;
+    letter-spacing: -0.03em;
+  }
+
 }
 
 @layer components {
