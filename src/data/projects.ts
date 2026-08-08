@@ -1,9 +1,6 @@
 const askSiaImage = "/images/project-asksia.webp";
 import circleStatusImage from "@/assets/project-circle-status.png";
-import stitchiImage from "@/assets/project-stitchi.webp";
 import philoImage from "@/assets/project-philo.webp";
-import tellToolImage from "@/assets/project-telltool.webp";
-import forgottenSenseImage from "@/assets/project-forgotten-sense.webp";
 
 export interface Project {
   id: string;
