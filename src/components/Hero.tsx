@@ -36,14 +36,7 @@ const wordVariants = {
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [copied, setCopied] = useState(false);
   const navigate = useNavigate();
-
-  const handleCopyEmail = useCallback(async () => {
-    await navigator.clipboard.writeText("stellanotfound@gmail.com");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  }, []);
 
   return (
     <section className="px-8 py-16 lg:px-24 md:px-[32px] md:py-[64px] max-w-[1440px] mx-auto">
