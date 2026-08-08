@@ -102,7 +102,7 @@ const Hero = () => {
 
         <div className="flex flex-col">
           <motion.p
-            className="max-w-3xl pt-0 flex flex-wrap text-[2rem] leading-[2.4rem] md:text-[3.2rem] md:leading-[3.8rem]"
+            className="max-w-3xl pt-0 flex flex-wrap text-[1.75rem] leading-[2.15rem] md:text-[3rem] md:leading-[3.6rem]"
             style={{
               color: "#161616",
               fontFamily: "'Exposure', 'New Spirit', serif",
