@@ -123,14 +123,13 @@ const Hero = () => {
           </motion.p>
 
           <motion.div
-            className="flex items-center gap-3 mt-1"
+            className="flex items-center gap-3 mt-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.2 }}
           >
-            <span className="flex items-center gap-1.5 text-[13px] font-sans text-muted-foreground">
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500" />
-              Currently designing @TikTok and learning @University of Washington, MHCI+D.
+            <span className="text-[13px] font-sans text-muted-foreground">
+              Currently designing @TikTok and learning @UW, MHCI+D.
             </span>
           </motion.div>
         </div>
