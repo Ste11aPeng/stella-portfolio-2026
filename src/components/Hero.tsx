@@ -123,13 +123,31 @@ const Hero = () => {
           </motion.p>
 
           <motion.div
-            className="flex items-center gap-3 mt-6"
+            className="flex items-center gap-1 mt-3"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.2 }}
           >
             <span className="text-[13px] font-sans text-muted-foreground">
-              Currently designing @TikTok and learning @UW, MHCI+D.
+              Currently designing{" "}
+              <a
+                href="https://www.tiktok.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground transition-opacity hover:opacity-100 hover:text-foreground"
+              >
+                @TikTok
+              </a>{" "}
+              and pursuing a{" "}
+              <a
+                href="https://mhcid.washington.edu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground transition-opacity hover:opacity-100 hover:text-foreground"
+              >
+                Master of HCI + Design @UW
+              </a>
+              .
             </span>
           </motion.div>
         </div>
