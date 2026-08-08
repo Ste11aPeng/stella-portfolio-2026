@@ -24,6 +24,12 @@ export default {
   				'Segoe UI Symbol',
   				'Noto Color Emoji'
   			],
+  			display: [
+  				'Exposure',
+  				'New Spirit',
+  				'ui-serif',
+  				'serif'
+  			],
   			serif: [
   				'Cormorant Garamond',
   				'ui-serif',
