@@ -51,21 +51,6 @@ export const projects: Project[] = [
     overview: "AskSia is a rapidly growing AI study companion, serving as the core learning tool for 100,000+ users worldwide.\n\nMy team redesigned the workspace and file management system to provide a scalable foundation for the product's rapid expansion.",
   },
   {
-    id: "stitchi",
-    image: stitchiImage,
-    title: "Stitchi.co",
-    titleColor: "#678877",
-    tagline: "better search UX",
-    description: "better search UX for B2B merch platform",
-    type: "intern",
-    role: "Product Designer – led research, defined interaction patterns, validated with users, aligned design with development.",
-    team: "Me (UX/UI), PM (Everest), 2 developers (Rexell, Danish)",
-    timeline: "June 2025 (4 weeks)",
-    skills: ["Figma", "Slack", "Algolia"],
-    tags: ["UI/UX design", "B2B / SaaS", "e-commerce"],
-    overview: "Helping B2B buyers stop guessing and start finding. A 4-week sprint to fix product discovery as catalogs scaled."
-  },
-  {
     id: "philo",
     image: philoImage,
     title: "Philo Design System",
@@ -79,7 +64,6 @@ export const projects: Project[] = [
     skills: ["Figma", "Slack", "Material 3 UI"],
     tags: ["design system", "UI library"],
     overview: "A 3-week sprint to build a reusable, dev-ready design system for Philo Home's furniture e-commerce platform."
-  },
   }
 ];
 
