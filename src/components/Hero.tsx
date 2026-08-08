@@ -137,15 +137,8 @@ const Hero = () => {
           >
             <span className="flex items-center gap-1.5 text-[13px] font-sans text-muted-foreground">
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500" />
-              Product Design Intern @ TikTok
+              Currently designing @TikTok and learning @University of Washington, MHCI+D.
             </span>
-            <span className="text-border">·</span>
-            <button
-              onClick={handleCopyEmail}
-              className="text-[13px] font-sans text-muted-foreground/50 hover:text-muted-foreground transition-colors cursor-pointer"
-            >
-              {copied ? "copied!" : "stellanotfound@gmail.com"}
-            </button>
           </motion.div>
         </div>
       </div>
