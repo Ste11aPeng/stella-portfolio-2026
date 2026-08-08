@@ -1,9 +1,6 @@
 const askSiaImage = "/images/project-asksia.webp";
 import circleStatusImage from "@/assets/project-circle-status.png";
-import stitchiImage from "@/assets/project-stitchi.webp";
 import philoImage from "@/assets/project-philo.webp";
-import tellToolImage from "@/assets/project-telltool.webp";
-import forgottenSenseImage from "@/assets/project-forgotten-sense.webp";
 
 export interface Project {
   id: string;
@@ -54,21 +51,6 @@ export const projects: Project[] = [
     overview: "AskSia is a rapidly growing AI study companion, serving as the core learning tool for 100,000+ users worldwide.\n\nMy team redesigned the workspace and file management system to provide a scalable foundation for the product's rapid expansion.",
   },
   {
-    id: "stitchi",
-    image: stitchiImage,
-    title: "Stitchi.co",
-    titleColor: "#678877",
-    tagline: "better search UX",
-    description: "better search UX for B2B merch platform",
-    type: "intern",
-    role: "Product Designer – led research, defined interaction patterns, validated with users, aligned design with development.",
-    team: "Me (UX/UI), PM (Everest), 2 developers (Rexell, Danish)",
-    timeline: "June 2025 (4 weeks)",
-    skills: ["Figma", "Slack", "Algolia"],
-    tags: ["UI/UX design", "B2B / SaaS", "e-commerce"],
-    overview: "Helping B2B buyers stop guessing and start finding. A 4-week sprint to fix product discovery as catalogs scaled."
-  },
-  {
     id: "philo",
     image: philoImage,
     title: "Philo Design System",
@@ -82,36 +64,6 @@ export const projects: Project[] = [
     skills: ["Figma", "Slack", "Material 3 UI"],
     tags: ["design system", "UI library"],
     overview: "A 3-week sprint to build a reusable, dev-ready design system for Philo Home's furniture e-commerce platform."
-  },
-  {
-    id: "tell-tool",
-    image: tellToolImage,
-    title: "Tell Tool",
-    titleColor: "#F45F63",
-    tagline: "research brand identity",
-    description: "warm visual identity for donor conception research",
-    type: "0 to 1",
-    role: "Visual Identity Designer, led logo, color, typography, and brand guidelines, collaborating with nursing researchers.",
-    team: "Me (Designer), Nursing Researchers (School of Nursing, UMich)",
-    timeline: "2024",
-    skills: ["Branding", "Visual Identity", "Typography", "Print Design"],
-    tags: ["branding", "visual identity", "research"],
-    overview: "A visual identity designed for a nursing research project on donor conception, balancing emotional warmth with clinical clarity to help families navigate sensitive conversations."
-  },
-  {
-    id: "forgotten-sense",
-    image: forgottenSenseImage,
-    title: "Forgotten Sense",
-    titleColor: "#678877",
-    tagline: "e-textile wearable",
-    description: "haptic wearable for anosmia patients",
-    type: "0 to 1",
-    role: "Designer, wearable form design, interaction patterns, e-textile prototyping",
-    team: "Me (Designer)",
-    timeline: "2024",
-    skills: ["E-textile", "Wearable Design", "Prototyping", "Interaction Design"],
-    tags: ["wearable", "e-textile", "assistive tech"],
-    overview: "An e-textile wearable that translates scent-dependent moments into gentle haptic and visual cues, helping people with anosmia feel more confident and aware in daily life."
   }
 ];
 
