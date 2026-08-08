@@ -80,35 +80,6 @@ export const projects: Project[] = [
     tags: ["design system", "UI library"],
     overview: "A 3-week sprint to build a reusable, dev-ready design system for Philo Home's furniture e-commerce platform."
   },
-  {
-    id: "tell-tool",
-    image: tellToolImage,
-    title: "Tell Tool",
-    titleColor: "#F45F63",
-    tagline: "research brand identity",
-    description: "warm visual identity for donor conception research",
-    type: "0 to 1",
-    role: "Visual Identity Designer, led logo, color, typography, and brand guidelines, collaborating with nursing researchers.",
-    team: "Me (Designer), Nursing Researchers (School of Nursing, UMich)",
-    timeline: "2024",
-    skills: ["Branding", "Visual Identity", "Typography", "Print Design"],
-    tags: ["branding", "visual identity", "research"],
-    overview: "A visual identity designed for a nursing research project on donor conception, balancing emotional warmth with clinical clarity to help families navigate sensitive conversations."
-  },
-  {
-    id: "forgotten-sense",
-    image: forgottenSenseImage,
-    title: "Forgotten Sense",
-    titleColor: "#678877",
-    tagline: "e-textile wearable",
-    description: "haptic wearable for anosmia patients",
-    type: "0 to 1",
-    role: "Designer, wearable form design, interaction patterns, e-textile prototyping",
-    team: "Me (Designer)",
-    timeline: "2024",
-    skills: ["E-textile", "Wearable Design", "Prototyping", "Interaction Design"],
-    tags: ["wearable", "e-textile", "assistive tech"],
-    overview: "An e-textile wearable that translates scent-dependent moments into gentle haptic and visual cues, helping people with anosmia feel more confident and aware in daily life."
   }
 ];
 
