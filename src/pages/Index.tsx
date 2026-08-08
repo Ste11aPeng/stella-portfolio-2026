@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import ProjectGrid from "@/components/ProjectGrid";
-import WorkExperience from "@/components/WorkExperience";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -11,7 +10,6 @@ const Index = () => {
         <Header />
         <Hero />
         <ProjectGrid />
-        <WorkExperience />
       </div>
       <div className="sticky bottom-0 z-0">
         <Footer />

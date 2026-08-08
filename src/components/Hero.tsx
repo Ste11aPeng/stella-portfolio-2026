@@ -105,11 +105,11 @@ const Hero = () => {
             className="max-w-2xl pt-0 font-sans flex flex-wrap"
             style={{
               color: "#161616",
-              fontFamily: "'New Spirit', serif",
-              fontSize: "24px",
+              fontFamily: "'Exposure', 'New Spirit', serif",
+              fontSize: "26px",
               fontWeight: 400,
-              lineHeight: "1.5",
-              gap: "0 5px",
+              lineHeight: "1.4",
+              gap: "0 6px",
             }}
             variants={containerVariants}
             initial="hidden"
