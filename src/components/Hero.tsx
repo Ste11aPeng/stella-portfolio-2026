@@ -107,7 +107,8 @@ const Hero = () => {
               color: "#161616",
               fontFamily: "'Exposure', 'New Spirit', serif",
               fontSize: "26px",
-              fontWeight: 400,
+              fontWeight: 650,
+              letterSpacing: "-0.03em",
               lineHeight: "1.4",
               gap: "0 6px",
             }}

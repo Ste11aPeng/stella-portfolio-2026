@@ -13,7 +13,7 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
       <div className="overflow-hidden">
         <motion.h2
           className="text-4xl mb-5 tracking-tight text-foreground flex flex-wrap items-baseline gap-x-3"
-          style={{ fontFamily: "'New Spirit', serif", fontWeight: 400 }}
+          style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.03em" }}
           initial={{ y: "100%", rotateX: 40 }}
           whileInView={{ y: 0, rotateX: 0 }}
           viewport={{ once: true, margin: "-50px" }}
