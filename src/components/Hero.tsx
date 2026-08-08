@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import profileImage from "@/assets/profile.webp";
@@ -36,14 +36,7 @@ const wordVariants = {
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [copied, setCopied] = useState(false);
   const navigate = useNavigate();
-
-  const handleCopyEmail = useCallback(async () => {
-    await navigator.clipboard.writeText("stellanotfound@gmail.com");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  }, []);
 
   return (
     <section className="px-8 py-16 lg:px-24 md:px-[32px] md:py-[64px] max-w-[1440px] mx-auto">
@@ -102,7 +95,7 @@ const Hero = () => {
 
         <div className="flex flex-col">
           <motion.p
-            className="max-w-3xl pt-0 flex flex-wrap text-[1.75rem] leading-[2.15rem] md:text-[3rem] md:leading-[3.6rem]"
+            className="max-w-3xl pt-0 flex flex-wrap text-[1.5rem] leading-[1.85rem] md:text-[2rem] md:leading-[2.4rem]"
             style={{
               color: "#161616",
               fontFamily: "'Exposure', 'New Spirit', serif",
@@ -137,15 +130,8 @@ const Hero = () => {
           >
             <span className="flex items-center gap-1.5 text-[13px] font-sans text-muted-foreground">
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500" />
-              Product Design Intern @ TikTok
+              Currently designing @TikTok and learning @University of Washington, MHCI+D.
             </span>
-            <span className="text-border">·</span>
-            <button
-              onClick={handleCopyEmail}
-              className="text-[13px] font-sans text-muted-foreground/50 hover:text-muted-foreground transition-colors cursor-pointer"
-            >
-              {copied ? "copied!" : "stellanotfound@gmail.com"}
-            </button>
           </motion.div>
         </div>
       </div>
