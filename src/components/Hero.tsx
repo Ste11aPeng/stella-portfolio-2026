@@ -102,15 +102,13 @@ const Hero = () => {
 
         <div className="flex flex-col">
           <motion.p
-            className="max-w-2xl pt-0 font-sans flex flex-wrap"
+            className="max-w-3xl pt-0 flex flex-wrap text-[2rem] leading-[2.4rem] md:text-[3.2rem] md:leading-[3.8rem]"
             style={{
               color: "#161616",
               fontFamily: "'Exposure', 'New Spirit', serif",
-              fontSize: "26px",
               fontWeight: 650,
-              letterSpacing: "-0.03em",
-              lineHeight: "1.4",
-              gap: "0 6px",
+              letterSpacing: "-0.05em",
+              gap: "0 8px",
             }}
             variants={containerVariants}
             initial="hidden"
