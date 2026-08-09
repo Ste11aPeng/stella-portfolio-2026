@@ -85,6 +85,86 @@ const PhotoWithHover = ({ src, label }: { src: string; label: string }) => {
   );
 };
 
+const MarqueeStrip = ({ items }: { items: { src: string; label: string }[] }) => {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const offsetRef = useRef(0);
+  const speedRef = useRef(0.25);
+  const targetRef = useRef(0.25);
+  const rafRef = useRef<number>();
+
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    let last = performance.now();
+    const animate = (now: number) => {
+      const dt = Math.min((now - last) / 16.67, 3);
+      last = now;
+      speedRef.current += (targetRef.current - speedRef.current) * 0.06;
+      offsetRef.current += speedRef.current * dt;
+      const track = trackRef.current;
+      if (track) {
+        const half = track.scrollWidth / 2;
+        if (half > 0 && offsetRef.current >= half) offsetRef.current -= half;
+        track.style.transform = `translate3d(${-offsetRef.current}px,0,0)`;
+      }
+      rafRef.current = requestAnimationFrame(animate);
+    };
+    rafRef.current = requestAnimationFrame(animate);
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+  }, []);
+
+  return (
+    <div
+      className="about-marquee overflow-hidden relative"
+      onMouseEnter={() => { targetRef.current = 0.015; }}
+      onMouseLeave={() => { targetRef.current = 0.25; }}
+    >
+      <div ref={trackRef} className="flex w-max gap-1.5 will-change-transform">
+        {items.map((item, i) => (
+          <PhotoWithHover key={i} src={item.src} label={item.label} />
+        ))}
+      </div>
+      {/* progressive blur edges */}
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 w-[18%]"
+        style={{
+          backdropFilter: "blur(3px)",
+          WebkitBackdropFilter: "blur(3px)",
+          maskImage: "linear-gradient(to right, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to right, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 w-[18%]"
+        style={{
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+          maskImage: "linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
+          WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 w-[18%]"
+        style={{
+          backdropFilter: "blur(3px)",
+          WebkitBackdropFilter: "blur(3px)",
+          maskImage: "linear-gradient(to left, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to left, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 w-[18%]"
+        style={{
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+          maskImage: "linear-gradient(to left, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
+          WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
+        }}
+      />
+    </div>
+  );
+};
+
 const cardVariants = {
   hidden: { opacity: 0, y: 12, filter: "blur(4px)" },
   visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const } },
@@ -223,65 +303,15 @@ const About = () => {
           </motion.div>
         </section>
 
-        {/* Horizontal photo strip - auto scrolling, pauses on hover */}
+        {/* Horizontal photo strip - auto scrolling, slows on hover */}
         <section className="pt-20 pb-20 px-8 lg:px-24 md:px-[32px] max-w-[1440px] mx-auto">
           <motion.div
-            className="about-marquee overflow-hidden relative"
             initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <div className="about-marquee-track flex w-max gap-1.5">
-              {[...strip, ...strip].map((item, i) => (
-                <PhotoWithHover key={i} src={item.src} label={item.label} />
-              ))}
-            </div>
-            {/* progressive blur edges */}
-            <div
-              className="pointer-events-none absolute inset-y-0 left-0 w-[18%]"
-              style={{
-                backdropFilter: "blur(3px)",
-                WebkitBackdropFilter: "blur(3px)",
-                maskImage:
-                  "linear-gradient(to right, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
-                WebkitMaskImage:
-                  "linear-gradient(to right, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
-              }}
-            />
-            <div
-              className="pointer-events-none absolute inset-y-0 left-0 w-[18%]"
-              style={{
-                backdropFilter: "blur(8px)",
-                WebkitBackdropFilter: "blur(8px)",
-                maskImage:
-                  "linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
-                WebkitMaskImage:
-                  "linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
-              }}
-            />
-            <div
-              className="pointer-events-none absolute inset-y-0 right-0 w-[18%]"
-              style={{
-                backdropFilter: "blur(3px)",
-                WebkitBackdropFilter: "blur(3px)",
-                maskImage:
-                  "linear-gradient(to left, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
-                WebkitMaskImage:
-                  "linear-gradient(to left, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
-              }}
-            />
-            <div
-              className="pointer-events-none absolute inset-y-0 right-0 w-[18%]"
-              style={{
-                backdropFilter: "blur(8px)",
-                WebkitBackdropFilter: "blur(8px)",
-                maskImage:
-                  "linear-gradient(to left, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
-                WebkitMaskImage:
-                  "linear-gradient(to left, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
-              }}
-            />
+            <MarqueeStrip items={[...strip, ...strip]} />
           </motion.div>
         </section>
 

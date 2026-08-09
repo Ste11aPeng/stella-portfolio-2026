@@ -185,21 +185,3 @@
     @apply text-muted-foreground text-sm whitespace-nowrap;
   }
 }
-@layer utilities {
-  @keyframes about-marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  .about-marquee-track {
-    animation: about-marquee 100s linear infinite;
-  }
-
-  .about-marquee:hover .about-marquee-track {
-    animation-play-state: paused;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .about-marquee-track { animation: none; }
-  }
-}
