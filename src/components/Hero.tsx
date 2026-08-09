@@ -1,35 +1,52 @@
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import profileImage from "@/assets/profile.webp";
 
-// Build a flat word list so we can compute each word's distance from "designer".
-const accentParts = [
-  { text: "Stella is a ", accent: false },
-  { text: "designer", accent: true },
-  { text: " who builds across design, engineering, and product.", accent: false },
+// Two lines, with a forced break after "designer".
+// Line 1: "Stella is a designer who builds"
+// Line 2: "across design, engineering, and product."
+const lines = [
+  {
+    // words on the first visual line
+    parts: [
+      { text: "Stella", accent: false },
+      { text: "is", accent: false },
+      { text: "a", accent: false },
+      { text: "designer", accent: true },
+      { text: "who", accent: false },
+      { text: "builds", accent: false },
+    ],
+  },
+  {
+    parts: [
+      { text: "across", accent: false },
+      { text: "design,", accent: false },
+      { text: "engineering,", accent: false },
+      { text: "and", accent: false },
+      { text: "product.", accent: false },
+    ],
+  },
 ];
 
+// Flatten with a global word index so we can compute linear distance from "designer".
 type WordItem = { text: string; accent: boolean; dist: number };
+const flatWords = (() => {
+  const all: { text: string; accent: boolean }[] = [];
+  for (const line of lines) for (const p of line.parts) all.push(p);
+  const accentIdx = all.findIndex((w) => w.accent);
+  return all.map((w, i) => ({
+    ...w,
+    dist: Math.abs(i - accentIdx),
+  }));
+})();
 
-const buildWords = (): WordItem[] => {
-  const words: WordItem[] = [];
-  for (const part of accentParts) {
-    for (const w of part.text.split(" ").filter(Boolean)) {
-      words.push({ text: w, accent: part.accent, dist: 0 });
-    }
-  }
-  return words;
-};
-
-const initialWords = buildWords();
-
-// Map 2D pixel distance from "designer" center to a progressive blur + opacity.
-// Visually close words stay almost sharp, far words fade/blur more — but light.
+// Map linear word distance from "designer" to a progressive blur + opacity.
+// Close words stay almost sharp, far words fade/blur more — but light.
 const blurFor = (dist: number) =>
-  Math.min(0.6 + dist * 0.012, 2.6).toFixed(2);
+  Math.min(0.6 + dist * 0.45, 2.6).toFixed(2);
 const opacityFor = (dist: number) =>
-  Math.max(0.82 - dist * 0.0018, 0.4).toFixed(2);
+  Math.max(0.82 - dist * 0.07, 0.4).toFixed(2);
 
 const containerVariants = {
   hidden: {},
@@ -58,31 +75,8 @@ const wordVariants = {
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [words, setWords] = useState<WordItem[]>(initialWords);
-  const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const navigate = useNavigate();
 
-  // Measure actual rendered positions and compute 2D distance from "designer".
-  useLayoutEffect(() => {
-    const accentIdx = initialWords.findIndex((w) => w.accent);
-    const accentEl = wordRefs.current[accentIdx];
-    if (!accentEl) return;
-    const accentRect = accentEl.getBoundingClientRect();
-    const ac = {
-      x: accentRect.left + accentRect.width / 2,
-      y: accentRect.top + accentRect.height / 2,
-    };
-    const measured = initialWords.map((w, i) => {
-      const el = wordRefs.current[i];
-      if (!el || w.accent) return { ...w, dist: 0 };
-      const r = el.getBoundingClientRect();
-      const c = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-      const dx = c.x - ac.x;
-      const dy = c.y - ac.y;
-      return { ...w, dist: Math.sqrt(dx * dx + dy * dy) };
-    });
-    setWords(measured);
-  }, []);
 
 
   return (
@@ -142,35 +136,42 @@ const Hero = () => {
 
         <div className="flex flex-col">
           <motion.p
-            className="group/title max-w-3xl pt-0 flex flex-wrap text-[1.5rem] leading-[1.85rem] md:text-[2rem] md:leading-[2.4rem]"
+            className="group/title max-w-3xl pt-0 text-[1.5rem] leading-[1.85rem] md:text-[2rem] md:leading-[2.4rem]"
             style={{
               color: "#161616",
               fontFamily: "'Exposure', 'New Spirit', serif",
               fontWeight: 650,
               letterSpacing: "-0.05em",
-              gap: "0 8px",
             }}
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            {words.map((word, wi) => (
-              <motion.span
-                key={wi}
-                ref={(el) => (wordRefs.current[wi] = el)}
-                variants={wordVariants}
-                className="inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--hb))] group-hover/title:opacity-[var(--ho)]"
-                style={
-                  word.accent
-                    ? undefined
-                    : {
-                        ["--hb" as string]: `${blurFor(word.dist)}px`,
-                        ["--ho" as string]: opacityFor(word.dist),
+            {lines.map((line, li) => (
+              <span key={li} className="block">
+                {line.parts.map((p, pi) => {
+                  const word = flatWords.find(
+                    (w) => w.text === p.text && w.accent === p.accent,
+                  )!;
+                  return (
+                    <motion.span
+                      key={`${li}-${pi}`}
+                      variants={wordVariants}
+                      className="inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--hb))] group-hover/title:opacity-[var(--ho)] mr-[8px]"
+                      style={
+                        word.accent
+                          ? undefined
+                          : {
+                              ["--hb" as string]: `${blurFor(word.dist)}px`,
+                              ["--ho" as string]: opacityFor(word.dist),
+                            }
                       }
-                }
-              >
-                {word.text}
-              </motion.span>
+                    >
+                      {word.text}
+                    </motion.span>
+                  );
+                })}
+              </span>
             ))}
           </motion.p>
 
