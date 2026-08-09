@@ -148,7 +148,7 @@ const Hero = () => {
             animate="visible"
           >
             {lines.map((line, li) => (
-              <span key={li} className="inline">
+              <span key={li} className="block">
                 {line.parts.map((p, pi) => {
                   const word = flatWords.find(
                     (w) => w.text === p.text && w.accent === p.accent,
@@ -171,9 +171,6 @@ const Hero = () => {
                     </motion.span>
                   );
                 })}
-                {li < lines.length - 1 && (
-                  <span className="block h-0 w-0" aria-hidden="true" />
-                )}
               </span>
             ))}
           </motion.p>
