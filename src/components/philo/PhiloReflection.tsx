@@ -21,7 +21,7 @@ const PhiloReflection = () => {
       ease: easeOut
     }}>
         <span className="text-sm text-muted-foreground mb-3 block">reflection</span>
-        <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
+        <h2 className="text-2xl font-bold mb-8 text-foreground">
           What I Learned
         </h2>
       </motion.div>

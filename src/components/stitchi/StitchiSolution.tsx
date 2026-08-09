@@ -14,7 +14,7 @@ const StitchiSolution = () => {
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
         <span className="text-sm text-muted-foreground mb-3 block">solution</span>
-        <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
+        <h2 className="text-2xl font-bold mb-8 text-foreground">
           Redesigning Search & Filter
         </h2>
       </motion.div>

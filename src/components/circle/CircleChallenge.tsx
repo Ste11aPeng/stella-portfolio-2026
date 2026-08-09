@@ -17,7 +17,7 @@ const CircleChallenge = () => {
       </motion.div>
 
       <motion.h2
-        className="text-2xl font-bold tracking-tight text-foreground leading-snug"
+        className="text-2xl font-bold text-foreground leading-snug"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}

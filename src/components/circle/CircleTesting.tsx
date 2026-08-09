@@ -84,7 +84,7 @@ const CircleTesting = () => {
         <span className="text-sm text-muted-foreground mb-3 block">
           iteration
         </span>
-        <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
+        <h2 className="text-2xl font-bold mb-8 text-foreground">
           From Feedback to Functional Prototype
         </h2>
       </motion.div>

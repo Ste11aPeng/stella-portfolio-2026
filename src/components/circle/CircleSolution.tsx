@@ -46,7 +46,7 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.1
     }}>
-        <h2 className="text-2xl font-bold mb-4 tracking-tight text-foreground">
+        <h2 className="text-2xl font-bold mb-4 text-foreground">
           01: The Lamp That Speaks When You Can't
         </h2>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
@@ -114,7 +114,7 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.2
     }}>
-        <h2 className="text-2xl font-bold mb-4 tracking-tight text-foreground">
+        <h2 className="text-2xl font-bold mb-4 text-foreground">
           02: The App That Turns Signals Into Support
         </h2>
         <p className="text-base text-foreground/80 leading-relaxed mb-6">
@@ -139,12 +139,12 @@ const CircleSolution = () => {
       delay: 0.4
     }}>
         <span className="text-sm text-muted-foreground mb-3 block">impact</span>
-        <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
+        <h2 className="text-2xl font-bold mb-8 text-foreground">
           Showcased at the Ross IPD Trade Show
         </h2>
         <div className="flex flex-wrap gap-x-16 gap-y-8 mb-8">
           <div>
-            <p className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 text-foreground">
+            <p className="text-4xl md:text-5xl font-bold leading-none mb-2 text-foreground">
               <AnimatedNumber value={264} />
             </p>
             <p className="text-sm text-muted-foreground">
@@ -152,7 +152,7 @@ const CircleSolution = () => {
             </p>
           </div>
           <div>
-            <p className="text-4xl md:text-5xl font-bold tracking-tight leading-none mb-2 text-foreground">
+            <p className="text-4xl md:text-5xl font-bold leading-none mb-2 text-foreground">
               $<AnimatedNumber value={1055736} />
             </p>
             <p className="text-sm text-muted-foreground">
