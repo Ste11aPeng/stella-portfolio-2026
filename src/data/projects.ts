@@ -1,6 +1,7 @@
 const askSiaImage = "/images/project-asksia.webp";
 import circleStatusImage from "@/assets/project-circle-status.png";
 import philoImage from "@/assets/project-philo.webp";
+import tiktokImage from "@/assets/project-tiktok.png";
 
 export interface Project {
   id: string;
