@@ -1,10 +1,13 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import about1 from "@/assets/about-1.png";
-import about2 from "@/assets/about-2.png";
-import about3 from "@/assets/about-3.png";
-import about4 from "@/assets/about-4.png";
+import workDesai from "@/assets/Rectangle_4.png.asset.json";
+import workBadge from "@/assets/Rectangle_6.png.asset.json";
+import workDesk from "@/assets/Rectangle_7.png.asset.json";
+import workTrip from "@/assets/Rectangle_8.png.asset.json";
+import tiktokLogo from "@/assets/img_logo.png.asset.json";
+import educationVisual from "@/assets/education_visual.png.asset.json";
+
 import album1 from "@/assets/album_1.png";
 import album2 from "@/assets/album_2.png";
 import album3 from "@/assets/album_3.png";
@@ -219,7 +222,8 @@ const About = () => {
             {/* Life */}
             <motion.div
               variants={cardVariants}
-              className="relative rounded-2xl bg-muted/40 p-8 min-h-[500px] overflow-hidden"
+              className="relative aspect-[4/5] rounded-2xl p-8 overflow-hidden"
+              style={{ backgroundColor: "#F2F2F2" }}
             >
               <h2
                 className="text-2xl md:text-[28px] text-foreground"
@@ -246,60 +250,70 @@ const About = () => {
                   .
                 </p>
               </div>
-              {/* bottom fade */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/80 to-transparent" />
             </motion.div>
 
             {/* Work */}
             <motion.div
               variants={cardVariants}
-              className="relative rounded-2xl bg-muted/40 p-8 min-h-[500px] overflow-hidden"
+              className="relative aspect-[4/5] rounded-2xl p-8 overflow-hidden"
+              style={{ backgroundColor: "#F2F2F2" }}
             >
               <h2
-                className="text-2xl md:text-[28px] text-foreground"
+                className="relative z-10 text-2xl md:text-[28px] text-foreground"
                 style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.07em" }}
               >
                 Work
               </h2>
-              <div className="absolute inset-0 flex items-center justify-center">
-                {/* placeholder collage - visuals to be provided */}
-                <div className="relative h-[260px] w-[300px]">
-                  <img src={about1} alt="" className="absolute left-0 top-6 h-[130px] w-[150px] rounded-xl object-cover shadow-md -rotate-6" />
-                  <img src={about2} alt="" className="absolute right-0 top-0 h-[120px] w-[140px] rounded-xl object-cover shadow-md rotate-6" />
-                  <img src={about3} alt="" className="absolute left-16 bottom-0 h-[150px] w-[130px] rounded-xl object-cover shadow-lg rotate-3" />
-                  <img src={about4} alt="" className="absolute right-2 bottom-6 h-[120px] w-[130px] rounded-xl object-cover shadow-md -rotate-3" />
-                </div>
+              <div className="absolute inset-0">
+                <img
+                  src={workDesai.url}
+                  alt="Desai Accelerator cohort"
+                  className="absolute left-[-4%] top-[36%] w-[42%] rounded-[10px] object-cover shadow-md -rotate-[7deg]"
+                />
+                <img
+                  src={workDesk.url}
+                  alt="Matcha and laptop workspace"
+                  className="absolute right-[-2%] top-[30%] w-[46%] rounded-[10px] object-cover shadow-md rotate-[6deg]"
+                />
+                <img
+                  src={workTrip.url}
+                  alt="Team trip by the water"
+                  className="absolute right-[-6%] top-[52%] w-[38%] rounded-[10px] object-cover shadow-md rotate-[8deg]"
+                />
+                <img
+                  src={workBadge.url}
+                  alt="TikTok intern badge"
+                  className="absolute left-[30%] top-[46%] w-[34%] rounded-[10px] object-cover shadow-lg -rotate-[3deg]"
+                />
+                <img
+                  src={tiktokLogo.url}
+                  alt="TikTok logo"
+                  className="absolute left-[18%] bottom-[16%] w-[14%] rounded-full shadow-md"
+                />
               </div>
             </motion.div>
 
             {/* Education */}
             <motion.div
               variants={cardVariants}
-              className="relative rounded-2xl bg-muted/40 p-8 min-h-[500px] overflow-hidden"
+              className="relative aspect-[4/5] rounded-2xl p-8 overflow-hidden"
+              style={{ backgroundColor: "#F2F2F2" }}
             >
               <h2
-                className="text-2xl md:text-[28px] text-foreground"
+                className="relative z-10 text-2xl md:text-[28px] text-foreground"
                 style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.07em" }}
               >
                 Education
               </h2>
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 px-8">
-                <p className="self-start font-sans text-[14px] text-muted-foreground">
-                  Bachelor of Art &amp; Design @UM
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="flex h-[110px] w-[110px] items-center justify-center rounded-2xl" style={{ backgroundColor: "#FFCB05" }}>
-                    <span className="text-5xl font-black text-[#00274C]">M</span>
-                  </div>
-                  <div className="flex h-[110px] w-[110px] items-center justify-center rounded-2xl bg-[#32006E]">
-                    <span className="text-5xl font-black text-white">W</span>
-                  </div>
-                </div>
-                <p className="self-end font-sans text-[14px] text-muted-foreground">
-                  Master of HCI + Design @UW
-                </p>
+              <div className="absolute inset-0 flex items-center justify-center p-6">
+                <img
+                  src={educationVisual.url}
+                  alt="Bachelor of Art & Design at UM, Master of HCI + Design at UW"
+                  className="w-[86%] object-contain"
+                />
               </div>
             </motion.div>
+
           </motion.div>
         </section>
 
