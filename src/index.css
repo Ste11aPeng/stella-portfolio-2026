@@ -185,3 +185,12 @@
     @apply text-muted-foreground text-sm whitespace-nowrap;
   }
 }
+
+@layer utilities {
+  .about-scroll {
+    scrollbar-width: none;
+  }
+  .about-scroll::-webkit-scrollbar {
+    display: none;
+  }
+}
