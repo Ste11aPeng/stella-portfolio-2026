@@ -163,7 +163,7 @@ const Hero = () => {
               color: "#161616",
               fontFamily: "'Exposure', 'New Spirit', serif",
               fontWeight: 650,
-              letterSpacing: "-0.05em",
+              letterSpacing: "-0.07em",
             }}
             variants={containerVariants}
             initial="hidden"
