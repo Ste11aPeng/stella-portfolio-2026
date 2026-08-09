@@ -184,12 +184,13 @@ const strip = [
 ];
 
 const workItemsBase = [
-  { id: "desai", src: workDesai.url, alt: "Desai Accelerator cohort", className: "left-[-4%] top-[36%] w-[42%] rounded-[10px] object-cover shadow-md -rotate-[7deg]" },
-  { id: "desk", src: workDesk.url, alt: "Matcha and laptop workspace", className: "right-[-2%] top-[30%] w-[46%] rounded-[10px] object-cover shadow-md rotate-[6deg]" },
-  { id: "trip", src: workTrip.url, alt: "Team trip by the water", className: "right-[-6%] top-[52%] w-[38%] rounded-[10px] object-cover shadow-md rotate-[8deg]" },
-  { id: "badge", src: workBadge.url, alt: "TikTok intern badge", className: "left-[30%] top-[46%] w-[34%] rounded-[10px] object-cover shadow-lg -rotate-[3deg]" },
-  { id: "logo", src: tiktokLogo.url, alt: "TikTok logo", className: "left-[18%] bottom-[16%] w-[14%] rounded-full shadow-md" },
+  { id: "desai", src: workDesai.url, alt: "Desai Accelerator cohort", rotate: -7, className: "left-[-4%] top-[36%] w-[42%] rounded-[10px] object-cover shadow-md" },
+  { id: "desk", src: workDesk.url, alt: "Matcha and laptop workspace", rotate: 6, className: "right-[-2%] top-[30%] w-[46%] rounded-[10px] object-cover shadow-md" },
+  { id: "trip", src: workTrip.url, alt: "Team trip by the water", rotate: 8, className: "right-[-6%] top-[52%] w-[38%] rounded-[10px] object-cover shadow-md" },
+  { id: "badge", src: workBadge.url, alt: "TikTok intern badge", rotate: -3, className: "left-[30%] top-[46%] w-[34%] rounded-[10px] object-cover shadow-lg" },
+  { id: "logo", src: tiktokLogo.url, alt: "TikTok logo", rotate: 0, className: "left-[18%] bottom-[16%] w-[14%] rounded-full shadow-md" },
 ];
+
 
 const About = () => {
   usePageTitle("About Stella Peng | Product Designer");
