@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import EdgeBlur from "@/components/EdgeBlur";
 import { motion } from "framer-motion";
 import workDesai from "@/assets/Rectangle_4.png.asset.json";
 import workBadge from "@/assets/Rectangle_6.png.asset.json";
@@ -128,42 +129,9 @@ const MarqueeStrip = ({ items }: { items: { src: string; label: string }[] }) =>
         ))}
       </div>
       {/* progressive blur edges */}
-      <div
-        className="pointer-events-none absolute inset-y-0 left-0 w-[18%]"
-        style={{
-          backdropFilter: "blur(3px)",
-          WebkitBackdropFilter: "blur(3px)",
-          maskImage: "linear-gradient(to right, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to right, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-y-0 left-0 w-[18%]"
-        style={{
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-          maskImage: "linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
-          WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-y-0 right-0 w-[18%]"
-        style={{
-          backdropFilter: "blur(3px)",
-          WebkitBackdropFilter: "blur(3px)",
-          maskImage: "linear-gradient(to left, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to left, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-y-0 right-0 w-[18%]"
-        style={{
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-          maskImage: "linear-gradient(to left, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
-          WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
-        }}
-      />
+      <EdgeBlur side="left" size="18%" />
+      <EdgeBlur side="right" size="18%" />
+
     </div>
   );
 };
@@ -276,49 +244,15 @@ const About = () => {
                 </div>
 
                 {/* top progressive blur, appears once scrolled */}
-                <div
-                  className="pointer-events-none absolute inset-x-0 top-0 h-28 transition-opacity duration-500"
+                <EdgeBlur
+                  side="top"
+                  className="transition-opacity duration-500"
                   style={{ opacity: lifeScrolled ? 1 : 0 }}
-                >
-                  {[
-                    { blur: 0.5, stops: "black 0%, black 50%, transparent 87.5%" },
-                    { blur: 1, stops: "transparent 12.5%, black 37.5%, black 62.5%, transparent 87.5%" },
-                    { blur: 2, stops: "transparent 25%, black 50%, black 75%, transparent 100%" },
-                    { blur: 4, stops: "transparent 37.5%, black 62.5%, black 100%" },
-                  ].map((l, i) => (
-                    <div
-                      key={i}
-                      className="absolute inset-0"
-                      style={{
-                        backdropFilter: `blur(${l.blur}px)`,
-                        WebkitBackdropFilter: `blur(${l.blur}px)`,
-                        maskImage: `linear-gradient(to top, ${l.stops})`,
-                        WebkitMaskImage: `linear-gradient(to top, ${l.stops})`,
-                      }}
-                    />
-                  ))}
-                </div>
+                />
 
                 {/* bottom progressive blur */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28">
-                  {[
-                    { blur: 0.5, stops: "black 0%, black 50%, transparent 87.5%" },
-                    { blur: 1, stops: "transparent 12.5%, black 37.5%, black 62.5%, transparent 87.5%" },
-                    { blur: 2, stops: "transparent 25%, black 50%, black 75%, transparent 100%" },
-                    { blur: 4, stops: "transparent 37.5%, black 62.5%, black 100%" },
-                  ].map((l, i) => (
-                    <div
-                      key={i}
-                      className="absolute inset-0"
-                      style={{
-                        backdropFilter: `blur(${l.blur}px)`,
-                        WebkitBackdropFilter: `blur(${l.blur}px)`,
-                        maskImage: `linear-gradient(to bottom, ${l.stops})`,
-                        WebkitMaskImage: `linear-gradient(to bottom, ${l.stops})`,
-                      }}
-                    />
-                  ))}
-                </div>
+                <EdgeBlur side="bottom" />
+
 
               </div>
             </motion.div>
