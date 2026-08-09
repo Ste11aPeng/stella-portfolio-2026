@@ -144,11 +144,11 @@ const cardVariants = {
 const strip = [
   { src: album1, label: "Hi~" },
   { src: album2, label: "I love matcha" },
-  { src: album3, label: "yes i wear blur hoodie to oasis concert" },
+  { src: album3, label: "blur hoodie to oasis concert" },
   { src: album4, label: "brew time!" },
-  { src: album5, label: "whale watch with design team in monterey" },
-  { src: album6, label: "visit tahoe becauses of the wallpaper" },
-  { src: album7, label: "I waymo to everywhere" },
+  { src: album5, label: "whale watch in monterey" },
+  { src: album6, label: "tahoe bc of the wallpaper" },
+  { src: album7, label: "i waymo everywhere" },
 ];
 
 const workItemsBase = [
