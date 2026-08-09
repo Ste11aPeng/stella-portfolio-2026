@@ -70,12 +70,12 @@ const PhotoWithHover = ({ src, label }: { src: string; label: string }) => {
 
   return (
     <div
-      className="relative h-[260px] w-[230px] flex-shrink-0 overflow-hidden bg-muted cursor-none"
+      className="relative h-[240px] w-[192px] flex-shrink-0 overflow-hidden rounded-[2px] bg-muted cursor-none"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <img src={src} alt={label} className="h-full w-full object-cover" />
+      <img src={src} alt={label} className="h-full w-full object-cover rounded-[2px]" />
       {isHovering && (
         <div ref={hintRef} className="project-cursor-hint" style={{ willChange: "left, top" }}>
           {label}
