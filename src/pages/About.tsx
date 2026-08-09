@@ -232,7 +232,7 @@ const About = () => {
         {/* Three cards */}
         <section className="px-8 lg:px-24 md:px-[32px] max-w-[1440px] mx-auto">
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-3 gap-3"
             initial="hidden"
             animate="visible"
             variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } } }}
@@ -277,43 +277,43 @@ const About = () => {
 
                 {/* top progressive blur, appears once scrolled */}
                 <div
-                  className="pointer-events-none absolute inset-x-0 top-0 h-16 transition-opacity duration-300"
+                  className="pointer-events-none absolute inset-x-0 top-0 h-24 transition-opacity duration-500"
                   style={{
                     opacity: lifeScrolled ? 1 : 0,
                     backdropFilter: "blur(3px)",
                     WebkitBackdropFilter: "blur(3px)",
-                    maskImage: "linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
-                    WebkitMaskImage: "linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+                    maskImage: "linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 50%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 50%, transparent 100%)",
                   }}
                 />
                 <div
-                  className="pointer-events-none absolute inset-x-0 top-0 h-16 transition-opacity duration-300"
+                  className="pointer-events-none absolute inset-x-0 top-0 h-28 transition-opacity duration-500"
                   style={{
                     opacity: lifeScrolled ? 1 : 0,
                     backdropFilter: "blur(8px)",
                     WebkitBackdropFilter: "blur(8px)",
-                    maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 45%, transparent 80%)",
-                    WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 45%, transparent 80%)",
+                    maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 40%, transparent 75%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 40%, transparent 75%)",
                   }}
                 />
 
                 {/* bottom progressive blur */}
                 <div
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-20"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
                   style={{
                     backdropFilter: "blur(3px)",
                     WebkitBackdropFilter: "blur(3px)",
-                    maskImage: "linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
-                    WebkitMaskImage: "linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+                    maskImage: "linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 50%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 50%, transparent 100%)",
                   }}
                 />
                 <div
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-20"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-28"
                   style={{
                     backdropFilter: "blur(8px)",
                     WebkitBackdropFilter: "blur(8px)",
-                    maskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 45%, transparent 80%)",
-                    WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 45%, transparent 80%)",
+                    maskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 40%, transparent 75%)",
+                    WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 40%, transparent 75%)",
                   }}
                 />
               </div>
