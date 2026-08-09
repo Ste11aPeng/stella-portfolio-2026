@@ -118,7 +118,7 @@ const MarqueeStrip = ({ items }: { items: { src: string; label: string }[] }) =>
 
   return (
     <div
-      className="about-marquee overflow-hidden relative"
+      className="about-marquee overflow-hidden relative rounded-[24px]"
       onMouseEnter={() => { targetRef.current = 0.08; }}
       onMouseLeave={() => { targetRef.current = 0.25; }}
     >
