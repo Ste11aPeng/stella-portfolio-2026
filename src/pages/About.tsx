@@ -226,10 +226,10 @@ const About = () => {
                     <p className="font-sans text-[15px] leading-relaxed text-foreground">
                       A designer who notices the tiny things. Into Nintendo, kittens, film cameras, and things that make me say "ohhh that's clever".
                     </p>
-                    <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
+                    <p className="font-sans text-[15px] leading-relaxed text-foreground">
                       Grew up in China, studied design at Michigan, now at UW for HCI. Summer '26 intern at TikTok, shipping internal prototypes with Figma and Claude Code.
                     </p>
-                    <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
+                    <p className="font-sans text-[15px] leading-relaxed text-foreground">
                       Say hello to{" "}
                       <button onClick={handleCopyEmail} className="underline underline-offset-2 hover:text-foreground transition-colors">
                         {copied ? "copied!" : "stellanotfound@gmail.com"}
