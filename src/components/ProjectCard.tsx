@@ -92,13 +92,13 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
         />
         {/* Gradient blur overlay on hover */}
         <div
-          className="absolute inset-0 transition-opacity duration-500 ease-out pointer-events-none"
+          className="absolute inset-0 transition-opacity duration-700 ease-out pointer-events-none"
           style={{
             opacity: isHovering ? 1 : 0,
-            backdropFilter: "blur(4px)",
-            WebkitBackdropFilter: "blur(4px)",
-            maskImage: "linear-gradient(to bottom, transparent 40%, black 100%)",
-            WebkitMaskImage: "linear-gradient(to bottom, transparent 40%, black 100%)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            maskImage: "linear-gradient(to bottom, transparent 25%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.7) 70%, black 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 25%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.7) 70%, black 100%)",
           }}
         />
       </div>
