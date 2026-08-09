@@ -25,12 +25,10 @@ const imagesBeforeBig: { src?: string; alt: string; span: "full" | "normal"; lot
 ];
 
 const imagesAfterBig: { src?: string; alt: string; span: "full" | "normal"; lottie?: 1 | 2 }[] = [
-  { src: visual1, alt: "3D coral character render", span: "full" },
   { src: visual2, alt: "Coral sculpture photo collection", span: "normal" },
   { src: visual3, alt: "Character design iterations and sketches", span: "normal" },
-  { src: visual4, alt: "Mechanical creature sketch", span: "normal" },
-  { src: visual5, alt: "Changsha typography editorial design", span: "normal" },
 ];
+
 
 const containerVariants = {
   hidden: {},
