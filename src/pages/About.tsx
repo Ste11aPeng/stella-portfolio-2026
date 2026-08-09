@@ -184,16 +184,18 @@ const strip = [
 ];
 
 const workItemsBase = [
-  { id: "desai", src: workDesai.url, alt: "Desai Accelerator cohort", className: "left-[-4%] top-[36%] w-[42%] rounded-[10px] object-cover shadow-md -rotate-[7deg]" },
-  { id: "desk", src: workDesk.url, alt: "Matcha and laptop workspace", className: "right-[-2%] top-[30%] w-[46%] rounded-[10px] object-cover shadow-md rotate-[6deg]" },
-  { id: "trip", src: workTrip.url, alt: "Team trip by the water", className: "right-[-6%] top-[52%] w-[38%] rounded-[10px] object-cover shadow-md rotate-[8deg]" },
-  { id: "badge", src: workBadge.url, alt: "TikTok intern badge", className: "left-[30%] top-[46%] w-[34%] rounded-[10px] object-cover shadow-lg -rotate-[3deg]" },
-  { id: "logo", src: tiktokLogo.url, alt: "TikTok logo", className: "left-[18%] bottom-[16%] w-[14%] rounded-full shadow-md" },
+  { id: "desai", src: workDesai.url, alt: "Desai Accelerator cohort", rotate: -7, className: "left-[-4%] top-[36%] w-[42%] rounded-[10px] object-cover shadow-md" },
+  { id: "desk", src: workDesk.url, alt: "Matcha and laptop workspace", rotate: 6, className: "right-[-2%] top-[30%] w-[46%] rounded-[10px] object-cover shadow-md" },
+  { id: "trip", src: workTrip.url, alt: "Team trip by the water", rotate: 8, className: "right-[-6%] top-[52%] w-[38%] rounded-[10px] object-cover shadow-md" },
+  { id: "badge", src: workBadge.url, alt: "TikTok intern badge", rotate: -3, className: "left-[30%] top-[46%] w-[34%] rounded-[10px] object-cover shadow-lg" },
+  { id: "logo", src: tiktokLogo.url, alt: "TikTok logo", rotate: 0, className: "left-[18%] bottom-[16%] w-[14%] rounded-full shadow-md" },
 ];
+
 
 const About = () => {
   usePageTitle("About Stella Peng | Product Designer");
   const [copied, setCopied] = useState(false);
+  const [lifeScrolled, setLifeScrolled] = useState(false);
   const workRef = useRef<HTMLDivElement>(null);
   const [order, setOrder] = useState(workItemsBase.map((i) => i.id));
   const workItems = workItemsBase;
@@ -242,39 +244,81 @@ const About = () => {
               style={{ backgroundColor: "#F2F2F2" }}
             >
               <h2
-                className="px-8 pt-8 text-2xl md:text-[28px] text-foreground"
+                className="relative z-20 px-8 pt-8 text-2xl md:text-[28px] text-foreground"
                 style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.07em" }}
               >
                 Life
               </h2>
-              <div
-                className="mt-8 flex-1 overflow-y-auto px-8 pb-10 about-scroll"
-                style={{
-                  maskImage: "linear-gradient(to bottom, black 0%, black 72%, rgba(0,0,0,0.35) 90%, transparent 100%)",
-                  WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 72%, rgba(0,0,0,0.35) 90%, transparent 100%)",
-                }}
-              >
-                <div className="flex flex-col gap-5">
-                  <p className="font-sans text-[15px] leading-relaxed text-foreground">
-                    A designer who notices the tiny things. Into Nintendo, kittens, film cameras, and things that make me say "ohhh that's clever".
-                  </p>
-                  <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
-                    Grew up in China, studied design at Michigan, now at UW for HCI. Summer '26 intern at TikTok, shipping internal prototypes with Figma and Claude Code.
-                  </p>
-                  <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
-                    Say hello to{" "}
-                    <button onClick={handleCopyEmail} className="underline underline-offset-2 hover:text-foreground transition-colors">
-                      {copied ? "copied!" : "stellanotfound@gmail.com"}
-                    </button>{" "}
-                    or{" "}
-                    <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
-                      linkedin
-                    </a>
-                    .
-                  </p>
+              <div className="relative flex-1 mt-8 min-h-0">
+                <div
+                  className="h-full overflow-y-auto px-8 pb-12 about-scroll"
+                  onScroll={(e) => setLifeScrolled(e.currentTarget.scrollTop > 4)}
+                >
+                  <div className="flex flex-col gap-5">
+                    <p className="font-sans text-[15px] leading-relaxed text-foreground">
+                      A designer who notices the tiny things. Into Nintendo, kittens, film cameras, and things that make me say "ohhh that's clever".
+                    </p>
+                    <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
+                      Grew up in China, studied design at Michigan, now at UW for HCI. Summer '26 intern at TikTok, shipping internal prototypes with Figma and Claude Code.
+                    </p>
+                    <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
+                      Say hello to{" "}
+                      <button onClick={handleCopyEmail} className="underline underline-offset-2 hover:text-foreground transition-colors">
+                        {copied ? "copied!" : "stellanotfound@gmail.com"}
+                      </button>{" "}
+                      or{" "}
+                      <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
+                        linkedin
+                      </a>
+                      .
+                    </p>
+                  </div>
                 </div>
+
+                {/* top progressive blur, appears once scrolled */}
+                <div
+                  className="pointer-events-none absolute inset-x-0 top-0 h-16 transition-opacity duration-300"
+                  style={{
+                    opacity: lifeScrolled ? 1 : 0,
+                    backdropFilter: "blur(3px)",
+                    WebkitBackdropFilter: "blur(3px)",
+                    maskImage: "linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+                  }}
+                />
+                <div
+                  className="pointer-events-none absolute inset-x-0 top-0 h-16 transition-opacity duration-300"
+                  style={{
+                    opacity: lifeScrolled ? 1 : 0,
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
+                    maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 45%, transparent 80%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 45%, transparent 80%)",
+                  }}
+                />
+
+                {/* bottom progressive blur */}
+                <div
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-20"
+                  style={{
+                    backdropFilter: "blur(3px)",
+                    WebkitBackdropFilter: "blur(3px)",
+                    maskImage: "linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+                  }}
+                />
+                <div
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-20"
+                  style={{
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
+                    maskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 45%, transparent 80%)",
+                    WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 45%, transparent 80%)",
+                  }}
+                />
               </div>
             </motion.div>
+
 
             {/* Work */}
             <motion.div
@@ -299,10 +343,10 @@ const About = () => {
                     dragConstraints={workRef}
                     dragElastic={0.12}
                     dragMomentum={false}
-                    whileDrag={{ scale: 1.04 }}
+                    whileDrag={{ scale: 1.04, rotate: item.rotate }}
                     onPointerDown={() => bringToFront(item.id)}
                     className={`absolute cursor-grab active:cursor-grabbing select-none ${item.className}`}
-                    style={{ zIndex: 20 + order.indexOf(item.id), touchAction: "none" }}
+                    style={{ rotate: item.rotate, zIndex: 20 + order.indexOf(item.id), touchAction: "none" }}
                     draggable={false}
                   />
                 ))}
@@ -321,7 +365,7 @@ const About = () => {
               >
                 Education
               </h2>
-              <div className="absolute inset-0 flex items-center justify-center p-6 pt-[18%]">
+              <div className="absolute inset-0 flex items-end justify-center px-6 pb-[10%]">
                 <img
                   src={educationVisual.url}
                   alt="Bachelor of Art & Design at UM, Master of HCI + Design at UW"
