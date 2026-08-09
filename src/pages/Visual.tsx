@@ -5,11 +5,9 @@ import ImageLightbox from "@/components/ImageLightbox";
 
 import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import visual1 from "@/assets/visual-1.png";
 import visual2 from "@/assets/visual-2.png";
 import visual3 from "@/assets/visual-3.png";
-import visual4 from "@/assets/visual-4.png";
-import visual5 from "@/assets/visual-5.png";
+
 import visual6 from "@/assets/visual-6.png";
 import visual7 from "@/assets/visual-7.png";
 import lottieAnimation from "@/assets/visual-lottie.json";
@@ -25,12 +23,10 @@ const imagesBeforeBig: { src?: string; alt: string; span: "full" | "normal"; lot
 ];
 
 const imagesAfterBig: { src?: string; alt: string; span: "full" | "normal"; lottie?: 1 | 2 }[] = [
-  { src: visual1, alt: "3D coral character render", span: "full" },
   { src: visual2, alt: "Coral sculpture photo collection", span: "normal" },
   { src: visual3, alt: "Character design iterations and sketches", span: "normal" },
-  { src: visual4, alt: "Mechanical creature sketch", span: "normal" },
-  { src: visual5, alt: "Changsha typography editorial design", span: "normal" },
 ];
+
 
 const containerVariants = {
   hidden: {},
