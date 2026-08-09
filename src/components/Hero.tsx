@@ -154,9 +154,10 @@ const Hero = () => {
             initial="hidden"
             animate="visible"
           >
-            {flatWords.map((word, wi) => (
+            {words.map((word, wi) => (
               <motion.span
                 key={wi}
+                ref={(el) => (wordRefs.current[wi] = el)}
                 variants={wordVariants}
                 className="inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--hb))] group-hover/title:opacity-[var(--ho)]"
                 style={
