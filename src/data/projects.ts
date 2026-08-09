@@ -43,7 +43,7 @@ export const projects: Project[] = [
     id: "circle-status",
     image: circleStatusImage,
     title: "Circle Status",
-    titleColor: "#F08368",
+    titleColor: "#FFCB05",
     tagline: "light for community",
     description: "connecting neighbors through ambient awareness",
     type: "0 to 1",
