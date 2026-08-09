@@ -91,13 +91,13 @@ const cardVariants = {
 };
 
 const strip = [
-  { src: about1, label: "Hi~" },
-  { src: about2, label: "I love matcha" },
-  { src: about3, label: "Oasis live" },
-  { src: about4, label: "Brew time!" },
-  { src: about1, label: "Lake days" },
-  { src: about2, label: "Shoot with my Fuji" },
-  { src: about3, label: "Say hi" },
+  { src: album1, label: "Hi~" },
+  { src: album2, label: "I love matcha" },
+  { src: album3, label: "oasis live" },
+  { src: album4, label: "brew time!" },
+  { src: album5, label: "on the water" },
+  { src: album6, label: "tahoe" },
+  { src: album7, label: "shoot with my canon" },
 ];
 
 const About = () => {
