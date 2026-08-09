@@ -2,12 +2,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EdgeBlur from "@/components/EdgeBlur";
 import { motion } from "framer-motion";
-import workDesai from "@/assets/Rectangle_4.png.asset.json";
-import workBadge from "@/assets/Rectangle_6.png.asset.json";
-import workDesk from "@/assets/Rectangle_7.png.asset.json";
-import workTrip from "@/assets/Rectangle_8.png.asset.json";
-import tiktokLogo from "@/assets/img_logo.png.asset.json";
-import educationVisual from "@/assets/education_visual.png.asset.json";
+import workDesai from "@/assets/Rectangle_4.png";
+import workBadge from "@/assets/Rectangle_6.png";
+import workDesk from "@/assets/Rectangle_7.png";
+import workTrip from "@/assets/Rectangle_8.png";
+import tiktokLogo from "@/assets/img_logo.png";
+import educationVisual from "@/assets/education_visual.png";
 
 import album1 from "@/assets/album_1.png";
 import album2 from "@/assets/album_2.png";
@@ -152,11 +152,11 @@ const strip = [
 ];
 
 const workItemsBase = [
-  { id: "desai", src: workDesai.url, alt: "Desai Accelerator cohort", rotate: -7, className: "left-[-4%] top-[36%] w-[42%] rounded-[10px] object-cover shadow-md" },
-  { id: "desk", src: workDesk.url, alt: "Matcha and laptop workspace", rotate: 6, className: "right-[-2%] top-[30%] w-[46%] rounded-[10px] object-cover shadow-md" },
-  { id: "trip", src: workTrip.url, alt: "Team trip by the water", rotate: 8, className: "right-[-6%] top-[52%] w-[38%] rounded-[10px] object-cover shadow-md" },
-  { id: "badge", src: workBadge.url, alt: "TikTok intern badge", rotate: -3, className: "left-[30%] top-[46%] w-[34%] rounded-[10px] object-cover shadow-lg" },
-  { id: "logo", src: tiktokLogo.url, alt: "TikTok logo", rotate: 0, className: "left-[18%] bottom-[16%] w-[14%] rounded-full shadow-md" },
+  { id: "desai", src: workDesai, alt: "Desai Accelerator cohort", rotate: -7, className: "left-[-4%] top-[36%] w-[42%] rounded-[10px] object-cover shadow-md" },
+  { id: "desk", src: workDesk, alt: "Matcha and laptop workspace", rotate: 6, className: "right-[-2%] top-[30%] w-[46%] rounded-[10px] object-cover shadow-md" },
+  { id: "trip", src: workTrip, alt: "Team trip by the water", rotate: 8, className: "right-[-6%] top-[52%] w-[38%] rounded-[10px] object-cover shadow-md" },
+  { id: "badge", src: workBadge, alt: "TikTok intern badge", rotate: -3, className: "left-[30%] top-[46%] w-[34%] rounded-[10px] object-cover shadow-lg" },
+  { id: "logo", src: tiktokLogo, alt: "TikTok logo", rotate: 0, className: "left-[18%] bottom-[16%] w-[14%] rounded-full shadow-md" },
 ];
 
 
@@ -305,7 +305,7 @@ const About = () => {
               </h2>
               <div className="absolute inset-0 flex items-end justify-center px-6 pb-[10%]">
                 <img
-                  src={educationVisual.url}
+                  src={educationVisual}
                   alt="Bachelor of Art & Design at UM, Master of HCI + Design at UW"
                   className="w-[96%] object-contain"
                 />
