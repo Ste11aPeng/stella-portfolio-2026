@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import profileImage from "@/assets/profile.webp";
@@ -10,25 +10,26 @@ const accentParts = [
   { text: " who builds across design, engineering, and product.", accent: false },
 ];
 
-const flatWords = (() => {
-  const words: { text: string; accent: boolean; dist: number }[] = [];
-  let accentIdx = -1;
+type WordItem = { text: string; accent: boolean; dist: number };
+
+const buildWords = (): WordItem[] => {
+  const words: WordItem[] = [];
   for (const part of accentParts) {
     for (const w of part.text.split(" ").filter(Boolean)) {
       words.push({ text: w, accent: part.accent, dist: 0 });
     }
   }
-  accentIdx = words.findIndex((w) => w.accent);
-  words.forEach((w, i) => (w.dist = Math.abs(i - accentIdx)));
   return words;
-})();
+};
 
-// Map distance from "designer" to a progressive blur + opacity.
-// Close words stay almost sharp, far words fade/blur more — but overall much lighter.
+const initialWords = buildWords();
+
+// Map 2D pixel distance from "designer" center to a progressive blur + opacity.
+// Visually close words stay almost sharp, far words fade/blur more — but light.
 const blurFor = (dist: number) =>
-  Math.min(0.6 + dist * 0.45, 2.6).toFixed(2);
+  Math.min(0.6 + dist * 0.012, 2.6).toFixed(2);
 const opacityFor = (dist: number) =>
-  Math.max(0.82 - dist * 0.07, 0.4).toFixed(2);
+  Math.max(0.82 - dist * 0.0018, 0.4).toFixed(2);
 
 const containerVariants = {
   hidden: {},
@@ -57,7 +58,32 @@ const wordVariants = {
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [words, setWords] = useState<WordItem[]>(initialWords);
+  const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const navigate = useNavigate();
+
+  // Measure actual rendered positions and compute 2D distance from "designer".
+  useLayoutEffect(() => {
+    const accentIdx = initialWords.findIndex((w) => w.accent);
+    const accentEl = wordRefs.current[accentIdx];
+    if (!accentEl) return;
+    const accentRect = accentEl.getBoundingClientRect();
+    const ac = {
+      x: accentRect.left + accentRect.width / 2,
+      y: accentRect.top + accentRect.height / 2,
+    };
+    const measured = initialWords.map((w, i) => {
+      const el = wordRefs.current[i];
+      if (!el || w.accent) return { ...w, dist: 0 };
+      const r = el.getBoundingClientRect();
+      const c = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+      const dx = c.x - ac.x;
+      const dy = c.y - ac.y;
+      return { ...w, dist: Math.sqrt(dx * dx + dy * dy) };
+    });
+    setWords(measured);
+  }, []);
+
 
   return (
     <section className="px-8 py-16 lg:px-24 md:px-[32px] md:py-[64px] max-w-[1440px] mx-auto">
@@ -128,9 +154,10 @@ const Hero = () => {
             initial="hidden"
             animate="visible"
           >
-            {flatWords.map((word, wi) => (
+            {words.map((word, wi) => (
               <motion.span
                 key={wi}
+                ref={(el) => (wordRefs.current[wi] = el)}
                 variants={wordVariants}
                 className="inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--hb))] group-hover/title:opacity-[var(--ho)]"
                 style={
