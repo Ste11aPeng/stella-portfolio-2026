@@ -169,32 +169,38 @@ const Hero = () => {
             initial="hidden"
             animate="visible"
           >
-            {lines.map((line, li) => (
-              <span key={li} className="block">
-                {line.parts.map((p, pi) => {
-                  const word = flatWords.find(
-                    (w) => w.text === p.text && w.accent === p.accent,
-                  )!;
-                  return (
-                    <motion.span
-                      key={`${li}-${pi}`}
-                      variants={wordVariants}
-                      className="inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--hb))] group-hover/title:opacity-[var(--ho)] mr-[8px]"
-                      style={
-                        word.accent
-                          ? undefined
-                          : {
-                              ["--hb" as string]: `${blurFor(word.dist)}px`,
-                              ["--ho" as string]: opacityFor(word.dist),
-                            }
-                      }
-                    >
-                      {word.text}
-                    </motion.span>
-                  );
-                })}
-              </span>
-            ))}
+            {lines.map((line, li) => {
+              const offset = lines
+                .slice(0, li)
+                .reduce((sum, l) => sum + l.parts.length, 0);
+              return (
+                <span key={li} className="block">
+                  {line.parts.map((p, pi) => {
+                    const gi = offset + pi;
+                    const word = flatWords[gi];
+                    const dist = dists[gi];
+                    return (
+                      <motion.span
+                        key={`${li}-${pi}`}
+                        ref={(el) => (wordRefs.current[gi] = el)}
+                        variants={wordVariants}
+                        className="inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--hb))] group-hover/title:opacity-[var(--ho)] mr-[8px]"
+                        style={
+                          word.accent
+                            ? undefined
+                            : {
+                                ["--hb" as string]: `${blurFor(dist)}px`,
+                                ["--ho" as string]: opacityFor(dist),
+                              }
+                        }
+                      >
+                        {word.text}
+                      </motion.span>
+                    );
+                  })}
+                </span>
+              );
+            })}
           </motion.p>
 
           <motion.div
