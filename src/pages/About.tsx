@@ -216,10 +216,10 @@ const About = () => {
           </motion.div>
         </section>
 
-        {/* Horizontal photo strip */}
+        {/* Horizontal photo strip - auto scrolling, pauses on hover */}
         <section className="pt-20 pb-20">
           <motion.div
-            className="overflow-x-auto"
+            className="about-marquee overflow-hidden"
             initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
@@ -229,13 +229,14 @@ const About = () => {
               WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
             }}
           >
-            <div className="flex w-max gap-3 px-8 lg:px-24">
-              {strip.map((item, i) => (
+            <div className="about-marquee-track flex w-max gap-3">
+              {[...strip, ...strip].map((item, i) => (
                 <PhotoWithHover key={i} src={item.src} label={item.label} />
               ))}
             </div>
           </motion.div>
         </section>
+
       </div>
 
       <div className="sticky bottom-0 z-0">
