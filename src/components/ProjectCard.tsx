@@ -78,12 +78,12 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="overflow-hidden w-full relative rounded-[2px]" style={{ aspectRatio: '645/326' }}>
+      <div className="overflow-hidden w-full relative rounded-[4px]" style={{ aspectRatio: '645/290' }}>
         <img 
           src={image} 
           alt={`${title} – ${description}`} 
           width={645}
-          height={326}
+          height={290}
           sizes="(max-width: 768px) 100vw, 564px"
           loading={index < 2 ? "eager" : "lazy"}
           decoding={index < 2 ? "sync" : "async"}
