@@ -232,11 +232,13 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
             style={{
-              maskImage: "linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)",
-              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)",
+              maskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 6%, rgba(0,0,0,0.55) 11%, rgba(0,0,0,0.88) 16%, black 22%, black 78%, rgba(0,0,0,0.88) 84%, rgba(0,0,0,0.55) 89%, rgba(0,0,0,0.15) 94%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 6%, rgba(0,0,0,0.55) 11%, rgba(0,0,0,0.88) 16%, black 22%, black 78%, rgba(0,0,0,0.88) 84%, rgba(0,0,0,0.55) 89%, rgba(0,0,0,0.15) 94%, transparent 100%)",
             }}
           >
-            <div className="about-marquee-track flex w-max gap-2">
+            <div className="about-marquee-track flex w-max gap-1.5">
               {[...strip, ...strip].map((item, i) => (
                 <PhotoWithHover key={i} src={item.src} label={item.label} />
               ))}
