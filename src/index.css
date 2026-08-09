@@ -192,7 +192,7 @@
   }
 
   .about-marquee-track {
-    animation: about-marquee 60s linear infinite;
+    animation: about-marquee 100s linear infinite;
   }
 
   .about-marquee:hover .about-marquee-track {

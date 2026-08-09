@@ -70,12 +70,12 @@ const PhotoWithHover = ({ src, label }: { src: string; label: string }) => {
 
   return (
     <div
-      className="relative h-[260px] w-[230px] flex-shrink-0 overflow-hidden bg-muted cursor-none"
+      className="relative h-[240px] w-[192px] flex-shrink-0 overflow-hidden rounded-[2px] bg-muted cursor-none"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <img src={src} alt={label} className="h-full w-full object-cover" />
+      <img src={src} alt={label} className="h-full w-full object-cover rounded-[2px]" />
       {isHovering && (
         <div ref={hintRef} className="project-cursor-hint" style={{ willChange: "left, top" }}>
           {label}
@@ -224,7 +224,7 @@ const About = () => {
         </section>
 
         {/* Horizontal photo strip - auto scrolling, pauses on hover */}
-        <section className="pt-20 pb-20">
+        <section className="pt-20 pb-20 px-8 lg:px-24 md:px-[32px] max-w-[1440px] mx-auto">
           <motion.div
             className="about-marquee overflow-hidden"
             initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
@@ -232,11 +232,11 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
             style={{
-              maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+              maskImage: "linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)",
             }}
           >
-            <div className="about-marquee-track flex w-max gap-3">
+            <div className="about-marquee-track flex w-max gap-2">
               {[...strip, ...strip].map((item, i) => (
                 <PhotoWithHover key={i} src={item.src} label={item.label} />
               ))}
