@@ -277,26 +277,49 @@ const About = () => {
 
                 {/* top progressive blur, appears once scrolled */}
                 <div
-                  className="pointer-events-none absolute inset-x-0 top-0 h-32 transition-opacity duration-500"
-                  style={{
-                    opacity: lifeScrolled ? 1 : 0,
-                    backdropFilter: "blur(5px)",
-                    WebkitBackdropFilter: "blur(5px)",
-                    maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.25) 60%, transparent 100%)",
-                    WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.25) 60%, transparent 100%)",
-                  }}
-                />
+                  className="pointer-events-none absolute inset-x-0 top-0 h-28 transition-opacity duration-500"
+                  style={{ opacity: lifeScrolled ? 1 : 0 }}
+                >
+                  {[
+                    { blur: 0.5, stops: "black 0%, black 50%, transparent 87.5%" },
+                    { blur: 1, stops: "transparent 12.5%, black 37.5%, black 62.5%, transparent 87.5%" },
+                    { blur: 2, stops: "transparent 25%, black 50%, black 75%, transparent 100%" },
+                    { blur: 4, stops: "transparent 37.5%, black 62.5%, black 100%" },
+                  ].map((l, i) => (
+                    <div
+                      key={i}
+                      className="absolute inset-0"
+                      style={{
+                        backdropFilter: `blur(${l.blur}px)`,
+                        WebkitBackdropFilter: `blur(${l.blur}px)`,
+                        maskImage: `linear-gradient(to top, ${l.stops})`,
+                        WebkitMaskImage: `linear-gradient(to top, ${l.stops})`,
+                      }}
+                    />
+                  ))}
+                </div>
 
                 {/* bottom progressive blur */}
-                <div
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-32"
-                  style={{
-                    backdropFilter: "blur(5px)",
-                    WebkitBackdropFilter: "blur(5px)",
-                    maskImage: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.25) 60%, transparent 100%)",
-                    WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.25) 60%, transparent 100%)",
-                  }}
-                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28">
+                  {[
+                    { blur: 0.5, stops: "black 0%, black 50%, transparent 87.5%" },
+                    { blur: 1, stops: "transparent 12.5%, black 37.5%, black 62.5%, transparent 87.5%" },
+                    { blur: 2, stops: "transparent 25%, black 50%, black 75%, transparent 100%" },
+                    { blur: 4, stops: "transparent 37.5%, black 62.5%, black 100%" },
+                  ].map((l, i) => (
+                    <div
+                      key={i}
+                      className="absolute inset-0"
+                      style={{
+                        backdropFilter: `blur(${l.blur}px)`,
+                        WebkitBackdropFilter: `blur(${l.blur}px)`,
+                        maskImage: `linear-gradient(to bottom, ${l.stops})`,
+                        WebkitMaskImage: `linear-gradient(to bottom, ${l.stops})`,
+                      }}
+                    />
+                  ))}
+                </div>
+
               </div>
             </motion.div>
 
