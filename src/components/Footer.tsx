@@ -57,7 +57,7 @@ const Footer = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          Let's build together
+          let's build together
         </motion.p>
 
         <motion.nav
@@ -95,7 +95,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-colors"
           >
-            insta
+            instagram
           </a>
           <a
             href="https://x.com/PengSte11a41091"
