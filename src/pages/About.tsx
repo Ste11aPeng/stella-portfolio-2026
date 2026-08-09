@@ -343,10 +343,10 @@ const About = () => {
                     dragConstraints={workRef}
                     dragElastic={0.12}
                     dragMomentum={false}
-                    whileDrag={{ scale: 1.04 }}
+                    whileDrag={{ scale: 1.04, rotate: item.rotate }}
                     onPointerDown={() => bringToFront(item.id)}
                     className={`absolute cursor-grab active:cursor-grabbing select-none ${item.className}`}
-                    style={{ zIndex: 20 + order.indexOf(item.id), touchAction: "none" }}
+                    style={{ rotate: item.rotate, zIndex: 20 + order.indexOf(item.id), touchAction: "none" }}
                     draggable={false}
                   />
                 ))}
