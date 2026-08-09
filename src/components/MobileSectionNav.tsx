@@ -36,16 +36,16 @@ const MobileSectionNav = ({ activeSection, onSectionClick }: MobileSectionNavPro
   const visibleSections = getVisibleSections();
 
   return (
-    <nav className="sticky top-[65px] z-30 bg-background/95 backdrop-blur-sm border-b border-border md:hidden overflow-x-auto">
+    <nav className="sticky top-[65px] z-30 bg-background/95 backdrop-blur-sm border-b border-border md:hidden overflow-x-auto group/mnav">
       <div className="flex gap-1 px-4 py-2 justify-center">
         {visibleSections.map((section) => (
           <button
             key={section.id}
             onClick={() => onSectionClick(section.id)}
             className={cn(
-              "text-xs px-3 py-1.5 rounded-full whitespace-nowrap transition-colors",
+              "text-xs px-3 py-1.5 rounded-full whitespace-nowrap transition-all duration-700 ease-out group-hover/mnav:opacity-20 group-hover/mnav:blur-[0.8px] hover:!opacity-100 hover:!blur-0",
               activeSection === section.id
-                ? "text-[#4a86e8] font-medium"
+                ? "text-foreground font-medium"
                 : "text-muted-foreground hover:text-foreground"
             )}
           >

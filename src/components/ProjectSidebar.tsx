@@ -62,7 +62,7 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
   const visibleSections = getVisibleSections();
 
   return (
-    <nav className="sticky top-32 hidden md:block">
+    <nav className="sticky top-32 hidden md:block group/sidebar">
       <ul className="flex flex-col text-right">
 
         {visibleSections.map((section, index) => (
@@ -75,6 +75,7 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
               ease: [0.16, 1, 0.3, 1],
               delay: 0.1 * (index + 1),
             }}
+            className="transition-all duration-700 ease-out group-hover/sidebar:opacity-20 group-hover/sidebar:blur-[0.8px] hover:!opacity-100 hover:!blur-0"
           >
             <button
               onClick={() => onSectionClick(section.id)}
