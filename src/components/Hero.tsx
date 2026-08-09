@@ -128,22 +128,23 @@ const Hero = () => {
             initial="hidden"
             animate="visible"
           >
-            {parts.map((part, pi) => {
-              const partWords = part.text.split(" ").filter(Boolean);
-              return partWords.map((word, wi) => (
-                <motion.span
-                  key={`${pi}-${wi}`}
-                  variants={wordVariants}
-                  className={`inline-block transition-[filter,opacity] duration-700 ease-out ${
-                    part.accent
-                      ? ""
-                      : "group-hover/title:[filter:blur(5px)] group-hover/title:opacity-40"
-                  }`}
-                >
-                  {word}
-                </motion.span>
-              ));
-            })}
+            {flatWords.map((word, wi) => (
+              <motion.span
+                key={wi}
+                variants={wordVariants}
+                className="inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--hb))] group-hover/title:opacity-[var(--ho)]"
+                style={
+                  word.accent
+                    ? undefined
+                    : {
+                        ["--hb" as string]: `${blurFor(word.dist)}px`,
+                        ["--ho" as string]: opacityFor(word.dist),
+                      }
+                }
+              >
+                {word.text}
+              </motion.span>
+            ))}
           </motion.p>
 
           <motion.div
