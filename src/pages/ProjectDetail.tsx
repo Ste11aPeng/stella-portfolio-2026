@@ -166,8 +166,7 @@ const ProjectDetail = () => {
               alt={project.title}
               loading="eager"
               decoding="async"
-              className="w-full h-auto object-contain mx-auto animate-fade-in"
-              style={{ maxHeight: '600px' }}
+              className="w-full h-auto object-cover animate-fade-in"
             />
           </div>
         </div>
