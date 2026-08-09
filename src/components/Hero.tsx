@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import profileImage from "@/assets/profile.webp";
@@ -29,24 +29,22 @@ const lines = [
   },
 ];
 
-// Flatten with a global word index so we can compute linear distance from "designer".
-type WordItem = { text: string; accent: boolean; dist: number };
-const flatWords = (() => {
-  const all: { text: string; accent: boolean }[] = [];
+// Flatten the words so each has a global index for ref tracking.
+type WordItem = { text: string; accent: boolean };
+const flatWords: WordItem[] = (() => {
+  const all: WordItem[] = [];
   for (const line of lines) for (const p of line.parts) all.push(p);
-  const accentIdx = all.findIndex((w) => w.accent);
-  return all.map((w, i) => ({
-    ...w,
-    dist: Math.abs(i - accentIdx),
-  }));
+  return all;
 })();
+const accentIdx = flatWords.findIndex((w) => w.accent);
 
-// Map linear word distance from "designer" to a progressive blur + opacity.
-// Close words stay almost sharp, far words fade/blur more — but light.
+// Map 2D pixel distance from "designer" center to a progressive blur + opacity.
+// Words directly below designer (one line-height, ~38px) get only a slight blur,
+// while far words fade/blur more. Overall kept light.
 const blurFor = (dist: number) =>
-  Math.min(0.6 + dist * 0.45, 2.6).toFixed(2);
+  Math.min(0.6 + dist * 0.0105, 2.6).toFixed(2);
 const opacityFor = (dist: number) =>
-  Math.max(0.82 - dist * 0.07, 0.4).toFixed(2);
+  Math.max(0.82 - dist * 0.001, 0.4).toFixed(2);
 
 const containerVariants = {
   hidden: {},
@@ -75,7 +73,31 @@ const wordVariants = {
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [dists, setDists] = useState<number[]>(() => flatWords.map((w, i) => (w.accent ? 0 : Math.abs(i - accentIdx))));
+  const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const navigate = useNavigate();
+
+  // Measure actual rendered positions and compute 2D distance from "designer".
+  useLayoutEffect(() => {
+    const accentEl = wordRefs.current[accentIdx];
+    if (!accentEl) return;
+    const accentRect = accentEl.getBoundingClientRect();
+    const ac = {
+      x: accentRect.left + accentRect.width / 2,
+      y: accentRect.top + accentRect.height / 2,
+    };
+    const measured = flatWords.map((w, i) => {
+      const el = wordRefs.current[i];
+      if (!el || w.accent) return 0;
+      const r = el.getBoundingClientRect();
+      const c = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+      const dx = c.x - ac.x;
+      const dy = c.y - ac.y;
+      return Math.sqrt(dx * dx + dy * dy);
+    });
+    setDists(measured);
+  }, []);
+
 
 
 
