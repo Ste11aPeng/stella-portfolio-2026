@@ -58,7 +58,32 @@ const wordVariants = {
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [words, setWords] = useState<WordItem[]>(initialWords);
+  const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const navigate = useNavigate();
+
+  // Measure actual rendered positions and compute 2D distance from "designer".
+  useLayoutEffect(() => {
+    const accentIdx = initialWords.findIndex((w) => w.accent);
+    const accentEl = wordRefs.current[accentIdx];
+    if (!accentEl) return;
+    const accentRect = accentEl.getBoundingClientRect();
+    const ac = {
+      x: accentRect.left + accentRect.width / 2,
+      y: accentRect.top + accentRect.height / 2,
+    };
+    const measured = initialWords.map((w, i) => {
+      const el = wordRefs.current[i];
+      if (!el || w.accent) return { ...w, dist: 0 };
+      const r = el.getBoundingClientRect();
+      const c = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+      const dx = c.x - ac.x;
+      const dy = c.y - ac.y;
+      return { ...w, dist: Math.sqrt(dx * dx + dy * dy) };
+    });
+    setWords(measured);
+  }, []);
+
 
   return (
     <section className="px-8 py-16 lg:px-24 md:px-[32px] md:py-[64px] max-w-[1440px] mx-auto">
