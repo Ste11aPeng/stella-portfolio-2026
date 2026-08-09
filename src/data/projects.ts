@@ -1,6 +1,7 @@
 const askSiaImage = "/images/project-asksia.webp";
 import circleStatusImage from "@/assets/project-circle-status.png";
 import philoImage from "@/assets/project-philo.webp";
+import tiktokImage from "@/assets/project-tiktok.png";
 
 export interface Project {
   id: string;
@@ -20,6 +21,22 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    id: "tiktok",
+    image: tiktokImage,
+    title: "TikTok",
+    titleColor: "#FE2C55",
+    tagline: "social experience",
+    description: "social experience",
+    type: "intern",
+    role: "Product Design Intern",
+    team: "Social team",
+    timeline: "Summer 2026",
+    skills: ["Figma", "Prototyping"],
+    tags: ["UI/UX design", "social"],
+    overview: "Coming soon.",
+    comingSoon: true,
+  },
   {
     id: "circle-status",
     image: circleStatusImage,
