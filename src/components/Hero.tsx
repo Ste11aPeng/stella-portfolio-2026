@@ -136,35 +136,45 @@ const Hero = () => {
 
         <div className="flex flex-col">
           <motion.p
-            className="group/title max-w-3xl pt-0 flex flex-wrap text-[1.5rem] leading-[1.85rem] md:text-[2rem] md:leading-[2.4rem]"
+            className="group/title max-w-3xl pt-0 text-[1.5rem] leading-[1.85rem] md:text-[2rem] md:leading-[2.4rem]"
             style={{
               color: "#161616",
               fontFamily: "'Exposure', 'New Spirit', serif",
               fontWeight: 650,
               letterSpacing: "-0.05em",
-              gap: "0 8px",
             }}
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            {words.map((word, wi) => (
-              <motion.span
-                key={wi}
-                ref={(el) => (wordRefs.current[wi] = el)}
-                variants={wordVariants}
-                className="inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--hb))] group-hover/title:opacity-[var(--ho)]"
-                style={
-                  word.accent
-                    ? undefined
-                    : {
-                        ["--hb" as string]: `${blurFor(word.dist)}px`,
-                        ["--ho" as string]: opacityFor(word.dist),
+            {lines.map((line, li) => (
+              <span key={li} className="inline">
+                {line.parts.map((p, pi) => {
+                  const word = flatWords.find(
+                    (w) => w.text === p.text && w.accent === p.accent,
+                  )!;
+                  return (
+                    <motion.span
+                      key={`${li}-${pi}`}
+                      variants={wordVariants}
+                      className="inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--hb))] group-hover/title:opacity-[var(--ho)] mr-[8px]"
+                      style={
+                        word.accent
+                          ? undefined
+                          : {
+                              ["--hb" as string]: `${blurFor(word.dist)}px`,
+                              ["--ho" as string]: opacityFor(word.dist),
+                            }
                       }
-                }
-              >
-                {word.text}
-              </motion.span>
+                    >
+                      {word.text}
+                    </motion.span>
+                  );
+                })}
+                {li < lines.length - 1 && (
+                  <span className="block h-0 w-0" aria-hidden="true" />
+                )}
+              </span>
             ))}
           </motion.p>
 
