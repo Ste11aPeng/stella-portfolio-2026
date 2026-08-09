@@ -1,5 +1,6 @@
 const askSiaImage = "/images/project-asksia.webp";
-import circleStatusImage from "@/assets/project-circle-status.png";
+import circleStatusAsset from "@/assets/project-circle-status-cover.png.asset.json";
+const circleStatusImage = circleStatusAsset.url;
 import philoImage from "@/assets/project-philo.webp";
 import tiktokImage from "@/assets/project-tiktok.png";
 
