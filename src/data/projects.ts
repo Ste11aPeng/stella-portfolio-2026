@@ -1,11 +1,13 @@
 import askSiaImage from "@/assets/asksia-cover.png";
 import circleStatusImage from "@/assets/project-circle-status-cover.png";
+import circleStatusCover from "@/assets/circle-status-inside-cover.png";
 import philoImage from "@/assets/project-philo.webp";
 import tiktokImage from "@/assets/project-tiktok.png";
 
 export interface Project {
   id: string;
   image: string;
+  coverImage?: string;
   title: string;
   titleColor: string;
   tagline: string;
@@ -40,6 +42,7 @@ export const projects: Project[] = [
   {
     id: "circle-status",
     image: circleStatusImage,
+    coverImage: circleStatusCover,
     title: "Circle Status",
     titleColor: "#FFCB05",
     tagline: "light for community",
