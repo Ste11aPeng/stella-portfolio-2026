@@ -162,7 +162,7 @@ const ProjectDetail = () => {
         <div className="px-4 md:px-16 lg:px-24">
           <div className="w-full bg-muted rounded-lg overflow-hidden">
             <img
-              src={project.image}
+              src={project.coverImage || project.image}
               alt={project.title}
               loading="eager"
               decoding="async"
