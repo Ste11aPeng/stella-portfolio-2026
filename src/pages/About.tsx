@@ -289,21 +289,12 @@ const About = () => {
 
                 {/* bottom progressive blur */}
                 <div
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-32"
                   style={{
-                    backdropFilter: "blur(3px)",
-                    WebkitBackdropFilter: "blur(3px)",
-                    maskImage: "linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 50%, transparent 100%)",
-                    WebkitMaskImage: "linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 50%, transparent 100%)",
-                  }}
-                />
-                <div
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-28"
-                  style={{
-                    backdropFilter: "blur(8px)",
-                    WebkitBackdropFilter: "blur(8px)",
-                    maskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 40%, transparent 75%)",
-                    WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 40%, transparent 75%)",
+                    backdropFilter: "blur(5px)",
+                    WebkitBackdropFilter: "blur(5px)",
+                    maskImage: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.25) 60%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.25) 60%, transparent 100%)",
                   }}
                 />
               </div>
