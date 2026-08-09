@@ -128,42 +128,9 @@ const MarqueeStrip = ({ items }: { items: { src: string; label: string }[] }) =>
         ))}
       </div>
       {/* progressive blur edges */}
-      <div
-        className="pointer-events-none absolute inset-y-0 left-0 w-[18%]"
-        style={{
-          backdropFilter: "blur(3px)",
-          WebkitBackdropFilter: "blur(3px)",
-          maskImage: "linear-gradient(to right, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to right, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-y-0 left-0 w-[18%]"
-        style={{
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-          maskImage: "linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
-          WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-y-0 right-0 w-[18%]"
-        style={{
-          backdropFilter: "blur(3px)",
-          WebkitBackdropFilter: "blur(3px)",
-          maskImage: "linear-gradient(to left, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to left, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-y-0 right-0 w-[18%]"
-        style={{
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-          maskImage: "linear-gradient(to left, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
-          WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 80%)",
-        }}
-      />
+      <EdgeBlur side="left" size="18%" />
+      <EdgeBlur side="right" size="18%" />
+
     </div>
   );
 };
