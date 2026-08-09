@@ -243,39 +243,81 @@ const About = () => {
               style={{ backgroundColor: "#F2F2F2" }}
             >
               <h2
-                className="px-8 pt-8 text-2xl md:text-[28px] text-foreground"
+                className="relative z-20 px-8 pt-8 text-2xl md:text-[28px] text-foreground"
                 style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.07em" }}
               >
                 Life
               </h2>
-              <div
-                className="mt-8 flex-1 overflow-y-auto px-8 pb-10 about-scroll"
-                style={{
-                  maskImage: "linear-gradient(to bottom, black 0%, black 72%, rgba(0,0,0,0.35) 90%, transparent 100%)",
-                  WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 72%, rgba(0,0,0,0.35) 90%, transparent 100%)",
-                }}
-              >
-                <div className="flex flex-col gap-5">
-                  <p className="font-sans text-[15px] leading-relaxed text-foreground">
-                    A designer who notices the tiny things. Into Nintendo, kittens, film cameras, and things that make me say "ohhh that's clever".
-                  </p>
-                  <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
-                    Grew up in China, studied design at Michigan, now at UW for HCI. Summer '26 intern at TikTok, shipping internal prototypes with Figma and Claude Code.
-                  </p>
-                  <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
-                    Say hello to{" "}
-                    <button onClick={handleCopyEmail} className="underline underline-offset-2 hover:text-foreground transition-colors">
-                      {copied ? "copied!" : "stellanotfound@gmail.com"}
-                    </button>{" "}
-                    or{" "}
-                    <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
-                      linkedin
-                    </a>
-                    .
-                  </p>
+              <div className="relative flex-1 mt-8 min-h-0">
+                <div
+                  className="h-full overflow-y-auto px-8 pb-12 about-scroll"
+                  onScroll={(e) => setLifeScrolled(e.currentTarget.scrollTop > 4)}
+                >
+                  <div className="flex flex-col gap-5">
+                    <p className="font-sans text-[15px] leading-relaxed text-foreground">
+                      A designer who notices the tiny things. Into Nintendo, kittens, film cameras, and things that make me say "ohhh that's clever".
+                    </p>
+                    <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
+                      Grew up in China, studied design at Michigan, now at UW for HCI. Summer '26 intern at TikTok, shipping internal prototypes with Figma and Claude Code.
+                    </p>
+                    <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
+                      Say hello to{" "}
+                      <button onClick={handleCopyEmail} className="underline underline-offset-2 hover:text-foreground transition-colors">
+                        {copied ? "copied!" : "stellanotfound@gmail.com"}
+                      </button>{" "}
+                      or{" "}
+                      <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
+                        linkedin
+                      </a>
+                      .
+                    </p>
+                  </div>
                 </div>
+
+                {/* top progressive blur, appears once scrolled */}
+                <div
+                  className="pointer-events-none absolute inset-x-0 top-0 h-16 transition-opacity duration-300"
+                  style={{
+                    opacity: lifeScrolled ? 1 : 0,
+                    backdropFilter: "blur(3px)",
+                    WebkitBackdropFilter: "blur(3px)",
+                    maskImage: "linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+                  }}
+                />
+                <div
+                  className="pointer-events-none absolute inset-x-0 top-0 h-16 transition-opacity duration-300"
+                  style={{
+                    opacity: lifeScrolled ? 1 : 0,
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
+                    maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 45%, transparent 80%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 45%, transparent 80%)",
+                  }}
+                />
+
+                {/* bottom progressive blur */}
+                <div
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-20"
+                  style={{
+                    backdropFilter: "blur(3px)",
+                    WebkitBackdropFilter: "blur(3px)",
+                    maskImage: "linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+                  }}
+                />
+                <div
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-20"
+                  style={{
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
+                    maskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 45%, transparent 80%)",
+                    WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 45%, transparent 80%)",
+                  }}
+                />
               </div>
             </motion.div>
+
 
             {/* Work */}
             <motion.div
