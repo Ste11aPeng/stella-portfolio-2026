@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import EdgeBlur from "@/components/EdgeBlur";
 import { motion } from "framer-motion";
 import workDesai from "@/assets/Rectangle_4.png.asset.json";
 import workBadge from "@/assets/Rectangle_6.png.asset.json";
