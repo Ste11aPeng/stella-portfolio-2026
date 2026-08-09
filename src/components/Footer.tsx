@@ -1,5 +1,32 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const SanJoseClock = () => {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const update = () => {
+      setTime(
+        new Date().toLocaleTimeString("en-US", {
+          timeZone: "America/Los_Angeles",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        })
+      );
+    };
+    update();
+    const id = setInterval(update, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <span className="text-sm text-[hsl(0,0%,60%)] tabular-nums">
+      san jose {time}
+    </span>
+  );
+};
 
 const Footer = () => {
   const [copied, setCopied] = useState(false);
@@ -24,7 +51,7 @@ const Footer = () => {
 
       <div className="max-w-[1440px] mx-auto flex items-center justify-between relative z-10">
         <motion.p
-          className="text-sm text-[hsl(0,0%,60%)]"
+          className="flex-1 text-sm text-[hsl(0,0%,60%)]"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -71,6 +98,16 @@ const Footer = () => {
             resume
           </a>
         </motion.nav>
+
+        <motion.div
+          className="flex-1 flex justify-end"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
+        >
+          <SanJoseClock />
+        </motion.div>
       </div>
     </footer>
   );
