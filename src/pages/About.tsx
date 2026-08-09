@@ -232,7 +232,7 @@ const About = () => {
         {/* Three cards */}
         <section className="px-8 lg:px-24 md:px-[32px] max-w-[1440px] mx-auto">
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-3 gap-3"
             initial="hidden"
             animate="visible"
             variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } } }}
