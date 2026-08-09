@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import about1 from "@/assets/about-1.png";
 import about2 from "@/assets/about-2.png";
 import about3 from "@/assets/about-3.png";
@@ -11,22 +11,11 @@ import { useRef, useState, useCallback, useEffect } from "react";
 const usePageTitle = (title: string) => {
   useEffect(() => {
     document.title = title;
-    return () => { document.title = "Stella P. | Product Designer Portfolio"; };
+    return () => { document.title = "Stella Peng | Product Designer Portfolio"; };
   }, [title]);
 };
 
-const experiences = [
-  { company: "TikTok", url: "https://www.tiktok.com/", role: "Product Design Intern", period: "Summer 2026" },
-  { company: "AskSia Inc.", url: "https://www.asksia.ai/", role: "Product Designer", period: "2025 – 2026" },
-  { company: "Desai Accelerator", url: "https://www.desaiaccelerator.com/", role: "Product Design Intern", period: "Summer 2025" },
-];
-
-const education = [
-  { school: "University of Michigan", degree: "B.A. Design (UX)", period: "Class of 2025" },
-  { school: "University of Washington", degree: "M.S. Human-Computer Interaction + Design", period: "Class of 2027" },
-];
-
-const PhotoWithHover = ({ src, label, index }: { src: string; label: string; index: number }) => {
+const PhotoWithHover = ({ src, label }: { src: string; label: string }) => {
   const [isHovering, setIsHovering] = useState(false);
   const hintRef = useRef<HTMLDivElement>(null);
   const position = useRef({ x: 0, y: 0 });
@@ -74,12 +63,12 @@ const PhotoWithHover = ({ src, label, index }: { src: string; label: string; ind
 
   return (
     <div
-      className="aspect-[4/5] overflow-hidden bg-muted relative cursor-none"
+      className="relative h-[260px] w-[230px] flex-shrink-0 overflow-hidden bg-muted cursor-none"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <img src={src} alt={label} className="w-full h-full object-cover" />
+      <img src={src} alt={label} className="h-full w-full object-cover" />
       {isHovering && (
         <div ref={hintRef} className="project-cursor-hint" style={{ willChange: "left, top" }}>
           {label}
@@ -89,10 +78,23 @@ const PhotoWithHover = ({ src, label, index }: { src: string; label: string; ind
   );
 };
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 12, filter: "blur(4px)" },
+  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const } },
+};
+
+const strip = [
+  { src: about1, label: "Hi~" },
+  { src: about2, label: "I love matcha" },
+  { src: about3, label: "Oasis live" },
+  { src: about4, label: "Brew time!" },
+  { src: about1, label: "Lake days" },
+  { src: about2, label: "Shoot with my Fuji" },
+  { src: about3, label: "Say hi" },
+];
+
 const About = () => {
-  usePageTitle("About Stella P. | Product Designer");
-  const [stellaHovered, setStellaHovered] = useState(false);
-  const [eduHovered, setEduHovered] = useState(false);
+  usePageTitle("About Stella Peng | Product Designer");
   const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = useCallback(async () => {
@@ -101,152 +103,137 @@ const About = () => {
     setTimeout(() => setCopied(false), 2000);
   }, []);
 
-
   return (
     <>
       <div className="min-h-screen bg-background relative z-10">
         <Header />
 
-        <section className="px-8 pt-6 pb-6 lg:px-24 md:px-[32px] max-w-[1440px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-            {/* Left – Introduction */}
-            <motion.div
-              className="flex flex-col gap-6"
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
-              }}
-            >
-              <motion.h1
-                className="font-['New_Spirit'] text-3xl md:text-4xl font-normal text-foreground leading-snug"
-                variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}
-              >
-                Hi, I'm{" "}
-                <span
-                  className="relative inline-flex items-center cursor-pointer"
-                  onMouseEnter={() => setStellaHovered(true)}
-                  onMouseLeave={() => setStellaHovered(false)}
-                >
-                  Stella.
-                  <AnimatePresence>
-                    {stellaHovered && (
-                      <motion.button
-                        onClick={handleCopyEmail}
-                        className="absolute left-full ml-2 whitespace-nowrap text-[14px] font-sans font-normal text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer"
-                        initial={{ opacity: 0, x: -8 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -8 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        reach out!
-                      </motion.button>
-                    )}
-                  </AnimatePresence>
-                </span>
-              </motion.h1>
-              <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
-                A designer who notices the tiny things. Into Nintendo, kittens, film cameras, and products that make me say "ohhh that's clever".
-              </motion.p>
-              <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
-                Grew up in China, studied design at Michigan, now at UW for HCI. Summer '26 intern at TikTok — shipping internal prototypes with Figma and Claude Code.
-              </motion.p>
-              <motion.p className="font-sans text-[14px] leading-relaxed text-muted-foreground" variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
-                Say hello to{" "}
-                <button onClick={handleCopyEmail} className="cursor-pointer text-muted-foreground hover:text-foreground transition-colors duration-200">{copied ? "copied!" : "stellanotfound@gmail.com"}</button>
-                {" "}or{" "}
-                <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors duration-200">LinkedIn</a>.
-              </motion.p>
-            </motion.div>
-
-            {/* Right – Experience & Education */}
-            <motion.div
-              className="flex flex-col gap-10"
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.1, delayChildren: 0.25 } },
-              }}
-            >
-              {/* Experience */}
-              <motion.div variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
-                <h2 className="font-['New_Spirit'] text-xl md:text-2xl font-normal text-muted-foreground mb-4">
-                  Experience
-                </h2>
-                <div className="flex flex-col divide-y divide-border/40">
-                  {experiences.map((exp, i) => (
-                    <div key={i} className="flex items-baseline justify-between py-3 first:pt-0">
-                      <p className="font-sans text-[14px] text-foreground">
-                        <a href={exp.url} target="_blank" rel="noopener noreferrer" className="font-medium relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[1.5px] after:bottom-0 after:left-0 after:bg-foreground after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">{exp.company}</a>
-                        <span className="text-muted-foreground"> / {exp.role}</span>
-                      </p>
-                      <p className="font-sans text-[13px] text-muted-foreground/60 whitespace-nowrap ml-4">
-                        {exp.period}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Education */}
-              <motion.div variants={{ hidden: { opacity: 0, y: 8, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } }}>
-                <h2
-                  className="font-['New_Spirit'] text-xl md:text-2xl font-normal text-muted-foreground mb-4 relative inline-flex items-center"
-                  onMouseEnter={() => setEduHovered(true)}
-                  onMouseLeave={() => setEduHovered(false)}
-                >
-                  Education
-                  <AnimatePresence>
-                    {eduHovered && (
-                      <motion.span
-                        className="absolute left-full ml-2 whitespace-nowrap text-[14px] font-sans font-normal text-muted-foreground select-none pointer-events-none"
-                        initial={{ opacity: 0, x: -8 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -8 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        go blue!
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </h2>
-                <div className="flex flex-col divide-y divide-border/40">
-                  {education.map((edu, i) => (
-                    <div key={i} className="flex items-baseline justify-between py-3 first:pt-0">
-                      <p className="font-sans text-[14px] text-foreground">
-                        <span className="font-medium">{edu.school}</span>
-                        <span className="text-muted-foreground"> / {edu.degree}</span>
-                      </p>
-                      <p className="font-sans text-[13px] text-muted-foreground/60 whitespace-nowrap ml-4">
-                        {edu.period}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
+        {/* Title */}
+        <section className="px-8 pt-24 pb-14 lg:px-24 md:px-[32px] max-w-[1440px] mx-auto">
+          <motion.h1
+            className="text-center text-4xl md:text-5xl text-foreground"
+            style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.07em" }}
+            initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            Hi, I'm Stella.
+          </motion.h1>
         </section>
 
-        {/* Bottom – Photo Gallery */}
-        <section className="px-8 pt-6 pb-16 lg:px-24 md:px-[32px]">
+        {/* Three cards */}
+        <section className="px-8 lg:px-24 md:px-[32px] max-w-[1440px] mx-auto">
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-[10px]"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            initial="hidden"
+            animate="visible"
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } } }}
+          >
+            {/* Life */}
+            <motion.div
+              variants={cardVariants}
+              className="relative rounded-2xl bg-muted/40 p-8 min-h-[500px] overflow-hidden"
+            >
+              <h2
+                className="text-2xl md:text-[28px] text-foreground"
+                style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.07em" }}
+              >
+                Life
+              </h2>
+              <div className="mt-10 flex flex-col gap-5">
+                <p className="font-sans text-[15px] leading-relaxed text-foreground">
+                  A designer who notices the tiny things. Into Nintendo, kittens, film cameras, and things that make me say "ohhh that's clever".
+                </p>
+                <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
+                  Grew up in China, studied design at Michigan, now at UW for HCI. Summer '26 intern at TikTok, shipping internal prototypes with Figma and Claude Code.
+                </p>
+                <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
+                  Say hello to{" "}
+                  <button onClick={handleCopyEmail} className="underline underline-offset-2 hover:text-foreground transition-colors">
+                    {copied ? "copied!" : "stellanotfound@gmail.com"}
+                  </button>{" "}
+                  or{" "}
+                  <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
+                    linkedin
+                  </a>
+                  .
+                </p>
+              </div>
+              {/* bottom fade */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/80 to-transparent" />
+            </motion.div>
+
+            {/* Work */}
+            <motion.div
+              variants={cardVariants}
+              className="relative rounded-2xl bg-muted/40 p-8 min-h-[500px] overflow-hidden"
+            >
+              <h2
+                className="text-2xl md:text-[28px] text-foreground"
+                style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.07em" }}
+              >
+                Work
+              </h2>
+              <div className="absolute inset-0 flex items-center justify-center">
+                {/* placeholder collage - visuals to be provided */}
+                <div className="relative h-[260px] w-[300px]">
+                  <img src={about1} alt="" className="absolute left-0 top-6 h-[130px] w-[150px] rounded-xl object-cover shadow-md -rotate-6" />
+                  <img src={about2} alt="" className="absolute right-0 top-0 h-[120px] w-[140px] rounded-xl object-cover shadow-md rotate-6" />
+                  <img src={about3} alt="" className="absolute left-16 bottom-0 h-[150px] w-[130px] rounded-xl object-cover shadow-lg rotate-3" />
+                  <img src={about4} alt="" className="absolute right-2 bottom-6 h-[120px] w-[130px] rounded-xl object-cover shadow-md -rotate-3" />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Education */}
+            <motion.div
+              variants={cardVariants}
+              className="relative rounded-2xl bg-muted/40 p-8 min-h-[500px] overflow-hidden"
+            >
+              <h2
+                className="text-2xl md:text-[28px] text-foreground"
+                style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.07em" }}
+              >
+                Education
+              </h2>
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 px-8">
+                <p className="self-start font-sans text-[14px] text-muted-foreground">
+                  Bachelor of Art &amp; Design @UM
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="flex h-[110px] w-[110px] items-center justify-center rounded-2xl" style={{ backgroundColor: "#FFCB05" }}>
+                    <span className="text-5xl font-black text-[#00274C]">M</span>
+                  </div>
+                  <div className="flex h-[110px] w-[110px] items-center justify-center rounded-2xl bg-[#32006E]">
+                    <span className="text-5xl font-black text-white">W</span>
+                  </div>
+                </div>
+                <p className="self-end font-sans text-[14px] text-muted-foreground">
+                  Master of HCI + Design @UW
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        </section>
+
+        {/* Horizontal photo strip */}
+        <section className="pt-20 pb-20">
+          <motion.div
+            className="overflow-x-auto"
             initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{
+              maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+            }}
           >
-            {[
-              { src: about1, label: "Hi~" },
-              { src: about2, label: "I love matcha" },
-              { src: about3, label: "Shoot with my Fuji" },
-              { src: about4, label: "Brew time!" },
-            ].map((item, i) => (
-              <PhotoWithHover key={i} src={item.src} label={item.label} index={i} />
-            ))}
+            <div className="flex w-max gap-3 px-8 lg:px-24">
+              {strip.map((item, i) => (
+                <PhotoWithHover key={i} src={item.src} label={item.label} />
+              ))}
+            </div>
           </motion.div>
         </section>
       </div>
