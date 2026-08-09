@@ -5,6 +5,13 @@ import about1 from "@/assets/about-1.png";
 import about2 from "@/assets/about-2.png";
 import about3 from "@/assets/about-3.png";
 import about4 from "@/assets/about-4.png";
+import album1 from "@/assets/album_1.png";
+import album2 from "@/assets/album_2.png";
+import album3 from "@/assets/album_3.png";
+import album4 from "@/assets/album_4.png";
+import album5 from "@/assets/album_5.png";
+import album6 from "@/assets/album_6.png";
+import album7 from "@/assets/album_7.png";
 import { useRef, useState, useCallback, useEffect } from "react";
 
 // Set page title
