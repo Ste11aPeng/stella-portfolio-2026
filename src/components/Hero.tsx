@@ -3,11 +3,32 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import profileImage from "@/assets/profile.webp";
 
-const parts = [
+// Build a flat word list so we can compute each word's distance from "designer".
+const accentParts = [
   { text: "Stella is a ", accent: false },
   { text: "designer", accent: true },
   { text: " who builds across design, engineering, and product.", accent: false },
 ];
+
+const flatWords = (() => {
+  const words: { text: string; accent: boolean; dist: number }[] = [];
+  let accentIdx = -1;
+  for (const part of accentParts) {
+    for (const w of part.text.split(" ").filter(Boolean)) {
+      words.push({ text: w, accent: part.accent, dist: 0 });
+    }
+  }
+  accentIdx = words.findIndex((w) => w.accent);
+  words.forEach((w, i) => (w.dist = Math.abs(i - accentIdx)));
+  return words;
+})();
+
+// Map distance from "designer" to a progressive blur + opacity.
+// Close words stay almost sharp, far words fade/blur more — but overall much lighter.
+const blurFor = (dist: number) =>
+  Math.min(0.6 + dist * 0.45, 2.6).toFixed(2);
+const opacityFor = (dist: number) =>
+  Math.max(0.82 - dist * 0.07, 0.4).toFixed(2);
 
 const containerVariants = {
   hidden: {},
@@ -107,22 +128,23 @@ const Hero = () => {
             initial="hidden"
             animate="visible"
           >
-            {parts.map((part, pi) => {
-              const partWords = part.text.split(" ").filter(Boolean);
-              return partWords.map((word, wi) => (
-                <motion.span
-                  key={`${pi}-${wi}`}
-                  variants={wordVariants}
-                  className={`inline-block transition-[filter,opacity] duration-700 ease-out ${
-                    part.accent
-                      ? ""
-                      : "group-hover/title:[filter:blur(5px)] group-hover/title:opacity-40"
-                  }`}
-                >
-                  {word}
-                </motion.span>
-              ));
-            })}
+            {flatWords.map((word, wi) => (
+              <motion.span
+                key={wi}
+                variants={wordVariants}
+                className="inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--hb))] group-hover/title:opacity-[var(--ho)]"
+                style={
+                  word.accent
+                    ? undefined
+                    : {
+                        ["--hb" as string]: `${blurFor(word.dist)}px`,
+                        ["--ho" as string]: opacityFor(word.dist),
+                      }
+                }
+              >
+                {word.text}
+              </motion.span>
+            ))}
           </motion.p>
 
           <motion.div
