@@ -215,7 +215,7 @@ const Hero = () => {
                 href="https://www.tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground transition-opacity hover:opacity-100 hover:text-foreground"
+                className="text-muted-foreground transition-colors duration-300 hover:text-[#FF0050]"
               >
                 @TikTok
               </a>{" "}
@@ -224,7 +224,7 @@ const Hero = () => {
                 href="https://mhcid.washington.edu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground transition-opacity hover:opacity-100 hover:text-foreground"
+                className="text-muted-foreground transition-colors duration-300 hover:text-[#4B2E83]"
               >
                 Master of HCI + Design @UW
               </a>
