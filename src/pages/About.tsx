@@ -116,7 +116,7 @@ const MarqueeStrip = ({ items }: { items: { src: string; label: string }[] }) =>
   return (
     <div
       className="about-marquee overflow-hidden relative"
-      onMouseEnter={() => { targetRef.current = 0.015; }}
+      onMouseEnter={() => { targetRef.current = 0.08; }}
       onMouseLeave={() => { targetRef.current = 0.25; }}
     >
       <div ref={trackRef} className="flex w-max gap-1.5 will-change-transform">
