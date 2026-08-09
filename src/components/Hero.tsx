@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import profileImage from "@/assets/profile.webp";
 
 const parts = [
-  { text: "Stella is a ", color: undefined },
-  { text: "designer", color: "#4a86e8" },
-  { text: " who builds across design, engineering, and product.", color: undefined },
+  { text: "Stella is a ", accent: false },
+  { text: "designer", accent: true },
+  { text: " who builds across design, engineering, and product.", accent: false },
 ];
 
 const containerVariants = {
@@ -95,7 +95,7 @@ const Hero = () => {
 
         <div className="flex flex-col">
           <motion.p
-            className="max-w-3xl pt-0 flex flex-wrap text-[1.5rem] leading-[1.85rem] md:text-[2rem] md:leading-[2.4rem]"
+            className="group/title max-w-3xl pt-0 flex flex-wrap text-[1.5rem] leading-[1.85rem] md:text-[2rem] md:leading-[2.4rem]"
             style={{
               color: "#161616",
               fontFamily: "'Exposure', 'New Spirit', serif",
@@ -113,8 +113,11 @@ const Hero = () => {
                 <motion.span
                   key={`${pi}-${wi}`}
                   variants={wordVariants}
-                  className="inline-block"
-                  style={part.color ? { color: part.color } : undefined}
+                  className={`inline-block transition-[filter,opacity] duration-700 ease-out ${
+                    part.accent
+                      ? ""
+                      : "group-hover/title:[filter:blur(5px)] group-hover/title:opacity-40"
+                  }`}
                 >
                   {word}
                 </motion.span>
