@@ -3,11 +3,32 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import profileImage from "@/assets/profile.webp";
 
-const parts = [
+// Build a flat word list so we can compute each word's distance from "designer".
+const accentParts = [
   { text: "Stella is a ", accent: false },
   { text: "designer", accent: true },
   { text: " who builds across design, engineering, and product.", accent: false },
 ];
+
+const flatWords = (() => {
+  const words: { text: string; accent: boolean; dist: number }[] = [];
+  let accentIdx = -1;
+  for (const part of accentParts) {
+    for (const w of part.text.split(" ").filter(Boolean)) {
+      words.push({ text: w, accent: part.accent, dist: 0 });
+    }
+  }
+  accentIdx = words.findIndex((w) => w.accent);
+  words.forEach((w, i) => (w.dist = Math.abs(i - accentIdx)));
+  return words;
+})();
+
+// Map distance from "designer" to a progressive blur + opacity.
+// Close words stay almost sharp, far words fade/blur more — but overall much lighter.
+const blurFor = (dist: number) =>
+  Math.min(0.6 + dist * 0.45, 2.6).toFixed(2);
+const opacityFor = (dist: number) =>
+  Math.max(0.82 - dist * 0.07, 0.4).toFixed(2);
 
 const containerVariants = {
   hidden: {},
