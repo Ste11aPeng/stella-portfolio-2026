@@ -16,7 +16,7 @@ const CircleResearch = () => {
         <span className="text-sm text-muted-foreground mb-3 block">
           research
         </span>
-        <h2 className="text-2xl font-bold mb-8 tracking-tight text-foreground">
+        <h2 className="text-2xl font-bold mb-8 text-foreground">
           Research & User Modeling
         </h2>
         <p className="text-base text-foreground/80 leading-relaxed mb-10">

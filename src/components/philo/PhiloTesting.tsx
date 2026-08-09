@@ -13,7 +13,7 @@ const PhiloTesting = () => {
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
         <span className="text-sm text-muted-foreground mb-3 block">outcome</span>
-        <h2 className="text-xl font-medium mb-10 tracking-tight text-foreground leading-relaxed max-w-2xl">
+        <h2 className="text-xl font-medium mb-10 text-foreground leading-relaxed max-w-2xl">
           Improved team efficiency and product consistency, enabling faster development cycles while delivering a cohesive user experience across the platform.
         </h2>
       </motion.div>

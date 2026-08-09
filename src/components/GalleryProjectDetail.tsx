@@ -36,7 +36,7 @@ const GalleryProjectDetail = ({
                 duration: 0.7,
                 ease: [0.16, 1, 0.3, 1]
               }}>
-                <h1 className="text-2xl mb-4 tracking-tight text-foreground" style={{ fontFamily: "'New Spirit', serif", fontWeight: 400 }}>
+                <h1 className="text-2xl mb-4 text-foreground" style={{ fontFamily: "'New Spirit', serif", fontWeight: 400 }}>
                   {project.title}
                 </h1>
               </motion.div>
