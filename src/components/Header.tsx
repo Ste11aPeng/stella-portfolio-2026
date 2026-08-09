@@ -34,18 +34,18 @@ const Header = () => {
           isScrolled ? "bg-background/95 backdrop-blur-sm border-b border-border" : "bg-transparent"
         }`}
       >
-        <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-5 md:px-16 lg:px-24 md:py-6">
-        <Link to="/" className="flex items-center gap-1.5 text-foreground font-light text-base font-['New_Spirit']" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>
+        <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-5 md:px-16 lg:px-24 md:py-6 group/header">
+        <Link to="/" className="flex items-center gap-1.5 text-foreground font-light text-base font-['New_Spirit'] transition-all duration-700 ease-out group-hover/header:opacity-20 group-hover/header:blur-[0.8px] hover:!opacity-100 hover:!blur-0" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>
           <img src="/favicon-dark.svg" alt="" className="w-4 h-4" />
-          Stella P.
+          粲 Stella
         </Link>
         
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8 group/nav">
-          <Link to="/" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/" ? "text-foreground" : ""}`} onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>product</Link>
-          <Link to="/visual" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/visual" ? "text-foreground" : ""}`}>visual</Link>
-          <Link to="/about" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/about" ? "text-foreground" : ""}`}>about</Link>
-          <span className="flex items-center gap-1 transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0">
+          <Link to="/" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] group-hover/header:opacity-20 group-hover/header:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/" ? "text-foreground" : ""}`} onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>product</Link>
+          <Link to="/visual" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] group-hover/header:opacity-20 group-hover/header:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/visual" ? "text-foreground" : ""}`}>visual</Link>
+          <Link to="/about" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] group-hover/header:opacity-20 group-hover/header:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/about" ? "text-foreground" : ""}`}>about</Link>
+          <span className="flex items-center gap-1 transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] group-hover/header:opacity-20 group-hover/header:blur-[0.8px] hover:!opacity-100 hover:!blur-0">
             <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">resume</a>
             <span className="text-sm text-muted-foreground/40">/</span>
             <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">linkedin</a>
