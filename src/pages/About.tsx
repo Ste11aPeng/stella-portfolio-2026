@@ -365,7 +365,7 @@ const About = () => {
               >
                 Education
               </h2>
-              <div className="absolute inset-0 flex items-center justify-center p-6 pt-[18%]">
+              <div className="absolute inset-0 flex items-end justify-center px-6 pb-[10%]">
                 <img
                   src={educationVisual.url}
                   alt="Bachelor of Art & Design at UM, Master of HCI + Design at UW"
