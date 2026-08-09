@@ -5,6 +5,13 @@ import about1 from "@/assets/about-1.png";
 import about2 from "@/assets/about-2.png";
 import about3 from "@/assets/about-3.png";
 import about4 from "@/assets/about-4.png";
+import album1 from "@/assets/album_1.png";
+import album2 from "@/assets/album_2.png";
+import album3 from "@/assets/album_3.png";
+import album4 from "@/assets/album_4.png";
+import album5 from "@/assets/album_5.png";
+import album6 from "@/assets/album_6.png";
+import album7 from "@/assets/album_7.png";
 import { useRef, useState, useCallback, useEffect } from "react";
 
 // Set page title
@@ -84,13 +91,13 @@ const cardVariants = {
 };
 
 const strip = [
-  { src: about1, label: "Hi~" },
-  { src: about2, label: "I love matcha" },
-  { src: about3, label: "Oasis live" },
-  { src: about4, label: "Brew time!" },
-  { src: about1, label: "Lake days" },
-  { src: about2, label: "Shoot with my Fuji" },
-  { src: about3, label: "Say hi" },
+  { src: album1, label: "Hi~" },
+  { src: album2, label: "I love matcha" },
+  { src: album3, label: "oasis live" },
+  { src: album4, label: "brew time!" },
+  { src: album5, label: "on the water" },
+  { src: album6, label: "tahoe" },
+  { src: album7, label: "shoot with my canon" },
 ];
 
 const About = () => {
@@ -216,10 +223,10 @@ const About = () => {
           </motion.div>
         </section>
 
-        {/* Horizontal photo strip */}
+        {/* Horizontal photo strip - auto scrolling, pauses on hover */}
         <section className="pt-20 pb-20">
           <motion.div
-            className="overflow-x-auto"
+            className="about-marquee overflow-hidden"
             initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
@@ -229,13 +236,14 @@ const About = () => {
               WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
             }}
           >
-            <div className="flex w-max gap-3 px-8 lg:px-24">
-              {strip.map((item, i) => (
+            <div className="about-marquee-track flex w-max gap-3">
+              {[...strip, ...strip].map((item, i) => (
                 <PhotoWithHover key={i} src={item.src} label={item.label} />
               ))}
             </div>
           </motion.div>
         </section>
+
       </div>
 
       <div className="sticky bottom-0 z-0">
