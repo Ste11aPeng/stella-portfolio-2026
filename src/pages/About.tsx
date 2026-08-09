@@ -183,15 +183,31 @@ const strip = [
   { src: album7, label: "shoot with my canon" },
 ];
 
+const workItemsBase = [
+  { id: "desai", src: workDesai.url, alt: "Desai Accelerator cohort", className: "left-[-4%] top-[36%] w-[42%] rounded-[10px] object-cover shadow-md -rotate-[7deg]" },
+  { id: "desk", src: workDesk.url, alt: "Matcha and laptop workspace", className: "right-[-2%] top-[30%] w-[46%] rounded-[10px] object-cover shadow-md rotate-[6deg]" },
+  { id: "trip", src: workTrip.url, alt: "Team trip by the water", className: "right-[-6%] top-[52%] w-[38%] rounded-[10px] object-cover shadow-md rotate-[8deg]" },
+  { id: "badge", src: workBadge.url, alt: "TikTok intern badge", className: "left-[30%] top-[46%] w-[34%] rounded-[10px] object-cover shadow-lg -rotate-[3deg]" },
+  { id: "logo", src: tiktokLogo.url, alt: "TikTok logo", className: "left-[18%] bottom-[16%] w-[14%] rounded-full shadow-md" },
+];
+
 const About = () => {
   usePageTitle("About Stella Peng | Product Designer");
   const [copied, setCopied] = useState(false);
+  const workRef = useRef<HTMLDivElement>(null);
+  const [order, setOrder] = useState(workItemsBase.map((i) => i.id));
+  const workItems = workItemsBase;
+
+  const bringToFront = useCallback((id: string) => {
+    setOrder((prev) => [...prev.filter((x) => x !== id), id]);
+  }, []);
 
   const handleCopyEmail = useCallback(async () => {
     await navigator.clipboard.writeText("stellanotfound@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }, []);
+
 
   return (
     <>
@@ -222,74 +238,74 @@ const About = () => {
             {/* Life */}
             <motion.div
               variants={cardVariants}
-              className="relative aspect-[4/5] rounded-2xl p-8 overflow-hidden"
+              className="relative aspect-[4/5] rounded-2xl overflow-hidden flex flex-col"
               style={{ backgroundColor: "#F2F2F2" }}
             >
               <h2
-                className="text-2xl md:text-[28px] text-foreground"
+                className="px-8 pt-8 text-2xl md:text-[28px] text-foreground"
                 style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.07em" }}
               >
                 Life
               </h2>
-              <div className="mt-10 flex flex-col gap-5">
-                <p className="font-sans text-[15px] leading-relaxed text-foreground">
-                  A designer who notices the tiny things. Into Nintendo, kittens, film cameras, and things that make me say "ohhh that's clever".
-                </p>
-                <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
-                  Grew up in China, studied design at Michigan, now at UW for HCI. Summer '26 intern at TikTok, shipping internal prototypes with Figma and Claude Code.
-                </p>
-                <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
-                  Say hello to{" "}
-                  <button onClick={handleCopyEmail} className="underline underline-offset-2 hover:text-foreground transition-colors">
-                    {copied ? "copied!" : "stellanotfound@gmail.com"}
-                  </button>{" "}
-                  or{" "}
-                  <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
-                    linkedin
-                  </a>
-                  .
-                </p>
+              <div
+                className="mt-8 flex-1 overflow-y-auto px-8 pb-10 about-scroll"
+                style={{
+                  maskImage: "linear-gradient(to bottom, black 0%, black 72%, rgba(0,0,0,0.35) 90%, transparent 100%)",
+                  WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 72%, rgba(0,0,0,0.35) 90%, transparent 100%)",
+                }}
+              >
+                <div className="flex flex-col gap-5">
+                  <p className="font-sans text-[15px] leading-relaxed text-foreground">
+                    A designer who notices the tiny things. Into Nintendo, kittens, film cameras, and things that make me say "ohhh that's clever".
+                  </p>
+                  <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
+                    Grew up in China, studied design at Michigan, now at UW for HCI. Summer '26 intern at TikTok, shipping internal prototypes with Figma and Claude Code.
+                  </p>
+                  <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
+                    Say hello to{" "}
+                    <button onClick={handleCopyEmail} className="underline underline-offset-2 hover:text-foreground transition-colors">
+                      {copied ? "copied!" : "stellanotfound@gmail.com"}
+                    </button>{" "}
+                    or{" "}
+                    <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
+                      linkedin
+                    </a>
+                    .
+                  </p>
+                </div>
               </div>
             </motion.div>
 
             {/* Work */}
             <motion.div
               variants={cardVariants}
+              ref={workRef}
               className="relative aspect-[4/5] rounded-2xl p-8 overflow-hidden"
               style={{ backgroundColor: "#F2F2F2" }}
             >
               <h2
-                className="relative z-10 text-2xl md:text-[28px] text-foreground"
+                className="relative z-10 text-2xl md:text-[28px] text-foreground pointer-events-none"
                 style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.07em" }}
               >
                 Work
               </h2>
               <div className="absolute inset-0">
-                <img
-                  src={workDesai.url}
-                  alt="Desai Accelerator cohort"
-                  className="absolute left-[-4%] top-[36%] w-[42%] rounded-[10px] object-cover shadow-md -rotate-[7deg]"
-                />
-                <img
-                  src={workDesk.url}
-                  alt="Matcha and laptop workspace"
-                  className="absolute right-[-2%] top-[30%] w-[46%] rounded-[10px] object-cover shadow-md rotate-[6deg]"
-                />
-                <img
-                  src={workTrip.url}
-                  alt="Team trip by the water"
-                  className="absolute right-[-6%] top-[52%] w-[38%] rounded-[10px] object-cover shadow-md rotate-[8deg]"
-                />
-                <img
-                  src={workBadge.url}
-                  alt="TikTok intern badge"
-                  className="absolute left-[30%] top-[46%] w-[34%] rounded-[10px] object-cover shadow-lg -rotate-[3deg]"
-                />
-                <img
-                  src={tiktokLogo.url}
-                  alt="TikTok logo"
-                  className="absolute left-[18%] bottom-[16%] w-[14%] rounded-full shadow-md"
-                />
+                {workItems.map((item) => (
+                  <motion.img
+                    key={item.id}
+                    src={item.src}
+                    alt={item.alt}
+                    drag
+                    dragConstraints={workRef}
+                    dragElastic={0.12}
+                    dragMomentum={false}
+                    whileDrag={{ scale: 1.04 }}
+                    onPointerDown={() => bringToFront(item.id)}
+                    className={`absolute cursor-grab active:cursor-grabbing select-none ${item.className}`}
+                    style={{ zIndex: 20 + order.indexOf(item.id), touchAction: "none" }}
+                    draggable={false}
+                  />
+                ))}
               </div>
             </motion.div>
 
@@ -305,14 +321,15 @@ const About = () => {
               >
                 Education
               </h2>
-              <div className="absolute inset-0 flex items-center justify-center p-6">
+              <div className="absolute inset-0 flex items-center justify-center p-6 pt-[18%]">
                 <img
                   src={educationVisual.url}
                   alt="Bachelor of Art & Design at UM, Master of HCI + Design at UW"
-                  className="w-[86%] object-contain"
+                  className="w-[96%] object-contain"
                 />
               </div>
             </motion.div>
+
 
           </motion.div>
         </section>
