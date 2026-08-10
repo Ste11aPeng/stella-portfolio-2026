@@ -339,7 +339,8 @@ const About = () => {
                 ) : (
                   word.text
                 )}
-
+              </span>
+            ))}
           </motion.h1>
           <motion.p
             className="text-center text-[15px] md:text-base text-muted-foreground font-sans mt-3"
