@@ -231,14 +231,38 @@ const About = () => {
   const [order, setOrder] = useState(workItemsBase.map((i) => i.id));
   const workItems = workItemsBase;
 
-  const bringToFront = useCallback((id: string) => {
-    setOrder((prev) => [...prev.filter((x) => x !== id), id]);
-  }, []);
+  // Title focus-blur: distance of each word to the nearest accent word ("I"/"make").
+  const titleWordRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const [titleDists, setTitleDists] = useState<number[]>(() =>
+    titleWords.map((w, i) =>
+      w.accent ? 0 : Math.min(...accentIndices.map((a) => Math.abs(i - a)))
+    )
+  );
 
-  const handleCopyEmail = useCallback(async () => {
-    await navigator.clipboard.writeText("stellanotfound@gmail.com");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  useLayoutEffect(() => {
+    const accentEls = accentIndices
+      .map((i) => titleWordRefs.current[i])
+      .filter(Boolean) as HTMLSpanElement[];
+    if (!accentEls.length) return;
+    const accentCenters = accentEls.map((el) => {
+      const r = el.getBoundingClientRect();
+      return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+    });
+    const measured = titleWords.map((w, i) => {
+      if (w.accent) return 0;
+      const el = titleWordRefs.current[i];
+      if (!el) return 0;
+      const r = el.getBoundingClientRect();
+      const c = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+      return Math.min(
+        ...accentCenters.map((a) => {
+          const dx = c.x - a.x;
+          const dy = c.y - a.y;
+          return Math.sqrt(dx * dx + dy * dy);
+        })
+      );
+    });
+    setTitleDists(measured);
   }, []);
 
 
