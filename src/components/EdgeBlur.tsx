@@ -1,14 +1,16 @@
-import { CSSProperties } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 /**
  * Unified progressive edge blur used site-wide.
- * Uses many overlapping soft-banded slices whose blur amount ramps smoothly
- * from the content edge (near, light blur) to the far edge (heavy blur),
- * producing a continuous progressive blur with no visible banding.
+ *
+ * Technique: nested layers, each applying a small backdrop blur that compounds
+ * on top of the previous one, masked by a wide, smooth gradient. Because the
+ * masks are simple 0 -> 1 ramps (no transparent/black/transparent bands) and
+ * the blur strength doubles per layer, the result reads as one continuous
+ * 0 -> max blur ramp with no visible stripes.
  */
-export const EDGE_BLUR_MAX = 2; // px
-const SLICES = 12; // more slices = smoother ramp
-const MIN_BLUR = 0.3; // px at the content-facing edge
+export const EDGE_BLUR_MAX = 2; // px at the far edge
+const LAYERS = 6;
 
 type Side = "top" | "bottom" | "left" | "right";
 
@@ -36,39 +38,41 @@ export const EdgeBlur = ({ side, size = "72px", className = "", style }: EdgeBlu
       ? { height: `calc(${size} + ${OVERSHOOT}px)` }
       : { width: `calc(${size} + ${OVERSHOOT}px)` };
 
-  // Build overlapping soft bands with increasing blur.
-  const step = 100 / SLICES;
-  const slices = Array.from({ length: SLICES }, (_, i) => {
-    const t = i / (SLICES - 1); // 0 at content edge, 1 at far edge
-    const blur = MIN_BLUR + (EDGE_BLUR_MAX - MIN_BLUR) * t;
-    const center = (i + 0.5) * step; // band center %
-    const half = step * 0.85; // overlap neighbors
-    const inner = step * 0.25; // soft plateau
-    const lo = Math.max(0, center - half);
-    const loIn = center - inner;
-    const hiIn = center + inner;
-    const hi = Math.min(100, center + half);
-    const mask = `linear-gradient(${direction}, transparent ${lo}%, black ${loIn}%, black ${hiIn}%, transparent ${hi}%)`;
-    return { blur, mask };
-  });
+  // Each layer roughly doubles the accumulated blur; total ends at EDGE_BLUR_MAX.
+  const baseBlur = EDGE_BLUR_MAX / Math.pow(2, LAYERS - 1);
+
+  // Build from the outermost (lightest, starts at the content edge) inward.
+  let content: ReactNode = null;
+  for (let i = LAYERS - 1; i >= 0; i--) {
+    const blur = baseBlur * Math.pow(2, i);
+    // Layer i ramps in over a wide, overlapping window further from the content.
+    const start = (i / LAYERS) * 100;
+    const end = ((i + 1.6) / LAYERS) * 100;
+    const mask = `linear-gradient(${direction}, rgba(0,0,0,0) ${start}%, rgba(0,0,0,1) ${Math.min(
+      end,
+      100
+    )}%)`;
+    content = (
+      <div
+        className="absolute inset-0"
+        style={{
+          backdropFilter: `blur(${blur}px)`,
+          WebkitBackdropFilter: `blur(${blur}px)`,
+          maskImage: mask,
+          WebkitMaskImage: mask,
+        }}
+      >
+        {content}
+      </div>
+    );
+  }
 
   return (
     <div
       className={`pointer-events-none absolute ${className}`}
       style={{ ...offset, ...sizeStyle, ...style }}
     >
-      {slices.map((s, i) => (
-        <div
-          key={i}
-          className="absolute inset-0"
-          style={{
-            backdropFilter: `blur(${s.blur}px)`,
-            WebkitBackdropFilter: `blur(${s.blur}px)`,
-            maskImage: s.mask,
-            WebkitMaskImage: s.mask,
-          }}
-        />
-      ))}
+      {content}
     </div>
   );
 };
