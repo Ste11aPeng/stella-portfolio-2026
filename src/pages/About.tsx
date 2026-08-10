@@ -46,6 +46,14 @@ const blurFor = (dist: number) =>
 const opacityFor = (dist: number) =>
   Math.max(0.82 - dist * 0.001, 0.4).toFixed(2);
 
+// About title uses a higher blur floor so even the word closest to an accent
+// ("'m" right after "I") gets noticeable blur, while still ramping up with
+// distance to keep the progressive weak-to-strong feel.
+const aboutBlurFor = (dist: number) =>
+  Math.min(1.7 + dist * 0.009, 3.4).toFixed(2);
+const aboutOpacityFor = (dist: number) =>
+  Math.max(0.72 - dist * 0.0009, 0.42).toFixed(2);
+
 const PhotoWithHover = ({ src, label }: { src: string; label: string }) => {
   const [isHovering, setIsHovering] = useState(false);
   const hintRef = useRef<HTMLDivElement>(null);
