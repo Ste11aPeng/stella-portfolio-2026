@@ -319,7 +319,26 @@ const About = () => {
                 }
               >
                 {word.space ? "\u00A0" : ""}
-                {word.text}
+                {word.accent ? (
+                  <span className="relative inline-block align-baseline">
+                    <span className="invisible">{word.text}</span>
+                    <span className="absolute left-0 top-0 whitespace-nowrap transition-opacity duration-1000 ease-out opacity-100 group-hover/title:opacity-0">
+                      {word.text}
+                    </span>
+                    <span
+                      className="absolute left-0 top-0 whitespace-nowrap transition-opacity duration-1000 ease-out opacity-0 group-hover/title:opacity-100"
+                      style={{
+                        fontFamily: "'Exposure Italic', 'Exposure', serif",
+                        fontStyle: "italic",
+                        fontWeight: 900,
+                      }}
+                    >
+                      {word.text}
+                    </span>
+                  </span>
+                ) : (
+                  word.text
+                )}
               </span>
             ))}
           </motion.h1>
