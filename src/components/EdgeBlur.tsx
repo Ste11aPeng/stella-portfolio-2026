@@ -2,16 +2,13 @@ import { CSSProperties } from "react";
 
 /**
  * Unified progressive edge blur used site-wide.
- * Same layer/mask configuration for every edge so transitions look identical.
+ * Uses many overlapping soft-banded slices whose blur amount ramps smoothly
+ * from the content edge (near, light blur) to the far edge (heavy blur),
+ * producing a continuous progressive blur with no visible banding.
  */
 export const EDGE_BLUR_MAX = 2; // px
-const LAYERS = [0.25, 0.5, 1, EDGE_BLUR_MAX];
-const BANDS = [
-  "black 0%, black 50%, transparent 87.5%",
-  "transparent 12.5%, black 37.5%, black 62.5%, transparent 87.5%",
-  "transparent 25%, black 50%, black 75%, transparent 100%",
-  "transparent 37.5%, black 62.5%, black 100%",
-];
+const SLICES = 12; // more slices = smoother ramp
+const MIN_BLUR = 0.3; // px at the content-facing edge
 
 type Side = "top" | "bottom" | "left" | "right";
 
@@ -35,26 +32,39 @@ export const EdgeBlur = ({ side, size = "72px", className = "", style }: EdgeBlu
   const sizeStyle =
     side === "top" || side === "bottom" ? { height: size } : { width: size };
 
+  // Build overlapping soft bands with increasing blur.
+  const step = 100 / SLICES;
+  const slices = Array.from({ length: SLICES }, (_, i) => {
+    const t = i / (SLICES - 1); // 0 at content edge, 1 at far edge
+    const blur = MIN_BLUR + (EDGE_BLUR_MAX - MIN_BLUR) * t;
+    const center = (i + 0.5) * step; // band center %
+    const half = step * 0.85; // overlap neighbors
+    const inner = step * 0.25; // soft plateau
+    const lo = Math.max(0, center - half);
+    const loIn = center - inner;
+    const hiIn = center + inner;
+    const hi = Math.min(100, center + half);
+    const mask = `linear-gradient(${direction}, transparent ${lo}%, black ${loIn}%, black ${hiIn}%, transparent ${hi}%)`;
+    return { blur, mask };
+  });
+
   return (
     <div
       className={`pointer-events-none absolute ${pos} ${className}`}
       style={{ ...sizeStyle, ...style }}
     >
-      {LAYERS.map((blur, i) => {
-        const mask = `linear-gradient(${direction}, ${BANDS[i]})`;
-        return (
-          <div
-            key={i}
-            className="absolute inset-0"
-            style={{
-              backdropFilter: `blur(${blur}px)`,
-              WebkitBackdropFilter: `blur(${blur}px)`,
-              maskImage: mask,
-              WebkitMaskImage: mask,
-            }}
-          />
-        );
-      })}
+      {slices.map((s, i) => (
+        <div
+          key={i}
+          className="absolute inset-0"
+          style={{
+            backdropFilter: `blur(${s.blur}px)`,
+            WebkitBackdropFilter: `blur(${s.blur}px)`,
+            maskImage: s.mask,
+            WebkitMaskImage: s.mask,
+          }}
+        />
+      ))}
     </div>
   );
 };
