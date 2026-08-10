@@ -12,11 +12,13 @@ const MIN_BLUR = 0.3; // px at the content-facing edge
 
 type Side = "top" | "bottom" | "left" | "right";
 
-const SIDE_CONFIG: Record<Side, { direction: string; className: string }> = {
-  top: { direction: "to top", className: "inset-x-0 top-0" },
-  bottom: { direction: "to bottom", className: "inset-x-0 bottom-0" },
-  left: { direction: "to left", className: "inset-y-0 left-0" },
-  right: { direction: "to right", className: "inset-y-0 right-0" },
+const OVERSHOOT = 1; // px bleed past the edges so no unblurred sliver remains
+
+const SIDE_CONFIG: Record<Side, { direction: string; offset: CSSProperties }> = {
+  top: { direction: "to top", offset: { left: -OVERSHOOT, right: -OVERSHOOT, top: -OVERSHOOT } },
+  bottom: { direction: "to bottom", offset: { left: -OVERSHOOT, right: -OVERSHOOT, bottom: -OVERSHOOT } },
+  left: { direction: "to left", offset: { top: -OVERSHOOT, bottom: -OVERSHOOT, left: -OVERSHOOT } },
+  right: { direction: "to right", offset: { top: -OVERSHOOT, bottom: -OVERSHOOT, right: -OVERSHOOT } },
 };
 
 interface EdgeBlurProps {
@@ -28,9 +30,11 @@ interface EdgeBlurProps {
 }
 
 export const EdgeBlur = ({ side, size = "72px", className = "", style }: EdgeBlurProps) => {
-  const { direction, className: pos } = SIDE_CONFIG[side];
+  const { direction, offset } = SIDE_CONFIG[side];
   const sizeStyle =
-    side === "top" || side === "bottom" ? { height: size } : { width: size };
+    side === "top" || side === "bottom"
+      ? { height: `calc(${size} + ${OVERSHOOT}px)` }
+      : { width: `calc(${size} + ${OVERSHOOT}px)` };
 
   // Build overlapping soft bands with increasing blur.
   const step = 100 / SLICES;
@@ -50,8 +54,8 @@ export const EdgeBlur = ({ side, size = "72px", className = "", style }: EdgeBlu
 
   return (
     <div
-      className={`pointer-events-none absolute ${pos} ${className}`}
-      style={{ ...sizeStyle, ...style }}
+      className={`pointer-events-none absolute ${className}`}
+      style={{ ...offset, ...sizeStyle, ...style }}
     >
       {slices.map((s, i) => (
         <div
