@@ -220,7 +220,7 @@ const About = () => {
               <div className="relative flex-1 mt-8 min-h-0">
                 <div
                   className="h-full overflow-y-auto px-8 pb-12 about-scroll"
-                  onScroll={(e) => setLifeScrolled(e.currentTarget.scrollTop > 4)}
+                  onScroll={(e) => setLifeScrolled(e.currentTarget.scrollTop > 0)}
                 >
                   <div className="flex flex-col gap-5">
                     <p className="font-sans text-[15px] leading-relaxed text-foreground">
@@ -246,7 +246,7 @@ const About = () => {
                 {/* top progressive blur, appears once scrolled */}
                 <EdgeBlur
                   side="top"
-                  className="transition-opacity duration-500"
+                  className="transition-opacity duration-150"
                   style={{ opacity: lifeScrolled ? 1 : 0 }}
                 />
 
