@@ -46,7 +46,9 @@ const blurFor = (dist: number) =>
 const opacityFor = (dist: number) =>
   Math.max(0.82 - dist * 0.001, 0.4).toFixed(2);
 
-const PhotoWithHover = ({ src, label }: { src: string; label: string }) => {
+const accentIndices = titleWords
+  .map((w, i) => (w.accent ? i : -1))
+  .filter((i) => i >= 0);
   const [isHovering, setIsHovering] = useState(false);
   const hintRef = useRef<HTMLDivElement>(null);
   const position = useRef({ x: 0, y: 0 });
