@@ -144,13 +144,13 @@ const cardVariants = {
 
 const strip = [
   { src: album1, label: "hi~" },
-  { src: album2, label: "matcha lover" },
+  { src: album2, label: "matcha" },
   { src: album3, label: "blur vs oasis" },
-  { src: album4, label: "brew time" },
-  { src: album5, label: "whale watch" },
-  { src: album6, label: "tahoe wallpaper" },
-  { src: album7, label: "i waymo" },
-  { src: album8, label: "favorite artist" },
+  { src: album4, label: "me by the lake" },
+  { src: album5, label: "monterey" },
+  { src: album6, label: "tahoe" },
+  { src: album7, label: "i waymo everywhere" },
+  { src: album8, label: "always listen to khalil fong" },
 ];
 
 const workItemsBase = [
