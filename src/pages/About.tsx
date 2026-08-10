@@ -156,13 +156,14 @@ const strip = [
 ];
 
 const workItemsBase = [
-  { id: "desai", src: workDesai, alt: "Desai Accelerator cohort", rotate: -7, className: "left-[-4%] top-[36%] w-[42%] rounded-[10px] object-cover shadow-md" },
-  { id: "desk", src: workDesk, alt: "Matcha and laptop workspace", rotate: 6, className: "right-[-2%] top-[30%] w-[46%] rounded-[10px] object-cover shadow-md" },
-  { id: "trip", src: workTrip, alt: "Team trip by the water", rotate: 8, className: "right-[-6%] top-[52%] w-[38%] rounded-[10px] object-cover shadow-md" },
-  { id: "badge", src: workBadge, alt: "TikTok intern badge", rotate: -3, className: "left-[30%] top-[46%] w-[34%] rounded-[10px] object-cover shadow-lg" },
-  { id: "logo", src: tiktokLogo, alt: "TikTok logo", rotate: 0, className: "left-[18%] bottom-[16%] w-[14%] rounded-full shadow-md" },
-  { id: "figma", src: stickerFigma, alt: "Figma sticker", rotate: -12, className: "left-[6%] top-[16%] w-[16%] rounded-full shadow-sm" },
-  { id: "claude", src: stickerClaude, alt: "Claude Code sticker", rotate: 10, className: "right-[8%] bottom-[10%] w-[17%] drop-shadow-sm" },
+  { id: "desai", src: workDesai, alt: "Desai Accelerator cohort", rotate: -5, className: "left-[-5%] top-[29%] w-[36%] rounded-[10px] object-cover shadow-md" },
+  { id: "desk", src: workDesk, alt: "Matcha and laptop workspace", rotate: 5, className: "left-[50%] top-[27%] w-[37%] rounded-[10px] object-cover shadow-md" },
+  { id: "trip", src: workTrip, alt: "Team trip by the water", rotate: 4, className: "left-[73%] top-[44%] w-[35%] rounded-[10px] object-cover shadow-md" },
+  { id: "badge", src: workBadge, alt: "TikTok intern badge", rotate: -3, className: "left-[29%] top-[46%] w-[33%] rounded-[10px] object-cover shadow-lg" },
+  { id: "logo", src: tiktokLogo, alt: "TikTok logo", rotate: 0, className: "left-[18%] top-[72%] w-[14%] rounded-full shadow-md" },
+  { id: "figma", src: stickerFigma, alt: "Figma sticker", rotate: 0, className: "left-[74%] top-[18%] w-[19%] rounded-full shadow-sm" },
+  { id: "claude", src: stickerClaude, alt: "Claude Code sticker", rotate: 0, className: "left-[60%] top-[80%] w-[10%] drop-shadow-sm" },
+
 ];
 
 
