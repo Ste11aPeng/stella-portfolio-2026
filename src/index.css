@@ -124,6 +124,7 @@
     font-family: 'Exposure', 'New Spirit', ui-serif, serif;
     font-weight: 650 !important;
     letter-spacing: -0.07em;
+    color: var(--title-ink);
   }
 
 }
