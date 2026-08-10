@@ -168,7 +168,21 @@ const MarqueeStrip = ({ items }: { items: { src: string; label: string }[] }) =>
       {/* progressive blur edges */}
       <EdgeBlur side="left" size="26%" />
       <EdgeBlur side="right" size="26%" />
-
+      {/* progressive white fade edges */}
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0"
+        style={{
+          width: "26%",
+          background: "linear-gradient(to right, var(--background, #fff) 0%, rgba(255,255,255,0) 100%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0"
+        style={{
+          width: "26%",
+          background: "linear-gradient(to left, var(--background, #fff) 0%, rgba(255,255,255,0) 100%)",
+        }}
+      />
     </div>
   );
 };
@@ -242,7 +256,7 @@ const About = () => {
             Hi, I'm Stella.
           </motion.h1>
           <motion.p
-            className="text-center text-sm text-muted-foreground font-sans mt-6"
+            className="text-center text-[15px] md:text-base text-muted-foreground font-sans mt-3"
             initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 0.15 }}
@@ -252,14 +266,14 @@ const About = () => {
               href="https://www.linkedin.com/in/stellapengrnr/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground hover:underline"
+              className="text-muted-foreground hover:text-foreground transition-colors"
             >
               LinkedIn
             </a>{" "}
             or{" "}
             <button
               onClick={handleCopyEmail}
-              className="text-foreground hover:underline"
+              className="text-muted-foreground hover:text-foreground transition-colors"
             >
               {copied ? "copied!" : "email"}
             </button>
