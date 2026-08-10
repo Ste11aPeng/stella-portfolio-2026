@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 
-export const SITE_NAME = "Stella Peng";
+export const SITE_NAME = "Stella";
+export const SITE_FULL_NAME = "Stella Peng";
 export const SITE_URL = "https://ruocanpeng.com";
 
 interface SeoProps {
@@ -13,7 +14,7 @@ interface SeoProps {
 }
 
 const Seo = ({ page, description, path = "/", image }: SeoProps) => {
-  const title = page ? `${page} · ${SITE_NAME}` : `${SITE_NAME} · Product Designer`;
+  const title = page ? `${page} · ${SITE_NAME}` : SITE_FULL_NAME;
   const url = `${SITE_URL}${path === "/" ? "/" : path}`;
   const ogImage = image ?? `${SITE_URL}/images/og-image.png`;
 
