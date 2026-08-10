@@ -16,6 +16,7 @@ import album4 from "@/assets/album_4.png";
 import album5 from "@/assets/album_5.png";
 import album6 from "@/assets/album_6.png";
 import album7 from "@/assets/album_7.png";
+import album8 from "@/assets/album_8.jpg";
 import { useRef, useState, useCallback, useEffect } from "react";
 
 // Set page title
@@ -149,6 +150,7 @@ const strip = [
   { src: album5, label: "whale watch in monterey" },
   { src: album6, label: "tahoe bc of the wallpaper" },
   { src: album7, label: "i waymo everywhere" },
+  { src: album8, label: "listen to khalil fong all the time" },
 ];
 
 const workItemsBase = [
