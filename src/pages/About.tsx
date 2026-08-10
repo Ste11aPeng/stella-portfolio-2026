@@ -223,14 +223,19 @@ const About = () => {
                   onScroll={(e) => setLifeScrolled(e.currentTarget.scrollTop > 0)}
                 >
                   <div className="flex flex-col gap-5">
-                    <p className="font-sans text-[15px] leading-relaxed text-foreground">
-                      I'm currently a product design intern at TikTok, where I design end to end social experiences and explore how AI can become a natural part of the design process. I like using AI not simply as a productivity tool, but as a way to think, experiment, and build differently.
+                    <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
+                      I'm currently a product design intern at TikTok, where I{" "}
+                      <span className="text-foreground">design end-to-end social experiences and explore how AI can become a natural part of the design process.</span>{" "}
+                      I like using AI not simply as a productivity tool, but as a way to think, experiment, and build differently.
                     </p>
-                    <p className="font-sans text-[15px] leading-relaxed text-foreground">
-                      Before TikTok, I worked with early-stage startups, where I learned to be comfortable with ambiguity. I worked across design systems, product concepts, and wireframes. That experience shaped how I approach design today: I care about the big picture, but I also like getting my hands dirty and figuring out how things actually get built.
+                    <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
+                      Before TikTok, I worked with early-stage startups, where I learned to be comfortable with ambiguity. I worked across design systems, product concepts, and wireframes. That experience shaped how I approach design today:{" "}
+                      <span className="text-foreground">I care about the big picture, but I also like getting my hands dirty and figuring out how things actually get built.</span>
                     </p>
-                    <p className="font-sans text-[15px] leading-relaxed text-foreground">
-                      Outside of design, I'm pretty much the same person: curious, hands-on, and always up for trying something new. I like picking up new sports, exploring unfamiliar cities, always getting my driver license, and spending an unreasonable amount of time playing board games with friends.
+                    <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
+                      Outside of design, I'm pretty much the same person:{" "}
+                      <span className="text-foreground">I'm curious, hands-on, and always up for trying something new.</span>{" "}
+                      I like picking up new sports, exploring unfamiliar cities, always getting my driver license, and spending an unreasonable amount of time playing board games with friends.
                     </p>
                   </div>
                 </div>
