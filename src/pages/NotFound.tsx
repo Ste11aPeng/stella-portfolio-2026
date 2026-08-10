@@ -20,6 +20,7 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <Seo page="page not found" path={location.pathname} description="This page doesn't exist. Head back to Stella Peng's portfolio home." />
       <Header />
 
       <main className="flex-1 flex items-center justify-center px-8 py-24">
