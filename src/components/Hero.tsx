@@ -3,30 +3,21 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import profileImage from "@/assets/profile.webp";
 
-// Two lines, with a forced break after "designer".
-// Line 1: "Stella is a designer who builds"
-// Line 2: "across design, engineering, and product."
+// "I'm Stella, here to make."
+// Hover keeps only "I" and "make" sharp; the rest blurs progressively.
 const lines = [
   {
-    // words on the first visual line
     parts: [
-      { text: "Stella", accent: false },
-      { text: "is", accent: false },
-      { text: "a", accent: false },
-      { text: "designer", accent: true },
-      { text: "who", accent: false },
-      { text: "builds", accent: false },
-      { text: "across", accent: false },
+      { text: "I", accent: true },
+      { text: "'m", accent: false },
+      { text: "Stella,", accent: false },
+      { text: "here", accent: false },
+      { text: "to", accent: false },
     ],
   },
   {
     parts: [
-      { text: "design,", accent: false },
-      { text: "tech", accent: false },
-      { text: "&", accent: false },
-      { text: "things", accent: false },
-      { text: "in", accent: false },
-      { text: "between.", accent: false },
+      { text: "make.", accent: true },
     ],
   },
 ];
@@ -38,11 +29,11 @@ const flatWords: WordItem[] = (() => {
   for (const line of lines) for (const p of line.parts) all.push(p);
   return all;
 })();
-const accentIdx = flatWords.findIndex((w) => w.accent);
+const accentIdxs = flatWords
+  .map((w, i) => (w.accent ? i : -1))
+  .filter((i) => i >= 0);
 
-// Map 2D pixel distance from "designer" center to a progressive blur + opacity.
-// Words directly below designer (one line-height, ~38px) get only a slight blur,
-// while far words fade/blur more. Overall kept light.
+// Map 2D pixel distance from the nearest accent word to a progressive blur + opacity.
 const blurFor = (dist: number) =>
   Math.min(0.6 + dist * 0.0105, 2.6).toFixed(2);
 const opacityFor = (dist: number) =>
@@ -75,27 +66,34 @@ const wordVariants = {
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [dists, setDists] = useState<number[]>(() => flatWords.map((w, i) => (w.accent ? 0 : Math.abs(i - accentIdx))));
+  const [dists, setDists] = useState<number[]>(() =>
+    flatWords.map((w) => (w.accent ? 0 : 50))
+  );
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const navigate = useNavigate();
 
-  // Measure actual rendered positions and compute 2D distance from "designer".
+  // Measure actual rendered positions and compute 2D distance from the nearest accent word.
   useLayoutEffect(() => {
-    const accentEl = wordRefs.current[accentIdx];
-    if (!accentEl) return;
-    const accentRect = accentEl.getBoundingClientRect();
-    const ac = {
-      x: accentRect.left + accentRect.width / 2,
-      y: accentRect.top + accentRect.height / 2,
-    };
+    const accentCenters = accentIdxs
+      .map((i) => wordRefs.current[i])
+      .filter(Boolean)
+      .map((el) => {
+        const r = (el as HTMLSpanElement).getBoundingClientRect();
+        return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+      });
+    if (accentCenters.length === 0) return;
     const measured = flatWords.map((w, i) => {
       const el = wordRefs.current[i];
       if (!el || w.accent) return 0;
       const r = el.getBoundingClientRect();
       const c = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-      const dx = c.x - ac.x;
-      const dy = c.y - ac.y;
-      return Math.sqrt(dx * dx + dy * dy);
+      return Math.min(
+        ...accentCenters.map((ac) => {
+          const dx = c.x - ac.x;
+          const dy = c.y - ac.y;
+          return Math.sqrt(dx * dx + dy * dy);
+        })
+      );
     });
     setDists(measured);
   }, []);
