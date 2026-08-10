@@ -143,14 +143,14 @@ const cardVariants = {
 };
 
 const strip = [
-  { src: album1, label: "Hi~" },
-  { src: album2, label: "I love matcha" },
-  { src: album3, label: "blur hoodie to oasis concert" },
-  { src: album4, label: "brew time!" },
-  { src: album5, label: "whale watch in monterey" },
-  { src: album6, label: "tahoe bc of the wallpaper" },
-  { src: album7, label: "i waymo everywhere" },
-  { src: album8, label: "listen to khalil fong all the time" },
+  { src: album1, label: "hi~" },
+  { src: album2, label: "matcha lover" },
+  { src: album3, label: "blur vs oasis" },
+  { src: album4, label: "brew time" },
+  { src: album5, label: "whale watch" },
+  { src: album6, label: "tahoe wallpaper" },
+  { src: album7, label: "i waymo" },
+  { src: album8, label: "favorite artist" },
 ];
 
 const workItemsBase = [
