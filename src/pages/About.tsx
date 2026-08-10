@@ -239,10 +239,10 @@ const About = () => {
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <span className="inline-block transition-[filter,opacity] duration-500 ease-out group-hover/title:blur-[6px] group-hover/title:opacity-40">I</span>
-            <span className="inline-block transition-[filter,opacity] duration-500 ease-out group-hover/title:blur-[6px] group-hover/title:opacity-40">'m Stella, here to </span>
+            <span className="inline-block">I</span>
+            <span className="inline-block transition-[filter,opacity] duration-500 ease-out group-hover/title:blur-[3px] group-hover/title:opacity-50">'m Stella, here to&nbsp;</span>
             <span className="inline-block">make</span>
-            <span className="inline-block transition-[filter,opacity] duration-500 ease-out group-hover/title:blur-[6px] group-hover/title:opacity-40">.</span>
+            <span className="inline-block transition-[filter,opacity] duration-500 ease-out group-hover/title:blur-[3px] group-hover/title:opacity-50">.</span>
           </motion.h1>
           <motion.p
             className="text-center text-[15px] md:text-base text-muted-foreground font-sans mt-3"
