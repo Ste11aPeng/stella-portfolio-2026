@@ -150,6 +150,11 @@ const ProjectDetail = () => {
     }
   };
   return <div className="min-h-screen bg-background">
+      <Seo
+        page={project.title.toLowerCase()}
+        path={`/project/${project.id}`}
+        description={`${project.title}: ${project.description}. A product design case study by Stella Peng.`}
+      />
       <Header />
       
       {/* Cover Image */}
