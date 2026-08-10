@@ -221,7 +221,13 @@ const About = () => {
 
   return (
     <>
+      <Seo
+        page="about"
+        path="/about"
+        description="Stella Peng is a product designer working across design, engineering, and product. Currently designing at TikTok and studying HCI+Design at the University of Washington."
+      />
       <div className="min-h-screen bg-background relative z-10">
+
         <Header />
 
         {/* Title */}
