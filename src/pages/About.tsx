@@ -21,13 +21,7 @@ import stickerFigma from "@/assets/sticker-figma.png";
 import stickerClaude from "@/assets/sticker-claude-code.png";
 import { useRef, useState, useCallback, useEffect } from "react";
 
-// Set page title
-const usePageTitle = (title: string) => {
-  useEffect(() => {
-    document.title = title;
-    return () => { document.title = "Stella Peng | Product Designer Portfolio"; };
-  }, [title]);
-};
+import Seo from "@/components/Seo";
 
 const PhotoWithHover = ({ src, label }: { src: string; label: string }) => {
   const [isHovering, setIsHovering] = useState(false);
