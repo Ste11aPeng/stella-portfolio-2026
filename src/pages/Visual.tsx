@@ -14,6 +14,7 @@ import visual7 from "@/assets/visual-7.png";
 import lottieAnimation from "@/assets/visual-lottie.json";
 import lottieAnimation2 from "@/assets/visual-lottie-2.json";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
+import LazyVideo from "@/components/LazyVideo";
 import { useEffect, useRef, useState } from "react";
 
 const imagesBeforeBig: { src?: string; alt: string; span: "full" | "normal"; lottie?: 1 | 2 }[] = [
@@ -93,14 +94,8 @@ const Visual = () => {
               onMouseLeave={() => setHoverVideo1(false)}
             >
               <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
-                <video
+                <LazyVideo
                   src="/videos/accordion.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  disablePictureInPicture
-                  controlsList="nodownload nofullscreen noremoteplayback"
                   className="w-full h-full object-cover object-center scale-[1.4] pointer-events-none select-none"
                 />
               </div>
@@ -124,16 +119,10 @@ const Visual = () => {
               onMouseEnter={() => setHoverVideo2(true)}
               onMouseLeave={() => setHoverVideo2(false)}
             >
-              <video
-                src="/videos/music.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                disablePictureInPicture
-                controlsList="nodownload nofullscreen noremoteplayback"
-                className="w-full h-auto rounded-none pointer-events-none select-none"
-              />
+              <LazyVideo
+                  src="/videos/music.mp4"
+                  className="w-full h-auto rounded-none pointer-events-none select-none"
+                />
               <motion.div
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: hoverVideo2 ? 1 : 0, y: hoverVideo2 ? 0 : -4 }}
@@ -157,14 +146,8 @@ const Visual = () => {
               onMouseLeave={() => setHoverVideo3(false)}
             >
               <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
-                <video
-                  src="/videos/textmode.mov"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  disablePictureInPicture
-                  controlsList="nodownload nofullscreen noremoteplayback"
+                <LazyVideo
+                  src="/videos/textmode_opt.mp4"
                   className="w-full h-full object-cover object-center pointer-events-none select-none"
                 />
               </div>
@@ -189,14 +172,8 @@ const Visual = () => {
               onMouseLeave={() => setHoverVideo4(false)}
             >
               <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
-                <video
+                <LazyVideo
                   src="/videos/visual-video-2.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  disablePictureInPicture
-                  controlsList="nodownload nofullscreen noremoteplayback"
                   className="w-full h-full object-cover object-center pointer-events-none select-none"
                 />
               </div>
@@ -244,28 +221,16 @@ const Visual = () => {
             {/* Paired videos – moved to positions 9 & 10 (before the big image) */}
             <motion.div variants={itemVariants}>
               <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
-                <video
-                  src="/videos/visual-video-1.mov"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  disablePictureInPicture
-                  controlsList="nodownload nofullscreen noremoteplayback"
+                <LazyVideo
+                  src="/videos/visual-video-1_opt.mp4"
                   className="w-full h-full object-cover object-center pointer-events-none select-none"
                 />
               </div>
             </motion.div>
             <motion.div variants={itemVariants}>
               <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
-                <video
-                  src="/videos/seedance.mov"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  disablePictureInPicture
-                  controlsList="nodownload nofullscreen noremoteplayback"
+                <LazyVideo
+                  src="/videos/seedance_opt.mp4"
                   className="w-full h-full object-cover object-center pointer-events-none select-none"
                 />
               </div>
@@ -304,16 +269,10 @@ const Visual = () => {
               onMouseEnter={() => setHoverVideoClock(true)}
               onMouseLeave={() => setHoverVideoClock(false)}
             >
-              <video
-                src="/videos/final_clock.mov"
-                autoPlay
-                loop
-                muted
-                playsInline
-                disablePictureInPicture
-                controlsList="nodownload nofullscreen noremoteplayback"
-                className="w-full h-auto pointer-events-none select-none"
-              />
+              <LazyVideo
+                  src="/videos/final_clock_opt.mp4"
+                  className="w-full h-auto pointer-events-none select-none"
+                />
               <motion.div
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: hoverVideoClock ? 1 : 0, y: hoverVideoClock ? 0 : -4 }}
