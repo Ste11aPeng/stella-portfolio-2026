@@ -191,13 +191,13 @@ const strip = [
 ];
 
 const workItemsBase = [
-  { id: "desai", src: workDesai, alt: "Desai Accelerator cohort", rotate: -5, className: "left-[-3%] top-[31%] w-[42%] rounded-[10px] object-cover shadow-md" },
-  { id: "desk", src: workDesk, alt: "Matcha and laptop workspace", rotate: 5, className: "left-[46%] top-[29%] w-[42%] rounded-[10px] object-cover shadow-md" },
-  { id: "trip", src: workTrip, alt: "Team trip by the water", rotate: 4, className: "left-[66%] top-[46%] w-[40%] rounded-[10px] object-cover shadow-md" },
-  { id: "badge", src: workBadge, alt: "TikTok intern badge", rotate: -3, className: "left-[24%] top-[49%] w-[38%] rounded-[10px] object-cover shadow-lg" },
-  { id: "logo", src: tiktokLogo, alt: "TikTok logo", rotate: 0, className: "left-[14%] top-[75%] w-[16%] rounded-full shadow-md" },
-  { id: "figma", src: stickerFigma, alt: "Figma sticker", rotate: 0, className: "left-[72%] top-[20%] w-[16%] rounded-full", shadowStyle: "0 8px 24px -6px rgba(0,0,0,0.12), 0 2px 8px -2px rgba(0,0,0,0.06)" },
-  { id: "claude", src: stickerClaude, alt: "Claude Code sticker", rotate: 0, className: "left-[56%] top-[83%] w-[17%]", shadowStyle: "none" },
+  { id: "desai", src: workDesai, alt: "Desai Accelerator cohort", rotate: -5, className: "left-[-3%] top-[36%] w-[42%] rounded-[10px] object-cover shadow-md" },
+  { id: "desk", src: workDesk, alt: "Matcha and laptop workspace", rotate: 5, className: "left-[46%] top-[34%] w-[42%] rounded-[10px] object-cover shadow-md" },
+  { id: "trip", src: workTrip, alt: "Team trip by the water", rotate: 4, className: "left-[66%] top-[51%] w-[40%] rounded-[10px] object-cover shadow-md" },
+  { id: "badge", src: workBadge, alt: "TikTok intern badge", rotate: -3, className: "left-[24%] top-[54%] w-[38%] rounded-[10px] object-cover shadow-lg" },
+  { id: "logo", src: tiktokLogo, alt: "TikTok logo", rotate: 0, className: "left-[14%] top-[80%] w-[16%] rounded-full shadow-md" },
+  { id: "figma", src: stickerFigma, alt: "Figma sticker", rotate: 0, className: "left-[72%] top-[25%] w-[16%] rounded-full", shadowStyle: "0 8px 24px -6px rgba(0,0,0,0.12), 0 2px 8px -2px rgba(0,0,0,0.06)" },
+  { id: "claude", src: stickerClaude, alt: "Claude Code sticker", rotate: 0, className: "left-[56%] top-[88%] w-[17%]", shadowStyle: "none" },
 ];
 
 
@@ -287,7 +287,7 @@ const About = () => {
               >
                 Life
               </h2>
-              <div className="relative flex-1 mt-8 min-h-0">
+              <div className="relative flex-1 mt-16 min-h-0">
                 <div
                   className="h-full overflow-y-auto px-8 pb-12 about-scroll"
                   onScroll={(e) => setLifeScrolled(e.currentTarget.scrollTop > 0)}
