@@ -54,8 +54,8 @@ export const EdgeBlur = ({ side, size = "72px", className = "", style }: EdgeBlu
 
   return (
     <div
-      className={`pointer-events-none absolute ${pos} ${className}`}
-      style={{ ...sizeStyle, ...style }}
+      className={`pointer-events-none absolute ${className}`}
+      style={{ ...offset, ...sizeStyle, ...style }}
     >
       {slices.map((s, i) => (
         <div
