@@ -17,6 +17,8 @@ import album5 from "@/assets/album_5.png";
 import album6 from "@/assets/album_6.png";
 import album7 from "@/assets/album_7.png";
 import album8 from "@/assets/album_8.jpg";
+import stickerFigma from "@/assets/sticker-figma.png";
+import stickerClaude from "@/assets/sticker-claude-code.png";
 import { useRef, useState, useCallback, useEffect } from "react";
 
 // Set page title
@@ -143,10 +145,10 @@ const cardVariants = {
 };
 
 const strip = [
-  { src: album1, label: "hi~" },
+  { src: album1, label: "me by the lake" },
   { src: album2, label: "matcha" },
   { src: album3, label: "blur vs oasis" },
-  { src: album4, label: "me by the lake" },
+  { src: album4, label: "brew time" },
   { src: album5, label: "monterey" },
   { src: album6, label: "tahoe" },
   { src: album7, label: "i waymo everywhere" },
@@ -154,11 +156,13 @@ const strip = [
 ];
 
 const workItemsBase = [
-  { id: "desai", src: workDesai, alt: "Desai Accelerator cohort", rotate: -7, className: "left-[-4%] top-[36%] w-[42%] rounded-[10px] object-cover shadow-md" },
-  { id: "desk", src: workDesk, alt: "Matcha and laptop workspace", rotate: 6, className: "right-[-2%] top-[30%] w-[46%] rounded-[10px] object-cover shadow-md" },
-  { id: "trip", src: workTrip, alt: "Team trip by the water", rotate: 8, className: "right-[-6%] top-[52%] w-[38%] rounded-[10px] object-cover shadow-md" },
-  { id: "badge", src: workBadge, alt: "TikTok intern badge", rotate: -3, className: "left-[30%] top-[46%] w-[34%] rounded-[10px] object-cover shadow-lg" },
-  { id: "logo", src: tiktokLogo, alt: "TikTok logo", rotate: 0, className: "left-[18%] bottom-[16%] w-[14%] rounded-full shadow-md" },
+  { id: "desai", src: workDesai, alt: "Desai Accelerator cohort", rotate: -7, className: "left-[-6%] top-[34%] w-[46%] rounded-[10px] object-cover shadow-md" },
+  { id: "desk", src: workDesk, alt: "Matcha and laptop workspace", rotate: 6, className: "right-[-4%] top-[28%] w-[51%] rounded-[10px] object-cover shadow-md" },
+  { id: "trip", src: workTrip, alt: "Team trip by the water", rotate: 8, className: "right-[-8%] top-[51%] w-[42%] rounded-[10px] object-cover shadow-md" },
+  { id: "badge", src: workBadge, alt: "TikTok intern badge", rotate: -3, className: "left-[28%] top-[45%] w-[37%] rounded-[10px] object-cover shadow-lg" },
+  { id: "logo", src: tiktokLogo, alt: "TikTok logo", rotate: 0, className: "left-[16%] bottom-[15%] w-[15%] rounded-full shadow-md" },
+  { id: "figma", src: stickerFigma, alt: "Figma sticker", rotate: -12, className: "left-[6%] top-[16%] w-[16%] rounded-full shadow-md" },
+  { id: "claude", src: stickerClaude, alt: "Claude Code sticker", rotate: 10, className: "right-[8%] bottom-[10%] w-[17%] drop-shadow-md" },
 ];
 
 
