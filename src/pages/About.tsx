@@ -305,7 +305,7 @@ const About = () => {
                   word.accent
                     ? undefined
                     : {
-                        ["--tb" as string]: `${word.minBlur != null ? Math.max(blurFor(titleDists[i]), word.minBlur) : blurFor(titleDists[i])}px`,
+                        ["--tb" as string]: `${word.minBlur != null ? Math.max(parseFloat(blurFor(titleDists[i])), word.minBlur).toFixed(2) : blurFor(titleDists[i])}px`,
                         ["--to" as string]: opacityFor(titleDists[i]),
                       }
                 }
