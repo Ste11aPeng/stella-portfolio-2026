@@ -162,7 +162,7 @@ const Hero = () => {
           <motion.p
             className="group/title max-w-3xl pt-0 text-[1.5rem] leading-[1.85rem] md:text-[2rem] md:leading-[2.4rem]"
             style={{
-              color: "#161616",
+              color: "var(--title-ink)",
               fontFamily: "'Exposure', 'New Spirit', serif",
               fontWeight: 650,
               letterSpacing: "-0.07em",
