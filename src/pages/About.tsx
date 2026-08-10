@@ -337,13 +337,22 @@ const About = () => {
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               LinkedIn
+            </a>
+            ,{" "}
+            <a
+              href="https://x.com/PengSte11a41091"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              X
             </a>{" "}
             or{" "}
             <button
               onClick={handleCopyEmail}
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              {copied ? "copied!" : "email"}
+              {copied ? "copied!" : "copy my email"}
             </button>
             .
           </motion.p>
