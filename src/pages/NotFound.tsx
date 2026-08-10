@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 
 const NotFound = () => {
   const location = useLocation();
