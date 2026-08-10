@@ -295,20 +295,17 @@ const About = () => {
                   <div className="flex flex-col gap-5">
                     <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
                       I'm currently a product design intern at TikTok, where I{" "}
-                      <span className="text-foreground">design end-to-end social experiences and explore how AI can become a natural part of the design process.</span>{" "}
-                      I like using AI not simply as a productivity tool, but as a way to think, experiment, and build differently.
+                      <span className="text-foreground">shape social experiences and explore how AI can become a part of the design process.</span>{" "}
+                      I use AI to quickly turn ideas into something I can see and test, which lets me explore more directions before committing to one.
                     </p>
                     <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
-                      Before TikTok, I worked with early-stage startups, helping teams move{" "}
-                      <span className="text-foreground">from 0 to 1</span>{" "}
-                      — shaping the first product concept, building the design system, and turning rough ideas into something users could actually try. Later I helped push products{" "}
-                      <span className="text-foreground">from 1 to 10</span>{" "}
-                      — refining flows, tightening the details, and making the experience hold up as the user base grew. That taught me to be comfortable with ambiguity and to care about both the big picture and how things actually get built.
+                      Before TikTok,{" "}<span className="text-foreground">I’ve worked with early-stage startups across 0→1 and 1→10, from building design systems to sketching wireframes and polishing products.</span>{" "}
+                      It’s shaped how I see design: think big, stay curious, and make things happen.
                     </p>
                     <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
-                      Outside of design, I'm pretty much the same person:{" "}
+                      Outside of design, I’m pretty much the same person:{" "}
                       <span className="text-foreground">curious, hands-on, and always up for trying something new.</span>{" "}
-                      I pick up new sports, explore unfamiliar cities, am always getting my driver license, and spend an unreasonable amount of time playing board games with friends.
+                      I pick up new sports, explore unfamiliar cities, doomscroll X for design inspiration, and spend way too much time playing Nintendo games with friends.
                     </p>
                   </div>
                 </div>
