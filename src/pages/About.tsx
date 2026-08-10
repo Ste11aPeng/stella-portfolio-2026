@@ -224,21 +224,13 @@ const About = () => {
                 >
                   <div className="flex flex-col gap-5">
                     <p className="font-sans text-[15px] leading-relaxed text-foreground">
-                      A designer who notices the tiny things. Into Nintendo, kittens, film cameras, and things that make me say "ohhh that's clever".
+                      I'm currently a product design intern at TikTok, where I design end to end social experiences and explore how AI can become a natural part of the design process. I like using AI not simply as a productivity tool, but as a way to think, experiment, and build differently.
                     </p>
                     <p className="font-sans text-[15px] leading-relaxed text-foreground">
-                      Grew up in China, studied design at Michigan, now at UW for HCI. Summer '26 intern at TikTok, shipping internal prototypes with Figma and Claude Code.
+                      Before TikTok, I worked with early-stage startups, where I learned to be comfortable with ambiguity. I worked across design systems, product concepts, and wireframes. That experience shaped how I approach design today: I care about the big picture, but I also like getting my hands dirty and figuring out how things actually get built.
                     </p>
                     <p className="font-sans text-[15px] leading-relaxed text-foreground">
-                      Say hello to{" "}
-                      <button onClick={handleCopyEmail} className="underline underline-offset-2 hover:text-foreground transition-colors">
-                        {copied ? "copied!" : "stellanotfound@gmail.com"}
-                      </button>{" "}
-                      or{" "}
-                      <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
-                        linkedin
-                      </a>
-                      .
+                      Outside of design, I'm pretty much the same person: curious, hands-on, and always up for trying something new. I like picking up new sports, exploring unfamiliar cities, always getting my driver license, and spending an unreasonable amount of time playing board games with friends.
                     </p>
                   </div>
                 </div>
