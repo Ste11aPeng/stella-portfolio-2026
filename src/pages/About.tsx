@@ -203,7 +203,7 @@ const workItemsBase = [
   { id: "badge", src: workBadge, alt: "TikTok intern badge", rotate: -3, className: "left-[24%] top-[44%] w-[38%] rounded-[10px] object-cover shadow-lg" },
   { id: "logo", src: tiktokLogo, alt: "TikTok logo", rotate: 0, className: "left-[14%] top-[70%] w-[16%] rounded-full shadow-md" },
   { id: "figma", src: stickerFigma, alt: "Figma sticker", rotate: 0, className: "left-[72%] top-[15%] w-[16%] rounded-full", shadowStyle: "0 8px 24px -6px rgba(0,0,0,0.12), 0 2px 8px -2px rgba(0,0,0,0.06)" },
-  { id: "claude", src: stickerClaude, alt: "Claude Code sticker", rotate: 0, className: "left-[56%] top-[78%] w-[17%]", shadowStyle: "0 8px 24px -6px rgba(0,0,0,0.12), 0 2px 8px -2px rgba(0,0,0,0.06)" },
+  { id: "claude", src: stickerClaude, alt: "Claude Code sticker", rotate: 0, className: "left-[56%] top-[78%] w-[17%]", shadowStyle: "none" },
 ];
 
 
