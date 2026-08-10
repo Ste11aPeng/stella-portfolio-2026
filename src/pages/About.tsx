@@ -120,11 +120,51 @@ const MarqueeStrip = ({ items }: { items: { src: string; label: string }[] }) =>
     return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
   }, []);
 
+  const dragging = useRef(false);
+  const lastX = useRef(0);
+
+  const normalize = () => {
+    const track = trackRef.current;
+    if (!track) return;
+    const half = track.scrollWidth / 2;
+    if (half <= 0) return;
+    while (offsetRef.current >= half) offsetRef.current -= half;
+    while (offsetRef.current < 0) offsetRef.current += half;
+  };
+
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    dragging.current = true;
+    lastX.current = e.clientX;
+    targetRef.current = 0;
+    speedRef.current = 0;
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!dragging.current) return;
+    const dx = e.clientX - lastX.current;
+    lastX.current = e.clientX;
+    offsetRef.current -= dx;
+    normalize();
+    if (trackRef.current) trackRef.current.style.transform = `translate3d(${-offsetRef.current}px,0,0)`;
+  };
+
+  const endDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!dragging.current) return;
+    dragging.current = false;
+    try { e.currentTarget.releasePointerCapture(e.pointerId); } catch { /* noop */ }
+    targetRef.current = 0.08;
+  };
+
   return (
     <div
-      className="about-marquee overflow-hidden relative rounded-[8px]"
-      onMouseEnter={() => { targetRef.current = 0.08; }}
-      onMouseLeave={() => { targetRef.current = 0.25; }}
+      className="about-marquee overflow-hidden relative rounded-[8px] touch-pan-y select-none"
+      onMouseEnter={() => { if (!dragging.current) targetRef.current = 0.08; }}
+      onMouseLeave={() => { if (!dragging.current) targetRef.current = 0.25; }}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={endDrag}
+      onPointerCancel={endDrag}
     >
       <div ref={trackRef} className="flex w-max gap-1.5 will-change-transform">
         {items.map((item, i) => (
@@ -132,12 +172,13 @@ const MarqueeStrip = ({ items }: { items: { src: string; label: string }[] }) =>
         ))}
       </div>
       {/* progressive blur edges */}
-      <EdgeBlur side="left" size="18%" />
-      <EdgeBlur side="right" size="18%" />
+      <EdgeBlur side="left" size="26%" />
+      <EdgeBlur side="right" size="26%" />
 
     </div>
   );
 };
+
 
 const cardVariants = {
   hidden: { opacity: 0, y: 12, filter: "blur(4px)" },
