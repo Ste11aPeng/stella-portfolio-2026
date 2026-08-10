@@ -65,15 +65,16 @@ const Visual = () => {
     }
   }, []);
 
-  useEffect(() => {
-    document.title = "Visual Work | Stella P. – 3D, Editorial & Generative Art";
-    return () => { document.title = "Stella P. | Product Designer Portfolio"; };
-  }, []);
-
   return (
     <>
+      <Seo
+        page="visual"
+        path="/visual"
+        description="Visual work by Stella Peng: motion design, 3D, editorial and generative experiments."
+      />
       <div className="min-h-screen bg-background relative z-10">
         <Header />
+
 
         {/* Image & Video Gallery */}
         <section className="px-8 md:px-16 lg:px-24 pb-24 max-w-[1440px] mx-auto">
