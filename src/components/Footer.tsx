@@ -90,7 +90,7 @@ const Footer = () => {
             {copied ? "copied!" : "email"}
           </button>
           <a
-            href="https://instagram.com/abtste11a"
+            href="https://www.instagram.com/abtste11a/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-colors"
