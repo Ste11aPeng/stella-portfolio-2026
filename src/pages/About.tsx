@@ -27,10 +27,10 @@ import Seo from "@/components/Seo";
 // Accent words ("I" and "make") stay sharp; every other word blurs based on
 // its 2D pixel distance to the nearest accent word center (same approach as
 // the homepage hero).
-type TitleWord = { text: string; accent: boolean; space?: boolean; minBlur?: number };
+type TitleWord = { text: string; accent: boolean; space?: boolean };
 const titleWords: TitleWord[] = [
   { text: "I", accent: true },
-  { text: "'m", accent: false, minBlur: 3.2 },
+  { text: "'m", accent: false },
   { text: "Stella,", accent: false, space: true },
   { text: "here", accent: false, space: true },
   { text: "to", accent: false, space: true },
