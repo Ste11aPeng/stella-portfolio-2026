@@ -168,23 +168,6 @@ const MarqueeStrip = ({ items }: { items: { src: string; label: string }[] }) =>
       {/* progressive blur edges */}
       <EdgeBlur side="left" size="26%" />
       <EdgeBlur side="right" size="26%" />
-      {/* subtle white fade edges */}
-      <div
-        className="pointer-events-none absolute inset-y-0 left-0"
-        style={{
-          width: "20%",
-          background:
-            "linear-gradient(to right, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.28) 45%, rgba(255,255,255,0) 100%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-y-0 right-0"
-        style={{
-          width: "20%",
-          background:
-            "linear-gradient(to left, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.28) 45%, rgba(255,255,255,0) 100%)",
-        }}
-      />
 
     </div>
   );
