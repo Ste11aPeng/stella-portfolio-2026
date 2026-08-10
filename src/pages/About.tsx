@@ -328,7 +328,7 @@ const About = () => {
                     whileDrag={{ scale: 1.04, rotate: item.rotate }}
                     onPointerDown={() => bringToFront(item.id)}
                     className={`absolute cursor-grab active:cursor-grabbing select-none ${item.className}`}
-                    style={{ rotate: item.rotate, zIndex: 20 + order.indexOf(item.id), touchAction: "none" }}
+                    style={{ rotate: item.rotate, zIndex: 20 + order.indexOf(item.id), touchAction: "none", filter: (item as any).shadowStyle ? undefined : undefined, boxShadow: (item as any).shadowStyle || undefined }}
                     draggable={false}
                   />
                 ))}
