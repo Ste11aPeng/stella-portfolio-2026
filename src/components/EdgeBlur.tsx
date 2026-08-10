@@ -1,16 +1,13 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties } from "react";
 
 /**
  * Unified progressive edge blur used site-wide.
  *
- * Technique: nested layers, each applying a small backdrop blur that compounds
- * on top of the previous one, masked by a wide, smooth gradient. Because the
- * masks are simple 0 -> 1 ramps (no transparent/black/transparent bands) and
- * the blur strength doubles per layer, the result reads as one continuous
- * 0 -> max blur ramp with no visible stripes.
+ * Two full-size layers share continuous alpha masks. A light base layer keeps
+ * the transition visibly soft, while the stronger layer increases smoothly
+ * toward the outer edge. There are no sliced mask bands, so no stripes appear.
  */
-export const EDGE_BLUR_MAX = 2; // px at the far edge
-const LAYERS = 6;
+export const EDGE_BLUR_MAX = 4; // px at the far edge
 
 type Side = "top" | "bottom" | "left" | "right";
 
@@ -38,41 +35,32 @@ export const EdgeBlur = ({ side, size = "72px", className = "", style }: EdgeBlu
       ? { height: `calc(${size} + ${OVERSHOOT}px)` }
       : { width: `calc(${size} + ${OVERSHOOT}px)` };
 
-  // Each layer roughly doubles the accumulated blur; total ends at EDGE_BLUR_MAX.
-  const baseBlur = EDGE_BLUR_MAX / Math.pow(2, LAYERS - 1);
-
-  // Build from the outermost (lightest, starts at the content edge) inward.
-  let content: ReactNode = null;
-  for (let i = LAYERS - 1; i >= 0; i--) {
-    const blur = baseBlur * Math.pow(2, i);
-    // Layer i ramps in over a wide, overlapping window further from the content.
-    const start = (i / LAYERS) * 100;
-    const end = ((i + 1.6) / LAYERS) * 100;
-    const mask = `linear-gradient(${direction}, rgba(0,0,0,0) ${start}%, rgba(0,0,0,1) ${Math.min(
-      end,
-      100
-    )}%)`;
-    content = (
-      <div
-        className="absolute inset-0"
-        style={{
-          backdropFilter: `blur(${blur}px)`,
-          WebkitBackdropFilter: `blur(${blur}px)`,
-          maskImage: mask,
-          WebkitMaskImage: mask,
-        }}
-      >
-        {content}
-      </div>
-    );
-  }
+  const baseMask = `linear-gradient(${direction}, transparent 0%, rgba(0,0,0,0.12) 24%, rgba(0,0,0,0.42) 62%, black 100%)`;
+  const strongMask = `linear-gradient(${direction}, transparent 0%, rgba(0,0,0,0.04) 30%, rgba(0,0,0,0.28) 68%, black 100%)`;
 
   return (
     <div
       className={`pointer-events-none absolute ${className}`}
       style={{ ...offset, ...sizeStyle, ...style }}
     >
-      {content}
+      <div
+        className="absolute inset-0"
+        style={{
+          backdropFilter: "blur(1px)",
+          WebkitBackdropFilter: "blur(1px)",
+          maskImage: baseMask,
+          WebkitMaskImage: baseMask,
+        }}
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          backdropFilter: `blur(${EDGE_BLUR_MAX}px)`,
+          WebkitBackdropFilter: `blur(${EDGE_BLUR_MAX}px)`,
+          maskImage: strongMask,
+          WebkitMaskImage: strongMask,
+        }}
+      />
     </div>
   );
 };
