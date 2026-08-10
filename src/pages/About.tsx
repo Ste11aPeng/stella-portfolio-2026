@@ -265,6 +265,16 @@ const About = () => {
     setTitleDists(measured);
   }, []);
 
+  const bringToFront = useCallback((id: string) => {
+    setOrder((prev) => [...prev.filter((x) => x !== id), id]);
+  }, []);
+
+  const handleCopyEmail = useCallback(async () => {
+    await navigator.clipboard.writeText("stellanotfound@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }, []);
+
 
   return (
     <>
