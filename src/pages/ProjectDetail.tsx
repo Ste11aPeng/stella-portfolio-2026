@@ -3,6 +3,7 @@ import siaIntroImage from "@/assets/sia-intro.png";
 import { useState, useEffect, useCallback } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 import ProjectSidebar from "@/components/ProjectSidebar";
 import MobileSectionNav from "@/components/MobileSectionNav";
 import ProjectOverview from "@/components/ProjectOverview";
