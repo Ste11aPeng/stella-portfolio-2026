@@ -18,7 +18,7 @@ import album6 from "@/assets/album_6.png";
 import album7 from "@/assets/album_7.png";
 import album8 from "@/assets/album_8.jpg";
 import stickerFigma from "@/assets/sticker-figma.png";
-import stickerClaude from "@/assets/sticker-claude-code.svg";
+import stickerClaude from "@/assets/sticker-claude-code.png";
 import { useRef, useState, useCallback, useEffect } from "react";
 
 // Set page title
