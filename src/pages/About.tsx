@@ -19,9 +19,32 @@ import album7 from "@/assets/album_7.png";
 import album8 from "@/assets/album_8.jpg";
 import stickerFigma from "@/assets/sticker-figma.png";
 import stickerClaude from "@/assets/sticker-claude-code.png";
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback, useEffect, useLayoutEffect } from "react";
 
 import Seo from "@/components/Seo";
+
+// Title word model for the "I'm Stella, here to make." focus-blur heading.
+// Accent words ("I" and "make") stay sharp; every other word blurs based on
+// its 2D pixel distance to the nearest accent word center (same approach as
+// the homepage hero).
+type TitleWord = { text: string; accent: boolean; space?: boolean };
+const titleWords: TitleWord[] = [
+  { text: "I", accent: true },
+  { text: "'m", accent: false },
+  { text: "Stella,", accent: false, space: true },
+  { text: "here", accent: false, space: true },
+  { text: "to", accent: false, space: true },
+  { text: "make", accent: true, space: true },
+  { text: ".", accent: false },
+];
+const accentIndices = titleWords
+  .map((w, i) => (w.accent ? i : -1))
+  .filter((i) => i >= 0);
+
+const blurFor = (dist: number) =>
+  Math.min(0.6 + dist * 0.0105, 2.6).toFixed(2);
+const opacityFor = (dist: number) =>
+  Math.max(0.82 - dist * 0.001, 0.4).toFixed(2);
 
 const PhotoWithHover = ({ src, label }: { src: string; label: string }) => {
   const [isHovering, setIsHovering] = useState(false);
