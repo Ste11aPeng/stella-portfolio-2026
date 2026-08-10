@@ -19,9 +19,32 @@ import album7 from "@/assets/album_7.png";
 import album8 from "@/assets/album_8.jpg";
 import stickerFigma from "@/assets/sticker-figma.png";
 import stickerClaude from "@/assets/sticker-claude-code.png";
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback, useEffect, useLayoutEffect } from "react";
 
 import Seo from "@/components/Seo";
+
+// Title word model for the "I'm Stella, here to make." focus-blur heading.
+// Accent words ("I" and "make") stay sharp; every other word blurs based on
+// its 2D pixel distance to the nearest accent word center (same approach as
+// the homepage hero).
+type TitleWord = { text: string; accent: boolean; space?: boolean };
+const titleWords: TitleWord[] = [
+  { text: "I", accent: true },
+  { text: "'m", accent: false },
+  { text: "Stella,", accent: false, space: true },
+  { text: "here", accent: false, space: true },
+  { text: "to", accent: false, space: true },
+  { text: "make", accent: true, space: true },
+  { text: ".", accent: false },
+];
+const accentIndices = titleWords
+  .map((w, i) => (w.accent ? i : -1))
+  .filter((i) => i >= 0);
+
+const blurFor = (dist: number) =>
+  Math.min(0.6 + dist * 0.0105, 2.6).toFixed(2);
+const opacityFor = (dist: number) =>
+  Math.max(0.82 - dist * 0.001, 0.4).toFixed(2);
 
 const PhotoWithHover = ({ src, label }: { src: string; label: string }) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -208,6 +231,40 @@ const About = () => {
   const [order, setOrder] = useState(workItemsBase.map((i) => i.id));
   const workItems = workItemsBase;
 
+  // Title focus-blur: distance of each word to the nearest accent word ("I"/"make").
+  const titleWordRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const [titleDists, setTitleDists] = useState<number[]>(() =>
+    titleWords.map((w, i) =>
+      w.accent ? 0 : Math.min(...accentIndices.map((a) => Math.abs(i - a)))
+    )
+  );
+
+  useLayoutEffect(() => {
+    const accentEls = accentIndices
+      .map((i) => titleWordRefs.current[i])
+      .filter(Boolean) as HTMLSpanElement[];
+    if (!accentEls.length) return;
+    const accentCenters = accentEls.map((el) => {
+      const r = el.getBoundingClientRect();
+      return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+    });
+    const measured = titleWords.map((w, i) => {
+      if (w.accent) return 0;
+      const el = titleWordRefs.current[i];
+      if (!el) return 0;
+      const r = el.getBoundingClientRect();
+      const c = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+      return Math.min(
+        ...accentCenters.map((a) => {
+          const dx = c.x - a.x;
+          const dy = c.y - a.y;
+          return Math.sqrt(dx * dx + dy * dy);
+        })
+      );
+    });
+    setTitleDists(measured);
+  }, []);
+
   const bringToFront = useCallback((id: string) => {
     setOrder((prev) => [...prev.filter((x) => x !== id), id]);
   }, []);
@@ -239,10 +296,24 @@ const About = () => {
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <span className="inline-block">I</span>
-            <span className="inline-block transition-[filter,opacity] duration-500 ease-out group-hover/title:blur-[3px] group-hover/title:opacity-50">'m Stella, here to&nbsp;</span>
-            <span className="inline-block">make</span>
-            <span className="inline-block transition-[filter,opacity] duration-500 ease-out group-hover/title:blur-[3px] group-hover/title:opacity-50">.</span>
+            {titleWords.map((word, i) => (
+              <span
+                key={i}
+                ref={(el) => (titleWordRefs.current[i] = el)}
+                className="inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--tb))] group-hover/title:opacity-[var(--to)]"
+                style={
+                  word.accent
+                    ? undefined
+                    : {
+                        ["--tb" as string]: `${blurFor(titleDists[i])}px`,
+                        ["--to" as string]: opacityFor(titleDists[i]),
+                      }
+                }
+              >
+                {word.space ? "\u00A0" : ""}
+                {word.text}
+              </span>
+            ))}
           </motion.h1>
           <motion.p
             className="text-center text-[15px] md:text-base text-muted-foreground font-sans mt-3"
