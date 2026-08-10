@@ -3,21 +3,55 @@ import { CSSProperties } from "react";
 /**
  * Unified progressive edge blur used site-wide.
  *
- * Two full-size layers share continuous alpha masks. A light base layer keeps
- * the transition visibly soft, while the stronger layer increases smoothly
- * toward the outer edge. There are no sliced mask bands, so no stripes appear.
+ * Stacks multiple backdrop-filter layers, each with increasing blur and
+ * decreasing size, all sharing the same black-to-transparent gradient mask.
+ * Because shorter layers compress the gradient, they contribute a sharper,
+ * stronger blur right at the edge; taller layers add a softer, gradual haze
+ * that extends further inward. Combined, the result is a smooth 0-to-max
+ * progressive ramp with no visible banding.
  */
-export const EDGE_BLUR_MAX = 4; // px at the far edge
 
 type Side = "top" | "bottom" | "left" | "right";
 
 const OVERSHOOT = 1; // px bleed past the edges so no unblurred sliver remains
 
-const SIDE_CONFIG: Record<Side, { direction: string; offset: CSSProperties }> = {
-  top: { direction: "to top", offset: { left: -OVERSHOOT, right: -OVERSHOOT, top: -OVERSHOOT } },
-  bottom: { direction: "to bottom", offset: { left: -OVERSHOOT, right: -OVERSHOOT, bottom: -OVERSHOOT } },
-  left: { direction: "to left", offset: { top: -OVERSHOOT, bottom: -OVERSHOOT, left: -OVERSHOOT } },
-  right: { direction: "to right", offset: { top: -OVERSHOOT, bottom: -OVERSHOOT, right: -OVERSHOOT } },
+const LAYERS = [
+  { blur: 1, size: "100%" },
+  { blur: 2, size: "90%" },
+  { blur: 3, size: "80%" },
+  { blur: 4, size: "70%" },
+  { blur: 5, size: "60%" },
+  { blur: 6, size: "50%" },
+  { blur: 7, size: "40%" },
+  { blur: 8, size: "30%" },
+  { blur: 10, size: "20%" },
+  { blur: 12, size: "10%" },
+];
+
+const SIDE_CONFIG: Record<
+  Side,
+  { offset: CSSProperties; layerAnchor: CSSProperties; maskDirection: string }
+> = {
+  top: {
+    offset: { left: -OVERSHOOT, right: -OVERSHOOT, top: -OVERSHOOT },
+    layerAnchor: { top: 0, left: 0, right: 0 },
+    maskDirection: "to bottom",
+  },
+  bottom: {
+    offset: { left: -OVERSHOOT, right: -OVERSHOOT, bottom: -OVERSHOOT },
+    layerAnchor: { bottom: 0, left: 0, right: 0 },
+    maskDirection: "to top",
+  },
+  left: {
+    offset: { top: -OVERSHOOT, bottom: -OVERSHOOT, left: -OVERSHOOT },
+    layerAnchor: { left: 0, top: 0, bottom: 0 },
+    maskDirection: "to right",
+  },
+  right: {
+    offset: { top: -OVERSHOOT, bottom: -OVERSHOOT, right: -OVERSHOOT },
+    layerAnchor: { right: 0, top: 0, bottom: 0 },
+    maskDirection: "to left",
+  },
 };
 
 interface EdgeBlurProps {
@@ -28,39 +62,39 @@ interface EdgeBlurProps {
   style?: CSSProperties;
 }
 
-export const EdgeBlur = ({ side, size = "72px", className = "", style }: EdgeBlurProps) => {
-  const { direction, offset } = SIDE_CONFIG[side];
-  const sizeStyle =
-    side === "top" || side === "bottom"
-      ? { height: `calc(${size} + ${OVERSHOOT}px)` }
-      : { width: `calc(${size} + ${OVERSHOOT}px)` };
+export const EdgeBlur = ({
+  side,
+  size = "72px",
+  className = "",
+  style,
+}: EdgeBlurProps) => {
+  const isVertical = side === "top" || side === "bottom";
+  const { offset, layerAnchor, maskDirection } = SIDE_CONFIG[side];
+  const containerSize = isVertical
+    ? { height: `calc(${size} + ${OVERSHOOT}px)` }
+    : { width: `calc(${size} + ${OVERSHOOT}px)` };
 
-  const baseMask = `linear-gradient(${direction}, transparent 0%, rgba(0,0,0,0.12) 24%, rgba(0,0,0,0.42) 62%, black 100%)`;
-  const strongMask = `linear-gradient(${direction}, transparent 0%, rgba(0,0,0,0.04) 30%, rgba(0,0,0,0.28) 68%, black 100%)`;
+  const mask = `linear-gradient(${maskDirection}, black, transparent)`;
 
   return (
     <div
       className={`pointer-events-none absolute ${className}`}
-      style={{ ...offset, ...sizeStyle, ...style }}
+      style={{ ...offset, ...containerSize, ...style }}
     >
-      <div
-        className="absolute inset-0"
-        style={{
-          backdropFilter: "blur(1px)",
-          WebkitBackdropFilter: "blur(1px)",
-          maskImage: baseMask,
-          WebkitMaskImage: baseMask,
-        }}
-      />
-      <div
-        className="absolute inset-0"
-        style={{
-          backdropFilter: `blur(${EDGE_BLUR_MAX}px)`,
-          WebkitBackdropFilter: `blur(${EDGE_BLUR_MAX}px)`,
-          maskImage: strongMask,
-          WebkitMaskImage: strongMask,
-        }}
-      />
+      {LAYERS.map(({ blur, size: layerSize }, i) => (
+        <div
+          key={i}
+          className="absolute"
+          style={{
+            ...layerAnchor,
+            ...(isVertical ? { height: layerSize } : { width: layerSize }),
+            backdropFilter: `blur(${blur}px)`,
+            WebkitBackdropFilter: `blur(${blur}px)`,
+            maskImage: mask,
+            WebkitMaskImage: mask,
+          }}
+        />
+      ))}
     </div>
   );
 };
