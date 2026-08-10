@@ -202,8 +202,8 @@ const workItemsBase = [
   { id: "trip", src: workTrip, alt: "Team trip by the water", rotate: 4, className: "left-[73%] top-[44%] w-[35%] rounded-[10px] object-cover shadow-md" },
   { id: "badge", src: workBadge, alt: "TikTok intern badge", rotate: -3, className: "left-[29%] top-[46%] w-[33%] rounded-[10px] object-cover shadow-lg" },
   { id: "logo", src: tiktokLogo, alt: "TikTok logo", rotate: 0, className: "left-[18%] top-[72%] w-[14%] rounded-full shadow-md" },
-  { id: "figma", src: stickerFigma, alt: "Figma sticker", rotate: 0, className: "left-[74%] top-[18%] w-[19%] rounded-full shadow-sm" },
-  { id: "claude", src: stickerClaude, alt: "Claude Code sticker", rotate: 0, className: "left-[60%] top-[80%] w-[10%] drop-shadow-sm" },
+  { id: "figma", src: stickerFigma, alt: "Figma sticker", rotate: 0, className: "left-[74%] top-[18%] w-[14%] rounded-full shadow-sm" },
+  { id: "claude", src: stickerClaude, alt: "Claude Code sticker", rotate: 0, className: "left-[60%] top-[80%] w-[15%] drop-shadow-sm" },
 
 ];
 
