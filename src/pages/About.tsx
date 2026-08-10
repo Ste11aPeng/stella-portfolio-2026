@@ -27,10 +27,10 @@ import Seo from "@/components/Seo";
 // Accent words ("I" and "make") stay sharp; every other word blurs based on
 // its 2D pixel distance to the nearest accent word center (same approach as
 // the homepage hero).
-type TitleWord = { text: string; accent: boolean; space?: boolean; minBlur?: number };
+type TitleWord = { text: string; accent: boolean; space?: boolean };
 const titleWords: TitleWord[] = [
   { text: "I", accent: true },
-  { text: "'m", accent: false, minBlur: 3.2 },
+  { text: "'m", accent: false },
   { text: "Stella,", accent: false, space: true },
   { text: "here", accent: false, space: true },
   { text: "to", accent: false, space: true },
@@ -45,6 +45,14 @@ const blurFor = (dist: number) =>
   Math.min(0.6 + dist * 0.0105, 2.6).toFixed(2);
 const opacityFor = (dist: number) =>
   Math.max(0.82 - dist * 0.001, 0.4).toFixed(2);
+
+// About title uses a higher blur floor so even the word closest to an accent
+// ("'m" right after "I") gets noticeable blur, while still ramping up with
+// distance to keep the progressive weak-to-strong feel.
+const aboutBlurFor = (dist: number) =>
+  Math.min(1.7 + dist * 0.009, 3.4).toFixed(2);
+const aboutOpacityFor = (dist: number) =>
+  Math.max(0.72 - dist * 0.0009, 0.42).toFixed(2);
 
 const PhotoWithHover = ({ src, label }: { src: string; label: string }) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -305,8 +313,8 @@ const About = () => {
                   word.accent
                     ? undefined
                     : {
-                        ["--tb" as string]: `${word.minBlur != null ? Math.max(parseFloat(blurFor(titleDists[i])), word.minBlur).toFixed(2) : blurFor(titleDists[i])}px`,
-                        ["--to" as string]: opacityFor(titleDists[i]),
+                        ["--tb" as string]: `${aboutBlurFor(titleDists[i])}px`,
+                        ["--to" as string]: aboutOpacityFor(titleDists[i]),
                       }
                 }
               >
