@@ -186,7 +186,7 @@ const strip = [
   { src: album4, label: "brew time" },
   { src: album5, label: "monterey" },
   { src: album6, label: "tahoe" },
-  { src: album7, label: "i waymo everywhere" },
+  { src: album7, label: "I waymo everywhere" },
   { src: album8, label: "playing khalil fong 🎵" },
 ];
 
@@ -360,7 +360,7 @@ const About = () => {
         </section>
 
         {/* Horizontal photo strip - auto scrolling, slows on hover */}
-        <section className="pt-20 pb-20 px-8 lg:px-24 md:px-[32px] max-w-[1440px] mx-auto">
+        <section className="pt-20 pb-10 px-8 lg:px-24 md:px-[32px] max-w-[1440px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -369,6 +369,35 @@ const About = () => {
           >
             <MarqueeStrip items={[...strip, ...strip]} />
           </motion.div>
+        </section>
+
+        {/* Contact subtitle */}
+        <section className="pb-20 px-8 lg:px-24 md:px-[32px] max-w-[1440px] mx-auto">
+          <motion.p
+            className="text-center text-sm text-muted-foreground font-sans"
+            initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            Say hi, talk design, or build something together? Find me on{" "}
+            <a
+              href="https://www.linkedin.com/in/stellapengrnr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground hover:underline"
+            >
+              LinkedIn
+            </a>{" "}
+            or{" "}
+            <button
+              onClick={handleCopyEmail}
+              className="text-foreground hover:underline"
+            >
+              {copied ? "copied!" : "email"}
+            </button>
+            .
+          </motion.p>
         </section>
 
       </div>
