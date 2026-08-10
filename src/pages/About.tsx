@@ -202,7 +202,6 @@ const workItemsBase = [
 
 
 const About = () => {
-  usePageTitle("About Stella Peng | Product Designer");
   const [copied, setCopied] = useState(false);
   const [lifeScrolled, setLifeScrolled] = useState(false);
   const workRef = useRef<HTMLDivElement>(null);
