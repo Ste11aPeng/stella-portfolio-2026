@@ -16,15 +16,17 @@ const lines = [
       { text: "designer", accent: true },
       { text: "who", accent: false },
       { text: "builds", accent: false },
+      { text: "across", accent: false },
     ],
   },
   {
     parts: [
-      { text: "across", accent: false },
       { text: "design,", accent: false },
-      { text: "engineering,", accent: false },
-      { text: "and", accent: false },
-      { text: "product.", accent: false },
+      { text: "tech", accent: false },
+      { text: "&", accent: false },
+      { text: "things", accent: false },
+      { text: "in", accent: false },
+      { text: "between.", accent: false },
     ],
   },
 ];
