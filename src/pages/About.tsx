@@ -21,13 +21,7 @@ import stickerFigma from "@/assets/sticker-figma.png";
 import stickerClaude from "@/assets/sticker-claude-code.png";
 import { useRef, useState, useCallback, useEffect } from "react";
 
-// Set page title
-const usePageTitle = (title: string) => {
-  useEffect(() => {
-    document.title = title;
-    return () => { document.title = "Stella Peng | Product Designer Portfolio"; };
-  }, [title]);
-};
+import Seo from "@/components/Seo";
 
 const PhotoWithHover = ({ src, label }: { src: string; label: string }) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -208,7 +202,6 @@ const workItemsBase = [
 
 
 const About = () => {
-  usePageTitle("About Stella Peng | Product Designer");
   const [copied, setCopied] = useState(false);
   const [lifeScrolled, setLifeScrolled] = useState(false);
   const workRef = useRef<HTMLDivElement>(null);
@@ -228,7 +221,13 @@ const About = () => {
 
   return (
     <>
+      <Seo
+        page="about"
+        path="/about"
+        description="Stella Peng is a product designer working across design, engineering, and product. Currently designing at TikTok and studying HCI+Design at the University of Washington."
+      />
       <div className="min-h-screen bg-background relative z-10">
+
         <Header />
 
         {/* Title */}

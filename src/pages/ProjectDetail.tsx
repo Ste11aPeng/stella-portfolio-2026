@@ -3,6 +3,7 @@ import siaIntroImage from "@/assets/sia-intro.png";
 import { useState, useEffect, useCallback } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 import ProjectSidebar from "@/components/ProjectSidebar";
 import MobileSectionNav from "@/components/MobileSectionNav";
 import ProjectOverview from "@/components/ProjectOverview";
@@ -91,13 +92,8 @@ const ProjectDetail = () => {
   const [activeSection, setActiveSection] = useState("overview");
   const project = id ? getProjectById(id) : undefined;
 
-  // Dynamic page title
-  useEffect(() => {
-    if (project) {
-      document.title = `${project.title} – Stella P. | Product Designer`;
-    }
-    return () => { document.title = "Stella P. | Product Designer Portfolio"; };
-  }, [project]);
+
+
 
   // Get section IDs for current project
   const sectionIds = getSectionIds(id);
@@ -155,6 +151,11 @@ const ProjectDetail = () => {
     }
   };
   return <div className="min-h-screen bg-background">
+      <Seo
+        page={project.title.toLowerCase()}
+        path={`/project/${project.id}`}
+        description={`${project.title}: ${project.description}. A product design case study by Stella Peng.`}
+      />
       <Header />
       
       {/* Cover Image */}

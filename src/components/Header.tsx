@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, Link } from "react-router-dom";
 
@@ -46,10 +46,25 @@ const Header = () => {
           <Link to="/visual" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/visual" ? "text-foreground" : ""}`}>visual</Link>
           <Link to="/about" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/about" ? "text-foreground" : ""}`}>about</Link>
           <span className="flex items-center gap-1 transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0">
-            <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">resume</a>
+            <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className="nav-link text-sm group/resume inline-flex items-center">
+              resume
+              <ArrowUpRight
+                size={13}
+                aria-hidden="true"
+                className="ml-0.5 -translate-x-1 opacity-0 transition-all duration-300 ease-out group-hover/resume:translate-x-0 group-hover/resume:opacity-100"
+              />
+            </a>
             <span className="text-sm text-muted-foreground/40">/</span>
-            <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">linkedin</a>
+            <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className="nav-link text-sm group/li inline-flex items-center">
+              linkedin
+              <ArrowUpRight
+                size={13}
+                aria-hidden="true"
+                className="ml-0.5 -translate-x-1 opacity-0 transition-all duration-300 ease-out group-hover/li:translate-x-0 group-hover/li:opacity-100"
+              />
+            </a>
           </span>
+
         </nav>
 
         {/* Mobile hamburger */}

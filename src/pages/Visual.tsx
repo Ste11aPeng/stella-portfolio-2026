@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ImageLightbox from "@/components/ImageLightbox";
+import Seo from "@/components/Seo";
 
 import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -65,15 +66,16 @@ const Visual = () => {
     }
   }, []);
 
-  useEffect(() => {
-    document.title = "Visual Work | Stella P. – 3D, Editorial & Generative Art";
-    return () => { document.title = "Stella P. | Product Designer Portfolio"; };
-  }, []);
-
   return (
     <>
+      <Seo
+        page="visual"
+        path="/visual"
+        description="Visual work by Stella Peng: motion design, 3D, editorial and generative experiments."
+      />
       <div className="min-h-screen bg-background relative z-10">
         <Header />
+
 
         {/* Image & Video Gallery */}
         <section className="px-8 md:px-16 lg:px-24 pb-24 max-w-[1440px] mx-auto">
