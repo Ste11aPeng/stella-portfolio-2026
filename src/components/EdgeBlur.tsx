@@ -30,9 +30,11 @@ interface EdgeBlurProps {
 }
 
 export const EdgeBlur = ({ side, size = "72px", className = "", style }: EdgeBlurProps) => {
-  const { direction, className: pos } = SIDE_CONFIG[side];
+  const { direction, offset } = SIDE_CONFIG[side];
   const sizeStyle =
-    side === "top" || side === "bottom" ? { height: size } : { width: size };
+    side === "top" || side === "bottom"
+      ? { height: `calc(${size} + ${OVERSHOOT}px)` }
+      : { width: `calc(${size} + ${OVERSHOOT}px)` };
 
   // Build overlapping soft bands with increasing blur.
   const step = 100 / SLICES;
