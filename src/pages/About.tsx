@@ -233,13 +233,16 @@ const About = () => {
         {/* Title */}
         <section className="px-8 pt-24 pb-14 lg:px-24 md:px-[32px] max-w-[1440px] mx-auto">
           <motion.h1
-            className="text-center text-4xl md:text-5xl text-foreground"
+            className="text-center text-4xl md:text-5xl text-foreground group/title cursor-default"
             style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.07em" }}
             initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            Hi, I'm Stella.
+            <span className="inline-block transition-[filter,opacity] duration-500 ease-out group-hover/title:blur-[6px] group-hover/title:opacity-40">I</span>
+            <span className="inline-block transition-[filter,opacity] duration-500 ease-out group-hover/title:blur-[6px] group-hover/title:opacity-40">'m Stella, here to </span>
+            <span className="inline-block">make</span>
+            <span className="inline-block transition-[filter,opacity] duration-500 ease-out group-hover/title:blur-[6px] group-hover/title:opacity-40">.</span>
           </motion.h1>
           <motion.p
             className="text-center text-[15px] md:text-base text-muted-foreground font-sans mt-3"
