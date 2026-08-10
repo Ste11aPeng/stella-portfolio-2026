@@ -152,7 +152,7 @@ const MarqueeStrip = ({ items }: { items: { src: string; label: string }[] }) =>
 
   return (
     <div
-      className="about-marquee overflow-hidden relative rounded-[8px] touch-pan-y select-none"
+      className="about-marquee overflow-hidden relative rounded-[6px] touch-pan-y select-none"
       onMouseEnter={() => { if (!dragging.current) targetRef.current = 0.08; }}
       onMouseLeave={() => { if (!dragging.current) targetRef.current = 0.25; }}
       onPointerDown={onPointerDown}
@@ -166,8 +166,8 @@ const MarqueeStrip = ({ items }: { items: { src: string; label: string }[] }) =>
         ))}
       </div>
       {/* progressive blur edges */}
-      <EdgeBlur side="left" size="26%" />
-      <EdgeBlur side="right" size="26%" />
+      <EdgeBlur side="left" size="18%" />
+      <EdgeBlur side="right" size="18%" />
 
     </div>
   );
@@ -299,13 +299,16 @@ const About = () => {
                       I like using AI not simply as a productivity tool, but as a way to think, experiment, and build differently.
                     </p>
                     <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
-                      Before TikTok, I worked with early-stage startups, where I learned to be comfortable with ambiguity. I worked across design systems, product concepts, and wireframes. That experience shaped how I approach design today:{" "}
-                      <span className="text-foreground">I care about the big picture, but I also like getting my hands dirty and figuring out how things actually get built.</span>
+                      Before TikTok, I worked with early-stage startups, helping teams move{" "}
+                      <span className="text-foreground">from 0 to 1</span>{" "}
+                      — shaping the first product concept, building the design system, and turning rough ideas into something users could actually try. Later I helped push products{" "}
+                      <span className="text-foreground">from 1 to 10</span>{" "}
+                      — refining flows, tightening the details, and making the experience hold up as the user base grew. That taught me to be comfortable with ambiguity and to care about both the big picture and how things actually get built.
                     </p>
                     <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
                       Outside of design, I'm pretty much the same person:{" "}
-                      <span className="text-foreground">I'm curious, hands-on, and always up for trying something new.</span>{" "}
-                      I like picking up new sports, exploring unfamiliar cities, always getting my driver license, and spending an unreasonable amount of time playing board games with friends.
+                      <span className="text-foreground">curious, hands-on, and always up for trying something new.</span>{" "}
+                      I pick up new sports, explore unfamiliar cities, am always getting my driver license, and spend an unreasonable amount of time playing board games with friends.
                     </p>
                   </div>
                 </div>

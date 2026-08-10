@@ -18,14 +18,14 @@ const OVERSHOOT = 1; // px bleed past the edges so no unblurred sliver remains
 const LAYERS = [
   { blur: 1, size: "100%" },
   { blur: 2, size: "90%" },
-  { blur: 3, size: "80%" },
-  { blur: 4, size: "70%" },
-  { blur: 5, size: "60%" },
-  { blur: 6, size: "50%" },
-  { blur: 7, size: "40%" },
-  { blur: 8, size: "30%" },
-  { blur: 10, size: "20%" },
-  { blur: 12, size: "10%" },
+  { blur: 2.5, size: "80%" },
+  { blur: 3, size: "70%" },
+  { blur: 4, size: "60%" },
+  { blur: 4.5, size: "50%" },
+  { blur: 5, size: "40%" },
+  { blur: 6, size: "30%" },
+  { blur: 6.5, size: "20%" },
+  { blur: 8, size: "10%" },
 ];
 
 const SIDE_CONFIG: Record<
