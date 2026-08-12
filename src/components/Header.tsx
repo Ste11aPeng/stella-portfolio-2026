@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, Link } from "react-router-dom";
+import { useNavSound } from "@/hooks/use-nav-sound";
 
 const Header = () => {
+  const playSound = useNavSound();
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
@@ -35,16 +37,16 @@ const Header = () => {
         }`}
       >
         <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-5 md:px-16 lg:px-24 md:py-6 group/header">
-        <Link to="/" className="flex items-center gap-1.5 text-foreground font-light text-base font-['New_Spirit'] transition-all duration-700 ease-out group-hover/header:opacity-20 group-hover/header:blur-[0.8px]" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>
+        <Link to="/" className="flex items-center gap-1.5 text-foreground font-light text-base font-['New_Spirit'] transition-all duration-700 ease-out group-hover/header:opacity-20 group-hover/header:blur-[0.8px]" onClick={() => { playSound("switch"); setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>
           <img src="/favicon-dark.svg" alt="" className="w-4 h-4" />
           Stella
         </Link>
         
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8 group/nav">
-          <Link to="/" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/" ? "text-foreground" : ""}`} onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}>product</Link>
-          <Link to="/visual" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/visual" ? "text-foreground" : ""}`}>visual</Link>
-          <Link to="/about" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/about" ? "text-foreground" : ""}`}>about</Link>
+          <Link to="/" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/" ? "text-foreground" : ""}`} onClick={() => { playSound("click"); window.scrollTo({ top: 0, behavior: "instant" }); }}>product</Link>
+          <Link to="/visual" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/visual" ? "text-foreground" : ""}`} onClick={() => playSound("switch")}>visual</Link>
+          <Link to="/about" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${currentPath === "/about" ? "text-foreground" : ""}`} onClick={() => playSound("click")}>about</Link>
           <span className="flex items-center gap-1">
             <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className="nav-link text-sm group/resume relative inline-flex items-center transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0">
               resume
@@ -88,9 +90,9 @@ const Header = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
           >
-            <Link to="/" className="text-2xl text-foreground" onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>product</Link>
-            <Link to="/visual" className="text-2xl text-foreground" onClick={() => setMenuOpen(false)}>visual</Link>
-            <Link to="/about" className="text-2xl text-foreground" onClick={() => setMenuOpen(false)}>about</Link>
+            <Link to="/" className="text-2xl text-foreground" onClick={() => { playSound("click"); setMenuOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}>product</Link>
+            <Link to="/visual" className="text-2xl text-foreground" onClick={() => { playSound("switch"); setMenuOpen(false); }}>visual</Link>
+            <Link to="/about" className="text-2xl text-foreground" onClick={() => { playSound("click"); setMenuOpen(false); }}>about</Link>
             <a
               href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view"
               target="_blank"
