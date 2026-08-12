@@ -3,15 +3,19 @@ import { useEffect, useRef, useState } from "react";
 interface LazyVideoProps {
   src: string;
   className?: string;
+  /** Optional poster image shown instantly while the video loads. */
+  poster?: string;
+  /** Load immediately instead of waiting for the viewport (above-the-fold items). */
+  eager?: boolean;
 }
 
 /**
- * Only loads and plays a video once it is close to the viewport,
- * and pauses it again when scrolled away. Keeps the Visual page light.
+ * Shows a lightweight poster frame instantly, then loads and plays the video
+ * once it is close to the viewport. Pauses again when scrolled away.
  */
-const LazyVideo = ({ src, className }: LazyVideoProps) => {
+const LazyVideo = ({ src, className, poster, eager = false }: LazyVideoProps) => {
   const ref = useRef<HTMLVideoElement>(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(eager);
 
   useEffect(() => {
     const node = ref.current;
@@ -26,7 +30,7 @@ const LazyVideo = ({ src, className }: LazyVideoProps) => {
           node.pause?.();
         }
       },
-      { rootMargin: "300px 0px" }
+      { rootMargin: "600px 0px" }
     );
 
     observer.observe(node);
@@ -37,10 +41,12 @@ const LazyVideo = ({ src, className }: LazyVideoProps) => {
     <video
       ref={ref}
       src={shouldLoad ? src : undefined}
+      poster={poster}
       loop
       muted
+      autoPlay={eager}
       playsInline
-      preload="none"
+      preload={eager ? "auto" : "none"}
       disablePictureInPicture
       controlsList="nodownload nofullscreen noremoteplayback"
       className={className}
