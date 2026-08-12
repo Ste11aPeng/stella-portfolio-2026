@@ -399,14 +399,14 @@ const About = () => {
                 >
                   <div className="flex flex-col gap-5">
                     <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
-                      I'm currently a product design intern at TikTok, exploring social experiences and new ways AI can fit into the design process.
+                      Hey, I’m a product designer who likes to stay curious and close to the making.
                     </p>
                     <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
-                      Before this, I worked with early-stage startups across 0→1 & 1→10, doing a bit of everything from design systems to wireframes to shipping products.{" "}
-                      <span className="text-foreground">I like figuring things out, trying things quickly, and making ideas happen.</span>
+                      I’m currently at TikTok, exploring social experiences and new ways AI can fit into the design process. Before this, I worked in startups accelerator across 0→1 & 1→10.{" "}
+                      <span className="text-foreground">I’ve always liked the messy part of design, figuring things out, trying things quickly, and turning half-formed ideas into something real.</span>
                     </p>
                     <p className="font-sans text-[15px] leading-relaxed text-muted-foreground">
-                      What make me me? I'm always exploring something new, picking up random sports, wandering around unfamiliar cities, doomscrolling/reposting X for inspiration, and spend way too much time playing Nintendo games with friends.
+                      I think curiosity shows up everywhere. In the random sports I pick up, the unfamiliar cities I wander into, the inspo I repost on X, and the Nintendo games I somehow spend way too much time on. It’s probably the same curiosity that keeps me designing. Don’t be a stranger, stay in touch!
                     </p>
                   </div>
                 </div>
