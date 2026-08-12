@@ -96,6 +96,8 @@ const Visual = () => {
               <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
                 <LazyVideo
                   src="/videos/accordion.mp4"
+                  poster="/videos/posters/accordion.jpg"
+                  eager
                   className="w-full h-full object-cover object-center scale-[1.4] pointer-events-none select-none"
                 />
               </div>
@@ -121,6 +123,8 @@ const Visual = () => {
             >
               <LazyVideo
                   src="/videos/music.mp4"
+                  poster="/videos/posters/music.jpg"
+                  eager
                   className="w-full h-auto rounded-none pointer-events-none select-none"
                 />
               <motion.div
@@ -148,6 +152,8 @@ const Visual = () => {
               <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
                 <LazyVideo
                   src="/videos/textmode_opt.mp4"
+                  poster="/videos/posters/textmode_opt.jpg"
+                  eager
                   className="w-full h-full object-cover object-center pointer-events-none select-none"
                 />
               </div>
@@ -174,6 +180,8 @@ const Visual = () => {
               <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
                 <LazyVideo
                   src="/videos/visual-video-2.mp4"
+                  poster="/videos/posters/visual-video-2.jpg"
+                  eager
                   className="w-full h-full object-cover object-center pointer-events-none select-none"
                 />
               </div>
@@ -223,6 +231,7 @@ const Visual = () => {
               <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
                 <LazyVideo
                   src="/videos/visual-video-1_opt.mp4"
+                  poster="/videos/posters/visual-video-1_opt.jpg"
                   className="w-full h-full object-cover object-center pointer-events-none select-none"
                 />
               </div>
@@ -231,6 +240,7 @@ const Visual = () => {
               <div className="w-full overflow-hidden" style={{ aspectRatio: '619 / 375.938' }}>
                 <LazyVideo
                   src="/videos/seedance_opt.mp4"
+                  poster="/videos/posters/seedance_opt.jpg"
                   className="w-full h-full object-cover object-center pointer-events-none select-none"
                 />
               </div>
@@ -271,6 +281,7 @@ const Visual = () => {
             >
               <LazyVideo
                   src="/videos/final_clock_opt.mp4"
+                  poster="/videos/posters/final_clock_opt.jpg"
                   className="w-full h-auto pointer-events-none select-none"
                 />
               <motion.div
