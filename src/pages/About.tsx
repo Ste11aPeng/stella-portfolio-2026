@@ -291,49 +291,51 @@ const About = () => {
         {/* Title */}
         <section className="px-8 pt-24 pb-14 lg:px-24 md:px-[32px] max-w-[1440px] mx-auto">
           <motion.h1
-            className="text-center text-4xl md:text-5xl text-foreground group/title cursor-default"
+            className="text-center text-4xl md:text-5xl text-foreground cursor-default"
             style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.07em" }}
             initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            {titleWords.map((word, i) => (
-              <span
-                key={i}
-                ref={(el) => (titleWordRefs.current[i] = el)}
-                className="inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--tb))] group-hover/title:opacity-[var(--to)]"
-                style={
-                  word.accent
-                    ? undefined
-                    : {
-                        ["--tb" as string]: `${aboutBlurFor(titleDists[i])}px`,
-                        ["--to" as string]: aboutOpacityFor(titleDists[i]),
-                      }
-                }
-              >
-                {word.space ? "\u00A0" : ""}
-                {word.accent ? (
-                  <span className="relative inline-block align-baseline">
-                    <span className="invisible">{word.text}</span>
-                    <span className="absolute left-0 top-0 whitespace-nowrap transition-opacity duration-1000 ease-out opacity-100 group-hover/title:opacity-0">
-                      {word.text}
+            <span className="group/title inline-block">
+              {titleWords.map((word, i) => (
+                <span
+                  key={i}
+                  ref={(el) => (titleWordRefs.current[i] = el)}
+                  className="inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--tb))] group-hover/title:opacity-[var(--to)]"
+                  style={
+                    word.accent
+                      ? undefined
+                      : {
+                          ["--tb" as string]: `${blurFor(titleDists[i])}px`,
+                          ["--to" as string]: opacityFor(titleDists[i]),
+                        }
+                  }
+                >
+                  {word.space ? "\u00A0" : ""}
+                  {word.accent ? (
+                    <span className="relative inline-block align-baseline">
+                      <span className="invisible">{word.text}</span>
+                      <span className="absolute left-0 top-0 whitespace-nowrap transition-opacity duration-1000 ease-out opacity-100 group-hover/title:opacity-0">
+                        {word.text}
+                      </span>
+                      <span
+                        className="absolute left-0 top-0 whitespace-nowrap transition-opacity duration-1000 ease-out opacity-0 group-hover/title:opacity-100"
+                        style={{
+                          fontFamily: "'Exposure Italic', 'Exposure', serif",
+                          fontStyle: "italic",
+                          fontWeight: 900,
+                        }}
+                      >
+                        {word.text}
+                      </span>
                     </span>
-                    <span
-                      className="absolute left-0 top-0 whitespace-nowrap transition-opacity duration-1000 ease-out opacity-0 group-hover/title:opacity-100"
-                      style={{
-                        fontFamily: "'Exposure Italic', 'Exposure', serif",
-                        fontStyle: "italic",
-                        fontWeight: 900,
-                      }}
-                    >
-                      {word.text}
-                    </span>
-                  </span>
-                ) : (
-                  word.text
-                )}
-              </span>
-            ))}
+                  ) : (
+                    word.text
+                  )}
+                </span>
+              ))}
+            </span>
           </motion.h1>
           <motion.p
             className="text-center text-[15px] md:text-base text-muted-foreground font-sans mt-3"
