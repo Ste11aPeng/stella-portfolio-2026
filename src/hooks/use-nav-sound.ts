@@ -1,12 +1,11 @@
 import { useCallback, useRef } from "react";
-import switchTap from "@/assets/switch-tap.wav.asset.json";
-import softClick from "@/assets/soft-click.wav.asset.json";
 
 export type NavSound = "switch" | "click";
 
+// Served from /public so they exist in the production build (GitHub Pages).
 const SOURCES: Record<NavSound, string> = {
-  switch: switchTap.url,
-  click: softClick.url,
+  switch: "/sounds/switch-tap.mp3",
+  click: "/sounds/soft-click.mp3",
 };
 
 export const useNavSound = () => {
