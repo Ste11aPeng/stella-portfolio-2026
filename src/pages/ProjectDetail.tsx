@@ -150,7 +150,7 @@ const ProjectDetail = () => {
       });
     }
   };
-  return <div className="min-h-screen bg-background">
+  return <div className="relative min-h-screen bg-background">
       <Seo
         page={project.title.toLowerCase()}
         path={`/project/${project.id}`}
@@ -158,109 +158,108 @@ const ProjectDetail = () => {
       />
       <Header />
       
-      {/* Cover Image */}
-      <section className="pt-4 pb-4 md:pt-[24px] md:pb-[24px] max-w-[1440px] mx-auto">
-        <div className="px-4 md:px-16 lg:px-24">
-          <div className="w-full bg-muted rounded-lg overflow-hidden">
-            <img
-              src={project.coverImage || project.image}
-              alt={project.title}
-              loading="eager"
-              decoding="async"
-              className="w-full h-auto object-cover animate-fade-in"
-            />
-          </div>
-        </div>
+      {/* Full-screen Cover Image */}
+      <section className="sticky top-0 z-0 h-screen w-full overflow-hidden bg-muted">
+        <img
+          src={project.coverImage || project.image}
+          alt={project.title}
+          loading="eager"
+          decoding="async"
+          className="w-full h-full object-cover animate-fade-in"
+        />
       </section>
 
-      {/* Mobile Section Nav */}
-      <MobileSectionNav activeSection={activeSection} onSectionClick={handleSectionClick} />
-      
-      {/* Content Section with Sidebar */}
-      <section className="px-4 md:px-16 lg:px-24 pb-24 max-w-[1440px] mx-auto">
-        <div className="flex gap-16 max-w-6xl mx-auto">
-          {/* Sidebar - desktop only */}
-          <div className="w-48 flex-shrink-0 hidden md:block">
-            <ProjectSidebar activeSection={activeSection} onSectionClick={handleSectionClick} />
+      {/* Content scrolls over the cover */}
+      <div className="relative z-10 bg-background">
+        {/* Mobile Section Nav */}
+        <MobileSectionNav activeSection={activeSection} onSectionClick={handleSectionClick} />
+        
+        {/* Content Section with Sidebar */}
+        <section className="px-4 md:px-16 lg:px-24 pb-24 max-w-[1440px] mx-auto">
+          <div className="flex gap-16 max-w-6xl mx-auto">
+            {/* Sidebar - desktop only */}
+            <div className="w-48 flex-shrink-0 hidden md:block">
+              <ProjectSidebar activeSection={activeSection} onSectionClick={handleSectionClick} />
+            </div>
+            
+            {/* Main Content */}
+            <div className="flex-1 max-w-3xl">
+              <ProjectOverview project={project} />
+
+              
+              
+              {/* Challenge Section */}
+              {id === "stitchi" ? <StitchiChallenge />
+                : id === "philo" ? <PhiloChallenge />
+                : id === "circle-status" ? <CircleChallenge />
+                : id === "asksia" ? <AsksiaChallenge />
+                : (
+                  <section id="challenge" className="pt-24">
+                    <h2 className="text-2xl font-bold mb-6 text-foreground">Challenge</h2>
+                    <p className="text-muted-foreground">Content coming soon...</p>
+                  </section>
+                )}
+              
+              {/* Solution Section */}
+              {id === "stitchi" ? <StitchiSolution />
+                : id === "philo" ? <PhiloSolution />
+                : id === "circle-status" ? <CircleSolution />
+                : id === "asksia" ? <AsksiaSolution />
+                : (
+                  <section id="solution" className="pt-24">
+                    <h2 className="text-2xl font-bold mb-6 text-foreground">Solution</h2>
+                    <p className="text-muted-foreground">Content coming soon...</p>
+                  </section>
+                )}
+              
+              {/* AskSia-specific: Impact before Research */}
+              {id === "asksia" && <AsksiaImpact />}
+              
+              {/* Research Section */}
+              {id === "stitchi" ? <StitchiResearch />
+                : id === "philo" ? <PhiloResearch />
+                : id === "circle-status" ? <CircleResearch />
+                : id === "asksia" ? <AsksiaResearch />
+                : (
+                  <section id="research" className="pt-24">
+                    <h2 className="text-2xl font-bold mb-6 text-foreground">Research</h2>
+                    <p className="text-muted-foreground">Content coming soon...</p>
+                  </section>
+                )}
+
+              {/* AskSia-specific: Design Analysis */}
+              {id === "asksia" && <AsksiaDesignAnalysis />}
+              
+              {/* Testing Section (skip for Stitchi & AskSia) */}
+              {id === "stitchi" || id === "asksia" ? null
+                : id === "philo" ? <PhiloTesting />
+                : id === "circle-status" ? <CircleTesting />
+                : (
+                  <section id="testing" className="pt-24">
+                    <h2 className="text-2xl font-bold mb-6 text-foreground">Testing & Iteration</h2>
+                    <p className="text-muted-foreground">Content coming soon...</p>
+                  </section>
+                )}
+              
+              {/* Reflection Section */}
+              {id === "stitchi" ? <StitchiReflection />
+                : id === "philo" ? <PhiloReflection />
+                : id === "circle-status" ? <CircleReflection />
+                : id === "asksia" ? <AsksiaReflection />
+                : (
+                  <section id="reflection" className="pt-24 pb-24">
+                    <h2 className="text-2xl font-bold mb-6 text-foreground">Reflection</h2>
+                    <p className="text-muted-foreground">Content coming soon...</p>
+                  </section>
+                )}
+
+              <NextProject currentProjectId={id!} />
+            </div>
           </div>
-          
-          {/* Main Content */}
-          <div className="flex-1 max-w-3xl">
-            <ProjectOverview project={project} />
-
-            
-            
-            {/* Challenge Section */}
-            {id === "stitchi" ? <StitchiChallenge />
-              : id === "philo" ? <PhiloChallenge />
-              : id === "circle-status" ? <CircleChallenge />
-              : id === "asksia" ? <AsksiaChallenge />
-              : (
-                <section id="challenge" className="pt-24">
-                  <h2 className="text-2xl font-bold mb-6 text-foreground">Challenge</h2>
-                  <p className="text-muted-foreground">Content coming soon...</p>
-                </section>
-              )}
-            
-            {/* Solution Section */}
-            {id === "stitchi" ? <StitchiSolution />
-              : id === "philo" ? <PhiloSolution />
-              : id === "circle-status" ? <CircleSolution />
-              : id === "asksia" ? <AsksiaSolution />
-              : (
-                <section id="solution" className="pt-24">
-                  <h2 className="text-2xl font-bold mb-6 text-foreground">Solution</h2>
-                  <p className="text-muted-foreground">Content coming soon...</p>
-                </section>
-              )}
-            
-            {/* AskSia-specific: Impact before Research */}
-            {id === "asksia" && <AsksiaImpact />}
-            
-            {/* Research Section */}
-            {id === "stitchi" ? <StitchiResearch />
-              : id === "philo" ? <PhiloResearch />
-              : id === "circle-status" ? <CircleResearch />
-              : id === "asksia" ? <AsksiaResearch />
-              : (
-                <section id="research" className="pt-24">
-                  <h2 className="text-2xl font-bold mb-6 text-foreground">Research</h2>
-                  <p className="text-muted-foreground">Content coming soon...</p>
-                </section>
-              )}
-
-            {/* AskSia-specific: Design Analysis */}
-            {id === "asksia" && <AsksiaDesignAnalysis />}
-            
-            {/* Testing Section (skip for Stitchi & AskSia) */}
-            {id === "stitchi" || id === "asksia" ? null
-              : id === "philo" ? <PhiloTesting />
-              : id === "circle-status" ? <CircleTesting />
-              : (
-                <section id="testing" className="pt-24">
-                  <h2 className="text-2xl font-bold mb-6 text-foreground">Testing & Iteration</h2>
-                  <p className="text-muted-foreground">Content coming soon...</p>
-                </section>
-              )}
-            
-            {/* Reflection Section */}
-            {id === "stitchi" ? <StitchiReflection />
-              : id === "philo" ? <PhiloReflection />
-              : id === "circle-status" ? <CircleReflection />
-              : id === "asksia" ? <AsksiaReflection />
-              : (
-                <section id="reflection" className="pt-24 pb-24">
-                  <h2 className="text-2xl font-bold mb-6 text-foreground">Reflection</h2>
-                  <p className="text-muted-foreground">Content coming soon...</p>
-                </section>
-              )}
-
-            <NextProject currentProjectId={id!} />
-          </div>
-        </div>
-      </section>
-      
-      <Footer />
+        </section>
+        
+        <Footer />
+      </div>
     </div>;
 };
 export default ProjectDetail;
