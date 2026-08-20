@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import ProjectCursorHint from "./ProjectCursorHint";
 
 interface ProjectCardProps {
   id: string;
@@ -15,9 +14,53 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ id, image, title, titleColor, description, type, comingSoon = false, index = 0 }: ProjectCardProps) => {
   const [isHovering, setIsHovering] = useState(false);
+  const hintRef = useRef<HTMLDivElement>(null);
+  const position = useRef({ x: 0, y: 0 });
+  const target = useRef({ x: 0, y: 0 });
+  const animationRef = useRef<number>();
+
+  useEffect(() => {
+    const animate = () => {
+      const ease = 0.12;
+      
+      position.current.x += (target.current.x - position.current.x) * ease;
+      position.current.y += (target.current.y - position.current.y) * ease;
+
+      if (hintRef.current) {
+        hintRef.current.style.left = `${position.current.x}px`;
+        hintRef.current.style.top = `${position.current.y}px`;
+      }
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    if (isHovering) {
+      animationRef.current = requestAnimationFrame(animate);
+    }
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isHovering]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    target.current = {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    };
+  };
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    position.current = { x, y };
+    target.current = { x, y };
     setIsHovering(true);
+    
     // Dispatch custom event to hide main cursor
     window.dispatchEvent(new CustomEvent('projectCardHover', { detail: { hovering: true } }));
   };
@@ -30,11 +73,12 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
 
   const cardContent = (
     <div 
-      className="project-card group cursor-none"
+      className={`project-card group cursor-none ${comingSoon ? '' : ''}`}
+      onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="overflow-hidden w-full relative rounded-[2px]" style={{ aspectRatio: '645/400' }}>
+      <div className="overflow-hidden w-full relative rounded-[4px]" style={{ aspectRatio: '645/400' }}>
         <img 
           src={image} 
           alt={`${title} – ${description}`} 
@@ -51,8 +95,8 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
           className="absolute inset-0 transition-opacity duration-700 ease-out pointer-events-none"
           style={{
             opacity: isHovering ? 1 : 0,
-            backdropFilter: "blur(14px)",
-            WebkitBackdropFilter: "blur(14px)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
             maskImage: "linear-gradient(to bottom, transparent 25%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.7) 70%, black 100%)",
             WebkitMaskImage: "linear-gradient(to bottom, transparent 25%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.7) 70%, black 100%)",
           }}
@@ -66,7 +110,13 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
         </div>
       </div>
       {isHovering && (
-        <ProjectCursorHint text={comingSoon ? "coming soon" : "see project"} />
+        <div 
+          ref={hintRef}
+          className="project-cursor-hint"
+          style={{ willChange: "left, top" }}
+        >
+          {comingSoon ? "coming soon" : "see project"}
+        </div>
       )}
     </div>
   );
