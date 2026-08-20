@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import ProjectCursorHint from "./ProjectCursorHint";
 
 interface ProjectCardProps {
   id: string;
