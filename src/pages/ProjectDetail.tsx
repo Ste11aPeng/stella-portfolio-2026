@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import siaIntroImage from "@/assets/sia-intro.png";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
