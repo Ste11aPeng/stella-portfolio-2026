@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import siaIntroImage from "@/assets/sia-intro.png";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
@@ -8,6 +8,7 @@ import ProjectSidebar from "@/components/ProjectSidebar";
 import MobileSectionNav from "@/components/MobileSectionNav";
 import ProjectOverview from "@/components/ProjectOverview";
 import GalleryProjectDetail from "@/components/GalleryProjectDetail";
+import ProjectProgressBar from "@/components/ProjectProgressBar";
 import NextProject from "@/components/NextProject";
 import StitchiChallenge from "@/components/stitchi/StitchiChallenge";
 import StitchiSolution from "@/components/stitchi/StitchiSolution";
@@ -150,16 +151,16 @@ const ProjectDetail = () => {
       });
     }
   };
-  return <div className="relative min-h-screen bg-background">
+  return <div className="relative min-h-screen bg-background pb-12">
       <Seo
         page={project.title.toLowerCase()}
         path={`/project/${project.id}`}
         description={`${project.title}: ${project.description}. A product design case study by Stella Peng.`}
       />
       <Header />
-      
-      {/* Full-screen Cover Image */}
-      <section className="sticky top-0 z-0 h-screen w-full overflow-hidden bg-muted">
+
+      {/* Full-width Cover Image */}
+      <section className="w-full h-screen overflow-hidden bg-muted relative">
         <img
           src={project.coverImage || project.image}
           alt={project.title}
@@ -169,8 +170,8 @@ const ProjectDetail = () => {
         />
       </section>
 
-      {/* Content scrolls over the cover */}
-      <div className="relative z-10 bg-background">
+      {/* Content */}
+      <div className="relative bg-background">
         {/* Mobile Section Nav */}
         <MobileSectionNav activeSection={activeSection} onSectionClick={handleSectionClick} />
         
@@ -260,6 +261,8 @@ const ProjectDetail = () => {
         
         <Footer />
       </div>
+
+      <ProjectProgressBar />
     </div>;
 };
 export default ProjectDetail;
