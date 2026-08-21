@@ -158,9 +158,9 @@ const ProjectDetail = () => {
         description={`${project.title}: ${project.description}. A product design case study by Stella Peng.`}
       />
       <Header />
-      
-      {/* Full-screen Cover Image */}
-      <section className="sticky top-0 z-0 h-screen w-full overflow-hidden bg-muted">
+
+      {/* Full-width Cover Image */}
+      <section className="w-full h-screen overflow-hidden bg-muted relative">
         <img
           src={project.coverImage || project.image}
           alt={project.title}
@@ -170,8 +170,8 @@ const ProjectDetail = () => {
         />
       </section>
 
-      {/* Content scrolls over the cover */}
-      <div className="relative z-10 bg-background">
+      {/* Content */}
+      <div className="relative bg-background">
         {/* Mobile Section Nav */}
         <MobileSectionNav activeSection={activeSection} onSectionClick={handleSectionClick} />
         
