@@ -18,7 +18,15 @@ const ProjectProgressBar = () => {
   }, []);
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-foreground/5">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-background">
+      {/* Progress line — sits at the very top of the bar */}
+      <div className="relative h-px w-full bg-foreground/10 overflow-hidden">
+        <div
+          className="absolute top-0 left-0 h-full bg-foreground transition-[width] duration-75 ease-out"
+          style={{ width: `${progress * 100}%` }}
+        />
+      </div>
+
       <div className="flex items-center px-6 md:px-16 lg:px-24 py-3">
         {/* Back button */}
         <button
@@ -27,19 +35,11 @@ const ProjectProgressBar = () => {
           style={{ letterSpacing: "-0.07em" }}
           aria-label="back"
         >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <svg width="10" height="10" viewBox="0 0 14 14" fill="none" aria-hidden="true" className="text-foreground/35">
             <path d="M9 2L4 7l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           <span>back</span>
         </button>
-
-        {/* Progress track */}
-        <div className="flex-1 ml-6 h-px bg-foreground/10 relative overflow-hidden">
-          <div
-            className="absolute top-0 left-0 h-full bg-foreground transition-[width] duration-75 ease-out"
-            style={{ width: `${progress * 100}%` }}
-          />
-        </div>
       </div>
     </div>
   );
