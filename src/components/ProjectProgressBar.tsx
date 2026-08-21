@@ -18,12 +18,12 @@ const ProjectProgressBar = () => {
   }, []);
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none">
-      <div className="flex items-center px-6 md:px-16 lg:px-24 pb-3">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-foreground/5">
+      <div className="flex items-center px-6 md:px-16 lg:px-24 py-3">
         {/* Back button */}
         <button
           onClick={() => navigate(-1)}
-          className="pointer-events-auto flex items-center gap-1.5 text-foreground/60 hover:text-foreground transition-colors duration-300 text-sm"
+          className="flex items-center gap-1.5 text-foreground/60 hover:text-foreground transition-colors duration-300 text-sm"
           style={{ letterSpacing: "-0.07em" }}
           aria-label="back"
         >
