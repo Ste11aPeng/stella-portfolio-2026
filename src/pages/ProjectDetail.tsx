@@ -151,7 +151,7 @@ const ProjectDetail = () => {
       });
     }
   };
-  return <div className="relative min-h-screen bg-background">
+  return <div className="relative min-h-screen bg-background pb-12">
       <Seo
         page={project.title.toLowerCase()}
         path={`/project/${project.id}`}
