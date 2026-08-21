@@ -8,6 +8,7 @@ import ProjectSidebar from "@/components/ProjectSidebar";
 import MobileSectionNav from "@/components/MobileSectionNav";
 import ProjectOverview from "@/components/ProjectOverview";
 import GalleryProjectDetail from "@/components/GalleryProjectDetail";
+import ProjectProgressBar from "@/components/ProjectProgressBar";
 import NextProject from "@/components/NextProject";
 import StitchiChallenge from "@/components/stitchi/StitchiChallenge";
 import StitchiSolution from "@/components/stitchi/StitchiSolution";
