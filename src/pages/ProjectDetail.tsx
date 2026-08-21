@@ -261,6 +261,8 @@ const ProjectDetail = () => {
         
         <Footer />
       </div>
+
+      <ProjectProgressBar />
     </div>;
 };
 export default ProjectDetail;
