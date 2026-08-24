@@ -12,14 +12,20 @@ const escapeAttr = (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 
 const shellFor = (template, page) => {
   const url = `${SITE_URL}/${page.path}`.replace(/\/$/, "/");
+  const mdName = page.path === "" ? "index.md" : `${page.path}.md`;
+  const mdUrl = `${SITE_URL}/${mdName}`;
   const body = markdownToHtml(page.markdown);
-  const fallback = `<div id="static-content" data-prerendered="true">${body}<p><a href="${SITE_URL}/llms.txt">llms.txt</a> · <a href="${SITE_URL}/sitemap.xml">sitemap.xml</a></p></div>`;
+  const fallback = `<div id="static-content" data-prerendered="true">${body}<p><a href="${mdUrl}">markdown version of this page</a> · <a href="${SITE_URL}/llms.txt">llms.txt</a> · <a href="${SITE_URL}/sitemap.xml">sitemap.xml</a></p></div>`;
 
   let html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${page.title}</title>`)
     .replace(
       /<meta name="description" content="[\s\S]*?" \/>/,
       `<meta name="description" content="${escapeAttr(page.description)}" />`
+    )
+    .replace(
+      /<link rel="alternate" type="text\/markdown" href="[^"]*" \/>/,
+      `<link rel="alternate" type="text/markdown" href="${mdUrl}" />`
     )
     .replace('<div id="root"></div>', `<div id="root">${fallback}</div>`);
 
@@ -28,6 +34,7 @@ const shellFor = (template, page) => {
   }
   return html;
 };
+
 
 const run = async () => {
   const template = await readFile(path.join(dist, "index.html"), "utf8");
