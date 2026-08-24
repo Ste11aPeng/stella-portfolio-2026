@@ -36,3 +36,16 @@ curl -s -o /dev/null -w '%{http_code}\n' https://ruocanpeng.com/no-such-page   #
 Any equivalent edge layer works (Netlify/Vercel rewrites and `Vary` headers, Fastly, an
 nginx `map` on `$http_accept`). Until one is in place the acceptmarkdown.com check will
 keep reporting `Vary` as missing, regardless of repo changes.
+
+## Organization schema
+
+`index.html` JSON-LD `@graph` now carries an `Organization` node
+(`#organization`) with `contactPoint` (email, contactType, url, areaServed) and
+`address` (`PostalAddress`: San Jose, CA, US). Update the locality if the base of
+operations changes; it is the only fact in the graph that is not derived from page copy.
+
+## Deploying the negotiation Worker
+
+`workers/wrangler.toml` is ready to ship: from `workers/`, run `wrangler deploy`
+with a Cloudflare account that holds the `ruocanpeng.com` zone (DNS proxied).
+This is the only remaining step for acceptmarkdown.com compliance.

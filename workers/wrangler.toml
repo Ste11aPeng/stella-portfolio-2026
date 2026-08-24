@@ -1,0 +1,11 @@
+name = "ruocanpeng-markdown-negotiation"
+main = "markdown-negotiation.js"
+compatibility_date = "2026-01-01"
+
+# Route every request for the site through the Worker so it can honour
+# `Accept: text/markdown` and always emit `Vary: Accept, Accept-Encoding`.
+# Origin stays GitHub Pages; deploy with `wrangler deploy` from this folder.
+routes = [
+  { pattern = "ruocanpeng.com/*", zone_name = "ruocanpeng.com" },
+  { pattern = "www.ruocanpeng.com/*", zone_name = "ruocanpeng.com" }
+]
