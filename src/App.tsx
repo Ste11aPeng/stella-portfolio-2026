@@ -12,6 +12,8 @@ import ImagePreloader from "./components/ImagePreloader";
 
 const Visual = lazy(() => import("./pages/Visual"));
 const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Privacy = lazy(() => import("./pages/Privacy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
