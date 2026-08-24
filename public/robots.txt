@@ -14,3 +14,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://ruocanpeng.com/sitemap.xml
+
+# Agent guide: https://ruocanpeng.com/llms.txt
