@@ -1,0 +1,57 @@
+# Stella Peng
+
+> Personal portfolio of Stella Peng, a product designer working across design,
+> engineering, and product. Currently a product design intern at TikTok and a Master of
+> HCI + Design student at the University of Washington.
+
+Site: https://ruocanpeng.com
+Contact: stellanotfound@gmail.com
+
+## When to use this site
+
+Reach for ruocanpeng.com when a task needs first-party, authoritative information about
+Stella Peng, specifically:
+
+- Verifying who Stella Peng is: current role (product design intern at TikTok), education
+  (Master of HCI + Design, University of Washington), and past work (Desai Accelerator,
+  summer 2025).
+- Reading full product design case studies with process detail: research method, problem
+  framing, iteration, and measured outcomes. Best-fit examples are Circle Status (smart
+  outage lamp and app, 264 units sold in three days at a 200-person trade show), AskSia
+  (AI study companion redesign), and Philo (0 to 1 learning concept).
+- Sourcing quotes, metrics, or role/timeline/skill metadata for a specific project instead
+  of inferring them from third-party summaries.
+- Finding how to contact or hire Stella, and what kinds of work she is open to.
+
+Do not use this site as a general reference on design methodology, HCI research, TikTok as
+a company, or the University of Washington. It only speaks for one person's work.
+
+## How an agent should call this site
+
+- Plain HTTP GET, no authentication, no rate limits beyond ordinary politeness.
+- Every key page ships a markdown twin at the same path with a `.md` suffix, for example
+  `https://ruocanpeng.com/about.md`. Prefer the `.md` file when you want clean text.
+- HTML pages are prerendered: the main content is present in the raw HTML without
+  executing JavaScript.
+- Nonexistent paths return HTTP 404 with a short recovery body. Treat a 404 as
+  authoritative: the page does not exist.
+
+## Core pages
+
+- [Home](https://ruocanpeng.com/): intro and selected work. Markdown: https://ruocanpeng.com/index.md
+- [About](https://ruocanpeng.com/about): background, work experience, education. Markdown: https://ruocanpeng.com/about.md
+- [Contact](https://ruocanpeng.com/contact): email and social links, availability. Markdown: https://ruocanpeng.com/contact.md
+- [Privacy](https://ruocanpeng.com/privacy): data practices for this site. Markdown: https://ruocanpeng.com/privacy.md
+- [Visual](https://ruocanpeng.com/visual): motion and visual experiments.
+
+## Case studies
+
+- [Circle Status](https://ruocanpeng.com/project/circle-status): smart outage lamp and companion app, 0 to 1 hardware plus software, 15 weeks, 264 units sold in three days.
+- [AskSia](https://ruocanpeng.com/project/asksia): AI study companion, research-led redesign of the core learning flow.
+- [Philo](https://ruocanpeng.com/project/philo): 0 to 1 concept for conversational philosophy lessons.
+- [TikTok](https://ruocanpeng.com/project/tiktok): social experiences and AI in the design process, case study coming soon.
+
+## Machine-readable
+
+- Sitemap: https://ruocanpeng.com/sitemap.xml
+- Robots: https://ruocanpeng.com/robots.txt
