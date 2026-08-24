@@ -30,11 +30,14 @@ a company, or the University of Washington. It only speaks for one person's work
 
 - Plain HTTP GET, no authentication, no rate limits beyond ordinary politeness.
 - Every key page ships a markdown twin at the same path with a `.md` suffix, for example
-  `https://ruocanpeng.com/about.md`. Prefer the `.md` file when you want clean text.
+  `https://ruocanpeng.com/about.md`. Prefer the `.md` file when you want clean text. Each
+  HTML page also advertises its twin with `<link rel="alternate" type="text/markdown">`.
 - HTML pages are prerendered: the main content is present in the raw HTML without
   executing JavaScript.
-- Nonexistent paths return HTTP 404 with a short recovery body. Treat a 404 as
-  authoritative: the page does not exist.
+- Nonexistent paths return HTTP 404 with a short recovery body; the same recovery body is
+  available as markdown at https://ruocanpeng.com/404.md. Treat a 404 as authoritative:
+  the page does not exist.
+
 
 ## Core pages
 
