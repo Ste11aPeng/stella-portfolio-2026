@@ -99,3 +99,39 @@ describe("markdown content negotiation worker", () => {
     expect(markdownPathFor("/images/og-image.png")).toBeNull();
   });
 });
+
+describe("Organization schema completeness", () => {
+  const html = read("index.html");
+  const raw = html.match(
+    /<script type="application\/ld\+json">([\s\S]*?)<\/script>/
+  )?.[1] as string;
+  const nodes = JSON.parse(raw)["@graph"] as Array<Record<string, any>>;
+  const org = nodes.find((n) => n["@type"] === "Organization")!;
+
+  it("ships an Organization node", () => {
+    expect(org).toBeTruthy();
+    expect(org.name).toBeTruthy();
+    expect(org.url).toBe("https://ruocanpeng.com/");
+  });
+
+  it("includes a contactPoint with email and contactType", () => {
+    const cp = Array.isArray(org.contactPoint) ? org.contactPoint[0] : org.contactPoint;
+    expect(cp["@type"]).toBe("ContactPoint");
+    expect(cp.contactType).toBeTruthy();
+    expect(cp.email).toContain("@");
+  });
+
+  it("includes a PostalAddress", () => {
+    expect(org.address["@type"]).toBe("PostalAddress");
+    expect(org.address.addressLocality).toBeTruthy();
+    expect(org.address.addressCountry).toBeTruthy();
+  });
+});
+
+describe("markdown negotiation worker deployment config", () => {
+  it("routes the apex domain through the worker", () => {
+    const toml = read("workers/wrangler.toml");
+    expect(toml).toContain("markdown-negotiation.js");
+    expect(toml).toContain("ruocanpeng.com/*");
+  });
+});
