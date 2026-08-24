@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
-// @ts-expect-error - plain ESM module shared with the build-time prerender script
+// Plain ESM module shared with the build-time prerender script.
 import { pages, markdownToHtml } from "../../scripts/static-content.mjs";
+
 
 type Page = {
   path: string;
