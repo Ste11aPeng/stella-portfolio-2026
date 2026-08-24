@@ -26,20 +26,59 @@
     <meta name="twitter:title" content="Stella Peng" />
     <meta name="twitter:description" content="Stella Peng is a designer who builds across design, engineering, and product. Currently designing at TikTok and studying HCI+Design at the University of Washington." />
     <meta name="twitter:image" content="https://ruocanpeng.com/images/og-image.png" />
+    <link rel="alternate" type="text/markdown" href="https://ruocanpeng.com/index.md" />
+    <link rel="alternate" type="text/plain" href="https://ruocanpeng.com/llms.txt" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Stella Peng",
-        "url": "https://ruocanpeng.com/",
-        "jobTitle": "Product Designer",
-        "sameAs": [
-          "https://www.linkedin.com/in/stellapengrnr/",
-          "https://www.instagram.com/abtste11a/",
-          "https://x.com/abtste11a"
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://ruocanpeng.com/#person",
+            "name": "Stella Peng",
+            "alternateName": "Ruocan Peng",
+            "description": "Stella Peng is a product designer who builds across design, engineering, and product. Currently a product design intern at TikTok and a Master of HCI + Design student at the University of Washington.",
+            "url": "https://ruocanpeng.com/",
+            "image": "https://ruocanpeng.com/images/og-image.png",
+            "jobTitle": "Product Designer",
+            "email": "mailto:stellanotfound@gmail.com",
+            "knowsAbout": [
+              "Product Design",
+              "Human-Computer Interaction",
+              "Design Systems",
+              "Prototyping",
+              "Design Engineering"
+            ],
+            "worksFor": {
+              "@type": "Organization",
+              "name": "TikTok",
+              "url": "https://www.tiktok.com/"
+            },
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "University of Washington",
+              "url": "https://www.washington.edu/"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/stellapengrnr/",
+              "https://www.instagram.com/abtste11a/",
+              "https://x.com/PengSte11a41091"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://ruocanpeng.com/#website",
+            "name": "Stella Peng",
+            "description": "Portfolio of product designer Stella Peng: case studies, background, and contact details.",
+            "url": "https://ruocanpeng.com/",
+            "inLanguage": "en",
+            "publisher": { "@id": "https://ruocanpeng.com/#person" },
+            "about": { "@id": "https://ruocanpeng.com/#person" }
+          }
         ]
       }
     </script>
+
 
     <script src="https://t.contentsquare.net/uxa/9a4b969c86abc.js"></script>
     <!-- Start Single Page Apps for GitHub Pages -->
