@@ -232,16 +232,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 1.2 }}
           >
             <span className="text-[13px] font-sans text-muted-foreground">
-              Currently designing{" "}
-              <a
-                href="https://www.tiktok.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors duration-300 hover:text-[#FF0050]"
-              >
-                @TikTok
-              </a>{" "}
-              and pursuing a{" "}
+              Studying a{" "}
               <a
                 href="https://mhcid.washington.edu"
                 target="_blank"
@@ -249,6 +240,15 @@ const Hero = () => {
                 className="text-muted-foreground transition-colors duration-300 hover:text-[#4B2E83]"
               >
                 Master of HCI + Design @UW
+              </a>
+              . prev designing{" "}
+              <a
+                href="https://www.tiktok.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground transition-colors duration-300 hover:text-[#FF0050]"
+              >
+                @TikTok
               </a>
               .
             </span>
