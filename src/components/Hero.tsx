@@ -232,16 +232,16 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 1.2 }}
           >
             <span className="text-[13px] font-sans text-muted-foreground">
-              Studying a{" "}
               <a
                 href="https://mhcid.washington.edu"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground transition-colors duration-300 hover:text-[#4B2E83]"
               >
-                Master of HCI + Design @UW
+                Master's in HCI + Design @UW
               </a>
-              . prev designing{" "}
+              {" | "}
+              <span className="text-muted-foreground">Prev. design </span>
               <a
                 href="https://www.tiktok.com"
                 target="_blank"
@@ -250,7 +250,6 @@ const Hero = () => {
               >
                 @TikTok
               </a>
-              .
             </span>
           </motion.div>
         </div>
