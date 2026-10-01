@@ -226,7 +226,7 @@ const Hero = () => {
           </motion.p>
 
           <motion.div
-            className="flex items-center gap-1 mt-3 pl-px"
+            className="flex items-center gap-1 mt-3 pl-[2px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.2 }}
