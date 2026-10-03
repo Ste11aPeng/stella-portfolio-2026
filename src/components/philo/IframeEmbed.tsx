@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 interface IframeEmbedProps {
@@ -17,6 +18,7 @@ const IframeEmbed = ({
   maxWidth,
   className = "",
 }: IframeEmbedProps) => {
+  const [ready, setReady] = useState(false);
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -36,7 +38,8 @@ const IframeEmbed = ({
         title={title}
         loading="lazy"
         scrolling="no"
-        className="block w-full h-full"
+        onLoad={() => setTimeout(() => setReady(true), 350)}
+        className={`block w-full h-full transition-opacity duration-500 ${ready ? "opacity-100" : "opacity-0"}`}
       />
     </motion.div>
   );

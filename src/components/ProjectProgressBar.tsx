@@ -13,16 +13,22 @@ const ProjectProgressBar = () => {
       const pct = scrollHeight > 0 ? Math.min(1, Math.max(0, scrollTop / scrollHeight)) : 0;
       setProgress(pct);
       // Hide the bar once the page is scrolled to the very bottom (footer)
-      setHidden(scrollTop + window.innerHeight >= document.documentElement.scrollHeight - 8);
+      const footer = document.querySelector("footer");
+      const footerVisible = footer ? footer.getBoundingClientRect().top < window.innerHeight - 1 : false;
+      setHidden(footerVisible || scrollTop + window.innerHeight >= document.documentElement.scrollHeight - 80);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, []);
 
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 z-50 bg-background transition-opacity duration-200 ${hidden ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+      className={`fixed bottom-0 left-0 right-0 z-50 bg-background transition-[opacity,transform] duration-300 ${hidden ? "opacity-0 translate-y-full pointer-events-none" : "opacity-100 translate-y-0"}`}
     >
       {/* Progress line — sits at the very top of the bar */}
       <div className="relative h-px w-full bg-foreground/10 overflow-hidden">
