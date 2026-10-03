@@ -10,7 +10,7 @@ const AsksiaImpact = () => {
       <Separator className="mb-16 bg-border/60" />
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
-        <span className="text-sm text-muted-foreground mb-3 block">impact</span>
+        <span className="text-sm text-muted-foreground mb-6 block">impact</span>
       </motion.div>
 
       {/* Top row: two cards side by side */}

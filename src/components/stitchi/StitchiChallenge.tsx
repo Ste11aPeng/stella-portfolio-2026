@@ -12,7 +12,7 @@ const StitchiChallenge = () => {
       <Separator className="mb-16 bg-border/60" />
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
-        <span className="text-sm text-muted-foreground mb-3 block">challenge</span>
+        <span className="text-sm text-muted-foreground mb-6 block">challenge</span>
         <h2 className="text-xl font-medium mb-10 text-foreground leading-relaxed max-w-2xl">
           How can Stitchi.co redesign their discovery experience to help B2B buyers find products faster as supplier catalogs scale?
         </h2>
