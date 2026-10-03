@@ -1,76 +1,12 @@
 import { motion, type Easing } from "framer-motion";
-import ImageLightbox from "@/components/ImageLightbox";
-import ProjectCarousel from "@/components/ProjectCarousel";
-import iterationCarousel1 from "@/assets/circle-iteration-carousel-1.png";
-import iterationCarousel2 from "@/assets/circle-iteration-carousel-2.png";
-import iterationCarousel3 from "@/assets/circle-iteration-carousel-3.png";
-import iterationCarousel4 from "@/assets/circle-iteration-carousel-4.png";
-import iterationCarousel5 from "@/assets/circle-iteration-carousel-5.png";
+import AnimatedTitle from "@/components/AnimatedTitle";
+import HoverCaptionImage from "@/components/HoverCaptionImage";
+import iterationReview from "@/assets/circle-iteration-review.png";
+import iterationPersonas from "@/assets/circle-iteration-personas.png";
+import iterationBranding from "@/assets/circle-iteration-branding.png";
+import iterationHardware from "@/assets/circle-iteration-hardware.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
-
-const iterationSlides = [
-  {
-    src: iterationCarousel1,
-    alt: "Personas - Luddite Robert and Young Jason",
-    title: "Personas",
-    caption:
-      "Low-tech users are the primary risk group. Personas surfaced a cluster of elderly, low-digital-confidence users who wouldn't open an app, which is why the lamp needed to work without any app interaction at all.",
-  },
-  {
-    src: iterationCarousel2,
-    alt: "Expert review presentation at University of Michigan",
-    title: "Expert review",
-    caption:
-      "2 rounds of design reviews pushed us to make safety feel like furniture, not a device. Accessibility experts flagged that flashing lights could trigger anxiety, so we moved to a slow pulse.",
-  },
-  {
-    src: iterationCarousel3,
-    alt: "100+ ideas refined to 9 concept cards and form-factor sketches",
-    title: "100+ ideas, 9 refined concept cards",
-    caption:
-      'Concept validation with 50 people confirmed the direction: "Notify Light" scored highest on both desirability and trust.',
-  },
-  {
-    src: iterationCarousel4,
-    alt: "Hardware prototyping with Arduino and ESP32 across Normal, Outage, Restore, and Final Proto states",
-    title: "Hardware",
-    caption: "Arduino + ESP32 prototype detecting power loss across Normal, Outage, Restore, and Final Proto states.",
-  },
-  {
-    src: iterationCarousel5,
-    alt: "Branding moodboard, brand voice spectrum, and UI/UX wireframes evolving from low-fi to high-fi",
-    title: "Branding",
-    caption:
-      "We aligned on a shared brand voice that feels warm, calm, and trustworthy, then translated it into UI/UX by moving from low-fi wireframes to high-fi screens that feel approachable for both elderly users and their caregivers.",
-  },
-];
-
-const IterationCarousel = () => {
-  return (
-    <ProjectCarousel alignArrowsToImage>
-      {iterationSlides.map((slide, i) => (
-        <div className="space-y-5" key={i}>
-          <ImageLightbox
-            src={slide.src}
-            alt={slide.alt}
-            className="w-full rounded-lg"
-            disableMotion
-            disableHoverEffect
-          />
-          <div>
-            <h3 className="text-xl font-semibold mb-3 text-foreground">
-              {slide.title}
-            </h3>
-            <p className="text-base text-foreground/80 leading-relaxed">
-              {slide.caption}
-            </p>
-          </div>
-        </div>
-      ))}
-    </ProjectCarousel>
-  );
-};
 
 const CircleTesting = () => {
   return (
@@ -84,18 +20,44 @@ const CircleTesting = () => {
         <span className="text-sm text-muted-foreground mb-6 block">
           iteration
         </span>
-        <h2 className="text-2xl font-bold mb-6 text-foreground">
-          From Feedback to Functional Prototype
-        </h2>
+        <AnimatedTitle text="From Feedback to Functional Prototype" className="text-2xl font-bold mb-6 text-foreground" />
       </motion.div>
 
+      {/* Iteration gallery: bento layout — wide shots top and bottom, a matched pair in the middle */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        <IterationCarousel />
+        <div className="grid grid-cols-1 gap-3 md:gap-4">
+          <HoverCaptionImage
+            src={iterationReview}
+            alt="Expert review presentation at the University of Michigan"
+            title="Expert Review"
+            body="2 rounds of design reviews pushed us to make safety feel like furniture, not a device. Accessibility experts flagged that flashing lights could trigger anxiety, so we moved to a slow pulse."
+          />
+          <div className="grid grid-cols-1 md:grid-cols-[932fr_581fr] gap-3 md:gap-4">
+            <HoverCaptionImage
+              src={iterationPersonas}
+              alt="Personas — Luddite Robert and Young Jason"
+              title="Personas"
+              body="Low-tech users are the primary risk group. Personas surfaced a cluster of elderly, low-digital-confidence users who wouldn't open an app, which is why the lamp needed to work without any app interaction at all."
+            />
+            <HoverCaptionImage
+              src={iterationBranding}
+              alt="Branding moodboard and brand voice spectrum"
+              title="Branding"
+              body="We aligned on a shared brand voice that feels warm, calm, and trustworthy, then translated it into UI/UX that feels approachable for both elderly users and their caregivers."
+            />
+          </div>
+          <HoverCaptionImage
+            src={iterationHardware}
+            alt="Hardware prototyping with Arduino and ESP32 across Normal, Outage, Restore, and Final Proto states"
+            title="Hardware"
+            body="Arduino + ESP32 prototype detecting power loss across Normal, Outage, Restore, and Final Proto states."
+          />
+        </div>
       </motion.div>
     </section>
   );

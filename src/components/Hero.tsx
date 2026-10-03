@@ -1,4 +1,4 @@
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import profileImage from "@/assets/profile.webp";
@@ -48,30 +48,24 @@ const blurFor = (dist: number) =>
 const opacityFor = (dist: number) =>
   Math.max(0.82 - dist * 0.001, 0.4).toFixed(2);
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.04,
-      delayChildren: 0.3,
-    },
-  },
-};
-
-const wordVariants = {
-  hidden: {
-    opacity: 0,
-    y: 8,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: [0.25, 0.1, 0.25, 1] as const,
-    },
-  },
-};
+// "soft-blur-in": per-character on the site's showcase, but this hero is a full
+// sentence (>40 chars), so per the effect's own long-copy guidance we apply it
+// per-word instead, with a shorter stagger to keep the cascade tight.
+//
+// Driven imperatively via the Web Animations API (not framer-motion's
+// style/variants) because these same spans carry a CSS custom-property-based
+// hover blur (--hb) that must win after mount. A framer-motion-controlled
+// `filter` gets re-asserted by React on every re-render of Hero (e.g. hovering
+// the profile photo), permanently overriding the hover effect; a WAAPI
+// animation that cancels itself when done leaves no inline style behind.
+const ENTER_DURATION_MS = 900;
+const ENTER_BASE_DELAY_MS = 300;
+const ENTER_STAGGER_MS = 15;
+const ENTER_EASING = "cubic-bezier(0.22, 1, 0.36, 1)";
+const enterKeyframes: Keyframe[] = [
+  { opacity: 0, transform: "translateY(16px)", filter: "blur(12px)" },
+  { opacity: 1, transform: "translateY(0px)", filter: "blur(0px)" },
+];
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -100,8 +94,24 @@ const Hero = () => {
     setDists(measured);
   }, []);
 
-
-
+  // Play the entrance blur-in once on mount; cancel afterward so the WAAPI
+  // animation stops holding the `filter`/`opacity`/`transform` properties.
+  useEffect(() => {
+    const animations = wordRefs.current.map((el, i) => {
+      if (!el) return null;
+      const anim = el.animate(enterKeyframes, {
+        duration: ENTER_DURATION_MS,
+        delay: ENTER_BASE_DELAY_MS + i * ENTER_STAGGER_MS,
+        easing: ENTER_EASING,
+        fill: "both",
+      });
+      anim.finished.then(() => anim.cancel()).catch(() => {});
+      return anim;
+    });
+    return () => {
+      animations.forEach((a) => a?.cancel());
+    };
+  }, []);
 
   return (
     <section className="px-8 py-16 lg:px-24 md:px-[32px] md:py-[64px] max-w-[1440px] mx-auto">
@@ -159,7 +169,7 @@ const Hero = () => {
         </motion.div>
 
         <div className="flex flex-col">
-          <motion.p
+          <p
             className="group/title max-w-3xl pt-0 text-[1.5rem] leading-[1.85rem] md:text-[2rem] md:leading-[2.4rem]"
             style={{
               color: "var(--title-ink)",
@@ -167,9 +177,6 @@ const Hero = () => {
               fontWeight: 650,
               letterSpacing: "-0.07em",
             }}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
           >
             {lines.map((line, li) => {
               const offset = lines
@@ -182,10 +189,9 @@ const Hero = () => {
                     const word = flatWords[gi];
                     const dist = dists[gi];
                     return (
-                      <motion.span
+                      <span
                         key={`${li}-${pi}`}
                         ref={(el) => (wordRefs.current[gi] = el)}
-                        variants={wordVariants}
                         className="inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--hb))] group-hover/title:opacity-[var(--ho)] mr-[8px]"
                         style={
                           word.accent
@@ -216,14 +222,14 @@ const Hero = () => {
                         ) : (
                           word.text
                         )}
-                      </motion.span>
+                      </span>
 
                     );
                   })}
                 </span>
               );
             })}
-          </motion.p>
+          </p>
 
           <motion.div
             className="flex items-center gap-1 mt-3 pl-[2px]"

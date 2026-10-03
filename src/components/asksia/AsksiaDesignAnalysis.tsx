@@ -1,6 +1,7 @@
 import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import ImageLightbox from "@/components/ImageLightbox";
+import AnimatedTitle from "@/components/AnimatedTitle";
 import analysis1 from "@/assets/sia-design-analysis-1.png";
 import analysis2 from "@/assets/sia-design-analysis-2.png";
 import analysis3 from "@/assets/sia-design-analysis-3.png";
@@ -15,9 +16,7 @@ const AsksiaDesignAnalysis = () => {
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
         <span className="text-sm text-muted-foreground mb-6 block">design decision analysis</span>
-        <h2 className="text-2xl font-bold mb-6 text-foreground">
-          Will This Nav Still Work at 10x the Files?
-        </h2>
+        <AnimatedTitle text="Will This Nav Still Work at 10x the Files?" className="text-2xl font-bold mb-6 text-foreground" />
       </motion.div>
 
       <motion.p
@@ -44,9 +43,7 @@ const AsksiaDesignAnalysis = () => {
         transition={{ duration: 0.5, ease: easeOut }}
       >
         <span className="text-sm text-muted-foreground mb-6 block">engineering handoff</span>
-        <h2 className="text-2xl font-bold mb-6 text-foreground">
-          From Pixels to Production
-        </h2>
+        <AnimatedTitle text="From Pixels to Production" className="text-2xl font-bold mb-6 text-foreground" />
       </motion.div>
 
       <motion.p

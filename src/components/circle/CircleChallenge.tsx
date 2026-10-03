@@ -1,4 +1,5 @@
 import { motion, type Easing } from "framer-motion";
+import AnimatedTitle from "@/components/AnimatedTitle";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
@@ -16,15 +17,16 @@ const CircleChallenge = () => {
         </span>
       </motion.div>
 
-      <motion.h2
+      <AnimatedTitle
         className="text-2xl font-bold text-foreground leading-snug"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, ease: easeOut, delay: 0.05 }}
-      >
-        How might we help <span className="text-foreground/60">neighbors who don't know each other</span> feel safe enough to ask for help when the <span className="text-foreground/60">power goes out</span>?
-      </motion.h2>
+        segments={[
+          { text: "How might we help " },
+          { text: "neighbors who don't know each other", className: "text-foreground/60" },
+          { text: " feel safe enough to ask for help when the " },
+          { text: "power goes out", className: "text-foreground/60" },
+          { text: "?" },
+        ]}
+      />
     </section>
   );
 };

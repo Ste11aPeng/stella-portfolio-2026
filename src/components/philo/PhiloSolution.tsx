@@ -1,6 +1,7 @@
 import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import ImageLightbox from "@/components/ImageLightbox";
+import AnimatedTitle from "@/components/AnimatedTitle";
 import philoSolution2 from "@/assets/philo-solution-2.png";
 import philoSolution3 from "@/assets/philo-solution-3.png";
 import IframeEmbed from "@/components/philo/IframeEmbed";
@@ -14,9 +15,7 @@ const PhiloSolution = () => {
 
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
         <span className="text-sm text-muted-foreground mb-6 block">solution</span>
-        <h2 className="text-2xl font-bold mb-6 text-foreground">
-          One system, built to grow with the product.
-        </h2>
+        <AnimatedTitle text="One system, built to grow with the product." className="text-2xl font-bold mb-6 text-foreground" />
       </motion.div>
 
       <motion.p

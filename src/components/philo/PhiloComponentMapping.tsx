@@ -2,6 +2,7 @@ import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import IframeEmbed from "@/components/philo/IframeEmbed";
 import ImageLightbox from "@/components/ImageLightbox";
+import AnimatedTitle from "@/components/AnimatedTitle";
 import philoAudit from "@/assets/philo-audit.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
@@ -13,9 +14,7 @@ const PhiloComponentMapping = () => {
 
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
         <span className="text-sm text-muted-foreground mb-6 block">Component Mapping</span>
-        <h2 className="text-2xl font-bold mb-6 text-foreground">
-          Four layers: foundations, components, patterns, and pages
-        </h2>
+        <AnimatedTitle text="Four layers: foundations, components, patterns, and pages" className="text-2xl font-bold mb-6 text-foreground" />
         <motion.p
           className="text-base mb-4 max-w-4xl text-foreground/80 leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
@@ -27,7 +26,7 @@ const PhiloComponentMapping = () => {
         </motion.p>
       </motion.div>
 
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-[932fr_581fr] md:gap-4 mb-8">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-[932fr_581fr] md:gap-4 mb-8 mt-12">
         <div className="h-full">
           <ImageLightbox
             src={philoAudit}

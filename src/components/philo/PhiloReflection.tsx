@@ -1,6 +1,7 @@
 import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import ImageLightbox from "@/components/ImageLightbox";
+import AnimatedTitle from "@/components/AnimatedTitle";
 import reflectionImage from "@/assets/philo-reflection.png";
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 const PhiloReflection = () => {
@@ -21,9 +22,7 @@ const PhiloReflection = () => {
       ease: easeOut
     }}>
         <span className="text-sm text-muted-foreground mb-6 block">reflection</span>
-        <h2 className="text-2xl font-bold mb-6 text-foreground">
-          What I Learned
-        </h2>
+        <AnimatedTitle text="What I Learned" className="text-2xl font-bold mb-6 text-foreground" />
       </motion.div>
       
       

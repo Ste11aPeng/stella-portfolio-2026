@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ImageLightbox from "@/components/ImageLightbox";
 import NextProject from "@/components/NextProject";
+import AnimatedTitle from "@/components/AnimatedTitle";
 interface GalleryProjectDetailProps {
   project: Project;
   images: {
@@ -17,7 +18,8 @@ const GalleryProjectDetail = ({
   project,
   images
 }: GalleryProjectDetailProps) => {
-  return <div className="min-h-screen bg-background">
+  return <>
+    <div className="min-h-screen bg-background relative z-10">
       <Header />
       
       {/* Header Section */}
@@ -26,20 +28,12 @@ const GalleryProjectDetail = ({
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8">
             {/* Left: Title + Tags */}
             <div className="overflow-hidden">
-              <motion.div initial={{
-                y: "100%",
-                rotateX: 40
-              }} animate={{
-                y: 0,
-                rotateX: 0
-              }} transition={{
-                duration: 0.7,
-                ease: [0.16, 1, 0.3, 1]
-              }}>
-                <h1 className="text-2xl mb-4 text-foreground" style={{ fontFamily: "'New Spirit', serif", fontWeight: 400 }}>
-                  {project.title}
-                </h1>
-              </motion.div>
+              <AnimatedTitle
+                as="h1"
+                text={project.title}
+                className="text-2xl mb-4 text-foreground"
+                style={{ fontFamily: "'New Spirit', serif", fontWeight: 400 }}
+              />
             </div>
             
             {/* Right: Description */}
@@ -90,8 +84,11 @@ const GalleryProjectDetail = ({
           <NextProject currentProjectId={project.id} />
         </div>
       </section>
-      
+    </div>
+
+    <div className="sticky bottom-0 z-0">
       <Footer />
-    </div>;
+    </div>
+  </>;
 };
 export default GalleryProjectDetail;

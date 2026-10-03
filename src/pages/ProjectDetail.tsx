@@ -153,42 +153,43 @@ const ProjectDetail = () => {
       });
     }
   };
-  return <div className="relative min-h-screen bg-background">
+  return <>
       <Seo
         page={project.title.toLowerCase()}
         path={`/project/${project.id}`}
         description={`${project.title}: ${project.description}. A product design case study by Stella Peng.`}
       />
-      <Header />
+      <div className="relative min-h-screen bg-background z-10">
+        <Header />
 
-      {/* Full-width Cover Image */}
-      <section
-        className={
-          project.coverFull
-            ? "w-full overflow-hidden bg-muted relative"
-            : "w-full h-screen overflow-hidden bg-muted relative"
-        }
-      >
-        <img
-          src={project.coverImage || project.image}
-          alt={project.title}
-          loading="eager"
-          decoding="async"
+        {/* Full-width Cover Image */}
+        <section
           className={
             project.coverFull
-              ? "w-full h-auto animate-fade-in"
-              : "w-full h-full object-cover animate-fade-in"
+              ? "w-full overflow-hidden bg-muted relative"
+              : "w-full h-screen overflow-hidden bg-muted relative"
           }
-        />
-      </section>
+        >
+          <img
+            src={project.coverImage || project.image}
+            alt={project.title}
+            loading="eager"
+            decoding="async"
+            className={
+              project.coverFull
+                ? "w-full h-auto animate-fade-in"
+                : "w-full h-full object-cover animate-fade-in"
+            }
+          />
+        </section>
 
-      {/* Content */}
-      <div className="relative bg-background">
-        {/* Mobile Section Nav */}
-        <MobileSectionNav activeSection={activeSection} onSectionClick={handleSectionClick} />
-        
-        {/* Content Section with Sidebar */}
-        <section className="px-4 md:px-16 lg:px-24 pb-24 max-w-[1440px] mx-auto">
+        {/* Content */}
+        <div className="relative bg-background">
+          {/* Mobile Section Nav */}
+          <MobileSectionNav activeSection={activeSection} onSectionClick={handleSectionClick} />
+
+          {/* Content Section with Sidebar */}
+          <section className="px-4 md:px-16 lg:px-24 pb-24 max-w-[1440px] mx-auto">
           <div className="flex gap-16 max-w-6xl mx-auto">
             {/* Sidebar - desktop only */}
             <div className="w-48 flex-shrink-0 hidden md:block">
@@ -275,11 +276,14 @@ const ProjectDetail = () => {
             </div>
           </div>
         </section>
-        
-        <Footer />
       </div>
 
       <ProjectProgressBar />
-    </div>;
+      </div>
+
+      <div className="sticky bottom-0 z-0">
+        <Footer />
+      </div>
+    </>;
 };
 export default ProjectDetail;

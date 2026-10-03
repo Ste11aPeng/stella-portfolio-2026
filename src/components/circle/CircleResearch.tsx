@@ -1,5 +1,6 @@
 import { motion, type Easing } from "framer-motion";
-import ImageLightbox from "@/components/ImageLightbox";
+import AnimatedTitle from "@/components/AnimatedTitle";
+import HoverCaptionImage from "@/components/HoverCaptionImage";
 import research1Image from "@/assets/circle-research-1.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
@@ -16,9 +17,7 @@ const CircleResearch = () => {
         <span className="text-sm text-muted-foreground mb-6 block">
           research
         </span>
-        <h2 className="text-2xl font-bold mb-6 text-foreground">
-          Research & User Modeling
-        </h2>
+        <AnimatedTitle text="Research & User Modeling" className="text-2xl font-bold mb-6 text-foreground" />
         <p className="text-base text-foreground/80 leading-relaxed mb-10">
           We ran 50+ household interviews and surveyed 200 Midwest residents, then used CART analysis to find what actually predicts help-seeking behavior during outages.
         </p>
@@ -30,10 +29,11 @@ const CircleResearch = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        <ImageLightbox
+        <HoverCaptionImage
           src={research1Image}
-          alt="Research findings: interviews, affinity diagram, empathy map, and CART feature importance"
-          className="w-full rounded-lg"
+          alt="Research findings: affinity diagramming session, sticky-note clustering, Think/Feel/Say/Does empathy map, and a chart comparing family vs. neighbor help-seeking by health reliance"
+          title="Interviews, Affinity Diagram & Empathy Map"
+          body="From the Midwest, USA — paired with Exploratory Data Analysis (EDA) on the survey data."
         />
       </motion.div>
 

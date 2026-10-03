@@ -1,5 +1,6 @@
 import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
+import AnimatedTitle from "@/components/AnimatedTitle";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
@@ -10,9 +11,7 @@ const AsksiaReflection = () => {
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
         <span className="text-sm text-muted-foreground mb-6 block">reflection</span>
-        <h2 className="text-2xl font-bold mb-6 text-foreground">
-          What I'd Do Differently Next Time
-        </h2>
+        <AnimatedTitle text="What I'd Do Differently Next Time" className="text-2xl font-bold mb-6 text-foreground" />
       </motion.div>
 
       <motion.p

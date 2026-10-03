@@ -1,5 +1,6 @@
 import { motion, type Easing } from "framer-motion";
 import { Project } from "@/data/projects";
+import AnimatedTitle from "@/components/AnimatedTitle";
 
 interface ProjectOverviewProps {
   project: Project;
@@ -11,18 +12,15 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
   return (
     <section id="overview" className="pt-16">
       <div className="overflow-hidden">
-        <motion.h2
-          className="text-4xl mb-5 text-foreground flex flex-wrap items-baseline gap-x-3"
+        <AnimatedTitle
+          className="text-4xl mb-5 text-foreground"
           style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.07em" }}
-          initial={{ y: "100%", rotateX: 40 }}
-          whileInView={{ y: 0, rotateX: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span>{project.title}</span>
-          <span className="text-foreground/40" aria-hidden="true">·</span>
-          <span className="text-foreground/60">{project.tagline}</span>
-        </motion.h2>
+          segments={[
+            { text: project.title },
+            { text: " · ", className: "text-foreground/40", ariaHidden: true },
+            { text: project.tagline, className: "text-foreground/60" },
+          ]}
+        />
       </div>
 
       <motion.div

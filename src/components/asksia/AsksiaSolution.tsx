@@ -1,6 +1,7 @@
 import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import ImageLightbox from "@/components/ImageLightbox";
+import AnimatedTitle from "@/components/AnimatedTitle";
 import solution1 from "@/assets/sia-solution-1.png";
 import solution2 from "@/assets/sia-solution-2.png";
 import solution3 from "@/assets/sia-solution-3.png";
@@ -14,9 +15,7 @@ const AsksiaSolution = () => {
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
         <span className="text-sm text-muted-foreground mb-6 block">solution</span>
-        <h2 className="text-2xl font-bold mb-6 text-foreground">
-          A Workspace That Adapts to You
-        </h2>
+        <AnimatedTitle text="A Workspace That Adapts to You" className="text-2xl font-bold mb-6 text-foreground" />
       </motion.div>
 
       <motion.p

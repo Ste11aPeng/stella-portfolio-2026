@@ -1,6 +1,7 @@
 import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import ImageLightbox from "@/components/ImageLightbox";
+import AnimatedTitle from "@/components/AnimatedTitle";
 import challengeUIImage from "@/assets/stitchi-challenge-ui.png";
 import challengeInteractionImage from "@/assets/stitchi-challenge-interaction.png";
 
@@ -13,9 +14,10 @@ const StitchiChallenge = () => {
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
         <span className="text-sm text-muted-foreground mb-6 block">challenge</span>
-        <h2 className="text-xl font-medium mb-10 text-foreground leading-relaxed max-w-2xl">
-          How can Stitchi.co redesign their discovery experience to help B2B buyers find products faster as supplier catalogs scale?
-        </h2>
+        <AnimatedTitle
+          text="How can Stitchi.co redesign their discovery experience to help B2B buyers find products faster as supplier catalogs scale?"
+          className="text-xl font-medium mb-10 text-foreground leading-relaxed max-w-2xl"
+        />
       </motion.div>
       
       {/* Challenge UI Image */}

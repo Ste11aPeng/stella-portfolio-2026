@@ -1,6 +1,7 @@
 import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import ImageLightbox from "@/components/ImageLightbox";
+import AnimatedTitle from "@/components/AnimatedTitle";
 import iterationImage from "@/assets/philo-iteration.png";
 import impactImage from "@/assets/philo-impact.png";
 
@@ -13,9 +14,10 @@ const PhiloTesting = () => {
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
         <span className="text-sm text-muted-foreground mb-6 block">outcome</span>
-        <h2 className="text-xl font-medium mb-10 text-foreground leading-relaxed max-w-2xl">
-          Improved team efficiency and product consistency, enabling faster development cycles while delivering a cohesive user experience across the platform.
-        </h2>
+        <AnimatedTitle
+          text="Improved team efficiency and product consistency, enabling faster development cycles while delivering a cohesive user experience across the platform."
+          className="text-xl font-medium mb-10 text-foreground leading-relaxed max-w-2xl"
+        />
       </motion.div>
       
       {/* Iteration Image */}
