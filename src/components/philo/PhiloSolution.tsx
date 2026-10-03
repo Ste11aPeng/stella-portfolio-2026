@@ -30,7 +30,7 @@ const PhiloSolution = () => {
       </motion.p>
 
       {/* Interactive build: from tokens to a page */}
-      <div className="mb-12">
+      <div className="mb-3 md:mb-4">
         <IframeEmbed
           src="/philo/tokens-to-page.html"
           title="Philo design system: from tokens to a page"
