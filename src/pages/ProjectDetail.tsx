@@ -227,7 +227,7 @@ const ProjectDetail = () => {
               {id === "asksia" && <AsksiaImpact />}
               
               {/* Research Section */}
-              {id === "stitchi" ? <StitchiResearch />
+              {id === "stitchi" || id === "philo" ? null
                 : id === "circle-status" ? <CircleResearch />
                 : id === "asksia" ? <AsksiaResearch />
                 : (
@@ -240,9 +240,8 @@ const ProjectDetail = () => {
               {/* AskSia-specific: Design Analysis */}
               {id === "asksia" && <AsksiaDesignAnalysis />}
               
-              {/* Testing Section (skip for Stitchi & AskSia) */}
-              {id === "stitchi" || id === "asksia" ? null
-                : id === "philo" ? <PhiloTesting />
+              {/* Testing Section (skip for Stitchi, AskSia & Philo) */}
+              {id === "stitchi" || id === "asksia" || id === "philo" ? null
                 : id === "circle-status" ? <CircleTesting />
                 : (
                   <section id="testing" className="pt-24">
@@ -252,7 +251,7 @@ const ProjectDetail = () => {
                 )}
               
               {/* Reflection Section */}
-              {id === "stitchi" ? <StitchiReflection />
+              {id === "stitchi" || id === "philo" ? null
                 : id === "circle-status" ? <CircleReflection />
                 : id === "asksia" ? <AsksiaReflection />
                 : (
