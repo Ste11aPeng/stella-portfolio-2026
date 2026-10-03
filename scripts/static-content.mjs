@@ -19,9 +19,9 @@ const projects = [
       "An AI study companion for university students. Research-led redesign of the core learning flow, grounded in usability testing and design analysis of the existing product.",
   },
   {
-    name: "Philo",
+    name: "Philo Design System",
     summary:
-      "A 0 to 1 product concept exploring how people learn philosophy through short, conversational lessons, from research through high fidelity design and hand-off.",
+      "A design system for an e-commerce MVP: a token-based foundation, 50+ documented components mapped to React Native, and UI templates that cut the design-to-dev cycle to two weeks.",
   },
   {
     name: "TikTok",
@@ -181,6 +181,138 @@ Questions about this policy: [stellanotfound@gmail.com](mailto:stellanotfound@gm
 `,
   },
 ];
+
+const projectPages = [
+  {
+    id: "circle-status",
+    name: "Circle Status",
+    description:
+      "Circle Status: a smart lamp and companion app that turns outage detection into community connection. Sold 264 units in 3 days. A case study by Stella Peng.",
+    meta: { industry: "IoT, smart home", status: "sold 264 units in 3 days", team: "2 designers, 1 PM, 1 SWE", timeline: "Fall 2024 (15 weeks)", skills: "Figma, Blender, Rhino, Webflow" },
+    body: `Circle Status is a smart lamp and companion app that turns passive outage detection into
+active community connection. Built in 15 weeks as part of the University of Michigan's
+Integrated Product Development (IPD) program, it launched at a 200-person trade show and
+sold 264 units in three days.
+
+## Challenge
+
+When the power goes out, neighbors are often the fastest source of help, yet most people
+have no simple way to know who is affected or who needs a hand. Existing outage maps are
+passive and slow, and they say nothing about the people on your street.
+
+## Solution
+
+A lamp that glows to signal outage status at a glance, paired with an app that lets
+neighbors check in on each other, share resources, and coordinate during an outage. The
+physical object makes the state of the community ambient; the app turns it into action.
+
+## Research and testing
+
+Interviews and field research shaped the core insights, which were reframed as
+"how might we" questions and tested through rapid prototyping of both the hardware form
+and the app flows. Iterations focused on clarity of the light states and on reducing the
+effort needed to reach out to a neighbor.
+
+## Reflection
+
+Designing a physical product and its app together showed how much an ambient signal can
+lower the barrier to social action.`,
+  },
+  {
+    id: "asksia",
+    name: "AskSia",
+    description:
+      "AskSia: redesigning the workspace and file management of an AI study companion used by 100k+ students. A product design case study by Stella Peng.",
+    meta: { industry: "EdTech, AI", status: "100k+ users", team: "2 designers, 3 engineers, 1 PM", timeline: "Aug 2025 - Feb 2026", skills: "Figma, prototyping, user research" },
+    body: `AskSia is a rapidly growing AI study companion, serving as the core learning tool for
+more than 100,000 users worldwide. My team redesigned the workspace and file management
+system to give the product a scalable foundation for its rapid expansion.
+
+## Challenge
+
+As students uploaded more course materials and ran more AI sessions, the original
+workspace became hard to navigate. Files, chats, and study outputs were scattered, and
+the structure could not keep up with new features.
+
+## Solution
+
+A restructured workspace that organizes materials by course, keeps AI conversations tied
+to the files they reference, and makes file management predictable across the product.
+
+## Impact
+
+The new foundation supported continued growth and made it faster for the team to ship new
+learning features without reworking navigation.
+
+## Research and design analysis
+
+Usability testing and a design analysis of the existing product surfaced where students
+lost context. Key insights guided the information architecture and the constraints the
+team worked within.
+
+## Reflection
+
+Working inside a fast-moving AI product taught me to design systems that stay flexible as
+capabilities change.`,
+  },
+  {
+    id: "philo",
+    name: "Philo Design System",
+    description:
+      "Philo Design System: a 3-week sprint turning 15 scattered screens into a dev-ready UI library with 50+ components. A case study by Stella Peng.",
+    meta: { industry: "e-commerce", status: "2-week dev cycle", team: "2 designers, founder, 2 developers", timeline: "July 2025 (3-week sprint)", skills: "Figma, Material 3" },
+    body: `A 3-week sprint where I turned 15 scattered screens into a dev-ready UI library: a
+token-based foundation, 50 documented components, and UI templates that engineers could
+build from directly. UX infrastructure for an e-commerce MVP.
+
+## Challenge
+
+The startup had a prototype pieced together from an open-source UI kit and mockups made by
+a non-designer. There were no rules whatsoever, while the dev team was shipping at the same
+time.
+
+## Audit and review
+
+I audited every existing screen to catalogue inconsistent colors, type, spacing, and
+interaction patterns, and identified which pieces could be consolidated into shared
+components.
+
+## Solution: one system, built to grow with the product
+
+50+ components, all mapped to React Native. New screens were assembled from existing parts
+instead of designed from scratch, cutting the design-to-dev cycle from months to two weeks.
+Design tokens flow from foundations into components and full pages.
+
+## Component mapping
+
+Each Figma component maps one to one to its React Native counterpart, so designers and
+engineers share a single source of truth.`,
+  },
+];
+
+for (const p of projectPages) {
+  const m = p.meta;
+  pages.push({
+    path: `project/${p.id}`,
+    file: `project/${p.id}/index.html`,
+    title: `${p.name.toLowerCase()} · Stella`,
+    description: p.description,
+    markdown: `# ${p.name}
+
+- **Industry:** ${m.industry}
+- **Status:** ${m.status}
+- **Team:** ${m.team}
+- **Timeline:** ${m.timeline}
+- **Skills:** ${m.skills}
+
+${p.body}
+
+## More
+
+- [All work](${SITE_URL}/) · [About Stella](${SITE_URL}/about) · [Contact](${SITE_URL}/contact)
+`,
+  });
+}
 
 /** Minimal markdown to HTML for the prerendered fallback body. */
 export function markdownToHtml(md) {
