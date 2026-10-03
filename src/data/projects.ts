@@ -2,6 +2,7 @@ import askSiaImage from "@/assets/asksia-cover.png";
 import circleStatusImage from "@/assets/project-circle-status-cover.png";
 import circleStatusCover from "@/assets/circle-status-inside-cover.png";
 import philoImage from "@/assets/project-philo.webp";
+import philoInnerCover from "@/assets/philo-inner-cover.png";
 import tiktokImage from "@/assets/project-tiktok.png";
 
 export interface Project {
@@ -73,6 +74,7 @@ export const projects: Project[] = [
   {
     id: "philo",
     image: philoImage,
+    coverImage: philoInnerCover,
     title: "Philo Design System",
     titleColor: "#C37933",
     tagline: "UX infra for e-commerce",
