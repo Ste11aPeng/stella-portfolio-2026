@@ -12,7 +12,7 @@ const PhiloSolution = () => {
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
         <span className="text-sm text-muted-foreground mb-3 block">solution</span>
         <h2 className="text-2xl font-bold mb-8 text-foreground">
-          A Scalable, Dev-Ready System
+          One system, built to grow with the product.
         </h2>
       </motion.div>
 
@@ -23,7 +23,7 @@ const PhiloSolution = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
       >
-        A component library built on Philo's brand, optimized for React Native, serving as a single source of truth for the team.
+        50+ components, all mapped to React Native. New screens were assembled from existing parts instead of designed from scratch, cutting the design-to-dev cycle from months to two weeks.
       </motion.p>
 
       {/* Interactive build: from tokens to a page */}
