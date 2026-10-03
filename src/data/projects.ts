@@ -9,6 +9,7 @@ export interface Project {
   id: string;
   image: string;
   coverImage?: string;
+  coverFull?: boolean;
   title: string;
   titleColor: string;
   tagline: string;

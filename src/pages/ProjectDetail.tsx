@@ -162,13 +162,23 @@ const ProjectDetail = () => {
       <Header />
 
       {/* Full-width Cover Image */}
-      <section className="w-full h-screen overflow-hidden bg-muted relative">
+      <section
+        className={
+          project.coverFull
+            ? "w-full overflow-hidden bg-muted relative"
+            : "w-full h-screen overflow-hidden bg-muted relative"
+        }
+      >
         <img
           src={project.coverImage || project.image}
           alt={project.title}
           loading="eager"
           decoding="async"
-          className="w-full h-full object-cover animate-fade-in"
+          className={
+            project.coverFull
+              ? "w-full h-auto animate-fade-in"
+              : "w-full h-full object-cover animate-fade-in"
+          }
         />
       </section>
 
