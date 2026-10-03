@@ -73,17 +73,17 @@ export const projects: Project[] = [
   {
     id: "philo",
     image: philoImage,
-    title: "Philo Design System",
+    title: "Philo Design system",
     titleColor: "#C37933",
-    tagline: "a dev-ready UI library",
-    description: "building consistent experiences at scale",
+    tagline: "UX infrastructure for a furniture e-commerce MVP",
+    description: "UX infrastructure for a furniture e-commerce MVP",
     type: "intern",
-    role: "Product Designer, audited existing screens, defined scalable patterns, built & documented the system, facilitated design–dev alignment.",
-    team: "Me (Designer), PM (Mingfei), 2 developers (Rexell, Danish), 2 Designers (Lauren, Anna)",
+    role: "audited problem, built the system, facilitated design–dev alignment.",
+    team: "2 Designer, Founder, 2 developers",
     timeline: "July 2025 (3-week sprint)",
-    skills: ["Figma", "Slack", "Material 3 UI"],
+    skills: ["Figma", "Material 3"],
     tags: ["design system", "UI library"],
-    overview: "A 3-week sprint to build a reusable, dev-ready design system for Philo Home's furniture e-commerce platform."
+    overview: "A 3-week sprint where I turned 15 scattered screens into a dev-ready UI library: a token-based foundation, 50 documented components, and page templates that engineers could build from directly."
   }
 ];
 

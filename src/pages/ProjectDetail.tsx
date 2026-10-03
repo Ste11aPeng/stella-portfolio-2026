@@ -17,9 +17,8 @@ import StitchiTesting from "@/components/stitchi/StitchiTesting";
 import StitchiReflection from "@/components/stitchi/StitchiReflection";
 import PhiloChallenge from "@/components/philo/PhiloChallenge";
 import PhiloSolution from "@/components/philo/PhiloSolution";
-import PhiloResearch from "@/components/philo/PhiloResearch";
-import PhiloTesting from "@/components/philo/PhiloTesting";
-import PhiloReflection from "@/components/philo/PhiloReflection";
+import PhiloAuditReview from "@/components/philo/PhiloAuditReview";
+import PhiloComponentMapping from "@/components/philo/PhiloComponentMapping";
 import CircleChallenge from "@/components/circle/CircleChallenge";
 import CircleSolution from "@/components/circle/CircleSolution";
 import CircleResearch from "@/components/circle/CircleResearch";
@@ -57,6 +56,9 @@ const baseSectionIds = ["overview", "challenge", "solution", "research", "testin
 const getSectionIds = (projectId: string | undefined) => {
   if (projectId === "stitchi") {
     return baseSectionIds.filter(id => id !== "testing");
+  }
+  if (projectId === "philo") {
+    return ["overview", "challenge", "solution", "audit-review", "component-mapping"];
   }
   if (projectId === "asksia") {
     return ["overview", "challenge", "solution", "impact", "research", "design-analysis", "reflection"];
@@ -212,13 +214,20 @@ const ProjectDetail = () => {
                     <p className="text-muted-foreground">Content coming soon...</p>
                   </section>
                 )}
-              
+
+              {/* Philo-specific: Solution subsections */}
+              {id === "philo" && (
+                <>
+                  <PhiloAuditReview />
+                  <PhiloComponentMapping />
+                </>
+              )}
+
               {/* AskSia-specific: Impact before Research */}
               {id === "asksia" && <AsksiaImpact />}
               
               {/* Research Section */}
-              {id === "stitchi" ? <StitchiResearch />
-                : id === "philo" ? <PhiloResearch />
+              {id === "stitchi" || id === "philo" ? null
                 : id === "circle-status" ? <CircleResearch />
                 : id === "asksia" ? <AsksiaResearch />
                 : (
@@ -231,9 +240,8 @@ const ProjectDetail = () => {
               {/* AskSia-specific: Design Analysis */}
               {id === "asksia" && <AsksiaDesignAnalysis />}
               
-              {/* Testing Section (skip for Stitchi & AskSia) */}
-              {id === "stitchi" || id === "asksia" ? null
-                : id === "philo" ? <PhiloTesting />
+              {/* Testing Section (skip for Stitchi, AskSia & Philo) */}
+              {id === "stitchi" || id === "asksia" || id === "philo" ? null
                 : id === "circle-status" ? <CircleTesting />
                 : (
                   <section id="testing" className="pt-24">
@@ -243,8 +251,7 @@ const ProjectDetail = () => {
                 )}
               
               {/* Reflection Section */}
-              {id === "stitchi" ? <StitchiReflection />
-                : id === "philo" ? <PhiloReflection />
+              {id === "stitchi" || id === "philo" ? null
                 : id === "circle-status" ? <CircleReflection />
                 : id === "asksia" ? <AsksiaReflection />
                 : (
