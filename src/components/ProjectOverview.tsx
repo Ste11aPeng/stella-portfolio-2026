@@ -52,8 +52,12 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
         transition={{ duration: 0.5, ease: easeOut, delay: 0.3 }}
       >
         <div className="flex gap-1.5">
-          <dt className="text-muted-foreground/70">role</dt>
-          <dd className="text-foreground/70">{project.role}</dd>
+          <dt className="text-muted-foreground/70">industry</dt>
+          <dd className="text-foreground/70">{project.industry}</dd>
+        </div>
+        <div className="flex gap-1.5">
+          <dt className="text-muted-foreground/70">status</dt>
+          <dd className="text-foreground/70">{project.status}</dd>
         </div>
         <div className="flex gap-1.5">
           <dt className="text-muted-foreground/70">team</dt>
