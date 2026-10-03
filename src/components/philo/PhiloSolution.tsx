@@ -1,6 +1,10 @@
 import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import IframeEmbed from "@/components/philo/IframeEmbed";
+import ImageLightbox from "@/components/ImageLightbox";
+import philoSolution2 from "@/assets/philo-solution-2.png";
+import philoSolution3 from "@/assets/philo-solution-3.png";
+import IframeEmbed from "@/components/philo/IframeEmbed";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
