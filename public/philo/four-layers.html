@@ -20,7 +20,7 @@
   :root[data-theme="dark"] { --page-bg: #15140f; --page-ink: #eeeeee; }
   html { scroll-padding-top: env(safe-area-inset-top, 0px); }
   *, *::before, *::after { box-sizing: border-box; }
-  html, body { margin: 0; height: 100%; }
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; }
   body { background: var(--page-bg); color: var(--page-ink); font-family: var(--sans);
     display: flex; align-items: center; justify-content: center; }
   .frame { width: 100%; max-width: 581px; aspect-ratio: 581 / 786; position: relative;
