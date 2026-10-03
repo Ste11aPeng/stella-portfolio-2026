@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 const ProjectProgressBar = () => {
   const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -11,6 +12,8 @@ const ProjectProgressBar = () => {
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const pct = scrollHeight > 0 ? Math.min(1, Math.max(0, scrollTop / scrollHeight)) : 0;
       setProgress(pct);
+      // Hide the bar once the page is scrolled to the very bottom (footer)
+      setHidden(scrollTop + window.innerHeight >= document.documentElement.scrollHeight - 8);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
