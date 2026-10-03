@@ -22,7 +22,7 @@ const PhiloChallenge = () => {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
         >
-          Philo Homes had an MVP pieced together from an open-source UI kit and mockups made by a non-designer. There was no color palette, no type scale, and no interaction rules, while the dev team was shipping iOS and Android at the same time.
+          The startup had an prototype pieced together from an open-source UI kit and mockups made by a non-designer. There was no rules whatsoever, while the dev team was shipping at the same time.
         </motion.p>
       </motion.div>
 
