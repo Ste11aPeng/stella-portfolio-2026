@@ -43,7 +43,13 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
       return sections.filter(s => s.id !== "testing");
     }
     if (id === "philo") {
-      return sections.map(s => s.id === "testing" ? { ...s, label: "Impact" } : s);
+      return [
+        { id: "overview", label: "Overview" },
+        { id: "challenge", label: "Challenge" },
+        { id: "solution", label: "Solution" },
+        { id: "audit-review", label: "Audit & Review" },
+        { id: "component-mapping", label: "Component Mapping" },
+      ];
     }
     if (id === "asksia") {
       return [
