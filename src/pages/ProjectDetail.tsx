@@ -17,9 +17,8 @@ import StitchiTesting from "@/components/stitchi/StitchiTesting";
 import StitchiReflection from "@/components/stitchi/StitchiReflection";
 import PhiloChallenge from "@/components/philo/PhiloChallenge";
 import PhiloSolution from "@/components/philo/PhiloSolution";
-import PhiloResearch from "@/components/philo/PhiloResearch";
-import PhiloTesting from "@/components/philo/PhiloTesting";
-import PhiloReflection from "@/components/philo/PhiloReflection";
+import PhiloAuditReview from "@/components/philo/PhiloAuditReview";
+import PhiloComponentMapping from "@/components/philo/PhiloComponentMapping";
 import CircleChallenge from "@/components/circle/CircleChallenge";
 import CircleSolution from "@/components/circle/CircleSolution";
 import CircleResearch from "@/components/circle/CircleResearch";
@@ -57,6 +56,9 @@ const baseSectionIds = ["overview", "challenge", "solution", "research", "testin
 const getSectionIds = (projectId: string | undefined) => {
   if (projectId === "stitchi") {
     return baseSectionIds.filter(id => id !== "testing");
+  }
+  if (projectId === "philo") {
+    return ["overview", "challenge", "solution", "audit-review", "component-mapping"];
   }
   if (projectId === "asksia") {
     return ["overview", "challenge", "solution", "impact", "research", "design-analysis", "reflection"];
@@ -212,7 +214,15 @@ const ProjectDetail = () => {
                     <p className="text-muted-foreground">Content coming soon...</p>
                   </section>
                 )}
-              
+
+              {/* Philo-specific: Solution subsections */}
+              {id === "philo" && (
+                <>
+                  <PhiloAuditReview />
+                  <PhiloComponentMapping />
+                </>
+              )}
+
               {/* AskSia-specific: Impact before Research */}
               {id === "asksia" && <AsksiaImpact />}
               
