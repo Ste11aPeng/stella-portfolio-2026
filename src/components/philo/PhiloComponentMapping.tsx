@@ -27,9 +27,8 @@ const PhiloComponentMapping = () => {
         </motion.p>
       </motion.div>
 
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-[1.6fr_1fr] md:gap-4 mb-8">
-        <div>
-          <span className="mb-2 block text-sm text-muted-foreground">Philo_Audit</span>
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-[932fr_581fr] md:gap-4 mb-8">
+        <div className="h-full">
           <ImageLightbox
             src={philoAudit}
             alt="Current prototype audit with hierarchy, affordance, contrast, and brand identity callouts"
@@ -37,7 +36,6 @@ const PhiloComponentMapping = () => {
           />
         </div>
         <div>
-          <span className="mb-2 block text-sm text-muted-foreground">Philo_Component Mapping</span>
           <IframeEmbed
             src="/philo/four-layers.html"
             title="Philo design system: four layers"
