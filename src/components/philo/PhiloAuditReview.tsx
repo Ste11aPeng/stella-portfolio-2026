@@ -9,7 +9,7 @@ const PhiloAuditReview = () => {
       <Separator className="mb-16 bg-border/60" />
 
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
-        <span className="text-sm text-muted-foreground mb-3 block">Audit &amp; Review</span>
+        <span className="text-sm text-muted-foreground mb-6 block">Audit &amp; Review</span>
         <h2 className="text-2xl font-bold mb-6 text-foreground">
           Auditing 15 screens and prioritizing what to fix first
         </h2>

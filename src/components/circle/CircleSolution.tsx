@@ -26,7 +26,7 @@ const CircleSolution = () => {
       duration: 0.5,
       ease: easeOut
     }}>
-        <span className="text-sm text-muted-foreground mb-3 block">
+        <span className="text-sm text-muted-foreground mb-6 block">
           solution
         </span>
       </motion.div>
@@ -138,8 +138,8 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.4
     }}>
-        <span className="text-sm text-muted-foreground mb-3 block">impact</span>
-        <h2 className="text-2xl font-bold mb-8 text-foreground">
+        <span className="text-sm text-muted-foreground mb-6 block">impact</span>
+        <h2 className="text-2xl font-bold mb-6 text-foreground">
           Showcased at the Ross IPD Trade Show
         </h2>
         <div className="flex flex-wrap gap-x-16 gap-y-8 mb-8">

@@ -11,7 +11,7 @@ const CircleChallenge = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut }}
       >
-        <span className="text-sm text-muted-foreground mb-3 block">
+        <span className="text-sm text-muted-foreground mb-6 block">
           challenge
         </span>
       </motion.div>

@@ -18,7 +18,7 @@ const NextProject = ({ currentProjectId }: NextProjectProps) => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: [0.0, 0.0, 0.2, 1] }}
       >
-        <span className="text-sm text-muted-foreground mb-3 block">next project</span>
+        <span className="text-sm text-muted-foreground mb-6 block">next project</span>
         <Link to={`/project/${nextProject.id}`} className="group block">
           <div className="relative overflow-hidden" style={{ aspectRatio: "645/326" }}>
             <img
