@@ -1,7 +1,7 @@
 import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import ImageLightbox from "@/components/ImageLightbox";
-import philoAudit from "@/assets/philo-audit.png.asset.json";
+import philoAudit from "@/assets/philo-audit.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
@@ -28,7 +28,7 @@ const PhiloAuditReview = () => {
 
       <div className="mb-8">
         <ImageLightbox
-          src={philoAudit.url}
+          src={philoAudit}
           alt="Current prototype audit - unclear hierarchy, unclear tab affordance, failed contrast check, and missing brand identity callouts"
           className="w-full rounded-lg shadow-sm"
         />

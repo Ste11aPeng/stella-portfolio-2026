@@ -1,7 +1,7 @@
 import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import ImageLightbox from "@/components/ImageLightbox";
-import philoChallengeBoard from "@/assets/philo-challenge-board.png.asset.json";
+import philoChallengeBoard from "@/assets/philo-challenge-board.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
@@ -27,7 +27,7 @@ const PhiloChallenge = () => {
       </motion.div>
 
       <ImageLightbox
-        src={philoChallengeBoard.url}
+        src={philoChallengeBoard}
         alt="The MVP file, before the system - unnamed Figma frames with no shared components"
         className="w-full rounded-lg mb-10"
       />
