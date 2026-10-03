@@ -69,7 +69,7 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
 
   return (
     <nav className="sticky top-32 hidden md:block group/sidebar">
-      <ul className="flex flex-col text-right pt-16">
+      <ul className="flex flex-col text-left pt-16">
 
 
         {visibleSections.map((section, index) => (

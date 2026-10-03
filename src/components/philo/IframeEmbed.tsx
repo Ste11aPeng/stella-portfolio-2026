@@ -35,6 +35,7 @@ const IframeEmbed = ({
         src={src}
         title={title}
         loading="lazy"
+        scrolling="no"
         className="block w-full h-full"
       />
     </motion.div>
