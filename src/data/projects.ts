@@ -73,9 +73,9 @@ export const projects: Project[] = [
   {
     id: "philo",
     image: philoImage,
-    title: "Philo Design system",
+    title: "Philo Design System",
     titleColor: "#C37933",
-    tagline: "UX infrastructure for an e-commerce MVP",
+    tagline: "UX infra for e-commerce",
     description: "UX infrastructure for an e-commerce MVP",
     type: "intern",
     role: "audited problem, built the system, facilitated design–dev alignment.",
