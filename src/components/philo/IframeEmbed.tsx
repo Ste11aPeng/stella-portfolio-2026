@@ -36,10 +36,10 @@ const IframeEmbed = ({
       <iframe
         src={src}
         title={title}
-        loading="lazy"
+        loading="eager"
         scrolling="no"
-        onLoad={() => setTimeout(() => setReady(true), 350)}
-        className={`block w-full h-full transition-opacity duration-500 ${ready ? "opacity-100" : "opacity-0"}`}
+        onLoad={() => setReady(true)}
+        className={`block w-full h-full transition-opacity duration-300 ${ready ? "opacity-100" : "opacity-0"}`}
       />
     </motion.div>
   );
