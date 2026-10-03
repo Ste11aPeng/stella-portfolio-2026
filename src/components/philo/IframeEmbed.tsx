@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 interface IframeEmbedProps {
   src: string;
   title: string;
