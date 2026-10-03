@@ -23,7 +23,7 @@ const SanJoseClock = () => {
 
   return (
     <span className="text-sm text-[hsl(0,0%,60%)] tabular-nums">
-      san jose {time}
+      seattle {time}
     </span>
   );
 };
