@@ -9,6 +9,7 @@ export interface Project {
   id: string;
   image: string;
   coverImage?: string;
+  coverFull?: boolean;
   title: string;
   titleColor: string;
   tagline: string;
@@ -75,6 +76,7 @@ export const projects: Project[] = [
     id: "philo",
     image: philoImage,
     coverImage: philoInnerCover,
+    coverFull: true,
     title: "Philo Design System",
     titleColor: "#C37933",
     tagline: "UX infra for e-commerce",
