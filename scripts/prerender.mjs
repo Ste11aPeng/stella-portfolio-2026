@@ -48,7 +48,10 @@ const run = async () => {
   for (const page of pages) {
     const outFile = path.join(dist, page.file);
     await mkdir(path.dirname(outFile), { recursive: true });
-    await writeFile(outFile, shellFor(template, page), "utf8");
+    const html = shellFor(template, page);
+    await writeFile(outFile, html, "utf8");
+    // GitHub Pages serves /foo from foo.html with a 200 (no redirect to /foo/).
+    if (page.path) await writeFile(path.join(dist, `${page.path}.html`), html, "utf8");
 
     const mdName = page.path === "" ? "index.md" : `${page.path}.md`;
     await writeFile(path.join(dist, mdName), page.markdown, "utf8");
