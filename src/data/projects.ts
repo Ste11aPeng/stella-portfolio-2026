@@ -15,7 +15,8 @@ export interface Project {
   tagline: string;
   description: string;
   type: string;
-  role: string;
+  industry: string;
+  status: string;
   team: string;
   timeline: string;
   skills: string[];
@@ -33,7 +34,8 @@ export const projects: Project[] = [
     tagline: "social experience",
     description: "social experience",
     type: "intern",
-    role: "Product Design Intern",
+    industry: "social media",
+    status: "shipped",
     team: "Social team",
     timeline: "Summer 2026",
     skills: ["Figma", "Prototyping"],
@@ -50,7 +52,8 @@ export const projects: Project[] = [
     tagline: "light for community",
     description: "connecting neighbors through ambient awareness",
     type: "0 to 1",
-    role: "Product Designer: 3D Modeling, Prototyping, Website Design",
+    industry: "IoT, smart home",
+    status: "shipped",
     team: "2 designer, 1 PM, 1 SWE",
     timeline: "Fall 2024 (15 weeks)",
     skills: ["Figma", "Blender", "Rhino", "Webflow"],
@@ -65,7 +68,8 @@ export const projects: Project[] = [
     tagline: "workspace for AI-study tool",
     description: "helping students learn smarter with AI-powered tutoring",
     type: "intern",
-    role: "Product Design – Information Architecture, Nav, File Model",
+    industry: "EdTech, AI",
+    status: "shipped",
     team: "2 Designers, 3 Engineers, 1 PM",
     timeline: "Aug 2025 - Feb 2026",
     skills: ["Figma", "Prototyping", "User Research"],
@@ -82,7 +86,8 @@ export const projects: Project[] = [
     tagline: "UX infra for e-commerce",
     description: "UX infrastructure for an e-commerce MVP",
     type: "intern",
-    role: "audited problem, built the system, facilitated design–dev alignment.",
+    industry: "e-commerce",
+    status: "shipped",
     team: "2 Designer, Founder, 2 Developers",
     timeline: "July 2025 (3-week sprint)",
     skills: ["Figma", "Material 3"],
