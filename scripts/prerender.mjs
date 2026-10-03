@@ -27,6 +27,12 @@ const shellFor = (template, page) => {
       /<link rel="alternate" type="text\/markdown" href="[^"]*" \/>/,
       `<link rel="alternate" type="text/markdown" href="${mdUrl}" />`
     )
+    .replace(/(<meta property="og:title" content=")[^"]*(")/, `$1${escapeAttr(page.title)}$2`)
+    .replace(/(<meta property="og:description" content=")[^"]*(")/, `$1${escapeAttr(page.description)}$2`)
+    .replace(/(<meta name="twitter:title" content=")[^"]*(")/, `$1${escapeAttr(page.title)}$2`)
+    .replace(/(<meta name="twitter:description" content=")[^"]*(")/, `$1${escapeAttr(page.description)}$2`)
+    .replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${url}$2`)
+    .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${url}" />`)
     .replace('<div id="root"></div>', `<div id="root">${fallback}</div>`);
 
   if (!html.includes('rel="canonical"')) {

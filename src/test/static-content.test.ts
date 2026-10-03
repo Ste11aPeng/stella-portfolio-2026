@@ -16,7 +16,7 @@ const byPath = (p: string) => all.find((page) => page.path === p)!;
 
 describe("prerendered static content", () => {
   it("covers the homepage and the trust anchor pages", () => {
-    expect(all.map((p) => p.path).sort()).toEqual(["", "about", "contact", "privacy"]);
+    expect(all.map((p) => p.path).sort()).toEqual(["", "about", "contact", "privacy", "project/asksia", "project/circle-status", "project/philo"]);
   });
 
   for (const page of all) {
