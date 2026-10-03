@@ -38,6 +38,23 @@ const PhiloSolution = () => {
           aspect="1536 / 864"
         />
       </div>
+
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-[932fr_581fr] md:gap-4">
+        <div>
+          <ImageLightbox
+            src={philoSolution2}
+            alt="Design system table of contents with component thumbnails"
+            className="h-full w-full object-cover"
+          />
+        </div>
+        <div>
+          <ImageLightbox
+            src={philoSolution3}
+            alt="Component specs: button sizing, dropdown menu, and product card"
+            className="h-full w-full object-cover"
+          />
+        </div>
+      </div>
     </section>
   );
 };
