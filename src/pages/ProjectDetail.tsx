@@ -228,7 +228,6 @@ const ProjectDetail = () => {
               
               {/* Research Section */}
               {id === "stitchi" ? <StitchiResearch />
-                : id === "philo" ? <PhiloResearch />
                 : id === "circle-status" ? <CircleResearch />
                 : id === "asksia" ? <AsksiaResearch />
                 : (
@@ -254,7 +253,6 @@ const ProjectDetail = () => {
               
               {/* Reflection Section */}
               {id === "stitchi" ? <StitchiReflection />
-                : id === "philo" ? <PhiloReflection />
                 : id === "circle-status" ? <CircleReflection />
                 : id === "asksia" ? <AsksiaReflection />
                 : (
