@@ -1,7 +1,7 @@
 import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
-import ImageLightbox from "@/components/ImageLightbox";
 import AnimatedTitle from "@/components/AnimatedTitle";
+import HoverCaptionImage from "@/components/HoverCaptionImage";
 import philoChallengeBoard from "@/assets/philo-challenge-board.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
@@ -25,11 +25,14 @@ const PhiloChallenge = () => {
         </motion.p>
       </motion.div>
 
-      <ImageLightbox
-        src={philoChallengeBoard}
-        alt="The MVP file, before the system - unnamed Figma frames with no shared components"
-        className="w-full rounded-lg mb-10"
-      />
+      <div className="mb-10">
+        <HoverCaptionImage
+          src={philoChallengeBoard}
+          alt="The MVP file, before the system - unnamed Figma frames with no shared components"
+          title="A Common Pain Point in Startup Design Files"
+          body="Unnamed frames and no shared components — nothing consistent to build from."
+        />
+      </div>
     </section>
   );
 };

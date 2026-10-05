@@ -9,12 +9,12 @@ const ProjectGrid = () => {
         {projects.map((project, index) => (
           <motion.div
             key={project.id}
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.97, filter: "blur(16px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             transition={{
-              duration: 0.6,
-              ease: [0.25, 0.1, 0.25, 1],
-              delay: 0.2 + index * 0.08,
+              duration: 1.4,
+              ease: [0.22, 1, 0.36, 1],
+              delay: 0.2 + index * 0.2,
             }}
           >
             <ProjectCard

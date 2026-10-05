@@ -51,7 +51,7 @@ export const projects: Project[] = [
     coverFull: true,
     title: "AskSia",
     titleColor: "#4E4DF4",
-    tagline: "workspace for AI-study tool",
+    tagline: "AI-powered study sidekick",
     description: "helping students learn smarter with AI-powered tutoring",
     type: "intern",
     industry: "EdTech, AI",

@@ -9,7 +9,7 @@ const Index = () => {
     <>
       <Seo
         path="/"
-        description="Stella Peng is a designer who builds across design, engineering, and product. Currently designing at TikTok and studying HCI+Design at the University of Washington."
+        description="Stella Peng is a designer who builds across design, tech, and things in between. Master's in HCI + Design @ UW, prev. design @ TikTok."
       />
       <div className="min-h-screen bg-background relative z-10">
         <Header />

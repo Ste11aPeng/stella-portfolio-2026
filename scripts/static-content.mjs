@@ -40,14 +40,14 @@ export const pages = [
     file: "index.html",
     title: "Stella Peng",
     description:
-      "Stella Peng is a designer who builds across design, engineering, and product. Currently designing at TikTok and studying HCI+Design at the University of Washington.",
+      "Stella Peng is a designer who builds across design, tech, and things in between. Master's in HCI + Design @ UW, prev. design @ TikTok.",
     h1: "Stella is a designer who builds across design, tech & things in between.",
     markdown: `# Stella Peng
 
-Stella Peng is a product designer who builds across design, engineering, and product.
-She is currently a product design intern at TikTok, working on social experiences and on
-new ways AI can fit into the design process, and is pursuing a Master of HCI + Design at
-the University of Washington. Before that she studied and worked in Michigan, shipping
+Stella Peng is a designer who builds across design, tech, and things in between.
+She's pursuing a Master of HCI + Design at the University of Washington, with previous
+design experience at TikTok working on social experiences and on new ways AI can fit
+into the design process. Before that she studied and worked in Michigan, shipping
 0 to 1 and 1 to 10 products with early-stage startups and an accelerator.
 
 ## Selected work

@@ -30,15 +30,16 @@
   #stage { position: absolute; left: 0; top: 0; width: 500px; height: 720px; transform-origin: 0 0; }
   .abs { position: absolute; }
 
-  .pp { position: absolute; right: 14px; bottom: 14px; z-index: 5; width: 40px; height: 40px; padding: 0; border: 0;
-    border-radius: 12px; background: rgba(255,255,255,.88); color: #101A2E; cursor: pointer;
-    display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(4px);
-    transition: opacity .2s ease, transform .2s ease, background-color .2s ease; }
-  .frame:hover .pp, .pp:focus-visible { opacity: 1; transform: none; }
-  .pp:hover { background: #fff; }
+  .pp { position: absolute; right: 16px; bottom: 16px; z-index: 5; width: 40px; height: 40px; padding: 0; border: 0;
+    border-radius: 12px; background: #ffffff; color: #18181b; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; opacity: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .12), 0 1px 3px rgba(0, 0, 0, .08);
+    transition: opacity .2s ease, box-shadow .2s ease; }
+  .frame:hover .pp, .pp:focus-visible { opacity: 1; }
+  .pp:hover { box-shadow: 0 4px 12px rgba(0, 0, 0, .16), 0 2px 4px rgba(0, 0, 0, .1); }
   .pp:focus-visible { outline: 2px solid #A25F2C; outline-offset: 2px; }
-  @media (hover: none) { .pp { opacity: 1; transform: none; } }
-  .pp svg { width: 17px; height: 17px; }
+  @media (hover: none) { .pp { opacity: 1; } }
+  .pp svg { width: 16px; height: 16px; }
   .pp .i-play { display: none; } .pp.paused .i-play { display: block; } .pp.paused .i-pause { display: none; }
 
   #art { position: absolute; left: 0; top: 0; overflow: visible; }

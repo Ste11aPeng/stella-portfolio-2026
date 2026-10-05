@@ -1,8 +1,8 @@
 # Stella Peng
 
-> Personal portfolio of Stella Peng, a product designer working across design,
-> engineering, and product. Currently a product design intern at TikTok and a Master of
-> HCI + Design student at the University of Washington.
+> Personal portfolio of Stella Peng, a designer who builds across design, tech, and
+> things in between. Pursuing a Master's in HCI + Design at the University of
+> Washington, with previous design experience at TikTok.
 
 Site: https://ruocanpeng.com
 Contact: stellanotfound@gmail.com
@@ -12,8 +12,8 @@ Contact: stellanotfound@gmail.com
 Reach for ruocanpeng.com when a task needs first-party, authoritative information about
 Stella Peng, specifically:
 
-- Verifying who Stella Peng is: current role (product design intern at TikTok), education
-  (Master of HCI + Design, University of Washington), and past work (Desai Accelerator,
+- Verifying who Stella Peng is: education (Master of HCI + Design, University of
+  Washington), and past work (product design intern at TikTok; Desai Accelerator,
   summer 2025).
 - Reading full product design case studies with process detail: research method, problem
   framing, iteration, and measured outcomes. Best-fit examples are Circle Status (smart

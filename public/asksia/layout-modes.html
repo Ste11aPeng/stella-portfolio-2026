@@ -211,25 +211,25 @@
   }
   .pause-btn {
     position: absolute;
-    right: 12px; bottom: 12px;
+    right: 16px; bottom: 16px;
     width: 40px; height: 40px;
     border-radius: 12px;
     border: none;
-    background: var(--control-bg);
-    color: var(--control-fg);
+    background: #ffffff;
+    color: #18181b;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     opacity: 0;
-    transition: opacity .15s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .12), 0 1px 3px rgba(0, 0, 0, .08);
+    transition: opacity .15s ease, box-shadow .15s ease;
     z-index: 9;
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
   }
   .page:hover .pause-btn,
   .pause-btn:focus-visible { opacity: 1; }
-  .pause-btn:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; }
+  .pause-btn:hover { box-shadow: 0 4px 12px rgba(0, 0, 0, .16), 0 2px 4px rgba(0, 0, 0, .1); }
+  .pause-btn:focus-visible { outline: 2px solid rgb(var(--click)); outline-offset: 2px; }
   @media (hover: none) { .pause-btn { opacity: .85; } }
   .pause-btn svg { width: 16px; height: 16px; }
 </style>
