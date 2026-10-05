@@ -47,7 +47,7 @@ const CircleResearch = () => {
         <h3 className="text-xl font-semibold mb-6 text-foreground">
           What we found
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+        <div className="space-y-4">
           {[
             {
               title: "People don't ask for help",
@@ -65,8 +65,11 @@ const CircleResearch = () => {
                 "Family members outside the home had no way to know if elderly or vulnerable relatives were okay.",
             },
           ].map((insight) => (
-            <div key={insight.title} className="border-t border-border/60 pt-5">
-              <h4 className="text-base font-semibold mb-2 text-foreground">
+            <div
+              key={insight.title}
+              className="border-l-2 border-primary/60 bg-muted/40 rounded-r-lg px-6 py-5"
+            >
+              <h4 className="text-sm font-semibold text-foreground mb-1">
                 {insight.title}
               </h4>
               <p className="text-sm text-foreground/75 leading-relaxed">

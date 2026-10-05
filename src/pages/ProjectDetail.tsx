@@ -61,7 +61,7 @@ const getSectionIds = (projectId: string | undefined) => {
     return ["overview", "challenge", "solution", "audit-review", "component-mapping"];
   }
   if (projectId === "asksia") {
-    return ["overview", "challenge", "solution", "impact", "research", "design-analysis", "reflection"];
+    return ["overview", "challenge", "solution", "research", "design-analysis", "reflection"];
   }
   return baseSectionIds;
 };

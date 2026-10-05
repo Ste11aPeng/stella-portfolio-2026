@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AskSia: file access iterations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --ink: #17171c;
+    --ink-2: #55555f;
+    --line: #e7e7ec;
+    --panel: #f6f6f8;
+    --win: #ffffff;
+    --win-line: #e4e4ea;
+    --bar: #ececf1;
+    --accent: #4757f5;
+    --accent-soft: rgba(71, 87, 245, .07);
+    --yes: #22a65a;
+    --no: #b7b7c0;
+    --font: "Inter", "Helvetica Neue", Arial, sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121216; --ink: #f1f1f4; --ink-2: #a9a9b4; --line: #2a2a31; --panel: #1b1b21;
+      --win: #23232a; --win-line: #33333c; --bar: #34343d; --accent: #8a95ff; --accent-soft: rgba(138,149,255,.10);
+      --yes: #3cc777; --no: #6c6c78;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121216; --ink: #f1f1f4; --ink-2: #a9a9b4; --line: #2a2a31; --panel: #1b1b21;
+    --win: #23232a; --win-line: #33333c; --bar: #34343d; --accent: #8a95ff; --accent-soft: rgba(138,149,255,.10);
+    --yes: #3cc777; --no: #6c6c78;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: transparent; color: var(--ink); font-family: var(--font); }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 32px 0; }
+
+  /* Collapsible */
+  .it { }
+  .toggle {
+    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 20px 0; background: none; border: 0; color: inherit; font: inherit; text-align: left; cursor: pointer;
+  }
+  .toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
+  .toggle .eyebrow { font-size: 12px; color: var(--ink-2); margin-bottom: 4px; }
+  .toggle .title { font-size: 18px; font-weight: 500; line-height: 1.35; }
+  .chev {
+    flex: none; width: 36px; height: 36px; border-radius: 10px; background: var(--panel);
+    display: flex; align-items: center; justify-content: center; transition: transform .3s ease;
+  }
+  .chev svg { width: 16px; height: 16px; }
+  .toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
+  .body { }
+  .body.open { grid-template-rows: 1fr; }
+  .body > .inner { }
+  .intro { font-size: 15px; line-height: 1.6; color: var(--ink-2); max-width: 600px; margin: 0 0 20px; }
+
+  /* Carousel */
+  .track {
+    display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 0 9% 4px 0; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .track::-webkit-scrollbar { display: none; }
+  .slide {
+    flex: 0 0 88%; scroll-snap-align: start; background: var(--panel); border-radius: 16px;
+    padding: 36px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    will-change: opacity;
+  }
+  .ill { width: 100%; max-width: 320px; height: auto; display: block; }
+  .slide h3 { margin: 16px 0 12px; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .pick { font-size: 11px; font-weight: 500; color: var(--accent); background: var(--accent-soft); padding: 3px 8px; border-radius: 999px; }
+  .pc { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; width: max-content; max-width: 100%; }
+  .pc li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; font-size: 14px; line-height: 1.45; color: var(--ink); }
+  .ic { width: 18px; height: 18px; border-radius: 5px; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .ic svg { width: 12px; height: 12px; }
+  .ic.y { background: var(--yes); color: #fff; }
+  .ic.n { border: 1.5px solid var(--no); color: var(--no); }
+  .note { max-width: 400px; width: 100%; margin: 14px 0 0; font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+
+  .nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 18px 0 8px; }
+  .arrow {
+    width: 36px; height: 36px; border-radius: 10px; border: 0; background: var(--panel); color: var(--ink);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+  }
+  .arrow:disabled { opacity: .35; cursor: default; }
+  .arrow svg { width: 16px; height: 16px; }
+  .arrow:focus-visible, .dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .dots { display: flex; gap: 6px; }
+  .dot { width: 18px; height: 4px; border-radius: 2px; border: 0; padding: 0; background: var(--line); cursor: pointer; transition: background .2s ease, width .2s ease; }
+  .dot[aria-current="true"] { background: var(--accent); width: 26px; }
+  .outro { font-size: 15px; line-height: 1.6; color: var(--ink); max-width: 600px; margin: 16px 0 24px; }
+
+  @media (max-width: 600px) {
+    .slide { flex-basis: 90%; padding: 28px 16px; }
+    .track { padding: 0 5% 4px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .chev, .dot { transition: none; }
+    .track { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="it">
+
+    <div class="body">
+      <div class="inner">
+
+        <div class="track" id="track" aria-roledescription="carousel" aria-label="Design iterations">
+
+          <!-- 1 Dropdown -->
+          <article class="slide" aria-roledescription="slide" aria-label="1 of 3: Responsive Dropdown">
+            <svg class="ill" viewBox="0 0 320 190" role="img" aria-label="Sketch: a file button at the top left opens a short dropdown list over the document.">
+              <defs>
+                <linearGradient id="fade3" x1="0" y1="0" x2="0" y2="1"><stop offset="55%" stop-color="var(--panel)" stop-opacity="0"/><stop offset="100%" stop-color="var(--panel)"/></linearGradient>
+              </defs>
+              <rect x="10" y="6" width="300" height="190" rx="10" fill="var(--win)" stroke="var(--win-line)"/>
+              <circle cx="24" cy="20" r="3" fill="#ff5f57"/><circle cx="34" cy="20" r="3" fill="#febc2e"/><circle cx="44" cy="20" r="3" fill="#28c840"/>
+              <line x1="62" y1="6" x2="62" y2="196" stroke="var(--win-line)"/>
+              <rect x="82" y="66" width="200" height="6" rx="3" fill="var(--bar)"/>
+              <rect x="82" y="82" width="210" height="6" rx="3" fill="var(--bar)"/>
+              <rect x="82" y="98" width="190" height="6" rx="3" fill="var(--bar)"/>
+              <rect x="82" y="114" width="205" height="6" rx="3" fill="var(--bar)"/>
+              <rect x="82" y="130" width="150" height="6" rx="3" fill="var(--bar)"/>
+              <rect x="72" y="28" width="70" height="18" rx="9" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="4 3"/>
+              <rect x="72" y="52" width="92" height="76" rx="6" fill="var(--win)"/>
+              <rect x="72" y="52" width="92" height="76" rx="6" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="4 3"/>
+              <rect x="0" y="6" width="320" height="190" fill="url(#fade3)"/>
+            </svg>
+            <h3>Responsive Dropdown</h3>
+            <ul class="pc">
+              <li><span class="ic y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Shows the file count at a glance</li>
+              <li><span class="ic y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Works for one file or twenty</li>
+              <li><span class="ic y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Reuses an existing component, so it’s quick to build</li>
+              <li><span class="ic n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 12h12"/></svg></span>Files stay hidden until the menu is opened</li>
+            </ul>
+          </article>
+          <!-- 2 Side Drawer -->
+          <article class="slide" aria-roledescription="slide" aria-label="2 of 3: Side Drawer">
+            <svg class="ill" viewBox="0 0 320 190" role="img" aria-label="Sketch: a file panel slides in from the left and covers part of the document.">
+              <defs>
+                <linearGradient id="fade1" x1="0" y1="0" x2="0" y2="1"><stop offset="55%" stop-color="var(--panel)" stop-opacity="0"/><stop offset="100%" stop-color="var(--panel)"/></linearGradient>
+              </defs>
+              <rect x="10" y="6" width="300" height="190" rx="10" fill="var(--win)" stroke="var(--win-line)"/>
+              <circle cx="24" cy="20" r="3" fill="#ff5f57"/><circle cx="34" cy="20" r="3" fill="#febc2e"/><circle cx="44" cy="20" r="3" fill="#28c840"/>
+              <line x1="62" y1="6" x2="62" y2="196" stroke="var(--win-line)"/>
+              <rect x="82" y="40" width="200" height="6" rx="3" fill="var(--bar)"/>
+              <rect x="82" y="56" width="210" height="6" rx="3" fill="var(--bar)"/>
+              <rect x="82" y="72" width="190" height="6" rx="3" fill="var(--bar)"/>
+              <rect x="82" y="88" width="205" height="6" rx="3" fill="var(--bar)"/>
+              <rect x="82" y="104" width="150" height="6" rx="3" fill="var(--bar)"/>
+              <rect x="70" y="30" width="96" height="150" rx="6" fill="var(--win)"/>
+              <rect x="70" y="30" width="96" height="150" rx="6" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="4 3"/>
+              <rect x="0" y="6" width="320" height="190" fill="url(#fade1)"/>
+            </svg>
+            <h3>Side Drawer</h3>
+            <ul class="pc">
+              <li><span class="ic y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Clean when closed</li>
+              <li><span class="ic n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 12h12"/></svg></span>Covers the document when open</li>
+              <li><span class="ic n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 12h12"/></svg></span>Takes an extra tap to switch files</li>
+            </ul>
+          </article>
+
+          <!-- 3 Tabs -->
+          <article class="slide" aria-roledescription="slide" aria-label="3 of 3: Browser-like Tabs">
+            <svg class="ill" viewBox="0 0 320 190" role="img" aria-label="Sketch: a row of tabs along the top, with the last tabs squeezed narrow.">
+              <defs>
+                <linearGradient id="fade2" x1="0" y1="0" x2="0" y2="1"><stop offset="55%" stop-color="var(--panel)" stop-opacity="0"/><stop offset="100%" stop-color="var(--panel)"/></linearGradient>
+              </defs>
+              <rect x="10" y="6" width="300" height="190" rx="10" fill="var(--win)" stroke="var(--win-line)"/>
+              <circle cx="24" cy="20" r="3" fill="#ff5f57"/><circle cx="34" cy="20" r="3" fill="#febc2e"/><circle cx="44" cy="20" r="3" fill="#28c840"/>
+              <line x1="62" y1="6" x2="62" y2="196" stroke="var(--win-line)"/>
+              <g stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="4 3" fill="var(--accent-soft)">
+                <rect x="72" y="30" width="58" height="18" rx="4"/>
+                <rect x="134" y="30" width="58" height="18" rx="4"/>
+                <rect x="196" y="30" width="46" height="18" rx="4"/>
+                <rect x="246" y="30" width="30" height="18" rx="4"/>
+                <rect x="280" y="30" width="20" height="18" rx="4"/>
+              </g>
+              <rect x="82" y="66" width="200" height="6" rx="3" fill="var(--bar)"/>
+              <rect x="82" y="82" width="210" height="6" rx="3" fill="var(--bar)"/>
+              <rect x="82" y="98" width="190" height="6" rx="3" fill="var(--bar)"/>
+              <rect x="82" y="114" width="205" height="6" rx="3" fill="var(--bar)"/>
+              <rect x="82" y="130" width="150" height="6" rx="3" fill="var(--bar)"/>
+              <rect x="0" y="6" width="320" height="190" fill="url(#fade2)"/>
+            </svg>
+            <h3>Browser-like Tabs</h3>
+            <ul class="pc">
+              <li><span class="ic y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Familiar from web browsers</li>
+              <li><span class="ic n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 12h12"/></svg></span>Gets crowded after three or four files</li>
+              <li><span class="ic n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 12h12"/></svg></span>Costly to build and maintain</li>
+            </ul>
+          </article>
+
+        </div>
+
+        <div class="nav">
+          <button class="arrow" id="prev" aria-label="Previous iteration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <div class="dots" id="dots"></div>
+          <button class="arrow" id="next" aria-label="Next iteration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var track = document.getElementById('track'), slides = Array.prototype.slice.call(track.querySelectorAll('.slide'));
+  var dotsWrap = document.getElementById('dots'), prev = document.getElementById('prev'), next = document.getElementById('next');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var current = 0;
+
+  slides.forEach(function (s, i) {
+    var d = document.createElement('button');
+    d.className = 'dot';
+    d.setAttribute('aria-label', 'Go to iteration ' + (i + 1));
+    d.addEventListener('click', function () { go(i); });
+    dotsWrap.appendChild(d);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function setActive(i) {
+    if (i === current && dots[i].getAttribute('aria-current') === 'true') return;
+    current = i;
+    slides.forEach(function (s, j) { s.setAttribute('aria-hidden', j === i ? 'false' : 'true'); });
+    dots.forEach(function (d, j) { d.setAttribute('aria-current', j === i ? 'true' : 'false'); });
+    prev.disabled = i === 0;
+    next.disabled = i === slides.length - 1;
+  }
+  // Opacity follows the scroll position frame by frame, so fading never lags behind the swipe
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var mid = track.scrollLeft + track.clientWidth / 2;
+    var step = slides.length > 1 ? (slides[1].offsetLeft - slides[0].offsetLeft) : track.clientWidth;
+    var best = 0, bd = Infinity;
+    slides.forEach(function (s, j) {
+      var d = Math.abs(s.offsetLeft + s.clientWidth / 2 - mid);
+      if (d < bd) { bd = d; best = j; }
+      var f = Math.min(Math.max(d / step - 0.08, 0) / 0.92, 1);
+      s.style.opacity = (1 - f * 0.55).toFixed(3);
+    });
+    setActive(best);
+  }
+  function go(i, instant) {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    var s = slides[i];
+    // Flush-left: align the slide's own left edge to the track's left edge
+    // (matching the body copy above it) instead of centering it.
+    var left = s.offsetLeft;
+    track.scrollTo({ left: left, behavior: (instant || reduce) ? 'auto' : 'smooth' });
+  }
+  prev.addEventListener('click', function () { go(current - 1); });
+  next.addEventListener('click', function () { go(current + 1); });
+  track.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { e.preventDefault(); go(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(current - 1); }
+  });
+  track.tabIndex = 0;
+  track.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', function () { requestAnimationFrame(update); });
+  slides.forEach(function (s, j) { s.addEventListener('click', function () { if (j !== current) go(j); }); });
+  current = -1; update();
+})();
+</script>
+</body>
+</html>

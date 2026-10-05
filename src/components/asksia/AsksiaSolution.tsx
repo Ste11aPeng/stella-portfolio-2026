@@ -1,10 +1,8 @@
 import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
-import ImageLightbox from "@/components/ImageLightbox";
 import AnimatedTitle from "@/components/AnimatedTitle";
-import solution1 from "@/assets/sia-solution-1.png";
-import solution2 from "@/assets/sia-solution-2.png";
-import solution3 from "@/assets/sia-solution-3.png";
+import IframeEmbed from "@/components/philo/IframeEmbed";
+import solutionBg from "@/assets/sia-solution-bg.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
@@ -28,10 +26,18 @@ const AsksiaSolution = () => {
         A responsive UI that dynamically reconfigures its layout based on user intent, seamlessly transitioning from immersive chat to side-by-side file inspection.
       </motion.p>
 
-      <div className="space-y-8">
-        <ImageLightbox src={solution1} alt="AskSia - Chat Focus" className="w-full rounded-lg border border-border/30" />
-        <ImageLightbox src={solution2} alt="AskSia - Chat + File List" className="w-full rounded-lg border border-border/30" />
-        <ImageLightbox src={solution3} alt="AskSia - Reading + Chat" className="w-full rounded-lg border border-border/30" />
+      <div className="relative overflow-hidden rounded-lg" style={{ aspectRatio: "1536 / 864" }}>
+        <img
+          src={solutionBg}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <IframeEmbed
+          src="/asksia/layout-modes.html"
+          title="AskSia looping through Chat Focus, Chat + File List, and Reading + Chat layouts"
+          className="absolute inset-0 !rounded-none !border-0"
+        />
       </div>
     </section>
   );

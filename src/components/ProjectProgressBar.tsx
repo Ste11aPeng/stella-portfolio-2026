@@ -12,10 +12,15 @@ const ProjectProgressBar = () => {
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const pct = scrollHeight > 0 ? Math.min(1, Math.max(0, scrollTop / scrollHeight)) : 0;
       setProgress(pct);
-      // Hide the bar once the page is scrolled to the very bottom (footer)
+      // Hide the bar once the page is scrolled to the very bottom (footer).
+      // The footer is sticky-pinned (see ProjectDetail/GalleryProjectDetail),
+      // so it sits at the bottom of the viewport well before the page end —
+      // just hidden behind the opaque foreground content until then. Its
+      // getBoundingClientRect() can't tell us when it's actually revealed,
+      // so use its height to find where the foreground content truly ends.
       const footer = document.querySelector("footer");
-      const footerVisible = footer ? footer.getBoundingClientRect().top < window.innerHeight - 1 : false;
-      setHidden(footerVisible || scrollTop + window.innerHeight >= document.documentElement.scrollHeight - 80);
+      const footerHeight = footer ? footer.getBoundingClientRect().height : 0;
+      setHidden(scrollTop + window.innerHeight >= document.documentElement.scrollHeight - footerHeight + 8);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll);

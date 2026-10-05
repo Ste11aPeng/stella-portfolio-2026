@@ -56,9 +56,8 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
         { id: "overview", label: "Overview" },
         { id: "challenge", label: "Challenge" },
         { id: "solution", label: "Solution" },
-        { id: "impact", label: "Impact" },
-        { id: "research", label: "UXR" },
-        { id: "design-analysis", label: "Design Analysis" },
+        { id: "research", label: "Case Study" },
+        { id: "design-analysis", label: "Design Decision" },
         { id: "reflection", label: "Reflection" },
       ];
     }

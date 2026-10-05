@@ -1,4 +1,5 @@
 import askSiaImage from "@/assets/asksia-cover.png";
+import askSiaInnerCover from "@/assets/asksia-inner-cover.png";
 import circleStatusImage from "@/assets/project-circle-status-cover.png";
 import circleStatusCover from "@/assets/circle-status-inside-cover.png";
 import philoImage from "@/assets/project-philo.webp";
@@ -37,7 +38,7 @@ export const projects: Project[] = [
     industry: "social media",
     status: "nda",
     team: "Social team",
-    timeline: "Summer 2026",
+    timeline: "Jun 2026 - Aug 2026",
     skills: ["Figma", "Prototyping"],
     tags: ["UI/UX design", "social"],
     overview: "Coming soon.",
@@ -55,8 +56,8 @@ export const projects: Project[] = [
     type: "0 to 1",
     industry: "IoT, smart home",
     status: "sold 264 units in 3 days",
-    team: "2 designer, 1 PM, 1 SWE",
-    timeline: "Fall 2024 (15 weeks)",
+    team: "2 Designers, 1 PM, 1 Engineer",
+    timeline: "Sep 2024 - Dec 2024",
     skills: ["Figma", "Blender", "Rhino", "Webflow"],
     tags: ["UI/UX design", "IoT", "community"],
     overview: "Circle Status is a smart lamp and companion app that turns passive outage detection into active community connection. Built in 15 weeks as part of Michigan's IPD program, it launched at a 200-person trade show and sold 264 units in 3 days."
@@ -64,13 +65,15 @@ export const projects: Project[] = [
   {
     id: "asksia",
     image: askSiaImage,
+    coverImage: askSiaInnerCover,
+    coverFull: true,
     title: "AskSia",
     titleColor: "#4E4DF4",
     tagline: "workspace for AI-study tool",
     description: "helping students learn smarter with AI-powered tutoring",
     type: "intern",
     industry: "EdTech, AI",
-    status: "100k+ users",
+    status: "Shipped to production",
     team: "2 Designers, 3 Engineers, 1 PM",
     timeline: "Aug 2025 - Feb 2026",
     skills: ["Figma", "Prototyping", "User Research"],
@@ -88,9 +91,9 @@ export const projects: Project[] = [
     description: "UX infrastructure for an e-commerce MVP",
     type: "intern",
     industry: "e-commerce",
-    status: "2-week dev cycle",
-    team: "2 Designer, Founder, 2 Developers",
-    timeline: "July 2025 (3-week sprint)",
+    status: "Shipped to engineering",
+    team: "2 Designers, 2 Engineers, 1 Founder",
+    timeline: "Jul 2025",
     skills: ["Figma", "Material 3"],
     tags: ["design system", "UI library"],
     overview: "A 3-week sprint where I turned 15 scattered screens into a dev-ready UI library: a token-based foundation, 50 documented components, and UI templates that engineers could build from directly."
