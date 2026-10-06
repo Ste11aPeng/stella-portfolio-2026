@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 
 const SanJoseClock = () => {
   const [time, setTime] = useState("");
@@ -12,7 +13,7 @@ const SanJoseClock = () => {
           hour: "2-digit",
           minute: "2-digit",
           second: "2-digit",
-          hour12: false,
+          hour12: true,
         })
       );
     };
@@ -23,19 +24,29 @@ const SanJoseClock = () => {
 
   return (
     <span className="text-sm text-[hsl(0,0%,60%)] tabular-nums">
-      seattle {time}
+      {time} / Seattle WA
     </span>
   );
 };
 
 const Footer = () => {
   const [copied, setCopied] = useState(false);
+  const [emailHovering, setEmailHovering] = useState(false);
+  const [emailTooltipPos, setEmailTooltipPos] = useState({ x: 0, y: 0 });
 
   const handleCopyEmail = async (e: React.MouseEvent) => {
     e.preventDefault();
     await navigator.clipboard.writeText("stellanotfound@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleEmailMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const parent = e.currentTarget.parentElement;
+    if (!parent) return;
+    const rect = parent.getBoundingClientRect();
+    setEmailTooltipPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    if (!emailHovering) setEmailHovering(true);
   };
 
   return (
@@ -61,7 +72,7 @@ const Footer = () => {
         </motion.p>
 
         <motion.nav
-          className="flex items-center gap-6"
+          className="flex items-center gap-6 group/footernav"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -71,39 +82,75 @@ const Footer = () => {
             href="https://www.linkedin.com/in/stellapengrnr/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-colors"
+            className="group/fl relative inline-flex items-center text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-all duration-500 ease-out group-hover/footernav:opacity-60 group-hover/footernav:blur-[0.4px] hover:!opacity-100 hover:!blur-0"
           >
             linkedin
+            <ArrowUpRight
+              size={13}
+              aria-hidden="true"
+              className="absolute left-full top-1/2 -translate-y-1/2 translate-x-0.5 opacity-0 transition-all duration-300 ease-out group-hover/fl:opacity-100"
+            />
           </a>
           <a
             href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-colors"
+            className="group/fr relative inline-flex items-center text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-all duration-500 ease-out group-hover/footernav:opacity-60 group-hover/footernav:blur-[0.4px] hover:!opacity-100 hover:!blur-0"
           >
             resume
+            <ArrowUpRight
+              size={13}
+              aria-hidden="true"
+              className="absolute left-full top-1/2 -translate-y-1/2 translate-x-0.5 opacity-0 transition-all duration-300 ease-out group-hover/fr:opacity-100"
+            />
           </a>
-          <button
-            onClick={handleCopyEmail}
-            className="text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-colors"
-          >
-            {copied ? "copied!" : "email"}
-          </button>
+          <span className="group/email relative inline-flex items-center">
+            <button
+              onClick={handleCopyEmail}
+              onMouseMove={handleEmailMouseMove}
+              onMouseLeave={() => setEmailHovering(false)}
+              className="text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-all duration-500 ease-out group-hover/footernav:opacity-60 group-hover/footernav:blur-[0.4px] hover:!opacity-100 hover:!blur-0"
+            >
+              {copied ? "copied!" : "email"}
+            </button>
+            {emailHovering && (
+              <span
+                className="pointer-events-none absolute z-10 whitespace-nowrap rounded-md bg-[hsl(0,0%,95%)] px-2 py-1 text-xs text-[hsl(0,0%,10%)]"
+                style={{
+                  left: emailTooltipPos.x,
+                  top: emailTooltipPos.y,
+                  transform: "translate(-50%, calc(-100% - 10px))",
+                }}
+              >
+                {copied ? "copied!" : "click to copy"}
+              </span>
+            )}
+          </span>
           <a
             href="https://www.instagram.com/abtste11a/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-colors"
+            className="group/fi relative inline-flex items-center text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-all duration-500 ease-out group-hover/footernav:opacity-60 group-hover/footernav:blur-[0.4px] hover:!opacity-100 hover:!blur-0"
           >
             instagram
+            <ArrowUpRight
+              size={13}
+              aria-hidden="true"
+              className="absolute left-full top-1/2 -translate-y-1/2 translate-x-0.5 opacity-0 transition-all duration-300 ease-out group-hover/fi:opacity-100"
+            />
           </a>
           <a
             href="https://x.com/abtste11a"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-colors"
+            className="group/fx relative inline-flex items-center text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-all duration-500 ease-out group-hover/footernav:opacity-60 group-hover/footernav:blur-[0.4px] hover:!opacity-100 hover:!blur-0"
           >
             x
+            <ArrowUpRight
+              size={13}
+              aria-hidden="true"
+              className="absolute left-full top-1/2 -translate-y-1/2 translate-x-0.5 opacity-0 transition-all duration-300 ease-out group-hover/fx:opacity-100"
+            />
           </a>
         </motion.nav>
 

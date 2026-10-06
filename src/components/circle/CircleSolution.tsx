@@ -57,12 +57,14 @@ const CircleSolution = () => {
               alt="Smart Outage Lamp — close-up of the soft-serrated texture"
               title="Soft-Serrated Texture for Safe Handling"
               body="It increases friction, making it easier to grip, unplug, and carry."
+              dark
             />
             <HoverCaptionImage
               src={solutionLifestyle}
               alt="Smart Outage Lamp — everyday night light on a bedroom nightstand"
               title="Everyday Light with Battery Backup"
               body="Works as a simple night lamp every day, but can automatically switch to battery power."
+              dark
             />
           </div>
         </div>

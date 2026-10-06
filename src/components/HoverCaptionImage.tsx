@@ -5,13 +5,18 @@ interface HoverCaptionImageProps {
   alt: string;
   title: string;
   body: string;
+  /** Mark as a dark visual so the sticky header auto-switches to light text while it's behind it. */
+  dark?: boolean;
 }
 
 // Product/process shot with a hover-reveal caption: progressive bottom blur
 // (blur strength itself animates from 0, so the effect starts the instant the
 // cursor enters), then the caption text fades in on top of it.
-const HoverCaptionImage = ({ src, alt, title, body }: HoverCaptionImageProps) => (
-  <div className="group relative overflow-hidden rounded-lg">
+const HoverCaptionImage = ({ src, alt, title, body, dark }: HoverCaptionImageProps) => (
+  <div
+    className="group relative overflow-hidden rounded-lg"
+    data-header-contrast={dark ? "light" : undefined}
+  >
     <ImageLightbox src={src} alt={alt} className="w-full h-auto rounded-lg" />
     <div className="pointer-events-none absolute inset-x-0 bottom-0 h-3/5" aria-hidden="true">
       <div

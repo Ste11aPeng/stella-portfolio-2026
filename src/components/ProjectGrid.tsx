@@ -14,7 +14,7 @@ const ProjectGrid = () => {
             transition={{
               duration: 1.4,
               ease: [0.22, 1, 0.36, 1],
-              delay: 0.2 + index * 0.2,
+              delay: 1.3 + index * 0.18,
             }}
           >
             <ProjectCard

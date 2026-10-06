@@ -59,7 +59,7 @@ const opacityFor = (dist: number) =>
 // the profile photo), permanently overriding the hover effect; a WAAPI
 // animation that cancels itself when done leaves no inline style behind.
 const ENTER_DURATION_MS = 900;
-const ENTER_BASE_DELAY_MS = 300;
+const ENTER_BASE_DELAY_MS = 750;
 const ENTER_STAGGER_MS = 15;
 const ENTER_EASING = "cubic-bezier(0.22, 1, 0.36, 1)";
 const enterKeyframes: Keyframe[] = [
@@ -119,12 +119,12 @@ const Hero = () => {
         <motion.div
           className="flex-shrink-0 cursor-pointer relative"
           style={{ width: "120px", height: "120px" }}
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.92, filter: "blur(28px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           whileHover={{ scale: 1.03, rotate: 0.8 }}
           transition={{
-            duration: 0.7,
-            ease: [0.25, 0.1, 0.25, 1],
+            duration: 1.3,
+            ease: [0.22, 1, 0.36, 1],
           }}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -235,7 +235,7 @@ const Hero = () => {
             className="flex items-center gap-1 mt-3 pl-[2px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
+            transition={{ duration: 0.6, delay: 1.85 }}
           >
             <span className="text-[13px] font-sans text-muted-foreground">
               <a
