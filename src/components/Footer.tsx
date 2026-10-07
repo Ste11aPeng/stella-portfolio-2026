@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Copy } from "lucide-react";
 
 const SanJoseClock = () => {
   const [time, setTime] = useState("");
@@ -31,22 +31,12 @@ const SanJoseClock = () => {
 
 const Footer = () => {
   const [copied, setCopied] = useState(false);
-  const [emailHovering, setEmailHovering] = useState(false);
-  const [emailTooltipPos, setEmailTooltipPos] = useState({ x: 0, y: 0 });
 
   const handleCopyEmail = async (e: React.MouseEvent) => {
     e.preventDefault();
     await navigator.clipboard.writeText("stellanotfound@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleEmailMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const parent = e.currentTarget.parentElement;
-    if (!parent) return;
-    const rect = parent.getBoundingClientRect();
-    setEmailTooltipPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    if (!emailHovering) setEmailHovering(true);
   };
 
   return (
@@ -104,28 +94,17 @@ const Footer = () => {
               className="absolute left-full top-1/2 -translate-y-1/2 translate-x-0.5 opacity-0 transition-all duration-300 ease-out group-hover/fr:opacity-100"
             />
           </a>
-          <span className="group/email relative inline-flex items-center">
-            <button
-              onClick={handleCopyEmail}
-              onMouseMove={handleEmailMouseMove}
-              onMouseLeave={() => setEmailHovering(false)}
-              className="text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-all duration-500 ease-out group-hover/footernav:opacity-60 group-hover/footernav:blur-[0.4px] hover:!opacity-100 hover:!blur-0"
-            >
-              {copied ? "copied!" : "email"}
-            </button>
-            {emailHovering && (
-              <span
-                className="pointer-events-none absolute z-10 whitespace-nowrap rounded-md bg-[hsl(0,0%,95%)] px-2 py-1 text-xs text-[hsl(0,0%,10%)]"
-                style={{
-                  left: emailTooltipPos.x,
-                  top: emailTooltipPos.y,
-                  transform: "translate(-50%, calc(-100% - 10px))",
-                }}
-              >
-                {copied ? "copied!" : "click to copy"}
-              </span>
-            )}
-          </span>
+          <button
+            onClick={handleCopyEmail}
+            className="group/femail relative inline-flex items-center text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-all duration-500 ease-out group-hover/footernav:opacity-60 group-hover/footernav:blur-[0.4px] hover:!opacity-100 hover:!blur-0"
+          >
+            {copied ? "copied!" : "email"}
+            <Copy
+              size={12}
+              aria-hidden="true"
+              className="absolute left-full top-1/2 -translate-y-1/2 translate-x-1 opacity-0 transition-all duration-300 ease-out group-hover/femail:opacity-100"
+            />
+          </button>
           <a
             href="https://www.instagram.com/abtste11a/"
             target="_blank"

@@ -1,6 +1,7 @@
 import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useNavSound } from "@/hooks/use-nav-sound";
 import profileImage from "@/assets/profile.webp";
 
 // Two lines, with a forced break after "designer".
@@ -72,6 +73,7 @@ const Hero = () => {
   const [dists, setDists] = useState<number[]>(() => flatWords.map((w, i) => (w.accent ? 0 : Math.abs(i - accentIdx))));
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const navigate = useNavigate();
+  const playSound = useNavSound();
 
   // Measure actual rendered positions and compute 2D distance from "designer".
   useLayoutEffect(() => {
@@ -115,7 +117,7 @@ const Hero = () => {
 
   return (
     <section className="px-8 py-16 lg:px-24 md:px-[32px] md:py-[64px] max-w-[1440px] mx-auto">
-      <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12">
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
         <motion.div
           className="flex-shrink-0 cursor-pointer relative"
           style={{ width: "120px", height: "120px" }}
@@ -128,7 +130,10 @@ const Hero = () => {
           }}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          onClick={() => navigate("/about")}
+          onClick={() => {
+            playSound("click");
+            navigate("/about");
+          }}
         >
           <div className="relative w-full h-full overflow-hidden">
             <img
@@ -237,7 +242,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.85 }}
           >
-            <span className="text-[13px] font-sans text-muted-foreground">
+            <span className="text-[14px] font-sans text-muted-foreground">
               <a
                 href="https://mhcid.washington.edu"
                 target="_blank"

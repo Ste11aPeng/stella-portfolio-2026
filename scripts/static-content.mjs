@@ -69,34 +69,34 @@ ${projectList}
     title: "about · Stella",
     description:
       "About Stella Peng: product designer at TikTok, Master of HCI + Design student at the University of Washington, previously shipping 0 to 1 products with early-stage startups.",
-    h1: "I'm Stella, here to make.",
+    h1: "About Stella Peng — a collection of curiosities",
     markdown: `# About Stella Peng
 
-Hey, I'm a product designer who likes to stay curious and close to the making.
-
-I'm currently at TikTok, exploring social experiences and new ways AI can fit into the
-design process. Before this, I worked in a startup accelerator across 0 to 1 and 1 to 10
-products, doing a bit of everything from design systems to wireframes to shipping real
-features. I've always liked the messy part of design: figuring things out, trying things
-quickly, and turning half-formed ideas into something real.
+I'm Stella, a product designer in Seattle who likes staying close to the making. Most
+recently I designed social experiences at TikTok. Before that, I worked with startups
+going 0 to 1. Got an idea worth building, or just want to say hi? Reach out :D
 
 ## Education
 
-Master of HCI + Design, University of Washington. Before Seattle, I studied and built in
-Michigan, where Circle Status went from a 15-week course project to a product that sold
-264 units in three days at a 200-person trade show.
+- **University of Washington** — M.S. in HCI + Design, Summer 2027
+- **University of Michigan** — B.A. in Art & Design, Winter 2025
 
-## Work
+## Experience
 
-- **Product Design Intern, TikTok** — social experiences and AI in the design process.
-- **Desai Accelerator (summer 2025)** — design partner to early-stage startups, from
-  research and design systems through shipped interfaces.
+- **TikTok** — 2026, Product Design Intern, Social team
+- **Desai Accelerator** — 2025, Product Design Intern
+- **AskSia.AI** — 2025, Product Design Intern
 
-## Curiosity
+## A few interests, in objects
 
-I think curiosity shows up everywhere: in the random sports I pick up, the unfamiliar
-cities I wander into, the inspiration I repost on X, and the Nintendo games I spend way
-too much time on. It's probably the same curiosity that keeps me designing.
+Polaroids, coffee, stationery, home decor, R&B and jazz music, growing things, gaming,
+my cat Iggy, doodling, journaling, matcha, and cleaning.
+
+## tl;dr
+
+A product designer who builds across design, tech, and things in between: product
+thinking as a base, with graphic play, motion experiments, social media work, and video
+editing. Served with curiosity, always.
 
 Say hello: [stellanotfound@gmail.com](mailto:stellanotfound@gmail.com).
 `,
