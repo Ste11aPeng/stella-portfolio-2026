@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion, useTransform, type MotionValue } from "framer-motion";
 import { RESUME_PDF, resumeHeader, resumeSections } from "@/data/resume";
 import { RESUME_OPEN_EVENT } from "@/lib/resume-events";
 import pencil from "@/assets/resume/pencil.png";
@@ -214,9 +213,26 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 // Each half shows its slice of the sheet; once flat we swap to one sheet so
 // text selection behaves normally.
 const UNFOLD = { duration: 0.95, delay: 0.4, ease: EASE };
+// Folding back up when a copy is taken: quicker, no wait.
+const REFOLD = { duration: 0.5, ease: [0.55, 0, 0.35, 1] as const };
 
-const FoldingLetter = ({ height, onDone, Sheet }: { height: number; onDone: () => void; Sheet: () => JSX.Element }) => {
+const FoldingLetter = ({
+  height,
+  onDone,
+  Sheet,
+  closing = false,
+}: {
+  height: number;
+  onDone: () => void;
+  Sheet: () => JSX.Element;
+  closing?: boolean;
+}) => {
   const half = height / 2;
+  // Open and folded poses; `closing` plays the same fold in reverse.
+  const folded = { lift: { y: -half / 2 }, shadow: { top: half, height: half }, flap: { rotateX: -179 } };
+  const flat = { lift: { y: 0 }, shadow: { top: 0, height }, flap: { rotateX: 0 } };
+  const [from, to] = closing ? [flat, folded] : [folded, flat];
+  const transition = closing ? REFOLD : UNFOLD;
   const face: CSSProperties = { backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" };
   const panel = (k: number) => (
     <div className="absolute inset-0 overflow-hidden" style={{ ...face, ...paperSurface, boxShadow: "none" }}>
@@ -231,17 +247,17 @@ const FoldingLetter = ({ height, onDone, Sheet }: { height: number; onDone: () =
       className="relative"
       style={{ height, perspective: 2000, transformStyle: "preserve-3d" }}
       aria-hidden="true"
-      initial={{ y: -half / 2 }}
-      animate={{ y: 0 }}
-      transition={UNFOLD}
+      initial={from.lift}
+      animate={to.lift}
+      transition={transition}
     >
       {/* shadow for the whole sheet grows as it opens */}
       <motion.div
         className="absolute inset-x-0"
         style={{ ...paperSurface, backgroundColor: "transparent" }}
-        initial={{ top: half, height: half }}
-        animate={{ top: 0, height }}
-        transition={UNFOLD}
+        initial={from.shadow}
+        animate={to.shadow}
+        transition={transition}
       />
       {/* bottom half stays put */}
       <div className="absolute inset-x-0" style={{ top: half, height: half }}>
@@ -251,9 +267,9 @@ const FoldingLetter = ({ height, onDone, Sheet }: { height: number; onDone: () =
       <motion.div
         className="absolute inset-x-0"
         style={{ top: 0, height: half, transformOrigin: "50% 100%", transformStyle: "preserve-3d", zIndex: 2 }}
-        initial={{ rotateX: -179 }}
-        animate={{ rotateX: 0 }}
-        transition={UNFOLD}
+        initial={from.flap}
+        animate={to.flap}
+        transition={transition}
         onAnimationComplete={onDone}
       >
         {panel(0)}
@@ -274,11 +290,22 @@ const FoldingLetter = ({ height, onDone, Sheet }: { height: number; onDone: () =
 };
 
 // Two pens left on the desk beside the letter, resolving from a blur one after
-// the other (same entrance as the About page menu cards).
+// the other (same entrance as the About page menu cards). Hovering one nudges
+// it round a few degrees, as if touched.
 const PENS = [
-  { src: pencil, aspect: 77 / 800, len: 1, rotate: 11, dx: -0.16, dy: -0.04, delay: 0.55, alt: "" },
-  { src: gelPen, aspect: 76 / 743, len: 0.96, rotate: -6, dx: 0.17, dy: 0.07, delay: 1.25, alt: "" },
+  { src: pencil, aspect: 77 / 800, len: 1, rotate: 11, nudge: -5, dx: -0.16, dy: -0.04, delay: 0.55, alt: "" },
+  { src: gelPen, aspect: 76 / 743, len: 0.96, rotate: -6, nudge: 5, dx: 0.17, dy: 0.07, delay: 1.25, alt: "" },
 ];
+
+// A filter on a rotated element is drawn in the element's own (rotated) frame,
+// so turn the shadow offsets back by the pen's angle to keep the light coming
+// from the same place on both pens.
+const penShadow = (deg: number) => {
+  const a = (-deg * Math.PI) / 180;
+  const off = (x: number, y: number) =>
+    `${(x * Math.cos(a) - y * Math.sin(a)).toFixed(2)}px ${(x * Math.sin(a) + y * Math.cos(a)).toFixed(2)}px`;
+  return `drop-shadow(${off(5, 9)} 7px rgba(48,40,26,0.2)) drop-shadow(${off(1, 2)} 1.5px rgba(48,40,26,0.18))`;
+};
 
 const Pens = ({ cx, cy, length }: { cx: number; cy: number; length: number }) => (
   <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
@@ -294,16 +321,20 @@ const Pens = ({ cx, cy, length }: { cx: number; cy: number; length: number }) =>
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 1.4, ease: EASE, delay: p.delay }}
         >
-          {/* shadow on a wrapper so it falls the same way whatever the pen's angle */}
-          <div className="w-full h-full" style={{ filter: "drop-shadow(5px 9px 7px rgba(48,40,26,0.2)) drop-shadow(1px 2px 1.5px rgba(48,40,26,0.18))" }}>
-            <img
-              src={p.src}
-              alt={p.alt}
-              draggable={false}
-              className="w-full h-full select-none"
-              style={{ transform: `rotate(${p.rotate}deg)` }}
-            />
-          </div>
+          {/* the shadow lives on the pen itself so it turns with it on hover */}
+          <img
+            src={p.src}
+            alt={p.alt}
+            draggable={false}
+            className="w-full h-full select-none pointer-events-auto [transform:rotate(var(--rest))] hover:[transform:rotate(var(--nudged))] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            style={
+              {
+                "--rest": `${p.rotate}deg`,
+                "--nudged": `${p.rotate + p.nudge}deg`,
+                filter: penShadow(p.rotate),
+              } as CSSProperties
+            }
+          />
         </motion.div>
       );
     })}
@@ -320,25 +351,155 @@ const useViewport = () => {
   return vp;
 };
 
-// "download resume": a lowercase text link in the site's nav style, sitting
-// beside the paper along its top edge; fades in once the letter has opened.
-const DownloadLink = ({ show, className }: { show: boolean; className: string }) => (
-  <motion.a
-    href={RESUME_PDF}
-    download="Stella-Peng-Resume.pdf"
-    onClick={(e) => e.stopPropagation()}
-    className={`group/dl absolute inline-flex items-center whitespace-nowrap text-sm text-muted-foreground hover:text-foreground transition-colors outline-none focus-visible:underline underline-offset-4 ${className}`}
-    initial={{ opacity: 0, filter: "blur(4px)" }}
-    animate={show ? { opacity: 1, filter: "blur(0px)" } : { opacity: 0, filter: "blur(4px)" }}
-    transition={{ duration: 0.5, ease: EASE }}
+// A few more copies of the letter stacked underneath, each a little askew.
+// They settle in with the pens, once the top sheet has opened.
+const STACK = [
+  { rotate: -1.6, x: -7, y: 5, tint: "#f1ebdd", delay: 1.0 },
+  { rotate: 1.1, x: 6, y: 3, tint: "#f4efe3", delay: 1.45 },
+];
+
+const CopyStack = () => (
+  <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+    {STACK.map((c, i) => (
+      <motion.div
+        key={i}
+        className="absolute inset-0"
+        style={{ rotate: c.rotate, x: c.x, y: c.y }}
+        initial={{ opacity: 0, filter: "blur(16px)" }}
+        animate={{ opacity: 1, filter: "blur(0px)" }}
+        transition={{ duration: 1.4, ease: EASE, delay: c.delay }}
+      >
+        <div
+          className="absolute inset-0 overflow-hidden"
+          style={{
+            backgroundColor: c.tint,
+            boxShadow: "0 1px 2px rgba(48,40,26,0.06), 0 8px 22px -12px rgba(48,40,26,0.18)",
+          }}
+        >
+          <div className="absolute inset-0" style={{ backgroundImage: EDGE_TONE }} />
+          <div className="absolute inset-0" style={{ backgroundImage: GRAIN, opacity: 0.08, mixBlendMode: "multiply" }} />
+        </div>
+      </motion.div>
+    ))}
+  </div>
+);
+
+const RESUME_FILENAME = "Stella-Peng-Resume.pdf";
+
+const downloadResume = () => {
+  const a = document.createElement("a");
+  a.href = RESUME_PDF;
+  a.download = RESUME_FILENAME;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+};
+
+// A paperclip clamped over the note's top edge, upright like the note. Drawn
+// in two layers: the back leg and top bend *under* the note (so only the bend
+// shows above its edge), and the front leg with its bottom U *over* it.
+const CLIP_W = 20;
+const CLIP_H = 60;
+const CLIP_R = 7.5;
+const CLIP_RISE = 12; // how far the bend stands above the note's top edge
+const LEG_L = 2;
+const LEG_R = CLIP_W - 2;
+const CLIP_TOP = CLIP_R + 2;
+const CLIP_BOTTOM = CLIP_H - CLIP_R - 2;
+const CLIP_BACK = `M${LEG_L} ${CLIP_BOTTOM - 6} L${LEG_L} ${CLIP_TOP} A${CLIP_R} ${CLIP_R} 0 0 1 ${LEG_R} ${CLIP_TOP}`;
+const CLIP_FRONT = `M${LEG_R} ${CLIP_TOP} L${LEG_R} ${CLIP_BOTTOM} A${CLIP_R} ${CLIP_R} 0 0 1 ${LEG_L} ${CLIP_BOTTOM} L${LEG_L} ${CLIP_BOTTOM - 15}`;
+
+const Wire = ({ d }: { d: string }) => (
+  <>
+    <path d={d} stroke="#83827d" strokeWidth="2.8" strokeLinecap="round" />
+    <path d={d} stroke="#c4c3be" strokeWidth="1.6" strokeLinecap="round" />
+    <path d={d} stroke="#f4f3ef" strokeWidth="0.65" strokeLinecap="round" transform="translate(-0.5 -0.25)" />
+  </>
+);
+
+const ClipLayer = ({ d, shadow }: { d: string; shadow: string }) => (
+  <svg
+    width={CLIP_W}
+    height={CLIP_H}
+    viewBox={`0 0 ${CLIP_W} ${CLIP_H}`}
+    fill="none"
+    aria-hidden="true"
+    className="absolute overflow-visible pointer-events-none"
+    style={{
+      right: 4,
+      top: -CLIP_RISE,
+      transform: "rotate(9deg)",
+      transformOrigin: `50% ${CLIP_RISE}px`,
+      filter: `drop-shadow(${shadow})`,
+    }}
   >
-    download resume
-    <ArrowDown
-      size={12}
-      aria-hidden="true"
-      className="absolute left-full top-1/2 ml-0.5 -translate-y-[60%] opacity-0 transition-all duration-300 ease-out group-hover/dl:opacity-100 group-hover/dl:-translate-y-1/2"
-    />
-  </motion.a>
+    <Wire d={d} />
+  </svg>
+);
+
+// "take a copy": a square sticky note clipped to the letter's top-right
+// corner, hanging off its edge so it never covers the résumé itself.
+const CopyNote = ({
+  show,
+  taking,
+  onTake,
+  style,
+}: {
+  show: boolean;
+  taking: boolean;
+  onTake: () => void;
+  style: CSSProperties;
+}) => (
+  <motion.div
+    className="absolute z-10"
+    style={style}
+    initial={{ opacity: 0, y: -6, filter: "blur(6px)" }}
+    animate={show && !taking ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: taking ? 0 : -6, filter: "blur(6px)" }}
+    transition={{ duration: taking ? 0.25 : 0.7, ease: EASE }}
+  >
+    <a
+      href={RESUME_PDF}
+      download={RESUME_FILENAME}
+      aria-label="Take a copy (download résumé PDF)"
+      onClick={(e) => {
+        // The download starts when the copy lands, not now: starting it here
+        // could stall or cut short the fly-away.
+        e.preventDefault();
+        e.stopPropagation();
+        onTake();
+      }}
+      className="group/note relative block outline-none"
+      style={{ pointerEvents: show && !taking ? "auto" : "none" }}
+    >
+      <span
+        className="relative block transition-transform duration-500 ease-out rotate-[1.5deg] group-hover/note:rotate-0 group-hover/note:-translate-y-[2px] group-focus-visible/note:rotate-0 group-focus-visible/note:-translate-y-[2px]"
+        style={{ transformOrigin: "70% 0%" }}
+      >
+        <ClipLayer d={CLIP_BACK} shadow="0.5px 1px 0.6px rgba(40,34,24,0.22)" />
+        <span
+          className="relative flex items-center justify-center text-center"
+          style={{
+            width: 100,
+            height: 96,
+            // a real sticky note: flat yellow, a touch darker where the glue strip is,
+            // its free bottom edge lifting off the page
+            background: "linear-gradient(to bottom, #efe3b2 0, #f6edc6 9px, #f7eecb 70%, #f3e8bf 100%)",
+            boxShadow:
+              "0 1px 1px rgba(48,40,26,0.1), 0 6px 9px -6px rgba(48,40,26,0.3), 6px 9px 10px -9px rgba(48,40,26,0.28)",
+          }}
+        >
+          <span
+            className="block text-[16px] leading-[1.15] transition-colors group-hover/note:text-[#1f1d19] group-focus-visible/note:underline underline-offset-2"
+            style={{ color: INK, fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 420 }}
+          >
+            take a<br />
+            copy
+          </span>
+        </span>
+        <ClipLayer d={CLIP_FRONT} shadow="0.8px 1.4px 0.8px rgba(40,34,24,0.3)" />
+      </span>
+    </a>
+  </motion.div>
 );
 
 // Paper unfolding sound, timed so its swish lands as the flaps swing open.
@@ -346,18 +507,110 @@ const UNFOLD_SOUND = "/sounds/resume-unfold.mp3";
 const UNFOLD_SOUND_DELAY = 350;
 let unfoldAudio: HTMLAudioElement | null = null;
 
+const playPaper = (volume: number, delay: number) => {
+  if (!unfoldAudio) unfoldAudio = new Audio(UNFOLD_SOUND);
+  const a = unfoldAudio;
+  window.setTimeout(() => {
+    a.volume = volume;
+    a.currentTime = 0;
+    void a.play().catch(() => {});
+  }, delay);
+};
+
+// Where the taken copy flies: toward the browser's downloads. Chrome, Safari,
+// Firefox and Edge show them top-right; The Browser Company's Arc and Dia show
+// them top-left. Both report a plain Chrome user agent, so:
+// - Arc injects its theme colours into every page as --arc-palette-* variables;
+// - Dia brands itself only as "Chromium", while Chrome, Edge, Opera, Brave etc.
+//   add their own name to navigator.userAgentData.brands.
+const BRANDED_CHROMIUM = /Google Chrome|Microsoft Edge|Opera|Brave|Vivaldi|Yandex|Samsung/i;
+
+const downloadsOnLeft = () => {
+  if (getComputedStyle(document.documentElement).getPropertyValue("--arc-palette-title").trim() !== "") return true;
+  const brands =
+    (navigator as Navigator & { userAgentData?: { brands: { brand: string }[] } }).userAgentData?.brands.map(
+      (b) => b.brand
+    ) ?? [];
+  return brands.includes("Chromium") && !brands.some((b) => BRANDED_CHROMIUM.test(b));
+};
+
+const flyTarget = (vw: number) =>
+  downloadsOnLeft() ? { x: 40, y: 18, rotate: -14 } : { x: vw - 44, y: 18, rotate: 14 };
+
+const FLY_TIME = 0.8;
+// The next copy waits underneath, out of focus: softest at the top, still a
+// little soft at the bottom. It's built from the sheet at a few blur levels,
+// each masked to a horizontal band. `focus` runs 0 → 1; each band clears over
+// its own stretch of it, the bottom band first and the top band last, so the
+// page sharpens gradually from the bottom up.
+const FOCUS_STAGGER = 0.14; // how much later each band above starts to clear
+const FOCUS_SPAN = 1 - FOCUS_STAGGER * 3; // how long each band takes
+const FOCUS_TIME = 4.2;
+const FOCUS_BLURS = [1.4, 2.6, 4, 5.6];
+const FOCUS_BAND = 22;
+const FOCUS_EDGE = 16;
+const FOCUS_LINE = 82; // below this the lightest blur applies
+
+const focusMask = (i: number) => {
+  const e = FOCUS_EDGE / 2;
+  const bottom = FOCUS_LINE - (i - 1) * FOCUS_BAND; // lower edge of band i
+  const top = FOCUS_LINE - i * FOCUS_BAND; // upper edge of band i
+  if (i === 0) return `linear-gradient(to bottom, transparent ${FOCUS_LINE - e}%, black ${FOCUS_LINE + e}%)`;
+  if (i === FOCUS_BLURS.length - 1)
+    return `linear-gradient(to bottom, black ${bottom - e}%, transparent ${bottom + e}%)`;
+  return `linear-gradient(to bottom, transparent ${top - e}%, black ${top + e}%, black ${bottom - e}%, transparent ${bottom + e}%)`;
+};
+
+// ease-in-out on each band's own stretch of the overall progress
+const bandEase = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+
+const FocusLayer = ({ focus, i, Sheet }: { focus: MotionValue<number>; i: number; Sheet: () => JSX.Element }) => {
+  const filter = useTransform(focus, (p) => {
+    const t = Math.min(1, Math.max(0, (p - i * FOCUS_STAGGER) / FOCUS_SPAN));
+    return `blur(${(FOCUS_BLURS[i] * (1 - bandEase(t))).toFixed(2)}px)`;
+  });
+  const mask = focusMask(i);
+  return (
+    <motion.div
+      className={i === 0 ? "relative" : "absolute inset-0"}
+      style={{ maskImage: mask, WebkitMaskImage: mask, filter }}
+    >
+      <Sheet />
+    </motion.div>
+  );
+};
+
+const FocusSheet = ({ focus, Sheet }: { focus: MotionValue<number>; Sheet: () => JSX.Element }) => (
+  <>
+    {FOCUS_BLURS.map((_, i) => (
+      <FocusLayer key={i} focus={focus} i={i} Sheet={Sheet} />
+    ))}
+  </>
+);
+
 const ResumeOverlay = () => {
   const [open, setOpen] = useState(false);
   const [flat, setFlat] = useState(false);
+  // "take a copy": refold the letter, then fly it off toward the download icon.
+  const [taking, setTaking] = useState(false);
+  // Where a taken copy is in its send-off; a ref so stray animation callbacks
+  // can't advance it.
+  const phase = useRef<"idle" | "folding" | "flying" | "arriving">("idle");
+  // Each taken copy is replaced by the next one off the stack.
+  const [copies, setCopies] = useState(0);
+  // While a copy is being taken, the next one shows underneath, out of focus.
+  const [underlay, setUnderlay] = useState(false);
+  const focus = useMotionValue(0);
   const [measured, setMeasured] = useState(0);
   const measureRef = useRef<HTMLDivElement>(null);
+  const flyRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const vp = useViewport();
 
   // Tablet+: one fixed page scaled to fit; phones: readable column that scrolls.
   const letter = vp.w >= 640;
-  const scale = letter ? Math.min(0.95, (vp.h - 170) / PAGE_H, (vp.w - 48) / PAGE_W) : 1;
+  const scale = letter ? Math.min(1.05, (vp.h - 64) / PAGE_H, (vp.w - 48) / PAGE_W) : 1;
   // Wide screens: nudge the letter left and lay the pens out to its right.
   const pens = letter && vp.w >= 1100;
   const shift = pens ? Math.min(110, vp.w * 0.07) : 0;
@@ -371,16 +624,12 @@ const ResumeOverlay = () => {
   useEffect(() => {
     const onOpen = () => {
       setFlat(!!reduce);
+      setTaking(false);
+      phase.current = "idle";
+      setUnderlay(false);
+      setCopies(0);
       setOpen(true);
-      if (!unfoldAudio) {
-        unfoldAudio = new Audio(UNFOLD_SOUND);
-        unfoldAudio.volume = 0.45;
-      }
-      const a = unfoldAudio;
-      window.setTimeout(() => {
-        a.currentTime = 0;
-        void a.play().catch(() => {});
-      }, reduce ? 0 : UNFOLD_SOUND_DELAY);
+      playPaper(0.45, reduce ? 0 : UNFOLD_SOUND_DELAY);
     };
     window.addEventListener(RESUME_OPEN_EVENT, onOpen);
     return () => window.removeEventListener(RESUME_OPEN_EVENT, onOpen);
@@ -400,7 +649,7 @@ const ResumeOverlay = () => {
     };
   }, [open, close]);
 
-  // Phones: measure the column so the folding thirds match it.
+  // Phones: measure the column so the folding halves match it.
   useLayoutEffect(() => {
     if (!open || letter || !measureRef.current) return;
     const el = measureRef.current;
@@ -410,6 +659,70 @@ const ResumeOverlay = () => {
     ro.observe(el);
     return () => ro.disconnect();
   }, [open, letter]);
+
+  // Fold, fly to the corner, and only then hand over the PDF.
+  const take = () => {
+    if (phase.current !== "idle") return;
+    setTaking(true);
+    if (reduce) {
+      downloadResume();
+      window.setTimeout(() => setTaking(false), 600);
+      return;
+    }
+    phase.current = "folding";
+    focus.set(0);
+    setUnderlay(true);
+    setFlat(false); // back to the folding letter, this time closing
+    playPaper(0.3, 0);
+  };
+
+  // x leads and y lags, so the copy swoops right before rising into the corner.
+  const fly = () => {
+    if (phase.current !== "folding") return;
+    phase.current = "flying";
+    const el = flyRef.current;
+    const land = () => {
+      downloadResume(); // the copy has "landed" in the downloads corner
+      nextCopy();
+    };
+    if (!el) return land();
+    const r = el.getBoundingClientRect();
+    const to = flyTarget(vp.w);
+    const k = letter ? scale : 1; // the letter's moves are in its unscaled page units
+    void animate(
+      el,
+      {
+        x: (to.x - (r.left + r.width / 2)) / k,
+        y: (to.y - (r.top + r.height / 2)) / k,
+        scale: 0.05,
+        rotate: to.rotate,
+        opacity: 0,
+      },
+      {
+        x: { duration: FLY_TIME, ease: [0.4, 0, 0.8, 0.45] },
+        y: { duration: FLY_TIME, ease: [0.8, 0, 0.85, 1] },
+        scale: { duration: FLY_TIME, ease: [0.45, 0, 0.7, 0.5] },
+        rotate: { duration: FLY_TIME, ease: "easeIn" },
+        opacity: { duration: 0.18, delay: FLY_TIME - 0.18 },
+      }
+    ).then(land);
+  };
+
+  // The copy has gone: the sheet underneath slowly comes into focus, bottom
+  // first. Once
+  // sharp it hands over to the real (selectable) sheet, which looks identical
+  // by then.
+  const nextCopy = () => {
+    phase.current = "arriving";
+    setFlat(true);
+    setCopies((c) => c + 1);
+    void animate(focus, 1, { duration: FOCUS_TIME, ease: "linear" }).then(() => {
+      if (phase.current !== "arriving") return;
+      phase.current = "idle";
+      setUnderlay(false);
+      setTaking(false); // bring the note back
+    });
+  };
 
   if (typeof document === "undefined") return null;
 
@@ -430,7 +743,37 @@ const ResumeOverlay = () => {
         <PaperDecor />
         <Sheet />
       </div>
-      {!flat && height > 0 && <FoldingLetter height={height} Sheet={Sheet} onDone={() => setFlat(true)} />}
+      {!flat && height > 0 && (
+        <FoldingLetter
+          key={taking ? "refold" : "unfold"}
+          height={height}
+          Sheet={Sheet}
+          closing={taking}
+          onDone={taking ? fly : () => setFlat(true)}
+        />
+      )}
+    </>
+  );
+
+  const sheet = (
+    <>
+      <CopyStack />
+      {underlay && (
+        <div aria-hidden="true" className="absolute inset-0 overflow-hidden" style={paperSurface}>
+          <PaperDecor />
+          <FocusSheet focus={focus} Sheet={Sheet} />
+        </div>
+      )}
+      {/* hidden while the sheet underneath comes into focus */}
+      <motion.div
+        key={copies}
+        ref={flyRef}
+        className="relative"
+        style={{ visibility: underlay && phase.current === "arriving" ? "hidden" : "visible" }}
+      >
+        {paper}
+      </motion.div>
+      <CopyNote show={flat} taking={taking} onTake={take} style={letter ? { right: -24, top: 6 } : { right: -6, top: 6 }} />
     </>
   );
 
@@ -451,7 +794,6 @@ const ResumeOverlay = () => {
           transition={{ duration: 0.4, ease: EASE }}
         >
           <Backdrop />
-          {pens && <Pens cx={(paperRight + vp.w) / 2 - 20} cy={vp.h / 2 + PAGE_H * scale * 0.08} length={penLength} />}
 
           {/* clicking anywhere outside the paper closes */}
           <div className={`absolute inset-0 ${letter ? "overflow-hidden" : "overflow-y-auto"}`} onClick={close}>
@@ -471,16 +813,17 @@ const ResumeOverlay = () => {
                     className="absolute left-0 top-0"
                     style={{ width: PAGE_W, height: PAGE_H, transform: `scale(${scale})`, transformOrigin: "0 0" }}
                   >
-                    {paper}
+                    {sheet}
                   </div>
                 ) : (
-                  paper
+                  sheet
                 )}
-                <DownloadLink show={flat} className={letter ? "left-full top-0 ml-6 -mt-[3px]" : "right-0 -top-8"} />
               </motion.div>
             </div>
           </div>
 
+          {/* above the click-to-close layer so the pens can be hovered */}
+          {pens && <Pens cx={(paperRight + vp.w) / 2 - 20} cy={vp.h / 2 + PAGE_H * scale * 0.08} length={penLength} />}
         </motion.div>
       )}
     </AnimatePresence>,
