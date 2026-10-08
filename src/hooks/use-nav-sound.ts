@@ -17,7 +17,7 @@ const getAudio = (sound: NavSound) => {
   if (!audio) {
     audio = new Audio(SOURCES[sound]);
     audio.preload = "auto";
-    audio.volume = 0.5;
+    audio.volume = 0.85;
     cache[sound] = audio;
   }
   return audio;

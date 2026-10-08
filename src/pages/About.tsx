@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { motion, useInView } from "framer-motion";
+import { DOODLE_PARTS, DOODLE_STROKES } from "@/data/doodle-strokes";
+import { motion, useAnimate, useInView, useReducedMotion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
@@ -15,14 +16,17 @@ import gaming from "@/assets/about/gaming.png";
 import cats from "@/assets/about/cats.png";
 import doodle from "@/assets/about/doodle.png";
 import journaling from "@/assets/about/journaling.png";
+import journalingStickers from "@/assets/about/journaling-stickers.png";
+import matchaBowl from "@/assets/about/matcha-bowl.png";
+import matchaWhisk from "@/assets/about/matcha-whisk.png";
+import matchaRing from "@/assets/about/matcha-ring.png";
 import matcha from "@/assets/about/matcha.png";
 import cleaning from "@/assets/about/cleaning.png";
-import stellaWordmark from "@/assets/about/stella-wordmark.png";
 
 // Palette from the Figma "A collection of curiosities" page.
 const INK_MUTED = "#75766e";
 const INK_STRONG = "#393b35";
-const PERF = "#b6b7ad";
+const PERF = "#d3d3cb"; // dashed "perforation" lines, kept subtle
 const MENU_INK = "#45463c";
 const MENU_RULE = "#666759";
 const SPECIMEN_INK = "#787a6b";
@@ -190,33 +194,52 @@ type Interest = {
   w: number;
   h: number;
   rotate?: number;
+  // Draws Stella's cat sketch stroke by stroke above the object on hover.
+  doodle?: boolean;
   // Matcha is cropped inside a taller box in the design.
   crop?: { box: [number, number]; img: CSSProperties };
+  // Transparent clip that crossfades in over the image on hover. It's been
+  // scaled/offset to sit on the image's silhouette, so the swap barely shows.
+  // One-shot sound on hover, trimmed to end with the animation. `delay` (s)
+  // syncs a key moment, e.g. the can's crack to the lid popping.
+  sound?: { src: string; delay?: number; volume?: number };
+  // The cell's bottom-right corner peels up like paper on hover.
+  curl?: boolean;
+  // Extra rotation (deg) added on hover, e.g. the Polaroid tipping right.
+  hoverRotate?: number;
+  // Layered hover: `mover` lifts by `dy` px, `reveal` fades in underneath,
+  // `base` stays put. The layers recombine into `src` exactly at rest.
+  lift?: { mover: string; base: string; reveal: string; dy: number };
+  // Still image that crossfades in on hover, aligned to sit exactly on `src`.
+  hoverSrc?: string;
+  // `loop: false` plays once and holds the last frame (e.g. a lamp that ends lit).
+  video?: { webm: string; mov: string; loop?: boolean };
 };
 
 const interests: Interest[] = [
-  { label: "Polaroid", tease: "Way too many Polaroid cameras. Hundreds of photos.", src: polaroid, alt: "A polaroid photo of Stella", w: 106.73, h: 96.9, rotate: 1.66 },
-  { label: "coffee", tease: "The good ideas show up around cup two.", src: coffee, alt: "A ceramic coffee mug", w: 107.32, h: 107.32 },
-  { label: "stationery", tease: "Can't walk past a stationery store. I've tried.", src: stationery, alt: "Washi tape rolls and a fine-tip pen", w: 118.21, h: 107.32 },
-  { label: "home decor", tease: "Forever scrolling home decor TikToks.", src: homeDecor, alt: "A round clay globe lamp", w: 108.88, h: 107.32 },
-  { label: "R&B and jazz music", tease: "Headphones are basically my second organ.", src: records, alt: "A record in an illustrated sleeve", w: 119.76, h: 107.32 },
-  { label: "growing things", tease: "Keeping a few plants alive. Mostly.", src: plant, alt: "A potted plant", w: 102.65, h: 107.32 },
-  { label: "gaming", tease: "Nintendo hours don't count, right?", src: gaming, alt: "A game controller", w: 124.43, h: 107.32 },
-  { label: "(my) Cat", tease: "Iggy, my tuxedo cat. Ask me for pics.", src: cats, alt: "A small cat food tin", w: 118.21, h: 107.32 },
-  { label: "doodle", tease: "My meeting notes are mostly doodles.", src: doodle, alt: "A pencil", w: 111.99, h: 107.32 },
-  { label: "journaling", tease: "Writing it down is how I think.", src: journaling, alt: "A cloth-bound journal", w: 104.21, h: 107.32 },
+  { label: "Polaroid", tease: "Way too many Polaroid cameras. Hundreds of photos.", src: polaroid, alt: "A polaroid photo of Stella", w: 122.74, h: 111.44, rotate: 1.66, hoverRotate: 2.6 },
+  { label: "coffee", tease: "The good ideas show up around cup two.", src: coffee, alt: "A ceramic coffee mug", w: 107.32, h: 107.32, video: { webm: "/videos/coffee-alpha.webm", mov: "/videos/coffee-alpha.mov" } },
+  { label: "stationery", tease: "Can't walk past a stationery store. I've tried.", src: stationery, alt: "Scissors, a bulldog clip and an eraser", w: 118.21, h: 107.32, curl: true, sound: { src: "/sounds/hover-paper.mp3", volume: 0.45 } },
+  { label: "home decor", tease: "Forever scrolling home decor TikToks.", src: homeDecor, alt: "A round clay globe lamp", w: 108.88, h: 107.32, video: { webm: "/videos/home-decor-alpha.webm", mov: "/videos/home-decor-alpha.mov", loop: false } },
+  { label: "R&B and jazz music", tease: "Headphones are basically my second organ.", src: records, alt: "A record in an illustrated sleeve", w: 119.76, h: 107.32, video: { webm: "/videos/records-alpha.webm", mov: "/videos/records-alpha.mov", loop: false } },
+  { label: "growing things", tease: "Keeping a few plants alive. Mostly.", src: plant, alt: "A potted plant", w: 102.65, h: 107.32, sound: { src: "/sounds/hover-birds.mp3", volume: 0.45 }, video: { webm: "/videos/plant-alpha.webm", mov: "/videos/plant-alpha.mov", loop: false } },
+  { label: "gaming", tease: "Nintendo hours don't count, right?", src: gaming, alt: "A game controller", w: 124.43, h: 107.32, video: { webm: "/videos/gaming-alpha.webm", mov: "/videos/gaming-alpha.mov" } },
+  { label: "(my) Cat", tease: "Iggy, my tuxedo cat. Ask me for pics.", src: cats, alt: "A small cat food tin", w: 118.21, h: 107.32, sound: { src: "/sounds/hover-can-open.mp3", delay: 1.05, volume: 0.5 }, video: { webm: "/videos/cat-alpha.webm", mov: "/videos/cat-alpha.mov", loop: false } },
+  { label: "doodle", tease: "My meeting notes are mostly doodles.", src: doodle, alt: "A pencil", w: 111.99, h: 107.32, doodle: true, sound: { src: "/sounds/hover-pencil.mp3", volume: 0.45 } },
+  { label: "journaling", tease: "Writing it down is how I think.", src: journaling, hoverSrc: journalingStickers, alt: "A cloth-bound journal", w: 104.21, h: 107.32 },
   {
     label: "matcha", tease: "Matcha over coffee. Don't tell the mug.",
     src: matcha,
     alt: "A bowl of whisked matcha with a bamboo whisk",
     w: 120,
     h: 130,
+    lift: { mover: matchaBowl, base: matchaWhisk, reveal: matchaRing, dy: 5 },
     crop: {
       box: [120, 130],
       img: { position: "absolute", width: "131.43%", height: "121.05%", left: "-19.29%", top: "-10.24%", maxWidth: "none" },
     },
   },
-  { label: "cleaning", tease: "Sunday is reset day. No exceptions.", src: cleaning, alt: "A spray bottle beside a folded cloth", w: 118.21, h: 107.32 },
+  { label: "cleaning", tease: "Sunday is reset day. No exceptions.", src: cleaning, alt: "A spray bottle beside a folded cloth", w: 118.21, h: 107.32, sound: { src: "/sounds/hover-spray.mp3", delay: 1.12, volume: 0.45 }, video: { webm: "/videos/cleaning-alpha.webm", mov: "/videos/cleaning-alpha.mov" } },
 ];
 
 // Hovering an object softly blurs the rest of the grid and shows a teaser
@@ -226,31 +249,334 @@ const interests: Interest[] = [
 const COLLECTION_DELAY_MS = 1000;
 const COLUMN_STAGGER = 0.18;
 
-const ObjectImage = ({ item, delay, gate }: { item: Interest; delay: number; gate: boolean }) => (
+// Safari only renders alpha from HEVC (.mov); Chrome/Firefox use VP9 WebM.
+// Chrome on macOS can decode HEVC but drops its alpha, so pick by engine.
+const prefersHevcAlpha = () => {
+  if (typeof navigator === "undefined") return false;
+  const ua = navigator.userAgent;
+  return /AppleWebKit/.test(ua) && !/Chrome|Chromium|Edg|OPR|Firefox|Android/.test(ua);
+};
+
+// Image at rest; on hover it crossfades to the clip and only the clip shows
+// (the image underneath would double up with anything that moves or grows).
+// The swap waits for the clip's first painted frame so there's never a gap.
+const ObjectClip = ({ item, playing }: { item: Interest; playing: boolean }) => {
+  const video = item.video!;
+  const ref = useRef<HTMLVideoElement>(null);
+  const [src] = useState(() => (prefersHevcAlpha() ? video.mov : video.webm));
+  const [showing, setShowing] = useState(false);
+  const wantPlay = useRef(false);
+
+  useEffect(() => {
+    const v = ref.current;
+    wantPlay.current = playing;
+    if (!v) return;
+    if (playing) {
+      v.currentTime = 0;
+      void v.play().catch(() => {});
+    } else {
+      setShowing(false);
+      v.pause();
+    }
+  }, [playing]);
+
+  return (
+    <div className="relative shrink-0" style={{ width: item.w, height: item.h }}>
+      <img
+        src={item.src}
+        alt={item.alt}
+        loading="lazy"
+        className="w-full h-full object-contain transition-opacity duration-300 ease-out"
+        style={{ opacity: showing ? 0 : 1 }}
+      />
+      <video
+        ref={ref}
+        src={src}
+        muted
+        loop={video.loop ?? true}
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+        onPlaying={() => {
+          if (wantPlay.current) setShowing(true);
+        }}
+        className="absolute inset-0 w-full h-full object-contain pointer-events-none transition-opacity duration-300 ease-out"
+        style={{ opacity: showing ? 1 : 0 }}
+      />
+    </div>
+  );
+};
+
+// Matcha bowl pick-up: a small press (grip), lift with a slight backward tilt
+// that overshoots, settle, then a gentle float while hovered. The ring blooms
+// in underneath once the bowl has cleared it; leaving sets the bowl down.
+const LiftLayers = ({ item, playing }: { item: Interest; playing: boolean }) => {
+  const lift = item.lift!;
+  const crop = item.crop!;
+  const [scope, animate] = useAnimate();
+  const reduce = useReducedMotion();
+
+  useEffect(() => {
+    const root = scope.current as HTMLElement | null;
+    if (!root) return;
+    const bowl = root.querySelector("[data-mover]") as HTMLElement;
+    const ring = root.querySelector("[data-reveal]") as HTMLElement;
+    const dy = lift.dy;
+    let cancelled = false;
+    let float: { stop: () => void } | undefined;
+
+    if (playing) {
+      if (reduce) {
+        animate(bowl, { y: -dy }, { duration: 0.3 });
+        animate(ring, { opacity: 1 }, { duration: 0.3 });
+      } else {
+        const up = animate(
+          bowl,
+          {
+            y: [0, 1.2, -dy - 2.2, -dy + 0.5, -dy],
+            rotate: [0, 0.3, -1.4, -0.3, -0.6],
+            scaleY: [1, 0.985, 1.012, 0.997, 1],
+          },
+          { duration: 1.05, times: [0, 0.14, 0.52, 0.78, 1], ease: [0.33, 0, 0.2, 1] }
+        );
+        animate(ring, { opacity: [0, 1], scale: [0.94, 1] }, { delay: 0.34, duration: 0.8, ease: [0.22, 1, 0.36, 1] });
+        up.then(() => {
+          if (cancelled) return;
+          float = animate(
+            bowl,
+            { y: [-dy, -dy - 1.1, -dy], rotate: [-0.6, -0.9, -0.6] },
+            { duration: 3, repeat: Infinity, ease: "easeInOut" }
+          );
+        });
+      }
+    } else {
+      animate(bowl, { y: 0, rotate: 0, scaleY: 1 }, { duration: reduce ? 0.2 : 0.6, ease: [0.4, 0, 0.2, 1] });
+      animate(ring, { opacity: 0, scale: 0.97 }, { duration: 0.35, ease: "easeOut" });
+    }
+    return () => {
+      cancelled = true;
+      float?.stop();
+    };
+  }, [playing, reduce, animate, scope, lift.dy]);
+
+  return (
+    <div ref={scope} className="relative shrink-0 overflow-hidden" style={{ width: item.w, height: item.h }}>
+      <img
+        data-reveal
+        src={lift.reveal}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        style={{ ...crop.img, opacity: 0, transformOrigin: "54% 64%" }}
+      />
+      <img src={lift.base} alt="" aria-hidden="true" loading="lazy" style={crop.img} />
+      <img
+        data-mover
+        src={lift.mover}
+        alt={item.alt}
+        loading="lazy"
+        style={{ ...crop.img, transformOrigin: "49% 63.5%", willChange: "transform" }}
+      />
+    </div>
+  );
+};
+
+const ObjectImage = ({
+  item,
+  delay,
+  gate,
+  playing = false,
+}: {
+  item: Interest;
+  delay: number;
+  gate: boolean;
+  playing?: boolean;
+}) => (
   <Reveal
     delay={delay}
     gate={gate}
     className="flex items-center justify-center w-[161.76px] h-[110.43px] overflow-hidden shrink-0"
   >
-    {item.crop ? (
+    {item.crop && item.lift ? (
+      <LiftLayers item={item} playing={playing} />
+    ) : item.crop ? (
       <div className="relative shrink-0 overflow-hidden" style={{ width: item.w, height: item.h }}>
         <img src={item.src} alt={item.alt} loading="lazy" style={item.crop.img} />
       </div>
+    ) : item.hoverSrc ? (
+      <div className="relative shrink-0" style={{ width: item.w, height: item.h }}>
+        <img
+          src={item.src}
+          alt={item.alt}
+          loading="lazy"
+          className="w-full h-full object-contain transition-opacity duration-300 ease-out"
+          style={{ opacity: playing ? 0 : 1 }}
+        />
+        <img
+          src={item.hoverSrc}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-contain pointer-events-none transition-opacity duration-300 ease-out"
+          style={{ opacity: playing ? 1 : 0 }}
+        />
+      </div>
+    ) : item.video ? (
+      <ObjectClip item={item} playing={playing} />
     ) : (
       <img
         src={item.src}
         alt={item.alt}
         loading="lazy"
-        className="shrink-0 object-contain"
+        className="shrink-0 object-contain transition-transform duration-700 ease-[cubic-bezier(0.34,1.45,0.64,1)]"
         style={{
           width: item.w,
           height: item.h,
-          transform: item.rotate ? `rotate(${item.rotate}deg)` : undefined,
+          transform: item.rotate
+            ? `rotate(${item.rotate + (playing && item.hoverRotate ? item.hoverRotate : 0)}deg)`
+            : undefined,
         }}
       />
     )}
   </Reveal>
 );
+
+// Pencil sketch that draws itself on hover: the cat to the left of the pencil,
+// the lettering in the bottom-right corner. Each new hover remounts the
+// strokes (via `run`) so the drawing starts over; leaving just fades it out.
+const DOODLE_PLACEMENT = [
+  "left-[10px] top-[56px] w-[70px]",
+  "left-[133px] top-[126px] w-[62px]",
+];
+
+const PencilDoodle = ({ active }: { active: boolean }) => {
+  const [run, setRun] = useState(0);
+  useEffect(() => {
+    if (active) setRun((r) => r + 1);
+  }, [active]);
+
+  return (
+    <>
+      {DOODLE_PARTS.map((part, pi) => (
+        <svg
+          key={pi}
+          viewBox={part.viewBox}
+          aria-hidden="true"
+          className={`absolute ${DOODLE_PLACEMENT[pi]} overflow-visible pointer-events-none transition-opacity duration-300 ease-out`}
+          style={{ opacity: active ? 1 : 0 }}
+        >
+          <defs>
+            {/* Graphite: a little wobble plus grainy opacity along the line. */}
+            <filter id={`pencil-grain-${pi}`} x="-5%" y="-10%" width="110%" height="120%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.4" numOctaves="2" seed="7" result="noise" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" result="rough" />
+              <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.7" result="grain" />
+              <feComposite in="rough" in2="grain" operator="in" />
+            </filter>
+          </defs>
+          {run > 0 && (
+            <g
+              key={run}
+              filter={`url(#pencil-grain-${pi})`}
+              fill="none"
+              stroke="#4a4944"
+              strokeWidth={6}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              {DOODLE_STROKES.slice(part.from, part.to).map((s, i) => (
+                <path
+                  key={i}
+                  d={s.d}
+                  pathLength={1}
+                  strokeDasharray="1 1"
+                  strokeDashoffset={1}
+                  className="pencil-stroke"
+                  style={{ animation: `pencil-draw ${s.dur}s linear ${s.delay}s forwards` }}
+                />
+              ))}
+            </g>
+          )}
+        </svg>
+      ))}
+    </>
+  );
+};
+
+// Page curl for a grid cell's bottom-right corner. The crease runs corner to
+// corner; the flap curls back with slightly bowed edges and cylindrical
+// shading, casts a soft shadow on the page, and the spot it lifted from is
+// shaded toward the crease. It peels up with a plain ease-out (no bounce)
+// and lays back flat on leave.
+const CURL_SIZE = 38;
+const PageCurl = ({ active }: { active: boolean }) => {
+  const reduce = useReducedMotion();
+  return (
+    <motion.div
+      aria-hidden="true"
+      className="absolute right-0 bottom-0 pointer-events-none"
+      initial={false}
+      animate={{ width: active ? CURL_SIZE : 0, height: active ? CURL_SIZE : 0 }}
+      transition={
+        reduce
+          ? { duration: 0.2 }
+          : active
+            ? { duration: 0.55, ease: [0.22, 1, 0.36, 1] }
+            : { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
+      }
+    >
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full overflow-visible">
+        <defs>
+          <linearGradient id="curl-under" x1="100%" y1="100%" x2="50%" y2="50%">
+            <stop offset="0%" stopColor="#dedcd5" />
+            <stop offset="100%" stopColor="#c9c7bf" />
+          </linearGradient>
+          {/* cylindrical shading across the flap: bright at the crease, deeper at the curled tip */}
+          <linearGradient id="curl-flap" x1="50%" y1="50%" x2="0%" y2="0%">
+            <stop offset="0%" stopColor="#fdfcfa" />
+            <stop offset="35%" stopColor="#f6f5f1" />
+            <stop offset="75%" stopColor="#e9e7e1" />
+            <stop offset="100%" stopColor="#dedcd5" />
+          </linearGradient>
+          <filter id="curl-shadow" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="5" />
+          </filter>
+        </defs>
+        {/* the spot the corner lifted from (also hides the cell's dashed edges) */}
+        <path d="M100 0 L100 100 L0 100 Z" fill="url(#curl-under)" />
+        {/* soft shadow the flap casts onto the page */}
+        <path d="M100 0 Q 46 10 10 10 Q 10 46 0 100 Z" fill="rgba(60,58,50,0.22)" filter="url(#curl-shadow)" transform="translate(-4 -4)" />
+        {/* the curled flap */}
+        <path d="M100 0 Q 46 8 7 7 Q 8 46 0 100 Z" fill="url(#curl-flap)" />
+        {/* fine edge + crease highlight */}
+        <path d="M100 0 Q 46 8 7 7 Q 8 46 0 100" fill="none" stroke="rgba(120,118,110,0.18)" strokeWidth="0.8" vectorEffect="non-scaling-stroke" />
+        <path d="M100 0 L0 100" fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="0.8" vectorEffect="non-scaling-stroke" />
+      </svg>
+    </motion.div>
+  );
+};
+
+// Hover sounds: one cached <audio> per file, preloaded when the grid appears.
+const hoverAudio: Record<string, HTMLAudioElement> = {};
+const getHoverAudio = (src: string) => {
+  if (!hoverAudio[src]) {
+    const a = new Audio(src);
+    a.preload = "auto";
+    hoverAudio[src] = a;
+  }
+  return hoverAudio[src];
+};
+const fadeOutAudio = (a: HTMLAudioElement) => {
+  const from = a.volume;
+  const t0 = performance.now();
+  const step = () => {
+    const k = Math.min((performance.now() - t0) / 120, 1);
+    a.volume = from * (1 - k);
+    if (k < 1) requestAnimationFrame(step);
+    else a.pause();
+  };
+  requestAnimationFrame(step);
+};
 
 const ObjectGrid = () => {
   const [active, setActive] = useState<number | null>(null);
@@ -260,6 +586,29 @@ const ObjectGrid = () => {
     const t = setTimeout(() => setReady(true), COLLECTION_DELAY_MS);
     return () => clearTimeout(t);
   }, []);
+
+  useEffect(() => {
+    if (!ready) return;
+    interests.forEach((it) => it.sound && getHoverAudio(it.sound.src).load());
+  }, [ready]);
+
+  // Play the hovered object's sound once; it's cut to end with its animation,
+  // so it stops by itself. Leaving early fades it out.
+  useEffect(() => {
+    const snd = active !== null ? interests[active].sound : undefined;
+    if (!snd) return;
+    const audio = getHoverAudio(snd.src);
+    const timer = window.setTimeout(() => {
+      audio.pause();
+      audio.currentTime = 0;
+      audio.volume = snd.volume ?? 0.7;
+      void audio.play().catch(() => {});
+    }, (snd.delay ?? 0) * 1000);
+    return () => {
+      window.clearTimeout(timer);
+      if (!audio.paused) fadeOutAudio(audio);
+    };
+  }, [active]);
   const hintRef = useRef<HTMLDivElement>(null);
   const pos = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
@@ -297,10 +646,13 @@ const ObjectGrid = () => {
 
   return (
     <>
-      <Label size={10} gate={ready}>
-        A few interests, in objects
-      </Label>
-      <div className="mt-6 max-w-[871px] mx-auto overflow-hidden">
+      {/* px-6 lines the heading up with the profile column labels above. */}
+      <div className="px-6">
+        <Label size={10} gate={ready}>
+          A few interests, in objects
+        </Label>
+      </div>
+      <div className="mt-10 max-w-[871px] mx-auto overflow-hidden">
         <div
           className="group/objects grid grid-cols-2 md:grid-cols-4 w-[calc(100%+1px)] mb-[-1px]"
           onMouseMove={onMove}
@@ -312,15 +664,28 @@ const ObjectGrid = () => {
               className="group/object relative h-[191.31px]"
               onMouseEnter={onEnter(i)}
             >
-              {/* This cell's right and bottom grid lines. */}
+              {/* This cell's right and bottom grid lines. The last row has no
+                  bottom line (2 columns on mobile, 4 from md up). */}
+              <Reveal
+                gate={ready}
+                className={`absolute inset-0 pointer-events-none ${
+                  i >= interests.length - 2 ? "hidden" : i >= interests.length - 4 ? "md:hidden" : ""
+                }`}
+                style={{
+                  backgroundImage: `linear-gradient(to right, ${PERF} 2.33px, transparent 2.33px)`,
+                  backgroundSize: "5.44px 1px",
+                  backgroundPosition: "left bottom",
+                  backgroundRepeat: "repeat-x",
+                }}
+              />
               <Reveal
                 gate={ready}
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                  backgroundImage: `linear-gradient(to bottom, ${PERF} 2.33px, transparent 2.33px), linear-gradient(to right, ${PERF} 2.33px, transparent 2.33px)`,
-                  backgroundSize: "1px 5.44px, 5.44px 1px",
-                  backgroundPosition: "right top, left bottom",
-                  backgroundRepeat: "repeat-y, repeat-x",
+                  backgroundImage: `linear-gradient(to bottom, ${PERF} 2.33px, transparent 2.33px)`,
+                  backgroundSize: "1px 5.44px",
+                  backgroundPosition: "right top",
+                  backgroundRepeat: "repeat-y",
                 }}
               />
               <div className="h-full flex flex-col items-center gap-[10.11px] pt-[37.33px] pb-[17.11px] transition-[filter,opacity] duration-500 ease-out group-hover/objects:opacity-50 group-hover/objects:blur-[1.5px] group-hover/object:!opacity-100 group-hover/object:!blur-0">
@@ -333,7 +698,9 @@ const ObjectGrid = () => {
                 >
                   {String(i + 1).padStart(2, "0")}
                 </FocusText>
-                <ObjectImage item={item} gate={ready} delay={(i % 4) * COLUMN_STAGGER} />
+                <ObjectImage item={item} gate={ready} delay={(i % 4) * COLUMN_STAGGER} playing={active === i} />
+                {item.doodle && <PencilDoodle active={active === i} />}
+                {item.curl && <PageCurl active={active === i} />}
                 <FocusText
                   gate={ready}
                   delay={0.35 + (i % 4) * COLUMN_STAGGER}
@@ -555,12 +922,6 @@ const MenuFront = () => (
     <div style={at(10.86, 307.02)}>
       <Arrowed size={6.8} items={["height: 166", "sign: Virgo", "favorite scent: woody", "a taste for things in motion"]} />
     </div>
-
-    <img
-      src={stellaWordmark}
-      alt="Stella P."
-      style={at(41.21, 350.82, { width: u(76), height: u(38), mixBlendMode: "darken", objectFit: "cover" })}
-    />
 
     <div style={at(18.06, 384.16, type(6.67, { whiteSpace: "pre" }))}>
       <p style={{ margin: 0 }}>01</p>
