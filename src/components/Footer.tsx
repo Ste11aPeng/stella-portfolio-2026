@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Copy } from "lucide-react";
+import { openResume } from "@/lib/resume-events";
+import { RESUME_PDF } from "@/data/resume";
 
 const SanJoseClock = () => {
   const [time, setTime] = useState("");
@@ -82,17 +84,13 @@ const Footer = () => {
             />
           </a>
           <a
-            href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view"
+            href={RESUME_PDF}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => { e.preventDefault(); openResume(); }}
             className="group/fr relative inline-flex items-center text-sm text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,95%)] transition-all duration-500 ease-out group-hover/footernav:opacity-60 group-hover/footernav:blur-[0.4px] hover:!opacity-100 hover:!blur-0"
           >
             resume
-            <ArrowUpRight
-              size={13}
-              aria-hidden="true"
-              className="absolute left-full top-1/2 -translate-y-1/2 translate-x-0.5 opacity-0 transition-all duration-300 ease-out group-hover/fr:opacity-100"
-            />
           </a>
           <button
             onClick={handleCopyEmail}

@@ -3,6 +3,8 @@ import { useEffect, useState, useCallback } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
+import { openResume } from "@/lib/resume-events";
+import { RESUME_PDF } from "@/data/resume";
 
 const NotFound = () => {
   const location = useLocation();
@@ -70,9 +72,10 @@ const NotFound = () => {
               </a>
               <span className="text-border">·</span>
               <a
-                href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view"
+                href={RESUME_PDF}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => { e.preventDefault(); openResume(); }}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 resume

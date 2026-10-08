@@ -3,6 +3,8 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, Link } from "react-router-dom";
 import { useNavSound } from "@/hooks/use-nav-sound";
+import { openResume } from "@/lib/resume-events";
+import { RESUME_PDF } from "@/data/resume";
 
 const Header = () => {
   const playSound = useNavSound();
@@ -94,13 +96,8 @@ const Header = () => {
           <Link to="/visual" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${onDark ? "!text-white/80 hover:!text-white" : currentPath === "/visual" ? "text-foreground" : ""}`} onClick={() => playSound("switch")}>visual</Link>
           <Link to="/about" className={`nav-link text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${onDark ? "!text-white/80 hover:!text-white" : currentPath === "/about" ? "text-foreground" : ""}`} onClick={() => playSound("click")}>about</Link>
           <span className="flex items-center gap-1">
-            <a href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view" target="_blank" rel="noopener noreferrer" className={`nav-link text-sm group/resume relative inline-flex items-center transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${onDark ? "!text-white/80 hover:!text-white" : ""}`}>
+            <a href={RESUME_PDF} target="_blank" rel="noopener noreferrer" onClick={(e) => { e.preventDefault(); openResume(); }} className={`nav-link text-sm group/resume relative inline-flex items-center transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${onDark ? "!text-white/80 hover:!text-white" : ""}`}>
               resume
-              <ArrowUpRight
-                size={13}
-                aria-hidden="true"
-                className="absolute left-full top-1/2 -translate-y-1/2 translate-x-0.5 opacity-0 transition-all duration-300 ease-out group-hover/resume:opacity-100"
-              />
             </a>
             <span className={`text-sm transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] ${onDark ? "text-white/40" : "text-muted-foreground/40"}`}>/</span>
             <a href="https://www.linkedin.com/in/stellapengrnr/" target="_blank" rel="noopener noreferrer" className={`nav-link text-sm group/li relative inline-flex items-center transition-all duration-700 ease-out group-hover/nav:opacity-20 group-hover/nav:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${onDark ? "!text-white/80 hover:!text-white" : ""}`}>
@@ -140,11 +137,11 @@ const Header = () => {
             <Link to="/visual" className="text-2xl text-foreground" onClick={() => { playSound("switch"); setMenuOpen(false); }}>visual</Link>
             <Link to="/about" className="text-2xl text-foreground" onClick={() => { playSound("click"); setMenuOpen(false); }}>about</Link>
             <a
-              href="https://drive.google.com/file/d/1GBV0XPi594jlw8w1T5tvuYeYDhqGcCh4/view"
+              href={RESUME_PDF}
               target="_blank"
               rel="noopener noreferrer"
               className="text-2xl text-foreground"
-              onClick={() => setMenuOpen(false)}
+              onClick={(e) => { e.preventDefault(); setMenuOpen(false); openResume(); }}
             >
               resume
             </a>
