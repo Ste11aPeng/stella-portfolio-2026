@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { DOODLE_PARTS, DOODLE_STROKES } from "@/data/doodle-strokes";
-import { motion, useAnimate, useInView, useReducedMotion } from "framer-motion";
+import { motion, useAnimate, useInView, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
+import NameCard, { CARD_H, CARD_W } from "@/components/NameCard";
+import { setNameCardOnScreen } from "@/lib/name-card-visibility";
 
 import polaroid from "@/assets/about/polaroid.png";
 import coffee from "@/assets/about/coffee.png";
@@ -27,21 +29,6 @@ import cleaning from "@/assets/about/cleaning.png";
 const INK_MUTED = "#75766e";
 const INK_STRONG = "#393b35";
 const PERF = "#d3d3cb"; // dashed "perforation" lines, kept subtle
-const MENU_INK = "#45463c";
-const MENU_RULE = "#666759";
-const SPECIMEN_INK = "#787a6b";
-
-// Same blur-to-sharp entrance as the homepage project cards, for the menu
-// cards. Waits until the cards are well into view before starting.
-// `blur` is in the element's own units (the menu cards live in a ×K layer).
-const MENU_START = 0.25;
-const MENU_GAP = 0.7;
-const blurIn = (delay: number, blur = 16) => ({
-  initial: { opacity: 0, scale: 0.97, filter: `blur(${blur}px)` },
-  whileInView: { opacity: 1, scale: 1, filter: "blur(0px)" },
-  viewport: { once: true, amount: 0.45 },
-  transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1] as const, delay },
-});
 
 // Homepage-style blur-to-sharp reveal. `gate` holds it back (e.g. until the
 // section above has loaded); once open it still waits for scroll-in.
@@ -745,298 +732,65 @@ const ObjectGrid = () => {
   );
 };
 
-/* ------------------------------------------------------------------------ */
-/* Menu cards                                                                 */
-/* The cards are authored in Figma units (text as small as 5px). They are     */
-/* laid out at K× and scaled down so browsers never clamp the tiny type.      */
-/* ------------------------------------------------------------------------ */
+// The 粲 name card closes the page: up to 576px wide (centred under the
+// 871px object grid), in the header card's proportions, with text at the same
+// sizes as the rest of the page. Resolves once it is well into view.
+const NAME_CARD_MAX_W = 576;
+const TILT_DEG = 5; // at the card's edges
+const NameCardSection = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.5 });
+  // while it's on screen, the header logo doesn't open its own copy on hover
+  const onScreen = useInView(ref, { amount: 0.15 });
+  useEffect(() => {
+    setNameCardOnScreen(onScreen);
+    return () => setNameCardOnScreen(false);
+  }, [onScreen]);
+  const [avail, setAvail] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setAvail(el.clientWidth));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const width = Math.min(NAME_CARD_MAX_W, avail);
+  // same proportions as the header card; corners and blur grow with it, the
+  // text stays at the page's body sizes
+  const height = Math.round((width * CARD_H) / CARD_W);
+  const scale = Math.max(1, width / CARD_W);
 
-const K = 4;
-const u = (n: number) => `${n * K}px`;
-
-const CARD_H = 417.1;
-const cardShadow = [
-  [7.85, 17.65, 0.04],
-  [32.03, 32.03, 0.03],
-  [71.91, 43.15, 0.02],
-  [127.48, 50.99, 0.01],
-]
-  .map(([y, blur, a]) => `0 ${u(y)} ${u(blur)} rgba(0,0,0,${a})`)
-  .join(", ");
-
-const cardBase = (w: number, edge: number): CSSProperties => ({
-  position: "absolute",
-  width: u(w),
-  height: u(CARD_H),
-  overflow: "hidden",
-  background: "linear-gradient(to bottom, #f5efdf 0%, #f5efdf 55%, #f6f0e0 100%)",
-  border: `${u(0.5)} solid rgba(255,255,255,${edge})`,
-  boxShadow: cardShadow,
-  color: MENU_INK,
-  fontFamily: "'Manrope', ui-sans-serif, system-ui, sans-serif",
-});
-
-const at = (left: number, top: number, extra: CSSProperties = {}): CSSProperties => ({
-  position: "absolute",
-  left: u(left),
-  top: u(top),
-  ...extra,
-});
-
-const type = (size: number, extra: CSSProperties = {}): CSSProperties => ({
-  fontSize: u(size),
-  lineHeight: u(8.5),
-  ...extra,
-});
-
-// Deterministic speckle so the paper texture is stable between renders.
-const PaperGrain = ({ w, seed }: { w: number; seed: number }) => {
-  const specks = useMemo(() => {
-    let s = seed;
-    const rand = () => {
-      s |= 0;
-      s = (s + 0x6d2b79f5) | 0;
-      let t = Math.imul(s ^ (s >>> 15), 1 | s);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-    return Array.from({ length: 547 }, () => {
-      const oval = rand() < 0.25;
-      return {
-        cx: rand() * w,
-        cy: rand() * CARD_H,
-        rx: oval ? 0.425 : 0.2125,
-        ry: oval ? 0.2615 : 0.2125,
-        o: rand() < 0.5 ? 0.1 : 0.2,
-      };
-    });
-  }, [w, seed]);
+  // A gentle tilt toward the pointer, as if the card were held up to it.
+  const reduce = useReducedMotion();
+  const rx = useMotionValue(0);
+  const ry = useMotionValue(0);
+  const spring = { stiffness: 140, damping: 20, mass: 0.6 };
+  const rotateX = useSpring(rx, spring);
+  const rotateY = useSpring(ry, spring);
+  const tilt = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (reduce || e.pointerType !== "mouse") return;
+    const r = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5; // -0.5 … 0.5
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    // the edge under the pointer lifts toward it
+    ry.set(-x * TILT_DEG * 2);
+    rx.set(y * TILT_DEG * 2);
+  };
+  const settle = () => {
+    rx.set(0);
+    ry.set(0);
+  };
 
   return (
-    <svg
-      aria-hidden="true"
-      viewBox={`0 0 ${w} ${CARD_H}`}
-      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}
-    >
-      {specks.map((p, i) => (
-        <ellipse key={i} cx={p.cx} cy={p.cy} rx={p.rx} ry={p.ry} fill="rgb(121,121,105)" fillOpacity={p.o} />
-      ))}
-    </svg>
+    <div ref={ref} className="w-full mx-auto flex justify-center" style={{ maxWidth: NAME_CARD_MAX_W, perspective: 1000 }}>
+      {width > 0 && (
+        <motion.div onPointerMove={tilt} onPointerLeave={settle} style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}>
+          <NameCard shown={inView} width={width} height={height} scale={scale} type="page" radius={12} shadow={0.55} />
+        </motion.div>
+      )}
+    </div>
   );
 };
-
-const Arrowed = ({ items, size }: { items: string[]; size: number }) => (
-  <>
-    {items.map((t) => (
-      <p key={t} style={{ margin: 0, whiteSpace: "nowrap" }}>
-        <span style={type(5.23, { fontWeight: 700 })}>→</span>
-        <span style={type(size)}> {t}</span>
-      </p>
-    ))}
-  </>
-);
-
-const ingredients: [string, string][] = [
-  ["Product thinking", "a base"],
-  ["Graphic play", "a dash"],
-  ["Motion experiments", "a twist"],
-  ["Social media work", "a spoon"],
-  ["Video editing", "to taste"],
-];
-
-const plates: [string, string][] = [
-  ["PRODUCT®", "clear thinking, useful things"],
-  ["GRAPHIC®", "type, layout & visual play"],
-  ["MOTION®", "moving ideas, frame by frame"],
-];
-
-const MenuFront = () => (
-  <div style={{ ...cardBase(162.13, 0.74), left: 0, top: 0 }}>
-    <PaperGrain w={162.13} seed={7} />
-
-    <p style={at(18.06, 20.02, type(6.8))}>SP</p>
-    <p style={at(131.81, 20.02, type(6.8))}>SP</p>
-    <div
-      style={at(43.47, 16.09, {
-        width: u(75.18),
-        height: u(18.31),
-        borderRadius: "50%",
-        border: `${u(0.425)} solid ${MENU_RULE}`,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        whiteSpace: "nowrap",
-      })}
-    >
-      <span style={type(5.23)}>✶&nbsp;</span>
-      <span style={type(6.54)}>stella, peng&nbsp;</span>
-      <span style={type(5.23)}>✶</span>
-    </div>
-
-    <p style={at(18.06, 71.01, type(6.8, { fontWeight: 600 }))}>tl;dr</p>
-    <p style={at(18.06, 80.16, type(6.6, { width: u(128.14) }))}>
-      i'm a product designer who builds across design, tech & things in between.
-    </p>
-    <div style={at(18.06, 105.01, { width: u(124.87), height: u(0.425), background: MENU_RULE })} />
-
-    <p style={at(18.06, 117.43, type(6.8, { fontWeight: 700 }))}>INGREDIENTS</p>
-    {ingredients.map(([name, amount], i) => (
-      <div
-        key={name}
-        style={at(18.06, 128.54 + i * 11.115, {
-          width: u(124.87),
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "baseline",
-          whiteSpace: "nowrap",
-        })}
-      >
-        <span style={{ fontSize: u(6.54) }}>{name}</span>
-        <span style={{ fontSize: u(5.88) }}>{amount}</span>
-      </div>
-    ))}
-    <p style={at(18.06, 186.07, type(6.08))}>(a playful blend, not a recipe)</p>
-
-    {plates.map(([title, note], i) => (
-      <div key={title} style={at(18.06, 202.42 + i * 25.495, type(6.8, { width: u(126.83) }))}>
-        <p style={{ margin: 0 }}>{title}</p>
-        <p style={{ margin: 0, marginTop: u(0.65) }}>{note}</p>
-      </div>
-    ))}
-
-    <p style={at(10.86, 280.21, type(5.69, { whiteSpace: "nowrap" }))}>* SERVED WITH CURIOSITY, ALWAYS</p>
-    {[271.72, 276.95, 282.18, 287.41, 292.64].map((top, i) => (
-      <span
-        key={top}
-        style={at(139, top, {
-          width: u(2.354),
-          height: u(2.354),
-          borderRadius: "50%",
-          border: `${u(0.392)} solid ${MENU_INK}`,
-          background: i < 3 ? SPECIMEN_INK : "#f2efdf",
-        })}
-      />
-    ))}
-
-    <p style={at(18.06, 295.9, type(6.8, { fontWeight: 700 }))}>DETAILS</p>
-    <div style={at(10.86, 307.02)}>
-      <Arrowed size={6.8} items={["height: 166", "sign: Virgo", "favorite scent: woody", "a taste for things in motion"]} />
-    </div>
-
-    <div style={at(18.06, 384.16, type(6.67, { whiteSpace: "pre" }))}>
-      <p style={{ margin: 0 }}>01</p>
-      <p style={{ margin: 0 }}> / 02</p>
-    </div>
-  </div>
-);
-
-// Number specimen on the back: 19 rows × 9 columns on a 13.4 grid, "." = empty.
-const SPECIMEN = [
-  ".6....5..",
-  "928.45.3.",
-  "7.....81.",
-  "19.76....",
-  "2..4.9..1",
-  "....18.69",
-  ".15.....7",
-  ".3.97.685",
-  ".......2.",
-  ".........",
-  ".....2.46",
-  "..8.9..2.",
-  "2..3.4...",
-  ".3.....61",
-  "...9.7...",
-  "56.....8.",
-  "...1.6..5",
-  ".9..4.1..",
-  "41.2.....",
-];
-
-const NumericalSpecimen = () => (
-  <div style={at(17.65, 18.31, { width: u(126.83), height: u(268.04) })}>
-    {[214.43, 174.23, 120.62, 80.41, 40.21].map((top) => (
-      <div key={top} style={at(0, top, { width: u(120.95), height: u(0.392), background: SPECIMEN_INK, opacity: 0.22 })} />
-    ))}
-    {[80.41, 40.21].map((left) => (
-      <div key={left} style={at(left, 0, { width: u(0.392), height: u(261.5), background: SPECIMEN_INK, opacity: 0.22 })} />
-    ))}
-    {Array.from({ length: 20 * 10 }, (_, i) => (
-      <span
-        key={i}
-        style={at((i % 10) * 13.402, Math.floor(i / 10) * 13.402, {
-          width: u(0.523),
-          height: u(0.523),
-          borderRadius: "50%",
-          background: SPECIMEN_INK,
-          opacity: 0.6,
-        })}
-      />
-    ))}
-    {SPECIMEN.flatMap((row, r) =>
-      [...row].map((d, c) =>
-        d === "." ? null : (
-          <span
-            key={`${r}-${c}`}
-            style={at(-0.65 + c * 13.4 + 1.93, -5.88 + r * 13.4 + 5.26, {
-              fontSize: u(8.55),
-              lineHeight: u(8.55),
-              fontWeight: 300,
-              color: SPECIMEN_INK,
-            })}
-          >
-            {d}
-          </span>
-        )
-      )
-    )}
-  </div>
-);
-
-const MenuReverse = () => (
-  <div
-    style={{
-      ...cardBase(161.48, 0.64),
-      left: u(101.66),
-      top: u(9.07),
-      // Figma reports -7.33°; its rotation sign is the inverse of CSS.
-      transform: "rotate(7.327deg)",
-      transformOrigin: "0 0",
-    }}
-  >
-    <PaperGrain w={161.48} seed={23} />
-    <NumericalSpecimen />
-    <div style={at(58.46, 340.51)}>
-      <Arrowed size={6.6} items={["born in China", "based in the U.S.", "lived on both coasts", "occupation: designer"]} />
-    </div>
-    <div style={at(108.85, 385.45, type(6.6, { whiteSpace: "nowrap" }))}>
-      <p style={{ margin: 0 }}>Stella P ✶</p>
-      <p style={{ margin: 0 }}>design menu</p>
-    </div>
-  </div>
-);
-
-const DesignMenu = () => (
-  <div
-    className="relative"
-    style={{ width: 268.93, height: 442.79 }}
-    role="img"
-    aria-label="A design menu card for Stella Peng: product thinking as a base, graphic play, motion experiments, social media work and video editing, served with curiosity."
-  >
-    <div
-      className="absolute left-0 top-0"
-      style={{ width: u(268.93), height: u(442.79), transform: `scale(${1 / K})`, transformOrigin: "0 0" }}
-    >
-      {/* Front card resolves first, then the back card fans in behind it. */}
-      <motion.div className="absolute inset-0" {...blurIn(MENU_START + MENU_GAP, 16 * K)}>
-        <MenuReverse />
-      </motion.div>
-      <motion.div className="absolute inset-0" {...blurIn(MENU_START, 16 * K)}>
-        <MenuFront />
-      </motion.div>
-    </div>
-  </div>
-);
 
 /* ------------------------------------------------------------------------ */
 
@@ -1091,8 +845,8 @@ const About = () => (
         <Perforation delay={0.3} className="mt-6" />
       </section>
 
-      {/* Object collection */}
-      <section className="max-w-[1120px] mx-auto px-6 md:px-8 xl:px-0">
+      {/* Object collection (labels aren't selectable: they're part of the objects) */}
+      <section className="max-w-[1120px] mx-auto px-6 md:px-8 xl:px-0 select-none">
         <ObjectGrid />
       </section>
 
@@ -1101,9 +855,9 @@ const About = () => (
         <Perforation dash={3} gap={4} />
       </div>
 
-      {/* Design menu */}
-      <section className="flex justify-center pt-16 pb-[86px] overflow-hidden">
-        <DesignMenu />
+      {/* Name card */}
+      <section className="pt-16 pb-[120px] px-6 md:px-8 xl:px-0 overflow-hidden select-none">
+        <NameCardSection />
       </section>
     </div>
 

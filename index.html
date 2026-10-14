@@ -3,9 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- The prerendered text in #root is for crawlers and no-JS visitors.
+         With JS on, keep it hidden so it doesn't flash before the app mounts. -->
+    <script>document.documentElement.classList.add("js");</script>
+    <style>
+      html.js #static-content { display: none !important; }
+      html.js body { background: #f6f6f4; }
+    </style>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
-    <link rel="apple-touch-icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon-512.png" type="image/png" sizes="512x512" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preload" as="image" href="/images/project-asksia.webp" type="image/webp" fetchpriority="high" />
     <link rel="preload" as="font" href="/fonts/ExposureTrialVAR.ttf" type="font/ttf" crossorigin />
     <link rel="preload" as="font" href="/fonts/NewSpiritCondensedTRIAL-Regular.ttf" type="font/ttf" crossorigin />
@@ -71,7 +79,7 @@
             "alternateName": "Stella Peng",
             "description": "Independent product design practice of Stella Peng, covering product design, design engineering, and 0 to 1 product work.",
             "url": "https://ruocanpeng.com/",
-            "logo": "https://ruocanpeng.com/images/og-image.png",
+            "logo": "https://ruocanpeng.com/icon-512.png",
             "image": "https://ruocanpeng.com/images/og-image.png",
             "email": "mailto:stellanotfound@gmail.com",
             "founder": { "@id": "https://ruocanpeng.com/#person" },

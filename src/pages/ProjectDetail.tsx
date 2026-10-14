@@ -278,7 +278,7 @@ const ProjectDetail = () => {
         </section>
       </div>
 
-      <ProjectProgressBar />
+      <ProjectProgressBar color={project?.titleColor} />
       </div>
 
       <div className="sticky bottom-0 z-0">

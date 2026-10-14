@@ -28,8 +28,8 @@
 
 @layer base {
   :root {
-    /* Light warm cement (#f2f1ed), a lifted take on the About page design. */
-    --background: 45 14% 94%;
+    /* Soft off-white (#f6f6f4): barely warm, no longer yellow-grey. */
+    --background: 40 12% 96.2%;
     --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
@@ -121,6 +121,11 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* pale yellow highlight, like the take-a-copy sticky note */
+  ::selection {
+    background-color: #f8eaab;
   }
 
   h1, h2, h3 {

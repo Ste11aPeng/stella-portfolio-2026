@@ -175,7 +175,7 @@ const Hero = () => {
 
         <div className="flex flex-col">
           <p
-            className="group/title max-w-3xl pt-0 text-[1.5rem] leading-[1.85rem] md:text-[2rem] md:leading-[2.4rem]"
+            className="group/title select-none max-w-3xl pt-0 text-[1.5rem] leading-[1.85rem] md:text-[2rem] md:leading-[2.4rem]"
             style={{
               color: "var(--title-ink)",
               fontFamily: "'Exposure', 'New Spirit', serif",

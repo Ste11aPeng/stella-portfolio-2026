@@ -92,11 +92,10 @@ going 0 to 1. Got an idea worth building, or just want to say hi? Reach out :D
 Polaroids, coffee, stationery, home decor, R&B and jazz music, growing things, gaming,
 my cat Iggy, doodling, journaling, matcha, and cleaning.
 
-## tl;dr
+## My name
 
-A product designer who builds across design, tech, and things in between: product
-thinking as a base, with graphic play, motion experiments, social media work, and video
-editing. Served with curiosity, always.
+粲 (càn) is my Chinese name, and my English one too: Stella is a star, 粲 is its light.
+明白貌；明亮貌: bright, luminous. 星光粲然: starlight, shining bright.
 
 Say hello: [stellanotfound@gmail.com](mailto:stellanotfound@gmail.com).
 `,

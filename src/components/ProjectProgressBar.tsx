@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const ProjectProgressBar = () => {
+// `color` tints the line in the project's own colour (its title tag colour);
+// without one it stays the ink colour.
+const ProjectProgressBar = ({ color }: { color?: string }) => {
   const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
   const [hidden, setHidden] = useState(false);
@@ -36,10 +38,10 @@ const ProjectProgressBar = () => {
       className={`fixed bottom-0 left-0 right-0 z-50 bg-background transition-[opacity,transform] duration-300 ${hidden ? "opacity-0 translate-y-full pointer-events-none" : "opacity-100 translate-y-0"}`}
     >
       {/* Progress line — sits at the very top of the bar */}
-      <div className="relative h-px w-full bg-foreground/10 overflow-hidden">
+      <div className="relative h-[1.5px] w-full bg-foreground/10 overflow-hidden">
         <div
-          className="absolute top-0 left-0 h-full bg-foreground transition-[width] duration-75 ease-out"
-          style={{ width: `${progress * 100}%` }}
+          className={`absolute top-0 left-0 h-full transition-[width] duration-75 ease-out ${color ? "" : "bg-foreground"}`}
+          style={{ width: `${progress * 100}%`, backgroundColor: color }}
         />
       </div>
 

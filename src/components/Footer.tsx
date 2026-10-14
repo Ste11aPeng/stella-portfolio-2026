@@ -4,6 +4,37 @@ import { ArrowUpRight, Copy } from "lucide-react";
 import { openResume } from "@/lib/resume-events";
 import { RESUME_PDF } from "@/data/resume";
 
+// What I'm probably up to right now, by the hour in Seattle.
+const STATUS: [fromHour: number, text: string][] = [
+  [0, "probably still pushing pixels"],
+  [2, "probably asleep (hopefully)"],
+  [6, "probably on my first coffee"],
+  [9, "probably deep in figma"],
+  [12, "probably out for lunch, or matcha"],
+  [14, "probably pushing pixels"],
+  [18, "probably feeding iggy"],
+  [21, "probably journaling, or gaming"],
+  [23, "probably still pushing pixels"],
+];
+
+const seattleHour = () =>
+  Number(
+    new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "numeric", hourCycle: "h23" }).format(
+      new Date()
+    )
+  );
+
+const statusFor = (hour: number) => [...STATUS].reverse().find(([from]) => hour >= from)![1];
+
+const useSeattleStatus = () => {
+  const [status, setStatus] = useState(() => statusFor(seattleHour()));
+  useEffect(() => {
+    const id = setInterval(() => setStatus(statusFor(seattleHour())), 60_000);
+    return () => clearInterval(id);
+  }, []);
+  return status;
+};
+
 const SanJoseClock = () => {
   const [time, setTime] = useState("");
 
@@ -33,6 +64,7 @@ const SanJoseClock = () => {
 
 const Footer = () => {
   const [copied, setCopied] = useState(false);
+  const status = useSeattleStatus();
 
   const handleCopyEmail = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -45,22 +77,22 @@ const Footer = () => {
     <footer className="w-full py-24 px-8 md:px-16 lg:px-24 bg-[hsl(0,0%,5%)] text-[hsl(0,0%,90%)] relative overflow-hidden">
       {/* Dot pattern background */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.15]"
+        className="absolute inset-0 pointer-events-none opacity-[0.32]"
         style={{
-          backgroundImage: "radial-gradient(circle, hsl(0,0%,40%) 0.8px, transparent 0.8px)",
+          backgroundImage: "radial-gradient(circle, hsl(0,0%,62%) 0.9px, transparent 0.9px)",
           backgroundSize: "24px 24px",
         }}
       />
 
-      <div className="max-w-[1440px] mx-auto flex items-center justify-between relative z-10">
+      <div className="max-w-[1440px] mx-auto flex items-center justify-center md:justify-between relative z-10">
         <motion.p
-          className="flex-1 text-sm text-[hsl(0,0%,60%)]"
+          className="hidden md:block flex-1 text-sm text-[hsl(0,0%,60%)]"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          let's build together
+          {status}
         </motion.p>
 
         <motion.nav
@@ -132,7 +164,7 @@ const Footer = () => {
         </motion.nav>
 
         <motion.div
-          className="flex-1 flex justify-end"
+          className="hidden md:flex flex-1 justify-end"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
