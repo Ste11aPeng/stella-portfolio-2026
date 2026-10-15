@@ -6,7 +6,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import NameCard, { CARD_H, CARD_W } from "@/components/NameCard";
-import { setNameCardOnScreen } from "@/lib/name-card-visibility";
 
 import polaroid from "@/assets/about/polaroid.png";
 import coffee from "@/assets/about/coffee.png";
@@ -740,12 +739,6 @@ const TILT_DEG = 5; // at the card's edges
 const NameCardSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.5 });
-  // while it's on screen, the header logo doesn't open its own copy on hover
-  const onScreen = useInView(ref, { amount: 0.15 });
-  useEffect(() => {
-    setNameCardOnScreen(onScreen);
-    return () => setNameCardOnScreen(false);
-  }, [onScreen]);
   const [avail, setAvail] = useState(0);
   useEffect(() => {
     const el = ref.current;
