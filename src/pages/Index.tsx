@@ -50,7 +50,7 @@ const Index = () => {
           <div className="md:hidden">
             <Hero />
           </div>
-          <div className="max-w-[1000px] px-8 md:pl-6 md:pr-8 lg:pl-10 lg:pr-12 md:pt-8 pb-24">
+          <div className="max-w-[1000px] mx-auto px-8 md:pl-6 md:pr-8 lg:pl-10 lg:pr-12 md:pt-8 pb-24">
               <motion.div
                 key={view}
                 initial={switched ? { opacity: 0, filter: "blur(12px)" } : false}
