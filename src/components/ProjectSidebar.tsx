@@ -111,12 +111,17 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
               onClick={() => onSectionClick(section.id)}
               className={cn(
                 HOVER,
-                "text-sm lowercase hover:text-foreground",
-                activeSection === section.id
-                  ? "text-foreground font-medium"
-                  : "text-muted-foreground/50"
+                "inline-flex items-center text-sm lowercase hover:text-foreground",
+                activeSection === section.id ? "text-foreground" : "text-muted-foreground/50"
               )}
             >
+              {/* the same short leading line as the homepage sidebar marks the section on screen */}
+              <span
+                aria-hidden="true"
+                className={`inline-block h-px bg-foreground transition-all duration-500 ease-out ${
+                  activeSection === section.id ? "w-2 mr-1.5 opacity-100" : "w-0 mr-0 opacity-0"
+                }`}
+              />
               {section.label}
             </button>
           </motion.li>

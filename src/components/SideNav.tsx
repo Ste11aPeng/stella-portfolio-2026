@@ -23,8 +23,10 @@ const useSeattleTime = () => {
 };
 
 // Hovering one item fades and softly blurs the others in its group, as the header does.
+// Every row is 28px tall: buttons and links otherwise sit on the line box
+// differently and come out 28px and 24px.
 const item =
-  "relative inline-flex w-fit items-center text-sm leading-[21px] transition-all duration-700 ease-out group-hover/list:opacity-25 group-hover/list:blur-[0.8px] hover:!opacity-100 hover:!blur-0";
+  "relative inline-flex h-7 w-fit items-center text-sm leading-[21px] transition-all duration-700 ease-out group-hover/list:opacity-25 group-hover/list:blur-[0.8px] hover:!opacity-100 hover:!blur-0";
 
 const Arrow = ({ group }: { group: string }) => (
   <ArrowUpRight
@@ -35,7 +37,7 @@ const Arrow = ({ group }: { group: string }) => (
 );
 
 const Label = ({ children }: { children: string }) => (
-  <p className="mb-1.5 text-[12px] leading-5 text-[#a1a1a1] select-none">{children}</p>
+  <p className="mb-1.5 text-[12px] leading-5 text-[#c2c2c2] select-none">{children}</p>
 );
 
 // a short line in front marks the section on screen: it draws in from nothing
@@ -60,7 +62,9 @@ const fade = (delay: number) => ({
 const STEP_START = 0.75;
 const STEP_GAP = 0.06;
 const Step = ({ i, children }: { i: number; children: React.ReactNode }) => (
-  <motion.div {...fade(STEP_START + i * STEP_GAP)}>{children}</motion.div>
+  <motion.div className="flex" {...fade(STEP_START + i * STEP_GAP)}>
+    {children}
+  </motion.div>
 );
 
 // The intro: hovering it leaves the two roles, "designer" and "builder", sharp
@@ -85,8 +89,8 @@ const GROUPS = TITLE.reduce<number[][]>((groups, t, i) => {
   return groups;
 }, []);
 const ACCENTS = TITLE.flatMap((t, i) => (t.accent ? [i] : []));
-// set smaller than the old hero (19px vs 32px), so distances are scaled up to match its feel
-const SCALE = 32 / 19;
+// set smaller than the old hero (21px vs 32px), so distances are scaled up to match its feel
+const SCALE = 32 / 21;
 const blurFor = (d: number) => Math.min(0.6 + d * SCALE * 0.0105, 2.6).toFixed(2);
 const opacityFor = (d: number) => Math.max(0.82 - d * SCALE * 0.001, 0.4).toFixed(2);
 const nearestAccent = (i: number) => Math.min(...ACCENTS.map((a) => Math.abs(i - a)));
@@ -117,7 +121,7 @@ const Title = () => {
 
   return (
     <p
-      className="group/title text-[19px] leading-[1.35rem] select-none"
+      className="group/title text-[21px] leading-[1.5rem] select-none"
       style={{ color: "var(--title-ink)", fontFamily: "'Baskervville', serif", fontWeight: 500, letterSpacing: "-0.01em" }}
     >
       {GROUPS.map((group, g) => (
@@ -178,7 +182,7 @@ const SideNav = ({ active, onJump }: { active: Section; onJump: (s: Section) => 
   );
 
   return (
-    <aside className="hidden md:flex sticky top-0 h-screen w-[264px] lg:w-[276px] shrink-0 flex-col justify-between pl-8 pr-2.5 lg:pl-9 py-8 select-none">
+    <aside className="hidden md:flex sticky top-0 h-screen w-[288px] lg:w-[290px] shrink-0 flex-col justify-between pl-8 pr-2.5 lg:pl-9 py-8 select-none">
       <div>
         <motion.div {...fade(0.3)}>
           <Title />
@@ -196,7 +200,7 @@ const SideNav = ({ active, onJump }: { active: Section; onJump: (s: Section) => 
         </motion.p>
 
         {/* the lists come in a line at a time, top to bottom */}
-        <nav aria-label="Site" className="mt-10 flex flex-col gap-7">
+        <nav aria-label="Site" className="mt-10">
           <div>
             <Step i={0}>
               <Label>index</Label>
@@ -221,6 +225,12 @@ const SideNav = ({ active, onJump }: { active: Section; onJump: (s: Section) => 
               </Step>
             </div>
           </div>
+        </nav>
+      </div>
+
+      {/* links out sit at the foot of the column, above the time */}
+      <div>
+        <nav aria-label="Elsewhere" className="mb-8">
           <div>
             <Step i={5}>
               <Label>elsewhere</Label>
@@ -257,11 +267,10 @@ const SideNav = ({ active, onJump }: { active: Section; onJump: (s: Section) => 
             </div>
           </div>
         </nav>
+        <motion.div className="text-[12px] leading-5 text-[#a1a1a1]" {...fade(STEP_START + 10 * STEP_GAP)}>
+          <p className="tabular-nums">{time}, Seattle WA</p>
+        </motion.div>
       </div>
-
-      <motion.div className="text-[12px] leading-5 text-[#a1a1a1]" {...fade(STEP_START + 10 * STEP_GAP)}>
-        <p className="tabular-nums">{time}, Seattle WA</p>
-      </motion.div>
     </aside>
   );
 };

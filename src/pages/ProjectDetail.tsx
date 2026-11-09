@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import siaIntroImage from "@/assets/sia-intro.png";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Seo from "@/components/Seo";
 import ProjectSidebar from "@/components/ProjectSidebar";
@@ -92,6 +92,11 @@ const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("overview");
+  // While a click's smooth scroll is under way, the clicked section stays
+  // marked: otherwise the scroll spy steps the marker through every section
+  // it passes on the way, and the nav twitches before settling.
+  const scrollLock = useRef(false);
+  const scrollIdle = useRef<number>();
   const project = id ? getProjectById(id) : undefined;
 
 
@@ -105,6 +110,12 @@ const ProjectDetail = () => {
     const currentSectionIds = getSectionIds(id);
     
     const handleScroll = () => {
+      if (scrollLock.current) {
+        // release once the scroll has come to rest
+        window.clearTimeout(scrollIdle.current);
+        scrollIdle.current = window.setTimeout(() => (scrollLock.current = false), 140);
+        return;
+      }
       const scrollPosition = window.scrollY + 150; // offset for header
 
       for (let i = currentSectionIds.length - 1; i >= 0; i--) {
@@ -117,10 +128,13 @@ const ProjectDetail = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll(); // Initial check
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.clearTimeout(scrollIdle.current);
+    };
   }, [id]);
 
   useEffect(() => {
@@ -146,6 +160,10 @@ const ProjectDetail = () => {
     setActiveSection(section);
     const element = document.getElementById(section);
     if (element) {
+      scrollLock.current = true;
+      // if the page is already there and nothing scrolls, don't stay locked
+      window.clearTimeout(scrollIdle.current);
+      scrollIdle.current = window.setTimeout(() => (scrollLock.current = false), 300);
       element.scrollIntoView({
         behavior: "smooth",
         block: "start"
