@@ -189,10 +189,10 @@ const ProjectDetail = () => {
           <MobileSectionNav activeSection={activeSection} onSectionClick={handleSectionClick} />
 
           {/* Content Section with Sidebar */}
-          {/* The write-up is centred on the screen; equal side padding at xl keeps it
-              clear of the section nav pinned top-left (below xl, only the left side
-              makes room for it, so it sits a little right of centre) */}
-          <section className="px-4 md:pl-[232px] md:pr-12 xl:px-[240px] pb-24">
+          {/* The write-up is centred in the space to the right of the section nav
+              pinned top-left (not on the whole screen, which reads as leaning left
+              next to the nav), as the homepage centres its work beside its sidebar */}
+          <section className="px-4 md:pl-[232px] md:pr-12 pb-24">
           <ProjectSidebar activeSection={activeSection} onSectionClick={handleSectionClick} />
           <div className="max-w-[960px] mx-auto">
             {/* Main Content */}
