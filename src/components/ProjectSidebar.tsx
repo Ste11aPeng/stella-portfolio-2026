@@ -18,6 +18,18 @@ const sections = [
   { id: "reflection", label: "Reflection" },
 ];
 
+// In, the items drop in one after another; out (scrolling back up to the
+// cover), they all go at once, quickly. The list items carry this motion and
+// the links inside carry the hover fade, so the two never fight over opacity.
+const HIDDEN = { opacity: 0, y: -8 };
+const SHOWN = { opacity: 1, y: 0 };
+const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number];
+const enter = (delay: number) => ({ duration: 0.6, ease: EASE, delay });
+const LEAVE = { duration: 0.2, ease: "easeOut" as const, delay: 0 };
+// hovering the nav fades and softly blurs every item but the one under the pointer
+const HOVER =
+  "inline-block transition-all duration-700 ease-out group-hover/sidebar:opacity-20 group-hover/sidebar:blur-[0.8px] hover:!opacity-100 hover:!blur-0";
+
 const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) => {
   const { id } = useParams<{ id: string }>();
   const playSound = useNavSound();
@@ -73,15 +85,15 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
     <nav className="fixed top-8 left-8 lg:left-9 z-40 hidden md:block group/sidebar">
       <ul className="flex flex-col text-left">
         <motion.li
-          initial={{ opacity: 0, y: -8 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className={`mb-12 ${isVisible ? "" : "pointer-events-none"} transition-all duration-700 ease-out group-hover/sidebar:opacity-20 group-hover/sidebar:blur-[0.8px] hover:!opacity-100 hover:!blur-0`}
+          initial={HIDDEN}
+          animate={isVisible ? SHOWN : HIDDEN}
+          transition={isVisible ? enter(0) : LEAVE}
+          className={`mb-12 ${isVisible ? "" : "pointer-events-none"}`}
         >
           <Link
             to="/"
             onClick={() => playSound("switch")}
-            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className={`${HOVER} text-sm text-muted-foreground hover:text-foreground`}
           >
             back
           </Link>
@@ -90,19 +102,16 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
         {visibleSections.map((section, index) => (
           <motion.li
             key={section.id}
-            initial={{ opacity: 0, y: -8 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
-            transition={{
-              duration: 0.6,
-              ease: [0.16, 1, 0.3, 1],
-              delay: 0.1 * (index + 1),
-            }}
-            className={`transition-all duration-700 ease-out group-hover/sidebar:opacity-20 group-hover/sidebar:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${isVisible ? "" : "pointer-events-none"}`}
+            initial={HIDDEN}
+            animate={isVisible ? SHOWN : HIDDEN}
+            transition={isVisible ? enter(0.1 * (index + 1)) : LEAVE}
+            className={isVisible ? "" : "pointer-events-none"}
           >
             <button
               onClick={() => onSectionClick(section.id)}
               className={cn(
-                "text-sm lowercase transition-colors hover:text-foreground",
+                HOVER,
+                "text-sm lowercase hover:text-foreground",
                 activeSection === section.id
                   ? "text-foreground font-medium"
                   : "text-muted-foreground/50"
