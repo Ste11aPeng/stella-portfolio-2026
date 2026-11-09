@@ -38,7 +38,7 @@ export const pages = [
   {
     path: "",
     file: "index.html",
-    title: "Stella Peng",
+    title: "Stella Peng ✶",
     description:
       "Stella Peng is a designer who builds across design, tech, and things in between. Master's in HCI + Design @ UW, prev. design @ TikTok.",
     h1: "Stella is a designer who builds across design, tech & things in between.",

@@ -41,6 +41,13 @@ const DEMO_ASPECT = 619 / 375.938;
 
 const PIECES: Piece[] = [
   {
+    title: "Trip Itinerary",
+    when: "Fall 2026",
+    category: "Interaction",
+    aspect: 1,
+    media: { kind: "video", src: "/videos/trip-itinerary.mp4", poster: "/videos/posters/trip-itinerary.jpg", eager: true },
+  },
+  {
     title: "Flower Subscription",
     when: "Fall 2026",
     category: "Interaction",

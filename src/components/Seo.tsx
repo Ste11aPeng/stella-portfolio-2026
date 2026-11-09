@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 
 export const SITE_NAME = "Stella";
-export const SITE_FULL_NAME = "Stella Peng";
+export const SITE_FULL_NAME = "Stella Peng ✶";
 export const SITE_URL = "https://ruocanpeng.com";
 
 interface SeoProps {

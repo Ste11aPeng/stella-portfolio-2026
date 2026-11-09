@@ -68,9 +68,17 @@ const Step = ({ i, children }: { i: number; children: React.ReactNode }) => (
 );
 
 // The intro: hovering it leaves the two roles, "designer" and "builder", sharp
-// while every other word (and their commas) blurs and fades with its distance
-// from the nearer of them.
-type Token = { text: string; accent?: boolean; /** sits right after the previous token, no space */ glue?: boolean };
+// while everything else blurs and fades with its distance from the nearer of
+// them. That's worked out letter by letter, not word by word, so a lone word
+// like "mostly." still clears towards the role beside it and hazes away from it.
+type Token = {
+  text: string;
+  accent?: boolean;
+  /** sits right after the previous token, no space */
+  glue?: boolean;
+  /** starts the second line */
+  newline?: boolean;
+};
 const TITLE: Token[] = [
   { text: "Stella" },
   { text: "is" },
@@ -78,7 +86,7 @@ const TITLE: Token[] = [
   { text: "designer", accent: true },
   { text: ",", glue: true },
   { text: "mostly." },
-  { text: "builder", accent: true },
+  { text: "builder", accent: true, newline: true },
   { text: ",", glue: true },
   { text: "often." },
 ];
@@ -88,67 +96,83 @@ const GROUPS = TITLE.reduce<number[][]>((groups, t, i) => {
   else groups.push([i]);
   return groups;
 }, []);
+// the pieces that blur on their own: an accent whole, anything else per letter
+type Piece = { token: number; text: string };
+const PIECES: Piece[] = TITLE.flatMap((t, token) =>
+  t.accent ? [{ token, text: t.text }] : [...t.text].map((ch) => ({ token, text: ch }))
+);
+const piecesOf = (token: number) => PIECES.flatMap((p, k) => (p.token === token ? [k] : []));
 const ACCENTS = TITLE.flatMap((t, i) => (t.accent ? [i] : []));
+const ACCENT_PIECES = PIECES.flatMap((p, k) => (TITLE[p.token].accent ? [k] : []));
 // set smaller than the old hero (21px vs 32px), so distances are scaled up to match its feel
 const SCALE = 32 / 21;
-const blurFor = (d: number) => Math.min(0.6 + d * SCALE * 0.0105, 2.6).toFixed(2);
-const opacityFor = (d: number) => Math.max(0.82 - d * SCALE * 0.001, 0.4).toFixed(2);
+const blurFor = (d: number) => Math.min(0.4 + d * SCALE * 0.016, 2.8).toFixed(2);
+const opacityFor = (d: number) => Math.max(0.88 - d * SCALE * 0.002, 0.35).toFixed(2);
 const nearestAccent = (i: number) => Math.min(...ACCENTS.map((a) => Math.abs(i - a)));
 
 const Title = () => {
   const refs = useRef<(HTMLSpanElement | null)[]>([]);
-  const [dists, setDists] = useState<number[]>(() => TITLE.map((_, i) => nearestAccent(i) * 30));
+  const para = useRef<HTMLParagraphElement>(null);
+  const [dists, setDists] = useState<number[]>(() => PIECES.map((p) => nearestAccent(p.token) * 30));
 
-  // distance from each word to the nearer accent's middle, as laid out
+  // distance from each letter to the nearer accent, as laid out: sideways it
+  // counts from the accent's edge (so letters right beside "designer" are
+  // nearly sharp), and a line apart counts as far, so each word takes its
+  // cue from the role on its own line
   useLayoutEffect(() => {
-    const centre = (el: HTMLElement | null) => {
+    const box = (el: HTMLElement | null) => {
       const r = el?.getBoundingClientRect();
-      return r ? { x: r.left + r.width / 2, y: r.top + r.height / 2 } : null;
+      return r && r.width ? { x: r.left + r.width / 2, y: r.top + r.height / 2, hw: r.width / 2 } : null;
     };
     const measure = () => {
-      const anchors = ACCENTS.map((a) => centre(refs.current[a])).filter((c): c is { x: number; y: number } => !!c);
+      const anchors = ACCENT_PIECES.map((k) => box(refs.current[k])).filter((c): c is NonNullable<typeof c> => !!c);
       if (!anchors.length) return;
       setDists(
         refs.current.map((el) => {
-          const c = centre(el);
-          return c ? Math.min(...anchors.map((a) => Math.hypot(c.x - a.x, c.y - a.y))) : 0;
+          const c = box(el);
+          return c
+            ? Math.min(...anchors.map((a) => Math.hypot(Math.max(Math.abs(c.x - a.x) - a.hw, 0), (c.y - a.y) * 3)))
+            : 0;
         })
       );
     };
     measure();
     document.fonts?.ready.then(measure);
+    // again whenever it reflows (or first gets laid out, if it started hidden)
+    const ro = new ResizeObserver(measure);
+    if (para.current) ro.observe(para.current);
+    return () => ro.disconnect();
   }, []);
 
   return (
     <p
-      className="group/title text-[21px] leading-[1.5rem] select-none"
+      ref={para}
+      className="group/title whitespace-nowrap text-[21px] leading-[1.5rem] select-none"
       style={{ color: "var(--title-ink)", fontFamily: "'Baskervville', serif", fontWeight: 500, letterSpacing: "-0.01em" }}
     >
       {GROUPS.map((group, g) => (
-        // a word and the comma glued to it never part across lines; the space
-        // before it sits outside, so lines can still break between words
+        // always two lines, broken after "mostly." (letter-by-letter spans
+        // lose a little kerning, enough to push it down a line otherwise)
         <Fragment key={g}>
-          {g > 0 && " "}
-          <span className="whitespace-nowrap">
-          {group.map((i) => {
-            const t = TITLE[i];
-            return (
-              <span
-                key={i}
-                ref={(el) => (refs.current[i] = el)}
-                className={
-                  t.accent
-                    ? "inline-block"
-                    : "inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--hb))] group-hover/title:opacity-[var(--ho)]"
-                }
-                style={
-                  t.accent ? undefined : ({ "--hb": `${blurFor(dists[i])}px`, "--ho": opacityFor(dists[i]) } as React.CSSProperties)
-                }
-              >
-                {t.text}
-              </span>
-            );
-          })}
+          {g > 0 && (TITLE[group[0]].newline ? <br /> : " ")}
+          <span>
+            {group.flatMap(piecesOf).map((k) => {
+              const accent = TITLE[PIECES[k].token].accent;
+              return (
+                <span
+                  key={k}
+                  ref={(el) => (refs.current[k] = el)}
+                  className={
+                    accent
+                      ? "inline-block"
+                      : "inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--hb))] group-hover/title:opacity-[var(--ho)]"
+                  }
+                  style={accent ? undefined : ({ "--hb": `${blurFor(dists[k])}px`, "--ho": opacityFor(dists[k]) } as React.CSSProperties)}
+                >
+                  {PIECES[k].text}
+                </span>
+              );
+            })}
           </span>
         </Fragment>
       ))}
@@ -239,7 +263,7 @@ const SideNav = ({ active, onJump }: { active: Section; onJump: (s: Section) => 
               {[
                 ["linkedin", "https://www.linkedin.com/in/stellapengrnr/"],
                 ["instagram", "https://www.instagram.com/abtste11a/"],
-                ["twitter", "https://x.com/abtste11a"],
+                ["x/twitter", "https://x.com/abtste11a"],
               ].map(([label, href], k) => (
                 <Step key={label} i={6 + k}>
                   <a
