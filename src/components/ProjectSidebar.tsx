@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useNavSound } from "@/hooks/use-nav-sound";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -19,6 +20,7 @@ const sections = [
 
 const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) => {
   const { id } = useParams<{ id: string }>();
+  const playSound = useNavSound();
   
   const [isVisible, setIsVisible] = useState(false);
 
@@ -28,13 +30,12 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
   }, [id]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setIsVisible(true);
-      }
-    };
+    // the nav ("back" included) stays out of the way while the cover is on
+    // screen and comes in once the write-up is reached
+    const handleScroll = () => setIsVisible(window.scrollY > window.innerHeight * 0.6);
 
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [id]);
 
@@ -67,9 +68,24 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
   const visibleSections = getVisibleSections();
 
   return (
-    <nav className="sticky top-32 hidden md:block group/sidebar">
-      <ul className="flex flex-col text-left pt-16">
-
+    // pinned to the top-left corner, where the homepage's intro sits; case
+    // studies have no header on desktop, so "back" here is the way home
+    <nav className="fixed top-8 left-8 lg:left-9 z-40 hidden md:block group/sidebar">
+      <ul className="flex flex-col text-left">
+        <motion.li
+          initial={{ opacity: 0, y: -8 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className={`mb-12 ${isVisible ? "" : "pointer-events-none"} transition-all duration-700 ease-out group-hover/sidebar:opacity-20 group-hover/sidebar:blur-[0.8px] hover:!opacity-100 hover:!blur-0`}
+        >
+          <Link
+            to="/"
+            onClick={() => playSound("switch")}
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            back
+          </Link>
+        </motion.li>
 
         {visibleSections.map((section, index) => (
           <motion.li
@@ -81,12 +97,12 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
               ease: [0.16, 1, 0.3, 1],
               delay: 0.1 * (index + 1),
             }}
-            className="transition-all duration-700 ease-out group-hover/sidebar:opacity-20 group-hover/sidebar:blur-[0.8px] hover:!opacity-100 hover:!blur-0"
+            className={`transition-all duration-700 ease-out group-hover/sidebar:opacity-20 group-hover/sidebar:blur-[0.8px] hover:!opacity-100 hover:!blur-0 ${isVisible ? "" : "pointer-events-none"}`}
           >
             <button
               onClick={() => onSectionClick(section.id)}
               className={cn(
-                "text-sm transition-colors hover:text-foreground",
+                "text-sm lowercase transition-colors hover:text-foreground",
                 activeSection === section.id
                   ? "text-foreground font-medium"
                   : "text-muted-foreground/50"

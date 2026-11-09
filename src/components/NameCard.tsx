@@ -53,9 +53,9 @@ const CARD_RADIUS = 14;
 // corners; only the empty middle stays clear. Each layer blurs what's under it
 // (the card is the backdrop root), so they compound outward.
 const CORNER_BLURS = [
-  { blur: 6, clear: 18, full: 52, white: 0.06 },
-  { blur: 16, clear: 38, full: 74, white: 0.12 },
-  { blur: 40, clear: 56, full: 96, white: 0.2 },
+  { blur: 6, clear: 18, full: 52, white: 0.12 },
+  { blur: 16, clear: 38, full: 74, white: 0.24 },
+  { blur: 40, clear: 56, full: 96, white: 0.4 },
 ];
 const cornerMask = (clear: number, full: number) =>
   `radial-gradient(ellipse 60% 62% at 50% 50%, transparent ${clear}%, black ${full}%)`;
@@ -67,10 +67,13 @@ const word = (shown: boolean, delay: string) =>
 
 // `width`/`height` size the card and `scale` grows its corners, blur and
 // shadow to match. `type` picks the text sizes: "note" for the small hover card,
-// "page" to sit at the same sizes as body text on a page (14px).
+// "page" to sit at the same sizes as body text on a page (14px), "mini" for a
+// card smaller than the note.
 const TYPE = {
   note: { pad: "px-4 py-3.5", gap: "gap-2.5", glyph: "w-[26px] h-[28px]", pinyin: "text-[17px]", line: "text-[12.5px]", defs: "text-[11.5px]" },
   page: { pad: "px-6 py-5", gap: "gap-3", glyph: "w-[32px] h-[35px]", pinyin: "text-[20px]", line: "text-[14px]", defs: "text-[14px]" },
+  // smaller than the hover card (the About page's, at ~290px wide)
+  mini: { pad: "px-3.5 py-3", gap: "gap-2", glyph: "w-[21px] h-[23px]", pinyin: "text-[14px]", line: "text-[10.5px]", defs: "text-[10.5px]" },
 };
 const NameCard = ({
   shown,
@@ -151,8 +154,8 @@ const NameCard = ({
               className="absolute inset-0"
               style={{
                 backgroundColor: `rgba(255,255,255,${white})`,
-                backdropFilter: `blur(${blur * scale}px) saturate(1.1) brightness(1.03)`,
-                WebkitBackdropFilter: `blur(${blur * scale}px) saturate(1.1) brightness(1.03)`,
+                backdropFilter: `blur(${blur * scale}px) saturate(1.05) brightness(1.08)`,
+                WebkitBackdropFilter: `blur(${blur * scale}px) saturate(1.05) brightness(1.08)`,
                 maskImage: mask,
                 WebkitMaskImage: mask,
               }}
@@ -166,7 +169,7 @@ const NameCard = ({
         />
 
         <div className={`relative h-full flex flex-col justify-between ${t.pad} font-sans font-normal text-left text-foreground`}>
-          <div className="flex items-start justify-between gap-6">
+          <div className={`flex items-start justify-between ${type === "mini" ? "gap-3" : "gap-6"}`}>
             <div className={`flex items-center ${t.gap} ${word(shown, "delay-300")}`}>
               <img src="/favicon-dark.svg" alt="粲" className={t.glyph} />
               {/* read like a dictionary entry's pronunciation, not a second word */}
@@ -187,7 +190,7 @@ const NameCard = ({
             <dd className="text-foreground/60">starlight, shining bright</dd>
           </dl>
         </div>
-        {/* hairline: a 1px stroke on the clip edge, so 0.5px shows inside */}
+        {/* hairline: a 1px stroke on the clip edge, so 0.5px shows inside; a faint leaf green */}
         <svg
           aria-hidden="true"
           className="absolute inset-0 pointer-events-none"
@@ -196,7 +199,7 @@ const NameCard = ({
           viewBox={`0 0 ${width} ${height}`}
           fill="none"
         >
-          <path d={path} stroke="rgba(255,255,255,0.45)" strokeWidth="1" />
+          <path d={path} stroke="rgba(92,138,84,0.1)" strokeWidth="1" />
         </svg>
       </div>
     </div>

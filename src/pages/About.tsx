@@ -3,7 +3,6 @@ import { createPortal } from "react-dom";
 import { DOODLE_PARTS, DOODLE_STROKES } from "@/data/doodle-strokes";
 import { motion, useAnimate, useInView, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import NameCard, { CARD_H, CARD_W } from "@/components/NameCard";
 
@@ -734,8 +733,8 @@ const ObjectGrid = () => {
 // The 粲 name card closes the page: up to 576px wide (centred under the
 // 871px object grid), in the header card's proportions, with text at the same
 // sizes as the rest of the page. Resolves once it is well into view.
-const NAME_CARD_MAX_W = 576;
-const TILT_DEG = 5; // at the card's edges
+const NAME_CARD_MAX_W = 288; // half its first size
+const TILT_DEG = 9; // at the card's edges
 const NameCardSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.5 });
@@ -748,8 +747,7 @@ const NameCardSection = () => {
     return () => ro.disconnect();
   }, []);
   const width = Math.min(NAME_CARD_MAX_W, avail);
-  // same proportions as the header card; corners and blur grow with it, the
-  // text stays at the page's body sizes
+  // same proportions as the original hover card, with its own small text sizes
   const height = Math.round((width * CARD_H) / CARD_W);
   const scale = Math.max(1, width / CARD_W);
 
@@ -778,7 +776,7 @@ const NameCardSection = () => {
     <div ref={ref} className="w-full mx-auto flex justify-center" style={{ maxWidth: NAME_CARD_MAX_W, perspective: 1000 }}>
       {width > 0 && (
         <motion.div onPointerMove={tilt} onPointerLeave={settle} style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}>
-          <NameCard shown={inView} width={width} height={height} scale={scale} type="page" radius={12} shadow={0.55} />
+          <NameCard shown={inView} width={width} height={height} scale={scale} type="mini" radius={8} shadow={0.55} />
         </motion.div>
       )}
     </div>
@@ -787,26 +785,25 @@ const NameCardSection = () => {
 
 /* ------------------------------------------------------------------------ */
 
-const About = () => (
-  <>
-    <Seo
-      page="about"
-      path="/about"
-      description="Stella Peng is a product designer working across design, engineering, and product. Currently designing at TikTok and studying HCI+Design at the University of Washington."
-    />
-    <div className="min-h-screen bg-background relative z-10 font-sans">
-      <Header />
+// The page body, without the header and footer: /about wraps it, and the
+// homepage shows it in its right-hand panel (`inPanel`: no centring or side
+// padding of its own, the panel provides them).
+export const AboutContent = ({ inPanel = false }: { inPanel?: boolean }) => {
+  const wrap = inPanel ? "" : "max-w-[1120px] mx-auto px-6 md:px-8 xl:px-0";
+  return (
+    <div className="font-sans">
       <h1 className="sr-only">About Stella Peng — a collection of curiosities</h1>
 
-      {/* Introduction spacer */}
-      <div className="h-6 md:h-[30px]" />
+      {/* Introduction spacer (in the panel, just enough to bring the top
+          divider past the reveal's 40px in-view margin) */}
+      <div className={inPanel ? "h-4" : "h-6 md:h-[30px]"} />
 
       {/* Profile and experience */}
-      <section className="max-w-[1120px] mx-auto px-6 md:px-8 xl:px-0 pb-16">
+      <section className={`${wrap} pb-16`}>
         <Perforation />
         <div className="mt-6 flex flex-col md:flex-row">
           <div className={PROFILE_COL}>
-            <Label>Self introduction</Label>
+            <Label>Stella Peng</Label>
             <div className={PROFILE_BODY}>
               <FocusText delay={0.08} className="text-[14px] leading-[1.65]" style={{ color: INK_MUTED }}>
                 I'm Stella, a product designer in Seattle who likes staying close to the making. Most recently I
@@ -839,24 +836,35 @@ const About = () => (
       </section>
 
       {/* Object collection (labels aren't selectable: they're part of the objects) */}
-      <section className="max-w-[1120px] mx-auto px-6 md:px-8 xl:px-0 select-none">
+      <section className={`${wrap} select-none`}>
         <ObjectGrid />
       </section>
 
       {/* Closing divider */}
-      <div className="max-w-[1120px] mx-auto px-6 md:px-8 xl:px-0 pt-[52px] pb-[38px]">
+      <div className={`${wrap} pt-[52px] pb-[38px]`}>
         <Perforation dash={3} gap={4} />
       </div>
 
       {/* Name card */}
-      <section className="pt-16 pb-[120px] px-6 md:px-8 xl:px-0 overflow-hidden select-none">
+      <section className={`pt-16 ${inPanel ? "pb-8" : "pb-[120px] px-6 md:px-8 xl:px-0"} overflow-hidden select-none`}>
         <NameCardSection />
       </section>
     </div>
+  );
+};
 
-    <div className="sticky bottom-0 z-0">
-      <Footer />
+const About = () => (
+  <>
+    <Seo
+      page="about"
+      path="/about"
+      description="Stella Peng is a product designer working across design, engineering, and product. Currently designing at TikTok and studying HCI+Design at the University of Washington."
+    />
+    <div className="min-h-screen bg-background relative z-10">
+      <Header />
+      <AboutContent />
     </div>
+
   </>
 );
 

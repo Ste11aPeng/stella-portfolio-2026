@@ -1,6 +1,5 @@
 import { useCallback, useState } from "react";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 
 const Contact = () => {
@@ -103,9 +102,6 @@ const Contact = () => {
         </main>
       </div>
 
-      <div className="sticky bottom-0 z-0">
-        <Footer />
-      </div>
     </>
   );
 };

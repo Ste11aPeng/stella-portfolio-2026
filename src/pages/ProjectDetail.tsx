@@ -2,7 +2,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import siaIntroImage from "@/assets/sia-intro.png";
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import ProjectSidebar from "@/components/ProjectSidebar";
 import MobileSectionNav from "@/components/MobileSectionNav";
@@ -160,7 +159,8 @@ const ProjectDetail = () => {
         description={`${project.title}: ${project.description}. A product design case study by Stella Peng.`}
       />
       <div className="relative min-h-screen bg-background z-10">
-        <Header />
+        {/* phones only: on desktop the section nav (with "back") is pinned top-left instead */}
+        <Header className="md:hidden" />
 
         {/* Full-width Cover Image */}
         <section
@@ -189,15 +189,14 @@ const ProjectDetail = () => {
           <MobileSectionNav activeSection={activeSection} onSectionClick={handleSectionClick} />
 
           {/* Content Section with Sidebar */}
-          <section className="px-4 md:px-16 lg:px-24 pb-24 max-w-[1440px] mx-auto">
-          <div className="flex gap-16 max-w-6xl mx-auto">
-            {/* Sidebar - desktop only */}
-            <div className="w-48 flex-shrink-0 hidden md:block">
-              <ProjectSidebar activeSection={activeSection} onSectionClick={handleSectionClick} />
-            </div>
-            
+          {/* The write-up is centred on the screen; equal side padding at xl keeps it
+              clear of the section nav pinned top-left (below xl, only the left side
+              makes room for it, so it sits a little right of centre) */}
+          <section className="px-4 md:pl-[232px] md:pr-12 xl:px-[240px] pb-24">
+          <ProjectSidebar activeSection={activeSection} onSectionClick={handleSectionClick} />
+          <div className="max-w-[960px] mx-auto">
             {/* Main Content */}
-            <div className="flex-1 max-w-3xl">
+            <div>
               <ProjectOverview project={project} />
 
               
@@ -281,9 +280,6 @@ const ProjectDetail = () => {
       <ProjectProgressBar color={project?.titleColor} />
       </div>
 
-      <div className="sticky bottom-0 z-0">
-        <Footer />
-      </div>
     </>;
 };
 export default ProjectDetail;

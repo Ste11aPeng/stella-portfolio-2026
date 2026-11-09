@@ -44,7 +44,10 @@ const LazyVideo = ({ src, className, poster, eager = false }: LazyVideoProps) =>
       poster={poster}
       loop
       muted
-      autoPlay={eager}
+      // Lazy videos get their src on the same tick play() is first called, so
+      // that call has nothing to play yet; autoplay starts them once the src
+      // lands. (Scrolling away still pauses them, and back resumes.)
+      autoPlay={eager || shouldLoad}
       playsInline
       preload={eager ? "auto" : "none"}
       disablePictureInPicture

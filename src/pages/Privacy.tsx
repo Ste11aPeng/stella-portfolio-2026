@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 
 const Privacy = () => {
@@ -64,9 +63,6 @@ const Privacy = () => {
         </main>
       </div>
 
-      <div className="sticky bottom-0 z-0">
-        <Footer />
-      </div>
     </>
   );
 };
