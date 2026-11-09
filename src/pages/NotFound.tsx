@@ -1,89 +1,66 @@
 import { useLocation } from "react-router-dom";
-import { useEffect, useState, useCallback } from "react";
-import Header from "@/components/Header";
+import { motion } from "framer-motion";
+import { Copy } from "lucide-react";
+import BackBar from "@/components/BackBar";
 import Seo from "@/components/Seo";
-import { openResume } from "@/lib/resume-events";
-import { RESUME_PDF } from "@/data/resume";
+import { Arrow, Label, OUT_LINKS, Title, fade, item, useCopyEmail, type Token } from "@/components/SideNav";
+
+// In the intro's voice: hovering leaves "lost" sharp and lets the rest
+// blur away from it, letter by letter, as the intro does.
+const LOST: Token[] = [
+  { text: "this" },
+  { text: "page" },
+  { text: "is" },
+  { text: "lost", accent: true },
+  { text: ",", glue: true },
+  { text: "mostly." },
+];
+
+// on touch screens a tap would leave the hover blur stuck on
+const touch = typeof window !== "undefined" && window.matchMedia?.("(hover: none)").matches;
 
 const NotFound = () => {
   const location = useLocation();
-  const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-  }, [location.pathname]);
-
-  const handleCopyEmail = useCallback(async () => {
-    await navigator.clipboard.writeText("stellanotfound@gmail.com");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  }, []);
+  const [copied, copyEmail] = useCopyEmail();
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Seo page="page not found" path={location.pathname} description="This page doesn't exist. Head back to Stella Peng's portfolio home." />
-      <Header />
+      <BackBar />
 
-      <main className="flex-1 flex items-center justify-center px-8 py-24">
-        <div className="text-center max-w-md">
-          <p className="text-sm tracking-widest uppercase text-muted-foreground/50 mb-4 font-sans">
+      <main className="flex-1 flex items-center justify-center px-6 pb-24 select-none">
+        <div className="w-full max-w-[340px]">
+          <motion.p className="mb-2 text-[12px] leading-5 text-[#c2c2c2] tabular-nums" {...fade(0.1)}>
             404
-          </p>
-          <h1
-            className="text-4xl md:text-5xl mb-4"
-            style={{ fontFamily: "'New Spirit', serif", fontWeight: 400 }}
-          >
-            Page not found
-          </h1>
-          <p className="text-muted-foreground text-sm leading-relaxed mb-10 font-sans">
-            The page you're looking for doesn't exist or has been moved.
-          </p>
+          </motion.p>
+          <motion.div {...fade(0.25)}>
+            <Title tokens={LOST} still={touch} />
+          </motion.div>
+          <motion.p className="mt-3 text-[12px] leading-[1.15rem] text-muted-foreground" {...fade(0.4)}>
+            it may have moved, or never existed.
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="/"
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-sans text-primary-foreground bg-primary rounded-md hover:bg-primary/90 transition-colors"
-            >
-              Back to home
-            </a>
-          </div>
-
-          {/* Contact */}
-          <div className="mt-16 pt-8 border-t border-border/30">
-            <p className="text-xs tracking-widest uppercase text-muted-foreground/40 mb-4 font-sans">
-              Get in touch
-            </p>
-            <div className="flex items-center justify-center gap-4 text-sm font-sans">
-              <button
-                onClick={handleCopyEmail}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
+          <motion.nav aria-label="Elsewhere" className="mt-10" {...fade(0.55)}>
+            <Label>elsewhere</Label>
+            <div className="group/list flex flex-wrap gap-x-3">
+              {OUT_LINKS.map(([label, href]) => (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" className={`${item} group/out text-muted-foreground hover:text-foreground`}>
+                  {label}
+                  <Arrow group="group-hover/out:opacity-100 group-hover/out:translate-x-0" />
+                </a>
+              ))}
+              <button type="button" onClick={copyEmail} className={`${item} group/email text-muted-foreground hover:text-foreground`}>
                 {copied ? "copied!" : "email"}
+                <Copy
+                  size={11}
+                  aria-hidden="true"
+                  className="ml-1 opacity-0 -translate-x-0.5 transition-all duration-300 ease-out group-hover/email:opacity-100 group-hover/email:translate-x-0"
+                />
               </button>
-              <span className="text-border">·</span>
-              <a
-                href="https://www.linkedin.com/in/stellapengrnr/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                linkedin
-              </a>
-              <span className="text-border">·</span>
-              <a
-                href={RESUME_PDF}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => { e.preventDefault(); openResume(); }}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                resume
-              </a>
             </div>
-          </div>
+          </motion.nav>
         </div>
       </main>
-
     </div>
   );
 };

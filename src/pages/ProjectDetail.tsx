@@ -1,12 +1,12 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import NotFound from "@/pages/NotFound";
 import siaIntroImage from "@/assets/sia-intro.png";
 import { useState, useEffect, useRef } from "react";
-import Header from "@/components/Header";
+import BackBar from "@/components/BackBar";
 import Seo from "@/components/Seo";
 import ProjectSidebar from "@/components/ProjectSidebar";
 import MobileSectionNav from "@/components/MobileSectionNav";
 import ProjectOverview from "@/components/ProjectOverview";
-import GalleryProjectDetail from "@/components/GalleryProjectDetail";
 import ProjectProgressBar from "@/components/ProjectProgressBar";
 import NextProject from "@/components/NextProject";
 import StitchiChallenge from "@/components/stitchi/StitchiChallenge";
@@ -31,24 +31,6 @@ import AsksiaDesignAnalysis from "@/components/asksia/AsksiaDesignAnalysis";
 import AsksiaReflection from "@/components/asksia/AsksiaReflection";
 import { getProjectById } from "@/data/projects";
 
-// Gallery images for Tell Tool
-import tellToolCover from "@/assets/project-telltool.webp";
-import telltool1 from "@/assets/telltool-1.png";
-import telltool2 from "@/assets/telltool-2.png";
-import telltool3 from "@/assets/telltool-3.png";
-import telltool4 from "@/assets/telltool-4.png";
-import telltool5 from "@/assets/telltool-5.png";
-import telltool6 from "@/assets/telltool-6.png";
-
-// Gallery images for Forgotten Sense
-import fg1 from "@/assets/fg-1.png";
-import fg2 from "@/assets/fg-2.png";
-import fg3 from "@/assets/fg-3.png";
-import fg4 from "@/assets/fg-4.png";
-import fg5 from "@/assets/fg-5.png";
-import fg6 from "@/assets/fg-6.png";
-import forgottenSenseCover from "@/assets/project-forgotten-sense.webp";
-
 const baseSectionIds = ["overview", "challenge", "solution", "research", "testing", "reflection"];
 
 // Get section IDs based on project type
@@ -65,32 +47,8 @@ const getSectionIds = (projectId: string | undefined) => {
   return baseSectionIds;
 };
 
-// Gallery projects configuration
-const galleryProjects = ["tell-tool", "forgotten-sense"];
-
-const tellToolImages = [
-  { src: tellToolCover, alt: "Tell Tool - Visualizing Care and Love", span: "full" as const },
-  { src: telltool1, alt: "Tell Tool - Logo variations" },
-  { src: telltool2, alt: "Tell Tool - Billboard posters" },
-  { src: telltool3, alt: "Tell Tool - Merchandise mockups" },
-  { src: telltool4, alt: "Tell Tool - Social media and app" },
-  { src: telltool5, alt: "Tell Tool - Instagram posts" },
-  { src: telltool6, alt: "Tell Tool - Stationery design" },
-];
-
-const forgottenSenseImages = [
-  { src: forgottenSenseCover, alt: "Forgotten Sense - Wearable Cover", span: "full" as const },
-  { src: fg1, alt: "Forgotten Sense - Wearable glove with electronics" },
-  { src: fg2, alt: "Forgotten Sense - LED and Haptic modules" },
-  { src: fg3, alt: "Forgotten Sense - App screens and UI design" },
-  { src: fg4, alt: "Forgotten Sense - Hardware components diagram" },
-  { src: fg5, alt: "Forgotten Sense - Making process" },
-  { src: fg6, alt: "Forgotten Sense - Final prototype" },
-];
-
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("overview");
   // While a click's smooth scroll is under way, the clicked section stays
   // marked: otherwise the scroll spy steps the marker through every section
@@ -137,23 +95,9 @@ const ProjectDetail = () => {
     };
   }, [id]);
 
-  useEffect(() => {
-    if (!project) {
-      navigate("/");
-    }
-  }, [project, navigate]);
-
+  // a project that doesn't exist (or no longer does) gets the 404
   if (!project) {
-    return null;
-  }
-
-  // Use gallery layout for Tell Tool and Forgotten Sense
-  if (id === "tell-tool") {
-    return <GalleryProjectDetail project={project} images={tellToolImages} />;
-  }
-  
-  if (id === "forgotten-sense") {
-    return <GalleryProjectDetail project={project} images={forgottenSenseImages} />;
+    return <NotFound />;
   }
 
   const handleSectionClick = (section: string) => {
@@ -178,7 +122,7 @@ const ProjectDetail = () => {
       />
       <div className="relative min-h-screen bg-background z-10">
         {/* phones only: on desktop the section nav (with "back") is pinned top-left instead */}
-        <Header className="md:hidden" />
+        <BackBar className="md:hidden" />
 
         {/* Full-width Cover Image */}
         <section

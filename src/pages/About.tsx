@@ -2,8 +2,6 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNod
 import { createPortal } from "react-dom";
 import { DOODLE_PARTS, DOODLE_STROKES } from "@/data/doodle-strokes";
 import { motion, useAnimate, useInView, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
-import Header from "@/components/Header";
-import Seo from "@/components/Seo";
 import NameCard, { CARD_H, CARD_W } from "@/components/NameCard";
 
 import polaroid from "@/assets/about/polaroid.png";
@@ -785,9 +783,9 @@ const NameCardSection = () => {
 
 /* ------------------------------------------------------------------------ */
 
-// The page body, without the header and footer: /about wraps it, and the
-// homepage shows it in its right-hand panel (`inPanel`: no centring or side
-// padding of its own, the panel provides them).
+// The about page's body. The homepage shows it in its right-hand panel at
+// /about (`inPanel`: no centring or side padding of its own, the panel
+// provides them).
 export const AboutContent = ({ inPanel = false }: { inPanel?: boolean }) => {
   const wrap = inPanel ? "" : "max-w-[1120px] mx-auto px-6 md:px-8 xl:px-0";
   return (
@@ -852,20 +850,3 @@ export const AboutContent = ({ inPanel = false }: { inPanel?: boolean }) => {
     </div>
   );
 };
-
-const About = () => (
-  <>
-    <Seo
-      page="about"
-      path="/about"
-      description="Stella Peng is a product designer working across design, engineering, and product. Currently designing at TikTok and studying HCI+Design at the University of Washington."
-    />
-    <div className="min-h-screen bg-background relative z-10">
-      <Header />
-      <AboutContent />
-    </div>
-
-  </>
-);
-
-export default About;

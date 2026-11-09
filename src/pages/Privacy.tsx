@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import BackBar from "@/components/BackBar";
 import Seo from "@/components/Seo";
 
 const Privacy = () => {
@@ -10,7 +10,7 @@ const Privacy = () => {
         description="Privacy policy for ruocanpeng.com: what data this personal portfolio collects, which third parties are involved, and how to request removal."
       />
       <div className="min-h-screen bg-background relative z-10">
-        <Header />
+        <BackBar />
         <main className="px-8 py-16 lg:px-24 md:px-[32px] md:py-[64px] max-w-[1440px] mx-auto">
           <h1 className="text-[1.5rem] leading-[1.85rem] md:text-[2rem] md:leading-[2.4rem] site-title">
             privacy

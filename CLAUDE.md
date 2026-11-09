@@ -42,7 +42,7 @@ Top-level routes (defined in [src/App.tsx](src/App.tsx)):
 
 ## Case studies: how they're organized
 
-Project metadata lives in one place: [src/data/projects.ts](src/data/projects.ts). Each entry in the `projects` array (title, tagline, cover image, skills, status, etc.) is looked up by id via `getProjectById()`. Current ids: `tiktok` (coming soon), `circle-status`, `asksia`, `philo`. A few older/side projects (`tell-tool`, `forgotten-sense`) render through a separate gallery layout — see below.
+Project metadata lives in one place: [src/data/projects.ts](src/data/projects.ts). Each entry in the `projects` array (title, tagline, cover image, skills, status, etc.) is looked up by id via `getProjectById()`. Current ids: `tiktok` (coming soon), `circle-status`, `asksia`, `philo`.
 
 The actual case-study content is **not** data-driven — it's hand-assembled per project inside [src/pages/ProjectDetail.tsx](src/pages/ProjectDetail.tsx):
 
@@ -50,9 +50,8 @@ The actual case-study content is **not** data-driven — it's hand-assembled per
 - For each section (Challenge, Solution, Research, Testing, Reflection, …) it does an `id === "..."` check and renders a **project-specific component** — e.g. `StitchiChallenge`, `PhiloSolution`, `CircleResearch`, `AsksiaReflection` — or a generic "Content coming soon..." placeholder if no component exists for that project/section.
 - Project-specific section components live under `src/components/<project>/`, e.g. [src/components/philo/](src/components/philo/), [src/components/circle/](src/components/circle/), [src/components/asksia/](src/components/asksia/), [src/components/stitchi/](src/components/stitchi/) (Stitchi has no `projects.ts` entry currently — likely legacy/unlinked).
 - Each project also has its own section list (`getSectionIds`) since not every case study has the same sections (e.g. Philo uses `audit-review` / `component-mapping` instead of `research`/`testing`).
-- `tell-tool` and `forgotten-sense` skip this custom-section system entirely and render via [GalleryProjectDetail.tsx](src/components/GalleryProjectDetail.tsx), a simpler image-gallery layout driven by an image array defined inline in `ProjectDetail.tsx`.
 
-**To add a new case study**: add an entry to `projects.ts`, then either (a) build section components under a new `src/components/<project>/` folder and wire them into the `id === "..."` chains in `ProjectDetail.tsx`, or (b) if it's just a visual gallery, add it to the `galleryProjects` list with an image array.
+**To add a new case study**: add an entry to `projects.ts`, then build section components under a new `src/components/<project>/` folder and wire them into the `id === "..."` chains in `ProjectDetail.tsx`.
 
 Images for case studies live in [src/assets/](src/assets/), imported directly into components (Vite bundles them with hashed filenames).
 

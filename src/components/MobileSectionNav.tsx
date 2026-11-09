@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { useParams } from "react-router-dom";
 
@@ -40,20 +41,37 @@ const MobileSectionNav = ({ activeSection, onSectionClick }: MobileSectionNavPro
 
   const visibleSections = getVisibleSections();
 
+  // keep the current section's label in view as the row scrolls sideways
+  const row = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const nav = row.current;
+    const on = nav?.querySelector<HTMLElement>(`[data-section="${activeSection}"]`);
+    if (!nav || !on) return;
+    nav.scrollTo({ left: on.offsetLeft - (nav.clientWidth - on.offsetWidth) / 2, behavior: "smooth" });
+  }, [activeSection]);
+
   return (
-    <nav className="sticky top-[65px] z-30 bg-background/95 backdrop-blur-sm border-b border-border md:hidden overflow-x-auto group/mnav">
-      <div className="flex gap-1 px-4 py-2 justify-center">
+    // sits right under the "back" bar; scrolls sideways when the sections run long
+    <nav ref={row} className="sticky top-12 z-30 bg-background/90 backdrop-blur-md md:hidden overflow-x-auto [scrollbar-width:none]">
+      <div className="flex w-max gap-5 px-6 h-10 items-center">
         {visibleSections.map((section) => (
           <button
             key={section.id}
+            data-section={section.id}
             onClick={() => onSectionClick(section.id)}
             className={cn(
-              "text-xs px-3 py-1.5 rounded-full whitespace-nowrap transition-all duration-700 ease-out group-hover/mnav:opacity-20 group-hover/mnav:blur-[0.8px] hover:!opacity-100 hover:!blur-0",
-              activeSection === section.id
-                ? "text-foreground font-medium"
-                : "text-muted-foreground hover:text-foreground"
+              "inline-flex items-center text-[13px] lowercase whitespace-nowrap transition-colors duration-300",
+              activeSection === section.id ? "text-foreground" : "text-muted-foreground/60"
             )}
           >
+            {/* the same marker line as the desktop nav */}
+            <span
+              aria-hidden="true"
+              className={cn(
+                "inline-block h-px bg-foreground transition-all duration-500 ease-out",
+                activeSection === section.id ? "w-2 mr-1.5 opacity-100" : "w-0 mr-0 opacity-0"
+              )}
+            />
             {section.label}
           </button>
         ))}

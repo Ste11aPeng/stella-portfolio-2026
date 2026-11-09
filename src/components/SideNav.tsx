@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Copy } from "lucide-react";
 import { useNavSound } from "@/hooks/use-nav-sound";
@@ -25,10 +25,10 @@ const useSeattleTime = () => {
 // Hovering one item fades and softly blurs the others in its group, as the header does.
 // Every row is 28px tall: buttons and links otherwise sit on the line box
 // differently and come out 28px and 24px.
-const item =
+export const item =
   "relative inline-flex h-7 w-fit items-center text-sm leading-[21px] transition-all duration-700 ease-out group-hover/list:opacity-25 group-hover/list:blur-[0.8px] hover:!opacity-100 hover:!blur-0";
 
-const Arrow = ({ group }: { group: string }) => (
+export const Arrow = ({ group }: { group: string }) => (
   <ArrowUpRight
     size={12}
     aria-hidden="true"
@@ -36,7 +36,7 @@ const Arrow = ({ group }: { group: string }) => (
   />
 );
 
-const Label = ({ children }: { children: string }) => (
+export const Label = ({ children }: { children: string }) => (
   <p className="mb-1.5 text-[12px] leading-5 text-[#c2c2c2] select-none">{children}</p>
 );
 
@@ -51,7 +51,7 @@ const Marker = ({ on }: { on: boolean }) => (
   />
 );
 
-const fade = (delay: number) => ({
+export const fade = (delay: number) => ({
   initial: { opacity: 0, filter: "blur(10px)", y: 6 },
   animate: { opacity: 1, filter: "blur(0px)", y: 0, transitionEnd: { filter: "none" } },
   transition: { duration: 1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number], delay },
@@ -71,7 +71,7 @@ const Step = ({ i, children }: { i: number; children: React.ReactNode }) => (
 // while everything else blurs and fades with its distance from the nearer of
 // them. That's worked out letter by letter, not word by word, so a lone word
 // like "mostly." still clears towards the role beside it and hazes away from it.
-type Token = {
+export type Token = {
   text: string;
   accent?: boolean;
   /** sits right after the previous token, no space */
@@ -90,30 +90,40 @@ const TITLE: Token[] = [
   { text: ",", glue: true },
   { text: "often." },
 ];
-// token indices grouped into words (a glued token joins the one before it)
-const GROUPS = TITLE.reduce<number[][]>((groups, t, i) => {
-  if (t.glue && groups.length) groups[groups.length - 1].push(i);
-  else groups.push([i]);
-  return groups;
-}, []);
-// the pieces that blur on their own: an accent whole, anything else per letter
+// How a line of tokens breaks down: words (a glued token joins the one before
+// it), and the pieces that blur on their own: an accent whole, anything else
+// letter by letter.
 type Piece = { token: number; text: string };
-const PIECES: Piece[] = TITLE.flatMap((t, token) =>
-  t.accent ? [{ token, text: t.text }] : [...t.text].map((ch) => ({ token, text: ch }))
-);
-const piecesOf = (token: number) => PIECES.flatMap((p, k) => (p.token === token ? [k] : []));
-const ACCENTS = TITLE.flatMap((t, i) => (t.accent ? [i] : []));
-const ACCENT_PIECES = PIECES.flatMap((p, k) => (TITLE[p.token].accent ? [k] : []));
+const layoutOf = (tokens: Token[]) => {
+  const groups = tokens.reduce<number[][]>((gs, t, i) => {
+    if (t.glue && gs.length) gs[gs.length - 1].push(i);
+    else gs.push([i]);
+    return gs;
+  }, []);
+  const pieces: Piece[] = tokens.flatMap((t, token) =>
+    t.accent ? [{ token, text: t.text }] : [...t.text].map((ch) => ({ token, text: ch }))
+  );
+  const accents = tokens.flatMap((t, i) => (t.accent ? [i] : []));
+  return {
+    groups,
+    pieces,
+    piecesOf: (token: number) => pieces.flatMap((p, k) => (p.token === token ? [k] : [])),
+    accentPieces: pieces.flatMap((p, k) => (tokens[p.token].accent ? [k] : [])),
+    nearestAccent: (i: number) => Math.min(...accents.map((a) => Math.abs(i - a))),
+  };
+};
 // set smaller than the old hero (21px vs 32px), so distances are scaled up to match its feel
 const SCALE = 32 / 21;
 const blurFor = (d: number) => Math.min(0.4 + d * SCALE * 0.016, 2.8).toFixed(2);
 const opacityFor = (d: number) => Math.max(0.88 - d * SCALE * 0.002, 0.35).toFixed(2);
-const nearestAccent = (i: number) => Math.min(...ACCENTS.map((a) => Math.abs(i - a)));
 
-const Title = () => {
+// The intro by default; the 404 page sets its own line in the same voice.
+// `still`: no hover effect (phones, where a tap would leave it stuck blurred)
+export const Title = ({ tokens = TITLE, still = false }: { tokens?: Token[]; still?: boolean }) => {
+  const { groups, pieces, piecesOf, accentPieces, nearestAccent } = useMemo(() => layoutOf(tokens), [tokens]);
   const refs = useRef<(HTMLSpanElement | null)[]>([]);
   const para = useRef<HTMLParagraphElement>(null);
-  const [dists, setDists] = useState<number[]>(() => PIECES.map((p) => nearestAccent(p.token) * 30));
+  const [dists, setDists] = useState<number[]>(() => pieces.map((p) => nearestAccent(p.token) * 30));
 
   // distance from each letter to the nearer accent, as laid out: sideways it
   // counts from the accent's edge (so letters right beside "designer" are
@@ -125,7 +135,7 @@ const Title = () => {
       return r && r.width ? { x: r.left + r.width / 2, y: r.top + r.height / 2, hw: r.width / 2 } : null;
     };
     const measure = () => {
-      const anchors = ACCENT_PIECES.map((k) => box(refs.current[k])).filter((c): c is NonNullable<typeof c> => !!c);
+      const anchors = accentPieces.map((k) => box(refs.current[k])).filter((c): c is NonNullable<typeof c> => !!c);
       if (!anchors.length) return;
       setDists(
         refs.current.map((el) => {
@@ -142,7 +152,7 @@ const Title = () => {
     const ro = new ResizeObserver(measure);
     if (para.current) ro.observe(para.current);
     return () => ro.disconnect();
-  }, []);
+  }, [accentPieces]);
 
   return (
     <p
@@ -150,26 +160,26 @@ const Title = () => {
       className="group/title whitespace-nowrap text-[21px] leading-[1.5rem] select-none"
       style={{ color: "var(--title-ink)", fontFamily: "'Baskervville', serif", fontWeight: 500, letterSpacing: "-0.01em" }}
     >
-      {GROUPS.map((group, g) => (
+      {groups.map((group, g) => (
         // always two lines, broken after "mostly." (letter-by-letter spans
         // lose a little kerning, enough to push it down a line otherwise)
         <Fragment key={g}>
-          {g > 0 && (TITLE[group[0]].newline ? <br /> : " ")}
+          {g > 0 && (tokens[group[0]].newline ? <br /> : " ")}
           <span>
             {group.flatMap(piecesOf).map((k) => {
-              const accent = TITLE[PIECES[k].token].accent;
+              const accent = tokens[pieces[k].token].accent;
               return (
                 <span
                   key={k}
                   ref={(el) => (refs.current[k] = el)}
                   className={
-                    accent
+                    accent || still
                       ? "inline-block"
                       : "inline-block transition-[filter,opacity] duration-700 ease-out group-hover/title:[filter:blur(var(--hb))] group-hover/title:opacity-[var(--ho)]"
                   }
                   style={accent ? undefined : ({ "--hb": `${blurFor(dists[k])}px`, "--ho": opacityFor(dists[k]) } as React.CSSProperties)}
                 >
-                  {PIECES[k].text}
+                  {pieces[k].text}
                 </span>
               );
             })}
@@ -180,16 +190,41 @@ const Title = () => {
   );
 };
 
-const SideNav = ({ active, onJump }: { active: Section; onJump: (s: Section) => void }) => {
-  const playSound = useNavSound();
-  const time = useSeattleTime();
-  const [copied, setCopied] = useState(false);
+// the line under the intro
+const Credits = ({ className = "" }: { className?: string }) => (
+  <p className={`text-[12px] leading-[1.15rem] text-muted-foreground ${className}`}>
+    <a href="https://mhcid.washington.edu" target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 hover:text-[#4B2E83]">
+      Master's in HCI + Design @UW
+    </a>
+    <br />
+    Prev. design{" "}
+    <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 hover:text-[#FF0050]">
+      @TikTok
+    </a>
+  </p>
+);
 
-  const copyEmail = async () => {
+export const OUT_LINKS = [
+  ["linkedin", "https://www.linkedin.com/in/stellapengrnr/"],
+  ["instagram", "https://www.instagram.com/abtste11a/"],
+  ["x/twitter", "https://x.com/abtste11a"],
+] as const;
+
+// copies the address rather than opening mail
+export const useCopyEmail = () => {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
     await navigator.clipboard.writeText("stellanotfound@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+  return [copied, copy] as const;
+};
+
+const SideNav = ({ active, onJump }: { active: Section; onJump: (s: Section) => void }) => {
+  const playSound = useNavSound();
+  const time = useSeattleTime();
+  const [copied, copyEmail] = useCopyEmail();
 
   const sectionLink = (s: Section, label: string) => (
     <button
@@ -212,16 +247,9 @@ const SideNav = ({ active, onJump }: { active: Section; onJump: (s: Section) => 
           <Title />
         </motion.div>
 
-        <motion.p className="mt-3 text-[12px] leading-[1.15rem] text-muted-foreground" {...fade(0.6)}>
-          <a href="https://mhcid.washington.edu" target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 hover:text-[#4B2E83]">
-            Master's in HCI + Design @UW
-          </a>
-          <br />
-          Prev. design{" "}
-          <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 hover:text-[#FF0050]">
-            @TikTok
-          </a>
-        </motion.p>
+        <motion.div className="mt-3" {...fade(0.6)}>
+          <Credits />
+        </motion.div>
 
         {/* the lists come in a line at a time, top to bottom */}
         <nav aria-label="Site" className="mt-10">
@@ -260,11 +288,7 @@ const SideNav = ({ active, onJump }: { active: Section; onJump: (s: Section) => 
               <Label>elsewhere</Label>
             </Step>
             <div className="group/list flex flex-col">
-              {[
-                ["linkedin", "https://www.linkedin.com/in/stellapengrnr/"],
-                ["instagram", "https://www.instagram.com/abtste11a/"],
-                ["x/twitter", "https://x.com/abtste11a"],
-              ].map(([label, href], k) => (
+              {OUT_LINKS.map(([label, href], k) => (
                 <Step key={label} i={6 + k}>
                   <a
                     href={href}
@@ -280,7 +304,6 @@ const SideNav = ({ active, onJump }: { active: Section; onJump: (s: Section) => 
               <Step i={9}>
                 <button type="button" onClick={copyEmail} className={`${item} group/email text-muted-foreground hover:text-foreground`}>
                   {copied ? "copied!" : "email"}
-                  {/* copies the address rather than opening mail */}
                   <Copy
                     size={11}
                     aria-hidden="true"
@@ -296,6 +319,86 @@ const SideNav = ({ active, onJump }: { active: Section; onJump: (s: Section) => 
         </motion.div>
       </div>
     </aside>
+  );
+};
+
+// Phones: the same pieces stacked instead of in a column. The intro and
+// credits open the page, the index rides along at the top in one row (with
+// the same marker line), and the links out and the time close the page.
+export const MobileIntro = ({ active, onJump }: { active: Section; onJump: (s: Section) => void }) => {
+  const playSound = useNavSound();
+  const link = (s: Section, label: string) => (
+    <button
+      type="button"
+      onClick={() => {
+        playSound("click");
+        onJump(s);
+      }}
+      className={`inline-flex h-7 items-center text-sm transition-colors duration-300 ${active === s ? "text-foreground" : "text-muted-foreground"}`}
+    >
+      <Marker on={active === s} />
+      {label}
+    </button>
+  );
+
+  return (
+    <>
+      <div className="md:hidden px-6 pt-12 pb-5 select-none">
+        <motion.div {...fade(0.2)}>
+          <Title still />
+        </motion.div>
+        <motion.div className="mt-3" {...fade(0.4)}>
+          <Credits />
+        </motion.div>
+      </div>
+      {/* sticks to the top of the screen once the intro has scrolled away */}
+      <motion.nav
+        aria-label="Site"
+        className="md:hidden sticky top-0 z-30 mb-3 bg-background/90 backdrop-blur-md px-6 select-none"
+        {...fade(0.55)}
+      >
+        <div className="flex h-12 items-center gap-5">
+          {link("work", "product")}
+          {link("visual", "visual")}
+          {link("about", "about")}
+          <a
+            href={RESUME_PDF}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              e.preventDefault();
+              openResume();
+            }}
+            className="inline-flex h-7 items-center text-sm text-muted-foreground"
+          >
+            resume
+          </a>
+        </div>
+      </motion.nav>
+    </>
+  );
+};
+
+export const MobileFoot = () => {
+  const time = useSeattleTime();
+  const [copied, copyEmail] = useCopyEmail();
+  return (
+    <footer className="md:hidden px-6 pt-6 pb-12 select-none">
+      <Label>elsewhere</Label>
+      <div className="flex flex-wrap gap-x-5">
+        {OUT_LINKS.map(([label, href]) => (
+          <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="inline-flex h-7 items-center text-sm text-muted-foreground">
+            {label}
+            <ArrowUpRight size={12} aria-hidden="true" className="ml-0.5 opacity-60" />
+          </a>
+        ))}
+        <button type="button" onClick={copyEmail} className="inline-flex h-7 items-center text-sm text-muted-foreground">
+          {copied ? "copied!" : "email"}
+          <Copy size={11} aria-hidden="true" className="ml-1 opacity-60" />
+        </button>
+      </div>
+      <p className="mt-6 text-[12px] leading-5 text-[#a1a1a1] tabular-nums">{time}, Seattle WA</p>
+    </footer>
   );
 };
 

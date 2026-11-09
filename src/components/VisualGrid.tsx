@@ -43,14 +43,14 @@ const PIECES: Piece[] = [
   {
     title: "Trip Itinerary",
     when: "Fall 2026",
-    category: "Interaction",
-    aspect: 1,
+    category: "Travel Card",
+    aspect: 4 / 3,
     media: { kind: "video", src: "/videos/trip-itinerary.mp4", poster: "/videos/posters/trip-itinerary.jpg", eager: true },
   },
   {
     title: "Flower Subscription",
     when: "Fall 2026",
-    category: "Interaction",
+    category: "Subscription Plan",
     aspect: 1,
     media: { kind: "video", src: "/videos/flower-subscription.mp4", poster: "/videos/posters/flower-subscription.jpg", eager: true },
   },
@@ -265,7 +265,7 @@ const PieceCard = ({ piece, index }: { piece: Piece; index: number }) => {
           </motion.div>
         )}
       </div>
-      <p className="text-xs leading-5 text-[#a1a1a1]">
+      <p className="text-xs leading-5 text-[#a1a1a1] lowercase">
         {piece.category}
         {piece.when && <> &nbsp;·&nbsp; {piece.when}</>}
       </p>
