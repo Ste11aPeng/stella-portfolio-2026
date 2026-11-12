@@ -40,6 +40,9 @@ const MobileSectionNav = ({ activeSection, onSectionClick }: MobileSectionNavPro
       { id: "overview", label: "Overview" },
       { id: "challenge", label: "Challenge" },
       { id: "solution-1", label: "Solution 1" },
+      // solution 1's two halves, indented under it, so it's clear both are about reposts
+      { id: "adding-reposts", label: "adding reposts", parent: "solution-1" },
+      { id: "watching-reposts", label: "watching reposts", parent: "solution-1" },
       { id: "solution-2", label: "Solution 2" },
       { id: "reflection", label: "Reflection" },
     ];
@@ -54,7 +57,11 @@ const MobileSectionNav = ({ activeSection, onSectionClick }: MobileSectionNavPro
     return sections;
   };
 
-  const visibleSections = getVisibleSections();
+  const all = getVisibleSections() as { id: string; label: string; parent?: string }[];
+  // sub-items only join the row while their parent section is on screen
+  const visibleSections = all.filter(
+    (s) => !s.parent || activeSection === s.parent || all.some((o) => o.parent === s.parent && o.id === activeSection)
+  );
 
   // keep the current section's label in view as the row scrolls sideways
   const row = useRef<HTMLElement>(null);

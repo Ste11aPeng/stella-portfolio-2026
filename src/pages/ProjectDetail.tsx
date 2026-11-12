@@ -35,7 +35,7 @@ import HighlightsPhaseOne from "@/components/tiktok/HighlightsPhaseOne";
 import HighlightsPhaseTwo from "@/components/tiktok/HighlightsPhaseTwo";
 import HighlightsReflection from "@/components/tiktok/HighlightsReflection";
 import WidgetCaseStudy from "@/components/tiktok/WidgetCaseStudy";
-import { getProjectById } from "@/data/projects";
+import { getProjectById, projects } from "@/data/projects";
 
 const baseSectionIds = ["overview", "challenge", "solution", "research", "testing", "reflection"];
 
@@ -54,7 +54,7 @@ const getSectionIds = (projectId: string | undefined) => {
     return ["overview", "challenge", "widget", "tutorial", "cold-start", "reflection"];
   }
   if (projectId === "tiktok-highlights") {
-    return ["overview", "challenge", "solution-1", "solution-2", "reflection"];
+    return ["overview", "challenge", "solution-1", "adding-reposts", "watching-reposts", "solution-2", "reflection"];
   }
   return baseSectionIds;
 };
@@ -130,7 +130,12 @@ const ProjectDetail = () => {
   };
   return <>
       <Seo
-        page={project.title.toLowerCase()}
+        // two projects share a title (TikTok), so theirs carry the tagline too,
+        // as the prerendered pages already do
+        page={(projects.filter((p) => p.title === project.title).length > 1
+          ? `${project.title} · ${project.tagline}`
+          : project.title
+        ).toLowerCase()}
         path={`/project/${project.id}`}
         description={`${project.title}: ${project.description}. A product design case study by Stella Peng.`}
       />

@@ -77,9 +77,8 @@ ${projectList}
     h1: "About Stella Peng — a collection of curiosities",
     markdown: `# About Stella Peng
 
-I'm Stella, a product designer in Seattle who likes staying close to the making. Most
-recently I designed social experiences at TikTok. Before that, I worked with startups
-going 0 to 1. Got an idea worth building, or just want to say hi? Reach out :D
+I'm Stella, a product designer in Seattle. Most recently at TikTok; before that, startups
+going 0 to 1. Want to build something, or just say hi? Reach out :D
 
 ## Education
 
@@ -88,9 +87,8 @@ going 0 to 1. Got an idea worth building, or just want to say hi? Reach out :D
 
 ## Experience
 
-- **TikTok** — 2026, Product Design Intern, Social team
-- **Desai Accelerator** — 2025, Product Design Intern
-- **AskSia.AI** — 2025, Product Design Intern
+- **TikTok** — 2026, Product Design Intern, Social
+- **Desai Accelerator & AskSia.AI** — 2025, Product Design Intern
 
 ## A few interests, in objects
 

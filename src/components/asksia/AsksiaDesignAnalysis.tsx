@@ -2,10 +2,38 @@ import { motion, type Easing } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import ImageLightbox from "@/components/ImageLightbox";
 import AnimatedTitle from "@/components/AnimatedTitle";
-import IframeEmbed from "@/components/philo/IframeEmbed";
+import OptionsCarousel, { type Option } from "@/components/tiktok/OptionsCarousel";
+import { DrawerSketch, DropdownSketch, TabsSketch } from "./AsksiaIterationSketches";
 import analysis4 from "@/assets/sia-design-analysis-4.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
+const ASKSIA = "#4E4DF4";
+
+// the picked option first, then the two it was weighed against
+const OPTIONS: Option[] = [
+  {
+    name: "Responsive Dropdown",
+    alt: "A file button at the top left opens a short dropdown list over the document",
+    chosen: true,
+    art: <DropdownSketch />,
+    pros: ["Shows the file count at a glance", "Works for one file or twenty", "Reuses an existing component, so it's quick to build"],
+    cons: ["Files stay hidden until the menu is opened"],
+  },
+  {
+    name: "Side Drawer",
+    alt: "A file panel slides in from the left and covers part of the document",
+    art: <DrawerSketch />,
+    pros: ["Clean when closed"],
+    cons: ["Covers the document when open", "Takes an extra tap to switch files"],
+  },
+  {
+    name: "Browser-like Tabs",
+    alt: "A row of tabs along the top, with the last tabs squeezed narrow",
+    art: <TabsSketch />,
+    pros: ["Familiar from web browsers"],
+    cons: ["Gets crowded after three or four files", "Costly to build and maintain"],
+  },
+];
 
 const AsksiaDesignAnalysis = () => {
   return (
@@ -27,12 +55,7 @@ const AsksiaDesignAnalysis = () => {
         I explored Side Drawers and Tabs before pivoting to a Responsive Dropdown, prioritizing long-term scalability and maximum viewport for AI responses.
       </motion.p>
 
-      <IframeEmbed
-        src="/asksia/file-access-iterations.html"
-        title="Design iterations: Responsive Dropdown, Side Drawer, and Browser-like Tabs"
-        aspect="880 / 695"
-        className="!border-0 !rounded-none"
-      />
+      <OptionsCarousel options={OPTIONS} label="Design iterations: Responsive Dropdown, Side Drawer, and Browser-like Tabs" accent={ASKSIA} />
 
       <motion.div
         className="mt-16"

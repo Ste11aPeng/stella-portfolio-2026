@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { projects } from "@/data/projects";
-import AnimatedTitle from "@/components/AnimatedTitle";
 
 interface NextProjectProps {
   currentProjectId: string;
@@ -31,15 +30,18 @@ const NextProject = ({ currentProjectId }: NextProjectProps) => {
           <div className="min-w-0 flex-1">
             <span className="text-sm text-muted-foreground mb-3 block">next project</span>
             <div className="transition-transform duration-500 ease-out group-hover:translate-x-2">
-              <AnimatedTitle
+              {/* plain text (the section already fades in as a whole): the word-by-word
+                  blur entrance could leave words unpainted down here */}
+              <h2
                 className="text-4xl text-foreground"
                 style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.07em" }}
-                segments={[
-                  { text: nextProject.title },
-                  { text: " · ", className: "text-foreground/40", ariaHidden: true },
-                  { text: nextProject.tagline, className: "text-foreground/60" },
-                ]}
-              />
+              >
+                {nextProject.title}
+                <span className="text-foreground/40" aria-hidden="true">
+                  {" · "}
+                </span>
+                <span className="text-foreground/60">{nextProject.tagline}</span>
+              </h2>
             </div>
           </div>
 

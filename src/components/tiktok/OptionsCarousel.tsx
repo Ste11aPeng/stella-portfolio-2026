@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useInView, useReducedMotion, type Transition } from "framer-motion";
-import { Reveal, Tag } from "./parts";
+import { Reveal, Tag, TIKTOK } from "./parts";
 import { SlideActive } from "./PhoneLoop";
 
 export interface Option {
@@ -15,6 +15,8 @@ export interface Option {
   wide?: boolean;
   /** a live demo to play in place of the picture */
   demo?: ReactNode;
+  /** a drawing (an inline svg) in place of the picture, centred in its space */
+  art?: ReactNode;
   pros: string[];
   cons: string[];
 }
@@ -90,7 +92,9 @@ const Chevron = ({ left }: { left?: boolean }) => (
 // The options weighed for one decision, as the AskSia write-up shows its
 // iterations: one panel per option, the next peeking in from the right, slides
 // further from the middle fading back as the row scrolls, arrows and dots below.
-const OptionsCarousel = ({ options, label }: { options: Option[]; label: string }) => {
+// `accent` is the project's colour: the picked option's tag and the dot for the
+// slide in view take it.
+const OptionsCarousel = ({ options, label, accent = TIKTOK }: { options: Option[]; label: string; accent?: string }) => {
   const track = useRef<HTMLDivElement>(null);
   const slides = useRef<(HTMLElement | null)[]>([]);
   const [current, setCurrent] = useState(0);
@@ -166,7 +170,7 @@ const OptionsCarousel = ({ options, label }: { options: Option[]; label: string 
             className="relative snap-start shrink-0 basis-[90%] md:basis-[88%] rounded-2xl bg-[#F5F6F7] px-5 py-7 md:px-10 md:py-9 flex flex-col md:flex-row items-center gap-6 md:gap-10"
           >
             {/* pinned to the slide's top-right corner */}
-            <Tag large accent={o.chosen} className="absolute top-4 right-4 md:top-5 md:right-5">
+            <Tag large accent={o.chosen} tint={accent} className="absolute top-4 right-4 md:top-5 md:right-5">
               {o.chosen ? "chosen" : "explored"}
             </Tag>
             {o.demo ? (
@@ -175,6 +179,8 @@ const OptionsCarousel = ({ options, label }: { options: Option[]; label: string 
                 {/* a demo only plays once its slide is the one in view */}
                 <SlideActive.Provider value={i === current}>{o.demo}</SlideActive.Provider>
               </div>
+            ) : o.art ? (
+              <div className="h-[220px] w-full flex items-center justify-center shrink-0 md:h-[300px] md:w-[46%]">{o.art}</div>
             ) : (
               <div className={`h-[300px] w-full flex items-start justify-center shrink-0 ${o.wide ? "md:h-[440px] md:w-[60%]" : "md:h-[380px] md:w-[46%]"}`}>
                 <img
@@ -234,7 +240,8 @@ const OptionsCarousel = ({ options, label }: { options: Option[]; label: string 
               aria-label={`Go to ${o.name}`}
               aria-current={i === current}
               onClick={() => go(i)}
-              className={`h-1 rounded-full transition-all duration-200 ${i === current ? "w-[26px] bg-foreground/80" : "w-[18px] bg-foreground/15"}`}
+              className={`h-1 rounded-full transition-all duration-200 ${i === current ? "w-[26px]" : "w-[18px] bg-foreground/15"}`}
+              style={i === current ? { background: accent } : undefined}
             />
           ))}
         </div>

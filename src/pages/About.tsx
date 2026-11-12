@@ -802,11 +802,11 @@ export const AboutContent = ({ inPanel = false }: { inPanel?: boolean }) => {
         <div className="mt-6 flex flex-col md:flex-row">
           <div className={PROFILE_COL}>
             <Label>Stella Peng</Label>
-            <div className={PROFILE_BODY}>
+            {/* the intro is centred, top to bottom, on the entries beside it */}
+            <div className={`${PROFILE_BODY} flex-1 justify-center`}>
               <FocusText delay={0.08} className="text-[14px] leading-[1.65]" style={{ color: INK_MUTED }}>
-                I'm Stella, a product designer in Seattle who likes staying close to the making. Most recently I
-                designed social experiences at TikTok. Before that, I worked with startups going 0→1. Got an idea
-                worth building, or just want to say hi? Reach out :D
+                I'm Stella, a product designer in Seattle. Most recently at TikTok; before that, startups going
+                0→1. Want to build something, or just say hi? Reach out :D
               </FocusText>
             </div>
           </div>
@@ -824,9 +824,8 @@ export const AboutContent = ({ inPanel = false }: { inPanel?: boolean }) => {
           <div className={PROFILE_COL}>
             <Label delay={0.32}>Experience</Label>
             <div className={`${PROFILE_BODY} gap-4`}>
-              <Entry delay={0.4} title="TikTok" detail="2026 ✶ Product Design Intern ✶ Social team" />
-              <Entry delay={0.48} title="Desai Accelerator" detail="2025 ✶ Product Design Intern" />
-              <Entry delay={0.56} title="AskSia.AI" detail="2025 ✶ Product Design Intern" />
+              <Entry delay={0.4} title="TikTok" detail="2026 ✶ Product Design Intern ✶ Social" />
+              <Entry delay={0.48} title="Desai Accelerator & AskSia.AI" detail="2025 ✶ Product Design Intern" />
             </div>
           </div>
         </div>

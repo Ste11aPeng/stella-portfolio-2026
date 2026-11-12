@@ -50,6 +50,8 @@ const HighlightsPhaseOne = () => (
   <section id="solution-1" className="pt-16 [&>*:last-child]:mb-0">
     <Head label="solution · phase 1" title="Put reposts in highlights." />
 
+    {/* the two halves of putting reposts in highlights, each a stop in the side nav */}
+    <div id="adding-reposts" aria-hidden="true" />
     <Body className="mb-8">
       <span className="font-semibold text-foreground">Create and navigate.</span> The first question was where reposts live once they can go into a highlight. Creating highlights from stories was
       an established flow with healthy numbers, and adding a second format couldn't pull those numbers down.
@@ -57,7 +59,8 @@ const HighlightsPhaseOne = () => (
 
     <OptionsCarousel options={OPTIONS} label="Structures explored for adding reposts to a highlight" />
 
-    <Body className="mt-14 mb-8">
+    <div id="watching-reposts" className="mt-14" aria-hidden="true" />
+    <Body className="mb-8">
       <span className="font-semibold text-foreground">Reworking consumption so reposts read at a glance.</span> With our
       SDE, I mapped what repost data the backend could carry into a highlight, then chose a framed middle card. It
       reuses the add-to-story style, so it feels familiar, and its shape sets it apart from full-screen stories even

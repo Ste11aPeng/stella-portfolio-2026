@@ -42,17 +42,24 @@ export const Body = ({ children, className = "mb-6" }: { children: ReactNode; cl
   </Reveal>
 );
 
-// a small chip; accent tints it TikTok red for the picked or key item
+// a small chip; accent tints it (TikTok red unless told otherwise) for the
+// picked or key item
+// a hex colour at a given opacity, for tinted chip backgrounds
+const tintBg = (hex: string, a: number) => {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
+};
+
 export const Tag = ({
-  children, accent = false, large = false, className = "",
-}: { children: ReactNode; accent?: boolean; large?: boolean; className?: string }) => (
+  children, accent = false, large = false, tint = TIKTOK, className = "",
+}: { children: ReactNode; accent?: boolean; large?: boolean; tint?: string; className?: string }) => (
   <span
     className={`inline-flex items-center rounded-md font-medium leading-none lowercase ${
       large ? "px-3 py-2 text-sm" : "px-2.5 py-1.5 text-xs"
     } ${className} ${
       accent ? "" : "bg-foreground/[0.06] text-muted-foreground"
     }`}
-    style={accent ? { color: TIKTOK, backgroundColor: "rgba(254, 44, 85, 0.08)" } : undefined}
+    style={accent ? { color: tint, backgroundColor: tintBg(tint, 0.08) } : undefined}
   >
     {children}
   </span>

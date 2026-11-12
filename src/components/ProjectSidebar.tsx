@@ -9,7 +9,9 @@ interface ProjectSidebarProps {
   onSectionClick: (section: string) => void;
 }
 
-const sections = [
+type Section = { id: string; label: string; parent?: string };
+
+const sections: Section[] = [
   { id: "overview", label: "Overview" },
   { id: "challenge", label: "Challenge" },
   { id: "solution", label: "Solution" },
@@ -51,7 +53,7 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [id]);
 
-  const getVisibleSections = () => {
+  const getVisibleSections = (): Section[] => {
     if (id === "stitchi") {
       return sections.filter(s => s.id !== "testing");
     }
@@ -79,6 +81,9 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
       { id: "overview", label: "Overview" },
       { id: "challenge", label: "Challenge" },
       { id: "solution-1", label: "Solution 1" },
+      // solution 1's two halves, indented under it, so it's clear both are about reposts
+      { id: "adding-reposts", label: "adding reposts", parent: "solution-1" },
+      { id: "watching-reposts", label: "watching reposts", parent: "solution-1" },
       { id: "solution-2", label: "Solution 2" },
       { id: "reflection", label: "Reflection" },
     ];
@@ -97,6 +102,9 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
   };
   
   const visibleSections = getVisibleSections();
+  // a parent is "open" while it, or one of its parts, is the section on screen
+  const isOpen = (parentId: string) =>
+    activeSection === parentId || visibleSections.some((s) => s.parent === parentId && s.id === activeSection);
 
   return (
     // "back" stays pinned top-left, where the homepage's intro sits (case
@@ -131,23 +139,40 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
               transition={isVisible ? enter(0.1 * (index + 1)) : LEAVE}
               className={isVisible ? "" : "pointer-events-none"}
             >
-              <button
-                onClick={() => onSectionClick(section.id)}
+              {/* a sub-item folds open only while its parent section is on screen */}
+              <div
                 className={cn(
-                  HOVER,
-                  "inline-flex items-center text-sm lowercase hover:text-foreground",
-                  activeSection === section.id ? "text-foreground" : "text-muted-foreground/50"
+                  "grid transition-[grid-template-rows,opacity] duration-500 ease-out",
+                  !section.parent || isOpen(section.parent) ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 pointer-events-none"
                 )}
               >
-                {/* the same short leading line as the homepage sidebar marks the section on screen */}
-                <span
-                  aria-hidden="true"
-                  className={`inline-block h-px bg-foreground transition-all duration-500 ease-out ${
-                    activeSection === section.id ? "w-2 mr-1.5 opacity-100" : "w-0 mr-0 opacity-0"
-                  }`}
-                />
-                {section.label}
-              </button>
+                <div className="overflow-hidden">
+                  <button
+                    onClick={() => onSectionClick(section.id)}
+                    className={cn(
+                      HOVER,
+                      "inline-flex items-center lowercase hover:text-foreground",
+                      // a sub-item sits indented, a size down
+                      section.parent ? "pl-3 text-[13px] leading-6" : "text-sm",
+                      activeSection === section.id
+                        ? "text-foreground"
+                        : // a parent stays lit (without the line) while one of its parts is on screen
+                          visibleSections.some((s) => s.parent === section.id && s.id === activeSection)
+                          ? "text-foreground/70"
+                          : "text-muted-foreground/50"
+                    )}
+                  >
+                    {/* the same short leading line as the homepage sidebar marks the section on screen */}
+                    <span
+                      aria-hidden="true"
+                      className={`inline-block h-px bg-foreground transition-all duration-500 ease-out ${
+                        activeSection === section.id ? "w-2 mr-1.5 opacity-100" : "w-0 mr-0 opacity-0"
+                      }`}
+                    />
+                    {section.label}
+                  </button>
+                </div>
+              </div>
             </motion.li>
           ))}
         </ul>
