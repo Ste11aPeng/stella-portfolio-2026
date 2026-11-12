@@ -209,6 +209,9 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, .18);
     opacity: 0;
   }
+  /* ?cover: the same loop as a project cover, without the layout thumbnail or
+     the pause button (the cover itself is a link, so nothing here is clickable) */
+  .cover .thumb, .cover .pause-btn { display: none; }
   .pause-btn {
     position: absolute;
     right: 16px; bottom: 16px;
@@ -310,6 +313,7 @@
 <script src="gsap.min.js"></script>
 <script>
 (function () {
+  if (/[?&]cover\b/.test(location.search)) document.documentElement.classList.add('cover');
   var $ = function (id) { return document.getElementById(id); };
   var outer = $('stageOuter'), stage = $('stage'), thumb = $('thumb');
   var leftPanel = $('leftPanel'), chatPanel = $('chatPanel'), conv = $('conv'), input = $('input');

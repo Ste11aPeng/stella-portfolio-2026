@@ -17,7 +17,7 @@ const CircleTesting = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut }}
       >
-        <span className="text-sm text-muted-foreground mb-6 block">
+        <span className="inline-block mb-4 rounded-md bg-foreground/[0.05] px-2.5 py-1 text-sm font-medium leading-5 text-muted-foreground lowercase">
           iteration
         </span>
         <AnimatedTitle text="From Feedback to Functional Prototype" className="text-2xl font-bold mb-6 text-foreground" />

@@ -64,6 +64,25 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
         { id: "component-mapping", label: "Component Mapping" },
       ];
     }
+    if (id === "tiktok-widget") {
+      return [
+      { id: "overview", label: "Overview" },
+      { id: "challenge", label: "Problem" },
+      { id: "widget", label: "Widget" },
+      { id: "tutorial", label: "Tutorial" },
+      { id: "cold-start", label: "Cold Start" },
+      { id: "reflection", label: "Takeaway" },
+    ];
+    }
+    if (id === "tiktok-highlights") {
+      return [
+      { id: "overview", label: "Overview" },
+      { id: "challenge", label: "Challenge" },
+      { id: "solution-1", label: "Solution 1" },
+      { id: "solution-2", label: "Solution 2" },
+      { id: "reflection", label: "Reflection" },
+    ];
+    }
     if (id === "asksia") {
       return [
         { id: "overview", label: "Overview" },
@@ -80,15 +99,16 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
   const visibleSections = getVisibleSections();
 
   return (
-    // pinned to the top-left corner, where the homepage's intro sits; case
-    // studies have no header on desktop, so "back" here is the way home
-    <nav className="fixed top-8 left-8 lg:left-9 z-40 hidden md:block group/sidebar">
-      <ul className="flex flex-col text-left">
-        <motion.li
+    // "back" stays pinned top-left, where the homepage's intro sits (case
+    // studies have no header on desktop, so it's the way home); the section
+    // list sits apart in the bottom-left corner
+    <>
+      <nav className="fixed top-8 left-8 lg:left-9 z-40 hidden md:block group/sidebar">
+        <motion.div
           initial={HIDDEN}
           animate={isVisible ? SHOWN : HIDDEN}
           transition={isVisible ? enter(0) : LEAVE}
-          className={`mb-12 ${isVisible ? "" : "pointer-events-none"}`}
+          className={isVisible ? "" : "pointer-events-none"}
         >
           <Link
             to="/"
@@ -97,37 +117,42 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
           >
             back
           </Link>
-        </motion.li>
+        </motion.div>
+      </nav>
 
-        {visibleSections.map((section, index) => (
-          <motion.li
-            key={section.id}
-            initial={HIDDEN}
-            animate={isVisible ? SHOWN : HIDDEN}
-            transition={isVisible ? enter(0.1 * (index + 1)) : LEAVE}
-            className={isVisible ? "" : "pointer-events-none"}
-          >
-            <button
-              onClick={() => onSectionClick(section.id)}
-              className={cn(
-                HOVER,
-                "inline-flex items-center text-sm lowercase hover:text-foreground",
-                activeSection === section.id ? "text-foreground" : "text-muted-foreground/50"
-              )}
+      {/* clear of the reading-progress band along the bottom (~46px), with the same 32px as "back" keeps from the top */}
+      <nav aria-label="Sections" className="fixed bottom-[78px] left-8 lg:left-9 z-40 hidden md:block group/sidebar">
+        <ul className="flex flex-col text-left">
+          {visibleSections.map((section, index) => (
+            <motion.li
+              key={section.id}
+              initial={HIDDEN}
+              animate={isVisible ? SHOWN : HIDDEN}
+              transition={isVisible ? enter(0.1 * (index + 1)) : LEAVE}
+              className={isVisible ? "" : "pointer-events-none"}
             >
-              {/* the same short leading line as the homepage sidebar marks the section on screen */}
-              <span
-                aria-hidden="true"
-                className={`inline-block h-px bg-foreground transition-all duration-500 ease-out ${
-                  activeSection === section.id ? "w-2 mr-1.5 opacity-100" : "w-0 mr-0 opacity-0"
-                }`}
-              />
-              {section.label}
-            </button>
-          </motion.li>
-        ))}
-      </ul>
-    </nav>
+              <button
+                onClick={() => onSectionClick(section.id)}
+                className={cn(
+                  HOVER,
+                  "inline-flex items-center text-sm lowercase hover:text-foreground",
+                  activeSection === section.id ? "text-foreground" : "text-muted-foreground/50"
+                )}
+              >
+                {/* the same short leading line as the homepage sidebar marks the section on screen */}
+                <span
+                  aria-hidden="true"
+                  className={`inline-block h-px bg-foreground transition-all duration-500 ease-out ${
+                    activeSection === section.id ? "w-2 mr-1.5 opacity-100" : "w-0 mr-0 opacity-0"
+                  }`}
+                />
+                {section.label}
+              </button>
+            </motion.li>
+          ))}
+        </ul>
+      </nav>
+    </>
   );
 };
 

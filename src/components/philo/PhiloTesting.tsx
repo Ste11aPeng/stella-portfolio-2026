@@ -13,7 +13,7 @@ const PhiloTesting = () => {
       <Separator className="mb-16 bg-border/60" />
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
-        <span className="text-sm text-muted-foreground mb-6 block">outcome</span>
+        <span className="inline-block mb-4 rounded-md bg-foreground/[0.05] px-2.5 py-1 text-sm font-medium leading-5 text-muted-foreground lowercase">outcome</span>
         <AnimatedTitle
           text="Improved team efficiency and product consistency, enabling faster development cycles while delivering a cohesive user experience across the platform."
           className="text-xl font-medium mb-10 text-foreground leading-relaxed max-w-2xl"
@@ -37,13 +37,13 @@ const PhiloTesting = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
       >
-        <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+        <li className="text-muted-foreground leading-relaxed pl-4 border-l-2 border-foreground/20">
           <strong className="text-foreground/90">For Developers</strong>: Quick onboarding with clear, ready-to-use components
         </li>
-        <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+        <li className="text-muted-foreground leading-relaxed pl-4 border-l-2 border-foreground/20">
           <strong className="text-foreground/90">For Designers</strong>: Streamlined future design work with reusable patterns
         </li>
-        <li className="text-foreground/80 leading-relaxed pl-4 border-l-2 border-foreground/20">
+        <li className="text-muted-foreground leading-relaxed pl-4 border-l-2 border-foreground/20">
           <strong className="text-foreground/90">For Users</strong>: Consistent, cohesive experience across the platform
         </li>
       </motion.ul>

@@ -10,7 +10,7 @@ const AsksiaImpact = () => {
       <Separator className="mb-16 bg-border/60" />
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
-        <span className="text-sm text-muted-foreground mb-6 block">impact</span>
+        <span className="inline-block mb-4 rounded-md bg-foreground/[0.05] px-2.5 py-1 text-sm font-medium leading-5 text-muted-foreground lowercase">impact</span>
       </motion.div>
 
       {/* Top row: two cards side by side */}
@@ -27,7 +27,7 @@ const AsksiaImpact = () => {
           <h3 className="text-2xl font-bold mb-1 text-foreground">
             35% Viewport Gain
           </h3>
-          <p className="text-base text-foreground/70 leading-relaxed">
+          <p className="text-base text-muted-foreground leading-relaxed">
             We made the chat area way bigger, no more squinting at a tiny window during long study sessions.
           </p>
         </motion.div>
@@ -44,7 +44,7 @@ const AsksiaImpact = () => {
           <h3 className="text-2xl font-bold mb-1 text-foreground">
             20% Faster Navigation
           </h3>
-          <p className="text-base text-foreground/70 leading-relaxed">
+          <p className="text-base text-muted-foreground leading-relaxed">
             Jumping between AI answers and your original files used to be clunky, now it's quick and painless.
           </p>
         </motion.div>
@@ -63,7 +63,7 @@ const AsksiaImpact = () => {
         <h3 className="text-2xl font-bold mb-1 text-foreground">
           Scalable Retention
         </h3>
-        <p className="text-base text-foreground/70 leading-relaxed max-w-2xl">
+        <p className="text-base text-muted-foreground leading-relaxed max-w-2xl">
           The layout stays clean even when users pile on more files, so the product doesn't get messier as it grows.
         </p>
       </motion.div>

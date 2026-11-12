@@ -16,6 +16,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ruocanpeng.com/project/tiktok-highlights</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ruocanpeng.com/project/tiktok-widget</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://ruocanpeng.com/project/circle-status</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>

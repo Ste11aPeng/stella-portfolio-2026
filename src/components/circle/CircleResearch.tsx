@@ -14,11 +14,11 @@ const CircleResearch = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut }}
       >
-        <span className="text-sm text-muted-foreground mb-6 block">
+        <span className="inline-block mb-4 rounded-md bg-foreground/[0.05] px-2.5 py-1 text-sm font-medium leading-5 text-muted-foreground lowercase">
           research
         </span>
         <AnimatedTitle text="Research & User Modeling" className="text-2xl font-bold mb-6 text-foreground" />
-        <p className="text-base text-foreground/80 leading-relaxed mb-10">
+        <p className="text-base text-muted-foreground leading-relaxed mb-10">
           We ran 50+ household interviews and surveyed 200 Midwest residents, then used CART analysis to find what actually predicts help-seeking behavior during outages.
         </p>
       </motion.div>

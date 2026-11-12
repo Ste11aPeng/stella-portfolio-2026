@@ -24,9 +24,14 @@ const projects = [
       "A design system for an e-commerce MVP: a token-based foundation, 50+ documented components mapped to React Native, and UI templates that cut the design-to-dev cycle to two weeks.",
   },
   {
-    name: "TikTok",
+    name: "TikTok · interest highlights",
     summary:
-      "Product design internship work on social experiences and on new ways AI can fit into the design process. Case study coming soon.",
+      "Product design internship on TikTok's Social team: redesigning Highlights from a shelf for old stories into a home for interests, and bringing reposts into it, in two phases.",
+  },
+  {
+    name: "TikTok · story widget",
+    summary:
+      "Redesigning TikTok's Stories home-screen widget, the tutorial for adding it, and cold-start prompts that invite people to try it.",
   },
 ];
 
@@ -183,6 +188,64 @@ Questions about this policy: [stellanotfound@gmail.com](mailto:stellanotfound@gm
 
 const projectPages = [
   {
+    id: "tiktok-highlights",
+    name: "TikTok · interest highlights",
+    description:
+      "TikTok interest highlights: turning what people repost into how they show who they are. A product design case study by Stella Peng.",
+    meta: { industry: "social media", status: "phase 1 shipped, phase 2 in development", team: "1 PM, 1 SDE", timeline: "Jun 2026 - Sep 2026" },
+    body: `I redesigned Highlights from a shelf for old stories into a home for interests, and brought reposts
+into it. With my PM, I mapped the 0 to 1 path in two phases. Phase 1, reposts in highlights, launched in
+Q3 2026. Phase 2, auto-suggested highlights, is planned for Q4 2026.
+
+## Challenge
+
+People showed their interests every day through stories and reposts, but none of it carried over to
+their profile. We defined the goal: a highlight should let visitors understand someone at a glance.
+
+## Solution 1: put reposts in highlights
+
+Stories and reposts sit on one scrolling page when adding to a highlight, so picking stays in the flow
+people already know. When viewing, a repost appears as a framed middle card with the reposter's note
+above it, so it reads apart from full-screen stories even mid-swipe.
+
+## Solution 2: highlights that suggest themselves
+
+As more content came into highlight creation, we wanted to offer a suggested flow where TikTok picks for
+you. After testing several entry points with my design manager, I placed the suggestion inside this flow.
+The final design is still under NDA, so I can only share it at a high level here.
+
+## What I took away from TikTok
+
+This summer changed how I make design decisions. Every choice had to hold up against numbers, and I
+left more data-driven: checking what the numbers can support before arguing for a direction, and
+asking what a feature is for before drawing it.`,
+  },
+  {
+    id: "tiktok-widget",
+    name: "TikTok · story widget",
+    description:
+      "TikTok story widget: making a home-screen widget worth adding, and worth keeping. A product design case study by Stella Peng.",
+    meta: { industry: "social media", status: "shipped", team: "1 PM, 1 SDE", timeline: "Jul 2026 - Sep 2026" },
+    body: `I redesigned TikTok's Stories widget and the flow that teaches people to add it.
+
+## Problem
+
+The widget already had real adoption among younger users, but it cropped stories with no context and
+often failed to load. The goal was a widget that makes sense at a glance and works as a way back into
+Stories.
+
+## What I designed
+
+The widget itself (small and medium, light and dark), a step-by-step tutorial for adding it with a
+picture-in-picture guide video, and cold-start prompts between stories. The motion pieces were made
+together with TikTok's creative team.
+
+## Takeaway
+
+A widget lives on someone's home screen, outside the app, so it has to earn that space every day:
+design for adoption and long-term use together.`,
+  },
+  {
     id: "circle-status",
     name: "Circle Status",
     description:
@@ -302,7 +365,6 @@ for (const p of projectPages) {
 - **Status:** ${m.status}
 - **Team:** ${m.team}
 - **Timeline:** ${m.timeline}
-- **Skills:** ${m.skills}
 
 ${p.body}
 

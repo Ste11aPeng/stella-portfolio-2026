@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { projects } from "@/data/projects";
+import AnimatedTitle from "@/components/AnimatedTitle";
 
 interface NextProjectProps {
   currentProjectId: string;
 }
 
+// The end of a case study, set like the end of a magazine piece: a small
+// "next project" line and the next title in the same serif as the page's own,
+// with an arrow. Hovering nudges the title along and fills the arrow.
 const NextProject = ({ currentProjectId }: NextProjectProps) => {
   const currentIndex = projects.findIndex((p) => p.id === currentProjectId);
   const nextProject = projects[(currentIndex + 1) % projects.length];
@@ -18,29 +23,29 @@ const NextProject = ({ currentProjectId }: NextProjectProps) => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: [0.0, 0.0, 0.2, 1] }}
       >
-        <span className="text-sm text-muted-foreground mb-6 block">next project</span>
-        <Link to={`/project/${nextProject.id}`} className="group block">
-          <div className="relative overflow-hidden" style={{ aspectRatio: "645/326" }}>
-            <img
-              src={nextProject.image}
-              alt={nextProject.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-            />
-            <div className="absolute bottom-0 left-0 right-0 p-3 flex flex-wrap gap-1.5">
-              <span
-                className="project-badge project-title font-medium"
-                style={{ color: nextProject.titleColor }}
-              >
-                {nextProject.title}
-              </span>
-              <span className="project-badge project-description">
-                {nextProject.tagline}
-              </span>
-              <span className="project-badge project-type">
-                {nextProject.type}
-              </span>
+        <Link
+          to={`/project/${nextProject.id}`}
+          className="group flex items-center gap-6 border-t border-border/60 pt-8"
+          aria-label={`Next project: ${nextProject.title}, ${nextProject.tagline}`}
+        >
+          <div className="min-w-0 flex-1">
+            <span className="text-sm text-muted-foreground mb-3 block">next project</span>
+            <div className="transition-transform duration-500 ease-out group-hover:translate-x-2">
+              <AnimatedTitle
+                className="text-4xl text-foreground"
+                style={{ fontFamily: "'Exposure', 'New Spirit', serif", fontWeight: 650, letterSpacing: "-0.07em" }}
+                segments={[
+                  { text: nextProject.title },
+                  { text: " · ", className: "text-foreground/40", ariaHidden: true },
+                  { text: nextProject.tagline, className: "text-foreground/60" },
+                ]}
+              />
             </div>
           </div>
+
+          <span className="shrink-0 flex h-12 w-12 items-center justify-center rounded-full bg-foreground/[0.05] text-foreground transition-colors duration-300 group-hover:bg-foreground group-hover:text-background">
+            <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+          </span>
         </Link>
       </motion.div>
     </section>

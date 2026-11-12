@@ -10,10 +10,10 @@ const PhiloAuditReview = () => {
       <Separator className="mb-16 bg-border/60" />
 
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
-        <span className="text-sm text-muted-foreground mb-6 block">Audit &amp; Review</span>
+        <span className="inline-block mb-4 rounded-md bg-foreground/[0.05] px-2.5 py-1 text-sm font-medium leading-5 text-muted-foreground lowercase">Audit &amp; Review</span>
         <AnimatedTitle text="Auditing 15 screens and prioritizing what to fix first" className="text-2xl font-bold mb-6 text-foreground" />
         <motion.p
-          className="text-base max-w-4xl text-foreground/80 leading-relaxed"
+          className="text-base max-w-4xl text-muted-foreground leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}

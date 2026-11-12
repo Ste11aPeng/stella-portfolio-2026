@@ -9,6 +9,7 @@ interface ProjectOverviewProps {
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
 const ProjectOverview = ({ project }: ProjectOverviewProps) => {
+  const emphasised = project.overview.includes("**");
   return (
     <section id="overview" className="pt-16">
       <div className="overflow-hidden">
@@ -31,13 +32,24 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
         transition={{ duration: 0.5, ease: easeOut, delay: 0.15 }}
       >
         <motion.p
-          className="text-base max-w-3xl text-foreground/80 leading-relaxed"
+          className="text-base leading-relaxed text-muted-foreground"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5, ease: easeOut, delay: 0.2 }}
         >
-          {project.overview}
+          {emphasised
+            ? // **marked** phrases (the numbers, the outcome) stay dark; the rest recedes to grey
+              project.overview.split("**").map((part, i) =>
+                i % 2 ? (
+                  <span key={i} className="text-foreground">
+                    {part}
+                  </span>
+                ) : (
+                  part
+                )
+              )
+            : project.overview}
         </motion.p>
       </motion.div>
 
@@ -64,10 +76,6 @@ const ProjectOverview = ({ project }: ProjectOverviewProps) => {
         <div className="flex gap-1.5">
           <dt className="text-muted-foreground/70">timeline</dt>
           <dd className="text-foreground/70">{project.timeline}</dd>
-        </div>
-        <div className="flex gap-1.5">
-          <dt className="text-muted-foreground/70">skills</dt>
-          <dd className="text-foreground/70">{project.skills.join(", ")}</dd>
         </div>
       </motion.dl>
     </section>

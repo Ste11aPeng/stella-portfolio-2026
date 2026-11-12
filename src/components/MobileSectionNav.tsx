@@ -28,6 +28,21 @@ const MobileSectionNav = ({ activeSection, onSectionClick }: MobileSectionNavPro
       { id: "audit-review", label: "Audit & Review" },
       { id: "component-mapping", label: "Component Mapping" },
     ];
+    if (id === "tiktok-widget") return [
+      { id: "overview", label: "Overview" },
+      { id: "challenge", label: "Problem" },
+      { id: "widget", label: "Widget" },
+      { id: "tutorial", label: "Tutorial" },
+      { id: "cold-start", label: "Cold Start" },
+      { id: "reflection", label: "Takeaway" },
+    ];
+    if (id === "tiktok-highlights") return [
+      { id: "overview", label: "Overview" },
+      { id: "challenge", label: "Challenge" },
+      { id: "solution-1", label: "Solution 1" },
+      { id: "solution-2", label: "Solution 2" },
+      { id: "reflection", label: "Reflection" },
+    ];
     if (id === "asksia") return [
       { id: "overview", label: "Overview" },
       { id: "challenge", label: "Challenge" },

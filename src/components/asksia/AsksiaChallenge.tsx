@@ -13,7 +13,7 @@ const AsksiaChallenge = () => {
       <Separator className="mb-16 bg-border/60" />
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
-        <span className="text-sm text-muted-foreground mb-6 block">challenge</span>
+        <span className="inline-block mb-4 rounded-md bg-foreground/[0.05] px-2.5 py-1 text-sm font-medium leading-5 text-muted-foreground lowercase">challenge</span>
         <AnimatedTitle
           className="text-xl font-medium mb-10 text-foreground leading-relaxed max-w-2xl"
           segments={[
@@ -32,8 +32,8 @@ const AsksiaChallenge = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        <span className="text-sm text-muted-foreground mb-6 block">constraints</span>
-        <p className="text-base mb-10 max-w-3xl text-foreground/80 leading-relaxed">
+        <span className="inline-block mb-4 rounded-md bg-foreground/[0.05] px-2.5 py-1 text-sm font-medium leading-5 text-muted-foreground lowercase">constraints</span>
+        <p className="text-base mb-10 max-w-3xl text-muted-foreground leading-relaxed">
           Speed: 2-week Sprint / Team: Lean (4 pax) / Tech: Library-based / Goal: Growth-ready
         </p>
       </motion.div>

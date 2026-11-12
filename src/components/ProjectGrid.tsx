@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
+import AnimatedCover from "./AnimatedCover";
 import { projects } from "@/data/projects";
 
 // `delay` is when the first card starts to resolve (the homepage hero takes a
@@ -29,6 +30,16 @@ const ProjectGrid = ({ className, delay = 1.3, grid }: { className?: string; del
               type={project.type}
               comingSoon={project.comingSoon}
               index={index}
+              cover={
+                project.animatedCover && (
+                  <AnimatedCover
+                    kind={project.animatedCover}
+                    // starts as the card finishes coming in
+                    delay={delay + index * 0.18 + 0.4}
+                    fallback={<img src={project.image} alt="" className="w-full h-full object-cover" />}
+                  />
+                )
+              }
             />
           </motion.div>
         ))}

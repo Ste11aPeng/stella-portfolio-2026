@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 interface ProjectCardProps {
@@ -10,9 +10,11 @@ interface ProjectCardProps {
   type: string;
   comingSoon?: boolean;
   index?: number;
+  /** something live to show in place of the image */
+  cover?: ReactNode;
 }
 
-const ProjectCard = ({ id, image, title, titleColor, description, type, comingSoon = false, index = 0 }: ProjectCardProps) => {
+const ProjectCard = ({ id, image, title, titleColor, description, type, comingSoon = false, index = 0, cover }: ProjectCardProps) => {
   const [isHovering, setIsHovering] = useState(false);
   const hintRef = useRef<HTMLDivElement>(null);
   const position = useRef({ x: 0, y: 0 });
@@ -79,7 +81,7 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
       onMouseLeave={handleMouseLeave}
     >
       <div className="overflow-hidden w-full relative rounded-[4px]" style={{ aspectRatio: '645/400' }}>
-        <img 
+        {cover ?? <img 
           src={image} 
           alt={`${title} – ${description}`} 
           width={645}
@@ -89,7 +91,7 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
           decoding={index < 2 ? "sync" : "async"}
           fetchPriority={index === 0 ? "high" : undefined}
           className="w-full h-full object-cover"
-        />
+        />}
         {/* Gradient blur overlay on hover */}
         <div
           className="absolute inset-0 transition-opacity duration-700 ease-out pointer-events-none"

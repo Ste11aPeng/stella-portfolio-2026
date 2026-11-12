@@ -11,6 +11,10 @@ export interface Project {
   image: string;
   coverImage?: string;
   coverFull?: boolean;
+  /** with coverFull and an animated cover: the shape the still would have had */
+  coverAspect?: string;
+  /** a cover that moves, in place of the still (which stands in while it loads) */
+  animatedCover?: "widget-bento" | "highlights-phones" | "circle-float" | "philo-tiles" | "asksia-layouts";
   title: string;
   titleColor: string;
   tagline: string;
@@ -28,32 +32,52 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "tiktok",
+    id: "tiktok-highlights",
     image: tiktokImage,
     title: "TikTok",
     titleColor: "#FE2C55",
-    tagline: "social experience",
-    description: "social experience",
-    type: "intern",
+    tagline: "interest highlights",
+    animatedCover: "highlights-phones",
+    description: "turning what people repost into how they show who they are",
+    type: "internship",
     industry: "social media",
-    status: "nda",
-    team: "Social team",
-    timeline: "Jun 2026 - Aug 2026",
+    status: "phase 1 shipped, phase 2 in development",
+    team: "1 PM, 1 SDE",
+    timeline: "Jun 2026 - Sep 2026",
     skills: ["Figma", "Prototyping"],
     tags: ["UI/UX design", "social"],
-    overview: "Coming soon.",
-    comingSoon: true,
+    // **…** marks the phrases that stay dark in the overview
+    overview: "I redesigned Highlights from a shelf for old stories into a home for interests, and brought reposts into it. With my PM, I mapped the 0→1 path in two phases. Phase 1, reposts in highlights, **launched in Q3 2026** and is being measured against a projected lift of **up to 0.6% in daily highlight creators**. Phase 2, auto-suggested highlights, is **planned for Q4 2026**. Together they reach about **5% of global DAU**.",
+  },
+  {
+    id: "tiktok-widget",
+    image: tiktokImage,
+    title: "TikTok",
+    titleColor: "#FE2C55",
+    tagline: "story widget",
+    animatedCover: "widget-bento",
+    description: "making a home-screen widget worth adding, and worth keeping",
+    type: "internship",
+    industry: "social media",
+    status: "shipped",
+    team: "1 PM, 1 SDE",
+    timeline: "Jul 2026 - Sep 2026",
+    skills: ["Figma", "Prototyping"],
+    tags: ["UI/UX design", "social"],
+    overview: "I redesigned TikTok's Stories widget and the flow that teaches people to add it. It shipped through agile development. The old widget reached **0.267% of active users**, and we projected the add rate to grow from **0.35% to about 0.61%**.",
   },
   {
     id: "asksia",
     image: askSiaImage,
     coverImage: askSiaInnerCover,
+    animatedCover: "asksia-layouts",
+    coverAspect: "1325 / 671",
     coverFull: true,
     title: "AskSia",
     titleColor: "#4E4DF4",
     tagline: "AI-powered study sidekick",
     description: "helping students learn smarter with AI-powered tutoring",
-    type: "intern",
+    type: "internship",
     industry: "EdTech, AI",
     status: "Shipped to production",
     team: "2 Designers, 3 Engineers, 1 PM",
@@ -67,9 +91,11 @@ export const projects: Project[] = [
     image: circleStatusImage,
     coverImage: circleStatusCover,
     coverFull: true,
+    coverAspect: "1988 / 930",
     title: "Circle Status",
     titleColor: "#FFCB05",
     tagline: "light for community",
+    animatedCover: "circle-float",
     description: "connecting neighbors through ambient awareness",
     type: "0 to 1",
     industry: "IoT, smart home",
@@ -84,12 +110,14 @@ export const projects: Project[] = [
     id: "philo",
     image: philoImage,
     coverImage: philoInnerCover,
+    animatedCover: "philo-tiles",
+    coverAspect: "1988 / 930",
     coverFull: true,
     title: "Philo Design System",
     titleColor: "#C37933",
     tagline: "UX infra for e-commerce",
     description: "UX infrastructure for an e-commerce MVP",
-    type: "intern",
+    type: "internship",
     industry: "e-commerce",
     status: "Shipped to engineering",
     team: "2 Designers, 2 Engineers, 1 Founder",

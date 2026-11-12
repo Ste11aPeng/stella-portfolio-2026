@@ -9,6 +9,7 @@ import MobileSectionNav from "@/components/MobileSectionNav";
 import ProjectOverview from "@/components/ProjectOverview";
 import ProjectProgressBar from "@/components/ProjectProgressBar";
 import NextProject from "@/components/NextProject";
+import AnimatedCover from "@/components/AnimatedCover";
 import StitchiChallenge from "@/components/stitchi/StitchiChallenge";
 import StitchiSolution from "@/components/stitchi/StitchiSolution";
 import StitchiResearch from "@/components/stitchi/StitchiResearch";
@@ -29,6 +30,11 @@ import AsksiaImpact from "@/components/asksia/AsksiaImpact";
 import AsksiaResearch from "@/components/asksia/AsksiaResearch";
 import AsksiaDesignAnalysis from "@/components/asksia/AsksiaDesignAnalysis";
 import AsksiaReflection from "@/components/asksia/AsksiaReflection";
+import HighlightsChallenge from "@/components/tiktok/HighlightsChallenge";
+import HighlightsPhaseOne from "@/components/tiktok/HighlightsPhaseOne";
+import HighlightsPhaseTwo from "@/components/tiktok/HighlightsPhaseTwo";
+import HighlightsReflection from "@/components/tiktok/HighlightsReflection";
+import WidgetCaseStudy from "@/components/tiktok/WidgetCaseStudy";
 import { getProjectById } from "@/data/projects";
 
 const baseSectionIds = ["overview", "challenge", "solution", "research", "testing", "reflection"];
@@ -43,6 +49,12 @@ const getSectionIds = (projectId: string | undefined) => {
   }
   if (projectId === "asksia") {
     return ["overview", "challenge", "solution", "research", "design-analysis", "reflection"];
+  }
+  if (projectId === "tiktok-widget") {
+    return ["overview", "challenge", "widget", "tutorial", "cold-start", "reflection"];
+  }
+  if (projectId === "tiktok-highlights") {
+    return ["overview", "challenge", "solution-1", "solution-2", "reflection"];
   }
   return baseSectionIds;
 };
@@ -79,7 +91,9 @@ const ProjectDetail = () => {
       for (let i = currentSectionIds.length - 1; i >= 0; i--) {
         const sectionId = currentSectionIds[i];
         const element = document.getElementById(sectionId);
-        if (element && element.offsetTop <= scrollPosition) {
+        // measured against the page, not the section's positioned parent
+        // (offsetTop skips the cover above and runs a section ahead)
+        if (element && element.getBoundingClientRect().top + window.scrollY <= scrollPosition) {
           setActiveSection(sectionId);
           break;
         }
@@ -131,7 +145,16 @@ const ProjectDetail = () => {
               ? "w-full overflow-hidden bg-muted relative"
               : "w-full h-screen overflow-hidden bg-muted relative"
           }
+          style={project.animatedCover && project.coverFull ? { aspectRatio: project.coverAspect } : undefined}
         >
+          {project.animatedCover ? (
+            <AnimatedCover
+              kind={project.animatedCover}
+              interactive
+              delay={0.3}
+              fallback={<img src={project.image} alt="" className="w-full h-full object-cover" />}
+            />
+          ) : (
           <img
             src={project.coverImage || project.image}
             alt={project.title}
@@ -143,6 +166,7 @@ const ProjectDetail = () => {
                 : "w-full h-full object-cover animate-fade-in"
             }
           />
+          )}
         </section>
 
         {/* Content */}
@@ -163,6 +187,17 @@ const ProjectDetail = () => {
 
               
               
+              {id === "tiktok-widget" ? (
+                <WidgetCaseStudy />
+              ) : id === "tiktok-highlights" ? (
+                <>
+                  <HighlightsChallenge />
+                  <HighlightsPhaseOne />
+                  <HighlightsPhaseTwo />
+                  <HighlightsReflection />
+                </>
+              ) : (
+              <>
               {/* Challenge Section */}
               {id === "stitchi" ? <StitchiChallenge />
                 : id === "philo" ? <PhiloChallenge />
@@ -232,6 +267,9 @@ const ProjectDetail = () => {
                     <p className="text-muted-foreground">Content coming soon...</p>
                   </section>
                 )}
+
+              </>
+              )}
 
               <NextProject currentProjectId={id!} />
             </div>

@@ -13,7 +13,7 @@ const StitchiChallenge = () => {
       <Separator className="mb-16 bg-border/60" />
       
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, ease: easeOut }}>
-        <span className="text-sm text-muted-foreground mb-6 block">challenge</span>
+        <span className="inline-block mb-4 rounded-md bg-foreground/[0.05] px-2.5 py-1 text-sm font-medium leading-5 text-muted-foreground lowercase">challenge</span>
         <AnimatedTitle
           text="How can Stitchi.co redesign their discovery experience to help B2B buyers find products faster as supplier catalogs scale?"
           className="text-xl font-medium mb-10 text-foreground leading-relaxed max-w-2xl"

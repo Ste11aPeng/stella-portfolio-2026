@@ -24,7 +24,7 @@ const CircleSolution = () => {
       duration: 0.5,
       ease: easeOut
     }}>
-        <span className="text-sm text-muted-foreground mb-6 block">
+        <span className="inline-block mb-4 rounded-md bg-foreground/[0.05] px-2.5 py-1 text-sm font-medium leading-5 text-muted-foreground lowercase">
           solution
         </span>
       </motion.div>
@@ -85,7 +85,7 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.4
     }}>
-        <span className="text-sm text-muted-foreground mb-6 block">impact</span>
+        <span className="inline-block mb-4 rounded-md bg-foreground/[0.05] px-2.5 py-1 text-sm font-medium leading-5 text-muted-foreground lowercase">impact</span>
         <AnimatedTitle text="Showcased at the Ross IPD Trade Show" className="text-2xl font-bold mb-6 text-foreground" />
         <div className="flex flex-wrap justify-center gap-x-16 gap-y-8 mb-8 text-center">
           <div>

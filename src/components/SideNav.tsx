@@ -190,9 +190,9 @@ export const Title = ({ tokens = TITLE, still = false }: { tokens?: Token[]; sti
   );
 };
 
-// the line under the intro
+// the two lines under the intro, at the index rows' size (14px) but set closer
 const Credits = ({ className = "" }: { className?: string }) => (
-  <p className={`text-[12px] leading-[1.15rem] text-muted-foreground ${className}`}>
+  <p className={`text-sm leading-[21px] text-muted-foreground ${className}`}>
     <a href="https://mhcid.washington.edu" target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 hover:text-[#4B2E83]">
       Master's in HCI + Design @UW
     </a>

@@ -42,7 +42,7 @@ Top-level routes (defined in [src/App.tsx](src/App.tsx)):
 
 ## Case studies: how they're organized
 
-Project metadata lives in one place: [src/data/projects.ts](src/data/projects.ts). Each entry in the `projects` array (title, tagline, cover image, skills, status, etc.) is looked up by id via `getProjectById()`. Current ids: `tiktok` (coming soon), `circle-status`, `asksia`, `philo`.
+Project metadata lives in one place: [src/data/projects.ts](src/data/projects.ts). Each entry in the `projects` array (title, tagline, cover image, skills, status, etc.) is looked up by id via `getProjectById()`. Current ids: `tiktok-highlights`, `tiktok-widget`, `circle-status`, `asksia`, `philo`. The two TikTok case studies live in [src/components/tiktok/](src/components/tiktok/).
 
 The actual case-study content is **not** data-driven — it's hand-assembled per project inside [src/pages/ProjectDetail.tsx](src/pages/ProjectDetail.tsx):
 

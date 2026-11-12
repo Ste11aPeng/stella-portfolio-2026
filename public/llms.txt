@@ -52,7 +52,8 @@ a company, or the University of Washington. It only speaks for one person's work
 - [Circle Status](https://ruocanpeng.com/project/circle-status): smart outage lamp and companion app, 0 to 1 hardware plus software, 15 weeks, 264 units sold in three days.
 - [AskSia](https://ruocanpeng.com/project/asksia): AI study companion, research-led redesign of the core learning flow.
 - [Philo](https://ruocanpeng.com/project/philo): 0 to 1 concept for conversational philosophy lessons.
-- [TikTok](https://ruocanpeng.com/project/tiktok): social experiences and AI in the design process, case study coming soon.
+- [TikTok · interest highlights](https://ruocanpeng.com/project/tiktok-highlights): reposts in profile highlights and auto-suggested highlights, product design internship on the Social team.
+- [TikTok · story widget](https://ruocanpeng.com/project/tiktok-widget): the Stories home-screen widget, its add-widget tutorial, and cold-start prompts.
 
 ## Machine-readable
 

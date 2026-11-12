@@ -12,7 +12,7 @@ const CircleReflection = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut }}
       >
-        <span className="text-sm text-muted-foreground mb-6 block">
+        <span className="inline-block mb-4 rounded-md bg-foreground/[0.05] px-2.5 py-1 text-sm font-medium leading-5 text-muted-foreground lowercase">
           reflection
         </span>
         <AnimatedTitle text="What I Learned" className="text-2xl font-bold mb-6 text-foreground" />
@@ -25,11 +25,11 @@ const CircleReflection = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
       >
-        <p className="text-base text-foreground/80 leading-relaxed">
+        <p className="text-base text-muted-foreground leading-relaxed">
           Working with engineers, PMs, and visual designers taught me how to <span className="font-medium text-foreground">communicate design decisions</span> in ways that resonate across disciplines. I learned to balance user needs with technical constraints and business goals.
         </p>
 
-        <p className="text-base text-foreground/80 leading-relaxed">
+        <p className="text-base text-muted-foreground leading-relaxed">
           Combining qualitative interviews with quantitative analysis (EDA, CART) gave us a robust understanding of user behavior. Translating these insights into a <span className="font-medium text-foreground">physical product and digital experience</span> showed me the power of mixed-methods research.
         </p>
       </motion.div>
