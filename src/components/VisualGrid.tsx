@@ -6,7 +6,6 @@ import LazyVideo from "@/components/LazyVideo";
 import { Button } from "@/components/ui/button";
 import visual2 from "@/assets/visual-2.png";
 import visual3 from "@/assets/visual-3.png";
-import visual6 from "@/assets/visual-6.png";
 import visual7 from "@/assets/visual-7.png";
 import telltoolWordmark from "@/assets/visual-telltool-wordmark.webp";
 import telltoolStationery from "@/assets/telltool-3.png";
@@ -90,13 +89,6 @@ const PIECES: Piece[] = [
     category: "Motion",
     aspect: 4 / 3,
     media: { kind: "lottie", data: lottieAnimation, speed: 0.6 },
-  },
-  {
-    title: "Humane Society",
-    when: "Fall 2023",
-    category: "Shelter Branding Concept",
-    aspect: 1920 / 1091,
-    media: { kind: "image", src: visual6, alt: "Humane Society shelter branding design" },
   },
   {
     title: "Knob",
@@ -265,10 +257,6 @@ const PieceCard = ({ piece, index }: { piece: Piece; index: number }) => {
           </motion.div>
         )}
       </div>
-      <p className="text-xs leading-5 text-[#a1a1a1] lowercase">
-        {piece.category}
-        {piece.when && <> &nbsp;·&nbsp; {piece.when}</>}
-      </p>
     </motion.div>
   );
 };
@@ -278,9 +266,10 @@ const VisualGrid = ({ className = "" }: { className?: string }) => {
   const n = useColumnCount(ref);
   const columns = useMemo(() => toColumns(PIECES, n), [n]);
   return (
-    <div ref={ref} className={`flex items-start gap-6 ${className}`}>
+    // pictures only, no captions: an even 10px all round, like the work grid
+    <div ref={ref} className={`flex items-start gap-2.5 ${className}`}>
       {columns.map((col, c) => (
-        <div key={c} className="flex-1 min-w-0 flex flex-col gap-8">
+        <div key={c} className="flex-1 min-w-0 flex flex-col gap-2.5">
           {col.map(({ piece, index }) => (
             <PieceCard key={piece.title} piece={piece} index={index} />
           ))}

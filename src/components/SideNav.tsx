@@ -81,6 +81,7 @@ export type Token = {
 };
 const TITLE: Token[] = [
   { text: "Stella" },
+  { text: "✶" },
   { text: "is" },
   { text: "a" },
   { text: "designer", accent: true },
@@ -285,7 +286,7 @@ const SideNav = ({ active, onJump }: { active: Section; onJump: (s: Section) => 
         <nav aria-label="Elsewhere" className="mb-8">
           <div>
             <Step i={5}>
-              <Label>elsewhere</Label>
+              <Label>find me</Label>
             </Step>
             <div className="group/list flex flex-col">
               {OUT_LINKS.map(([label, href], k) => (
@@ -384,7 +385,7 @@ export const MobileFoot = () => {
   const [copied, copyEmail] = useCopyEmail();
   return (
     <footer className="md:hidden px-6 pt-6 pb-12 select-none">
-      <Label>elsewhere</Label>
+      <Label>find me</Label>
       <div className="flex flex-wrap gap-x-5">
         {OUT_LINKS.map(([label, href]) => (
           <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="inline-flex h-7 items-center text-sm text-muted-foreground">

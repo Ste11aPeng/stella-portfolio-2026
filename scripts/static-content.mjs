@@ -19,11 +19,6 @@ const projects = [
       "An AI study companion for university students. Research-led redesign of the core learning flow, grounded in usability testing and design analysis of the existing product.",
   },
   {
-    name: "Philo Design System",
-    summary:
-      "A design system for an e-commerce MVP: a token-based foundation, 50+ documented components mapped to React Native, and UI templates that cut the design-to-dev cycle to two weeks.",
-  },
-  {
     name: "TikTok · interest highlights",
     summary:
       "Product design internship on TikTok's Social team: redesigning Highlights from a shelf for old stories into a home for interests, and bringing reposts into it, in two phases.",
@@ -314,39 +309,6 @@ team worked within.
 
 Working inside a fast-moving AI product taught me to design systems that stay flexible as
 capabilities change.`,
-  },
-  {
-    id: "philo",
-    name: "Philo Design System",
-    description:
-      "Philo Design System: a 3-week sprint turning 15 scattered screens into a dev-ready UI library with 50+ components. A case study by Stella Peng.",
-    meta: { industry: "e-commerce", status: "2-week dev cycle", team: "2 designers, founder, 2 developers", timeline: "July 2025 (3-week sprint)", skills: "Figma, Material 3" },
-    body: `A 3-week sprint where I turned 15 scattered screens into a dev-ready UI library: a
-token-based foundation, 50 documented components, and UI templates that engineers could
-build from directly. UX infrastructure for an e-commerce MVP.
-
-## Challenge
-
-The startup had a prototype pieced together from an open-source UI kit and mockups made by
-a non-designer. There were no rules whatsoever, while the dev team was shipping at the same
-time.
-
-## Audit and review
-
-I audited every existing screen to catalogue inconsistent colors, type, spacing, and
-interaction patterns, and identified which pieces could be consolidated into shared
-components.
-
-## Solution: one system, built to grow with the product
-
-50+ components, all mapped to React Native. New screens were assembled from existing parts
-instead of designed from scratch, cutting the design-to-dev cycle from months to two weeks.
-Design tokens flow from foundations into components and full pages.
-
-## Component mapping
-
-Each Figma component maps one to one to its React Native counterpart, so designers and
-engineers share a single source of truth.`,
   },
 ];
 

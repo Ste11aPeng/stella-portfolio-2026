@@ -41,7 +41,7 @@ const NotFound = () => {
           </motion.p>
 
           <motion.nav aria-label="Elsewhere" className="mt-10" {...fade(0.55)}>
-            <Label>elsewhere</Label>
+            <Label>find me</Label>
             <div className="group/list flex flex-wrap gap-x-3">
               {OUT_LINKS.map(([label, href]) => (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer" className={`${item} group/out text-muted-foreground hover:text-foreground`}>

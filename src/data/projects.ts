@@ -2,8 +2,6 @@ import askSiaImage from "@/assets/asksia-cover.png";
 import askSiaInnerCover from "@/assets/asksia-inner-cover.png";
 import circleStatusImage from "@/assets/project-circle-status-cover.png";
 import circleStatusCover from "@/assets/circle-status-inside-cover.png";
-import philoImage from "@/assets/project-philo.webp";
-import philoInnerCover from "@/assets/philo-inner-cover.png";
 import tiktokImage from "@/assets/project-tiktok.png";
 
 export interface Project {
@@ -14,7 +12,7 @@ export interface Project {
   /** with coverFull and an animated cover: the shape the still would have had */
   coverAspect?: string;
   /** a cover that moves, in place of the still (which stands in while it loads) */
-  animatedCover?: "widget-bento" | "highlights-phones" | "circle-float" | "philo-tiles" | "asksia-layouts";
+  animatedCover?: "widget-bento" | "highlights-phones" | "circle-float" | "asksia-layouts";
   title: string;
   titleColor: string;
   tagline: string;
@@ -105,26 +103,6 @@ export const projects: Project[] = [
     skills: ["Figma", "Blender", "Rhino", "Webflow"],
     tags: ["UI/UX design", "IoT", "community"],
     overview: "Circle Status is a smart lamp and companion app that turns passive outage detection into active community connection. Built in 15 weeks as part of Michigan's IPD program, it launched at a 200-person trade show and sold 264 units in 3 days."
-  },
-  {
-    id: "philo",
-    image: philoImage,
-    coverImage: philoInnerCover,
-    animatedCover: "philo-tiles",
-    coverAspect: "1988 / 930",
-    coverFull: true,
-    title: "Philo Design System",
-    titleColor: "#C37933",
-    tagline: "UX infra for e-commerce",
-    description: "UX infrastructure for an e-commerce MVP",
-    type: "internship",
-    industry: "e-commerce",
-    status: "Shipped to engineering",
-    team: "2 Designers, 2 Engineers, 1 Founder",
-    timeline: "Jul 2025",
-    skills: ["Figma", "Material 3"],
-    tags: ["design system", "UI library"],
-    overview: "A 3-week sprint where I turned 15 scattered screens into a dev-ready UI library: a token-based foundation, 50 documented components, and UI templates that engineers could build from directly."
   }
 ];
 

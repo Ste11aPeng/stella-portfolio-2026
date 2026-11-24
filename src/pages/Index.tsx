@@ -64,7 +64,9 @@ const Index = () => {
 
         <main className="flex-1 min-w-0">
           <MobileIntro active={view} onJump={show} />
-          <div className="max-w-[1000px] mx-auto px-6 md:pl-6 md:pr-8 lg:pl-10 lg:pr-12 md:pt-8 pb-12 md:pb-24">
+          {/* as much room below the last piece as above the first (32px on desktop),
+              so the page ends on the work, level with the sidebar's last line */}
+          <div className="max-w-[1000px] mx-auto px-6 md:pl-6 md:pr-8 lg:pl-10 lg:pr-12 md:pt-8 pb-12 md:pb-8">
             <motion.div
               key={view}
               initial={switched ? { opacity: 0, filter: "blur(12px)" } : false}

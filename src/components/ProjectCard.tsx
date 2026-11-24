@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, type ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 interface ProjectCardProps {
   id: string;
@@ -20,6 +21,7 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
   const position = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
   const animationRef = useRef<number>();
+  const tilt = useRef(0);
 
   useEffect(() => {
     const animate = () => {
@@ -31,6 +33,14 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
       if (hintRef.current) {
         hintRef.current.style.left = `${position.current.x}px`;
         hintRef.current.style.top = `${position.current.y}px`;
+        // the arrow leans after the pointer it's chasing: how far the circle
+        // trails behind, up or down (and a touch sideways), tips it a few
+        // degrees, as if pulled along; it settles level as it catches up
+        const lagX = target.current.x - position.current.x;
+        const lagY = target.current.y - position.current.y;
+        const want = Math.max(-16, Math.min(16, lagY * 0.35 - lagX * 0.06));
+        tilt.current += (want - tilt.current) * 0.18;
+        hintRef.current.style.setProperty("--tilt", `${tilt.current.toFixed(2)}deg`);
       }
 
       animationRef.current = requestAnimationFrame(animate);
@@ -114,10 +124,19 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
       {isHovering && (
         <div 
           ref={hintRef}
-          className="project-cursor-hint"
-          style={{ willChange: "left, top" }}
+          className={`project-cursor-hint ${comingSoon ? "" : "is-arrow"}`}
+          // the circle stays white; its arrow takes the project's colour, like its title tag
+          style={comingSoon ? { willChange: "left, top" } : { willChange: "left, top", color: titleColor }}
+          aria-hidden="true"
         >
-          {comingSoon ? "coming soon" : "see project"}
+          {comingSoon ? (
+            "coming soon"
+          ) : (
+            // the tilt sits on a wrapper, so it never fights the arrow's own slide-in
+            <span className="arrow-tilt">
+              <ArrowRight className="h-6 w-6" strokeWidth={1.75} />
+            </span>
+          )}
         </div>
       )}
     </div>
