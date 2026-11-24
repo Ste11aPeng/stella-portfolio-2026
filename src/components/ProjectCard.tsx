@@ -17,60 +17,37 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ id, image, title, titleColor, description, type, comingSoon = false, index = 0, cover }: ProjectCardProps) => {
   const [isHovering, setIsHovering] = useState(false);
-  const hintRef = useRef<HTMLDivElement>(null);
-  const position = useRef({ x: 0, y: 0 });
-  const target = useRef({ x: 0, y: 0 });
-  const animationRef = useRef<number>();
-  const tilt = useRef(0);
+  const followRef = useRef<HTMLDivElement>(null);
+  // where the pointer is in the card, and where it was at the last move
+  const pos = useRef({ x: 0, y: 0 });
+  const settle = useRef<number>();
 
-  useEffect(() => {
-    const animate = () => {
-      const ease = 0.12;
-      
-      position.current.x += (target.current.x - position.current.x) * ease;
-      position.current.y += (target.current.y - position.current.y) * ease;
-
-      if (hintRef.current) {
-        hintRef.current.style.left = `${position.current.x}px`;
-        hintRef.current.style.top = `${position.current.y}px`;
-        // the arrow leans after the pointer it's chasing: how far the circle
-        // trails behind, up or down (and a touch sideways), tips it a few
-        // degrees, as if pulled along; it settles level as it catches up
-        const lagX = target.current.x - position.current.x;
-        const lagY = target.current.y - position.current.y;
-        const want = Math.max(-16, Math.min(16, lagY * 0.35 - lagX * 0.06));
-        tilt.current += (want - tilt.current) * 0.18;
-        hintRef.current.style.setProperty("--tilt", `${tilt.current.toFixed(2)}deg`);
-      }
-
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    if (isHovering) {
-      animationRef.current = requestAnimationFrame(animate);
-    }
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [isHovering]);
-
+  // No per-frame loop: each pointer move just sets the follower's transform,
+  // and a CSS transition on it does the easing (the "lag") on the compositor,
+  // so it stays smooth even while a moving cover keeps the main thread busy.
+  // The arrow leans with the move (up or down, a touch sideways) and levels
+  // out shortly after the pointer stops.
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    target.current = {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    };
-  };
-
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    position.current = { x, y };
-    target.current = { x, y };
+    const dx = x - pos.current.x;
+    const dy = y - pos.current.y;
+    pos.current = { x, y };
+    const el = followRef.current;
+    if (!el) return;
+    el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    const tilt = Math.max(-14, Math.min(14, dy * 1.1 - dx * 0.15));
+    el.style.setProperty("--tilt", `${tilt.toFixed(1)}deg`);
+    window.clearTimeout(settle.current);
+    settle.current = window.setTimeout(() => el.style.setProperty("--tilt", "0deg"), 120);
+  };
+
+  useEffect(() => () => window.clearTimeout(settle.current), []);
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    pos.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
     setIsHovering(true);
     
     // Dispatch custom event to hide main cursor
@@ -103,14 +80,17 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
           className="w-full h-full object-cover"
         />}
         {/* Gradient blur overlay on hover */}
+        {/* (it covers only the lower three quarters, where the blur shows: a
+            backdrop blur over a moving cover is recomputed every frame, so the
+            less of it the better) */}
         <div
-          className="absolute inset-0 transition-opacity duration-700 ease-out pointer-events-none"
+          className="absolute inset-x-0 bottom-0 top-1/4 transition-opacity duration-700 ease-out pointer-events-none"
           style={{
             opacity: isHovering ? 1 : 0,
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
-            maskImage: "linear-gradient(to bottom, transparent 25%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.7) 70%, black 100%)",
-            WebkitMaskImage: "linear-gradient(to bottom, transparent 25%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.7) 70%, black 100%)",
+            maskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.35) 33%, rgba(0,0,0,0.7) 60%, black 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.35) 33%, rgba(0,0,0,0.7) 60%, black 100%)",
           }}
         />
       </div>
@@ -122,21 +102,27 @@ const ProjectCard = ({ id, image, title, titleColor, description, type, comingSo
         </div>
       </div>
       {isHovering && (
-        <div 
-          ref={hintRef}
-          className={`project-cursor-hint ${comingSoon ? "" : "is-arrow"}`}
-          // the circle stays white; its arrow takes the project's colour, like its title tag
-          style={comingSoon ? { willChange: "left, top" } : { willChange: "left, top", color: titleColor }}
+        // the follower carries the position (and the lean); the hint inside it pops
+        <div
+          ref={followRef}
+          className="project-cursor-follow"
+          style={{ transform: `translate3d(${pos.current.x}px, ${pos.current.y}px, 0)` }}
           aria-hidden="true"
         >
-          {comingSoon ? (
-            "coming soon"
-          ) : (
-            // the tilt sits on a wrapper, so it never fights the arrow's own slide-in
-            <span className="arrow-tilt">
-              <ArrowRight className="h-6 w-6" strokeWidth={1.75} />
-            </span>
-          )}
+          <div
+            className={`project-cursor-hint ${comingSoon ? "" : "is-arrow"}`}
+            // the circle stays white; its arrow takes the project's colour, like its title tag
+            style={comingSoon ? undefined : { color: titleColor }}
+          >
+            {comingSoon ? (
+              "coming soon"
+            ) : (
+              // the tilt sits on a wrapper, so it never fights the arrow's own slide-in
+              <span className="arrow-tilt">
+                <ArrowRight className="h-6 w-6" strokeWidth={1.75} />
+              </span>
+            )}
+          </div>
         </div>
       )}
     </div>

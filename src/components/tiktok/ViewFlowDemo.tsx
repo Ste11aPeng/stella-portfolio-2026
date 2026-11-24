@@ -30,22 +30,25 @@ const SEG = { y: 64 * K, h: 4 * K, w: 57.7 * K, x0: 12 * K, step: 61.68 * K, cou
 const SEG_OF = [0, 0, 1, 2, 3, 4, 5];
 // how long a segment would take to fill if left alone: the full-screen stories
 // are tapped through quickly, the reposts are given longer
-const FILL_SECONDS = [2.2, 2.2, 2.2, 4.2, 4.2, 4.2];
+const FILL_SECONDS = [2.2, 2.2, 2.2, 4.8, 4.8, 4.8];
 const EASE_CSS = "cubic-bezier(0.22, 1, 0.36, 1)";
 
 // the script, in seconds from the start of a loop
 const T = {
   tapOpen: 1.0,
   open: 1.25, // the highlight grows out of its circle
-  // when each screen comes up: title, three quick stories, three slower reposts
-  shows: [1.25, 1.85, 3.05, 4.25, 5.45, 8.05, 10.65],
-  nexts: [2.9, 4.1, 5.3, 7.9, 10.5], // taps that move it on
-  tapClose: 13.1,
-  close: 13.3, // it shrinks back into the circle
-  end: 14.7,
+  // when each screen comes up: title, three quick stories, then three reposts
+  // held long enough (4.6s each) to read the notes written beside the phone
+  shows: [1.25, 1.85, 3.05, 4.25, 5.45, 10.05, 14.65],
+  nexts: [2.9, 4.1, 5.3, 9.9, 14.5], // taps that move it on
+  tapClose: 19.1,
+  close: 19.3, // it shrinks back into the circle
+  end: 20.7,
 };
 
-const ViewFlowDemo = () => {
+// `onRepost` hears whether a repost is the screen in view (true from the first
+// repost until the viewer closes), so notes beside the phone can follow along
+const ViewFlowDemo = ({ onRepost }: { onRepost?: (on: boolean) => void } = {}) => {
   const box = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
   const inView = useInView(box, { amount: 0.2 });
@@ -92,6 +95,11 @@ const ViewFlowDemo = () => {
   const open = now >= T.open && now < T.close;
   const settled = now >= T.open + 0.5 && now < T.close; // viewer fully covers the profile
   const current = SCREENS.reduce((acc, _, i) => (now >= T.shows[i] ? i : acc), 0);
+  // screens 4 to 6 are the reposts
+  const reposting = open && current >= 4;
+  useEffect(() => {
+    onRepost?.(reposting);
+  }, [reposting, onRepost]);
   const instant = now < 0.3;
   const tapping = (at: number) => now >= at && now < at + 0.55;
   const seg = SEG_OF[current];

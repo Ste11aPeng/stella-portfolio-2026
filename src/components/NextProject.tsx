@@ -45,7 +45,11 @@ const NextProject = ({ currentProjectId }: NextProjectProps) => {
             </div>
           </div>
 
-          <span className="shrink-0 flex h-12 w-12 items-center justify-center rounded-full bg-foreground/[0.05] text-foreground transition-colors duration-300 group-hover:bg-foreground group-hover:text-background">
+          {/* on hover the arrow (not the circle) takes the next project's colour */}
+          <span
+            className="shrink-0 flex h-12 w-12 items-center justify-center rounded-full bg-foreground/[0.05] text-foreground transition-colors duration-300 group-hover:text-[var(--np-ink)]"
+            style={{ "--np-ink": nextProject.titleColor } as React.CSSProperties}
+          >
             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5" />
           </span>
         </Link>

@@ -13,7 +13,7 @@ const HighlightsPhaseTwo = () => (
 
     <Figure
       src={suggested}
-      bg="#EBEBEB"
+      bg="#F5F6F7"
       alt="A profile and the Add to Highlight page, marked as under NDA"
       nda
     />

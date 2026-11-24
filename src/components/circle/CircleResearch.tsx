@@ -1,7 +1,5 @@
 import { motion, type Easing } from "framer-motion";
 import AnimatedTitle from "@/components/AnimatedTitle";
-import HoverCaptionImage from "@/components/HoverCaptionImage";
-import research1Image from "@/assets/circle-research-1.png";
 
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 
@@ -18,23 +16,9 @@ const CircleResearch = () => {
           research
         </span>
         <AnimatedTitle text="Research & User Modeling" className="text-2xl font-bold mb-6 text-foreground" />
-        <p className="text-base text-muted-foreground leading-relaxed mb-10">
+        <p className="text-base text-muted-foreground leading-relaxed">
           We ran 50+ household interviews and surveyed 200 Midwest residents, then used CART analysis to find what actually predicts help-seeking behavior during outages.
         </p>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, ease: easeOut, delay: 0.1 }}
-      >
-        <HoverCaptionImage
-          src={research1Image}
-          alt="Research findings: affinity diagramming session, sticky-note clustering, Think/Feel/Say/Does empathy map, and a chart comparing family vs. neighbor help-seeking by health reliance"
-          title="Interviews, Affinity Diagram & Empathy Map"
-          body="From the Midwest, USA — paired with Exploratory Data Analysis (EDA) on the survey data."
-        />
       </motion.div>
 
       <motion.div

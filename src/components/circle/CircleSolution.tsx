@@ -1,13 +1,12 @@
 import { motion, type Easing, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import ImageLightbox from "@/components/ImageLightbox";
 import AnimatedTitle from "@/components/AnimatedTitle";
 import HoverCaptionImage from "@/components/HoverCaptionImage";
-import solutionOverview from "@/assets/circle-solution-overview.png";
-import solutionTexture from "@/assets/circle-solution-texture.png";
-import solutionLifestyle from "@/assets/circle-solution-lifestyle.png";
+import solutionOverview from "@/assets/circle-solution-overview.webp";
+import solutionTexture from "@/assets/circle-solution-texture.webp";
+import solutionLifestyle from "@/assets/circle-solution-lifestyle.webp";
 
-import impactImage from "@/assets/circle-solution-impact.png";
+import LaunchCollage from "./LaunchCollage";
 const easeOut: Easing = [0.0, 0.0, 0.2, 1];
 const CircleSolution = () => {
   return <section id="solution" className="pt-16">
@@ -44,24 +43,24 @@ const CircleSolution = () => {
       ease: easeOut,
       delay: 0.1
     }}>
-        <div className="grid grid-cols-1 gap-3 md:gap-4">
+        <div className="grid grid-cols-1 gap-2 md:gap-2.5">
           <HoverCaptionImage
             src={solutionOverview}
-            alt="Circle Status app and smart device — device status, community map, and check-in flow"
+            alt="The Circle Status app on two phones (device status and the community map) beside a hand holding the lamp"
             title="One Connected System"
             body="The device pairs with the app to turn outage detection into instant notifications, easy check-ins, and community support."
           />
-          <div className="grid grid-cols-1 md:grid-cols-[932fr_581fr] gap-3 md:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-[1204fr_814fr] gap-2 md:gap-2.5">
             <HoverCaptionImage
               src={solutionTexture}
-              alt="Smart Outage Lamp — close-up of the soft-serrated texture"
+              alt="Two Smart Outage Lamps glowing, showing the soft-serrated edge"
               title="Soft-Serrated Texture for Safe Handling"
               body="It increases friction, making it easier to grip, unplug, and carry."
               dark
             />
             <HoverCaptionImage
               src={solutionLifestyle}
-              alt="Smart Outage Lamp — everyday night light on a bedroom nightstand"
+              alt="Smart Outage Lamp plugged in by a bedside table at night"
               title="Everyday Light with Battery Backup"
               body="Works as a simple night lamp every day, but can automatically switch to battery power."
               dark
@@ -114,7 +113,7 @@ const CircleSolution = () => {
             </p>
           </div>
         </div>
-        <ImageLightbox src={impactImage} alt="IPD Trade Show - Team presenting Circle Status to attendees" className="w-full rounded-lg" />
+        <LaunchCollage />
       </motion.div>
     </section>;
 };

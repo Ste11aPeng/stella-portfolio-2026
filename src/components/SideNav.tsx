@@ -253,7 +253,7 @@ const SideNav = ({ active, onJump }: { active: Section; onJump: (s: Section) => 
         </motion.div>
 
         {/* the lists come in a line at a time, top to bottom */}
-        <nav aria-label="Site" className="mt-10">
+        <nav aria-label="Site" className="mt-14">
           <div>
             <Step i={0}>
               <Label>index</Label>

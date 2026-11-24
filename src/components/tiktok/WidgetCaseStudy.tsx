@@ -45,10 +45,9 @@ const PhoneVideo = ({ src, poster, label }: { src: string; poster: string; label
 const WidgetCaseStudy = () => (
   <>
     <section id="challenge" className="pt-5 [&>*:last-child]:mb-0">
-      <Head label="problem" title="Cropped stories, no context, and often blank." />
+      <Head label="challenge" title="Cropped stories, no context, and often blank." />
       <Body className="mb-6">
-        The widget already had real adoption among younger users, but it cropped stories with no context and often
-        failed to load. Beyond fixing that, I wanted it to make sense at a glance, so people would add it, and to bring
+        The widget's users skewed young, but it cropped stories with no context and often failed to load. Beyond fixing that, I wanted it to make sense at a glance, so people would add it, and to bring
         them back into Stories, to watch or to post.
       </Body>
     </section>
@@ -103,11 +102,12 @@ const WidgetCaseStudy = () => (
     </section>
 
     <section id="reflection" className="pt-16 pb-24">
-      <Head label="takeaway" title="Worth adding, and worth keeping." />
+      <Head label="takeaway" title="The part I'd keep working on" />
       <Body>
-        A widget lives on someone's home screen, outside our app, so it has to earn that space every day. Getting people
-        to add it was only half the job; it also had to stay worth keeping. That taught me to design for adoption and
-        long-term use together, instead of optimizing one step on its own.
+        Most of what I designed was about getting the widget onto home screens: a clearer tutorial, a
+        picture-in-picture guide, a little nudge between stories. That part is easy to measure. The harder
+        question is what makes someone keep a widget around a few weeks later, when their friends haven't posted
+        and it has nothing new to show. That's where I'd go next.
       </Body>
     </section>
   </>

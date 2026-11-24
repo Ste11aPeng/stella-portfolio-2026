@@ -69,7 +69,7 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
     if (id === "tiktok-widget") {
       return [
       { id: "overview", label: "Overview" },
-      { id: "challenge", label: "Problem" },
+      { id: "challenge", label: "Challenge" },
       { id: "widget", label: "Widget" },
       { id: "tutorial", label: "Tutorial" },
       { id: "cold-start", label: "Cold Start" },
@@ -85,7 +85,7 @@ const ProjectSidebar = ({ activeSection, onSectionClick }: ProjectSidebarProps) 
       { id: "adding-reposts", label: "adding reposts", parent: "solution-1" },
       { id: "watching-reposts", label: "watching reposts", parent: "solution-1" },
       { id: "solution-2", label: "Solution 2" },
-      { id: "reflection", label: "Reflection" },
+      { id: "reflection", label: "Takeaway" },
     ];
     }
     if (id === "asksia") {

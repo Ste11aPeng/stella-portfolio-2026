@@ -24,7 +24,7 @@ const projects = [
       "Product design internship on TikTok's Social team: redesigning Highlights from a shelf for old stories into a home for interests, and bringing reposts into it, in two phases.",
   },
   {
-    name: "TikTok · story widget",
+    name: "TikTok · Stories widget",
     summary:
       "Redesigning TikTok's Stories home-screen widget, the tutorial for adding it, and cold-start prompts that invite people to try it.",
   },
@@ -187,13 +187,13 @@ const projectPages = [
       "TikTok interest highlights: turning what people repost into how they show who they are. A product design case study by Stella Peng.",
     meta: { industry: "social media", status: "phase 1 shipped, phase 2 in development", team: "1 PM, 1 SDE", timeline: "Jun 2026 - Sep 2026" },
     body: `I redesigned Highlights from a shelf for old stories into a home for interests, and brought reposts
-into it. With my PM, I mapped the 0 to 1 path in two phases. Phase 1, reposts in highlights, launched in
+into it. With my PM, I planned it in two phases. Phase 1, reposts in highlights, launched in
 Q3 2026. Phase 2, auto-suggested highlights, is planned for Q4 2026.
 
 ## Challenge
 
-People showed their interests every day through stories and reposts, but none of it carried over to
-their profile. We defined the goal: a highlight should let visitors understand someone at a glance.
+People showed their interests every day through stories and reposts, but none of it reached their
+profile.
 
 ## Solution 1: put reposts in highlights
 
@@ -209,22 +209,23 @@ The final design is still under NDA, so I can only share it at a high level here
 
 ## What I took away from TikTok
 
-This summer changed how I make design decisions. Every choice had to hold up against numbers, and I
-left more data-driven: checking what the numbers can support before arguing for a direction, and
-asking what a feature is for before drawing it.`,
+I came in ready to defend whichever flow looked best. TikTok had other plans. Making highlights from
+stories already worked, so whatever I added for reposts had to leave those numbers alone, and the
+backend had its own opinions about what a repost could even show. So I started asking our SDE what
+was possible before opening Figma, and checking what the data could back up before falling for a
+direction. Most of the real design decisions came out of those limits.`,
   },
   {
     id: "tiktok-widget",
-    name: "TikTok · story widget",
+    name: "TikTok · Stories widget",
     description:
-      "TikTok story widget: making a home-screen widget worth adding, and worth keeping. A product design case study by Stella Peng.",
+      "TikTok Stories widget: making a home-screen widget worth adding, and worth keeping. A product design case study by Stella Peng.",
     meta: { industry: "social media", status: "shipped", team: "1 PM, 1 SDE", timeline: "Jul 2026 - Sep 2026" },
     body: `I redesigned TikTok's Stories widget and the flow that teaches people to add it.
 
-## Problem
+## Challenge
 
-The widget already had real adoption among younger users, but it cropped stories with no context and
-often failed to load. The goal was a widget that makes sense at a glance and works as a way back into
+The widget's users skewed young, but it cropped stories with no context and often failed to load. The goal was a widget that makes sense at a glance and works as a way back into
 Stories.
 
 ## What I designed
@@ -233,10 +234,12 @@ The widget itself (small and medium, light and dark), a step-by-step tutorial fo
 picture-in-picture guide video, and cold-start prompts between stories. The motion pieces were made
 together with TikTok's creative team.
 
-## Takeaway
+## The part I'd keep working on
 
-A widget lives on someone's home screen, outside the app, so it has to earn that space every day:
-design for adoption and long-term use together.`,
+Most of what I designed was about getting the widget onto home screens: a clearer tutorial, a
+picture-in-picture guide, a little nudge between stories. That part is easy to measure. The harder
+question is what makes someone keep a widget around a few weeks later, when their friends haven't
+posted and it has nothing new to show. That's where I'd go next.`,
   },
   {
     id: "circle-status",
@@ -268,10 +271,13 @@ Interviews and field research shaped the core insights, which were reframed as
 and the app flows. Iterations focused on clarity of the light states and on reducing the
 effort needed to reach out to a neighbor.
 
-## Reflection
+## What 264 lamps taught me
 
-Designing a physical product and its app together showed how much an ambient signal can
-lower the barrier to social action.`,
+We had fifteen weeks to go from interviews to a lamp people would actually pay for. The interviews
+told us why people didn't check on each other during outages, and the outage data (EDA, then a CART
+model) told us who and when. We needed both to land on a lamp. Then 264 people bought one in three
+days at the trade show, which is the most honest feedback I've ever gotten on a design. Nobody buys
+a lamp to be polite.`,
   },
   {
     id: "asksia",
@@ -305,10 +311,13 @@ Usability testing and a design analysis of the existing product surfaced where s
 lost context. Key insights guided the information architecture and the constraints the
 team worked within.
 
-## Reflection
+## What six months at an AI startup taught me
 
-Working inside a fast-moving AI product taught me to design systems that stay flexible as
-capabilities change.`,
+At an AI startup the ground moves every few weeks, and nobody hands you finished requirements. So I
+got in the habit of poking at every AI tool that shipped and borrowing the patterns that fit ours.
+The responsive dropdown came out of that. The less glamorous lesson came from writing every edge
+case down, from corrupted files to empty states, so engineers could build it without pinging me ten
+times a day. That doc is where the design held up.`,
   },
 ];
 

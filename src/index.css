@@ -191,6 +191,17 @@
     @apply relative overflow-hidden;
   }
 
+  /* carries the hint to the pointer; the transition is the trailing "lag",
+     run on the compositor */
+  .project-cursor-follow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    z-index: 10;
+    will-change: transform;
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
   .project-cursor-hint {
     position: absolute;
     pointer-events: none;
@@ -227,6 +238,7 @@
   .project-cursor-hint.is-arrow .arrow-tilt {
     display: flex;
     transform: rotate(var(--tilt, 0deg));
+    transition: transform 0.3s ease-out;
   }
   .project-cursor-hint.is-arrow svg {
     animation: cursor-arrow-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
@@ -242,6 +254,7 @@
   @media (prefers-reduced-motion: reduce) {
     .project-cursor-hint.is-arrow, .project-cursor-hint.is-arrow svg { animation: none; }
     .project-cursor-hint.is-arrow .arrow-tilt { transform: none; }
+    .project-cursor-follow { transition: none; }
   }
 
   .project-overlay {

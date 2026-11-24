@@ -3,14 +3,14 @@ import Polaroids from "./Polaroids";
 
 const HighlightsReflection = () => (
   <section id="reflection" className="pt-16 pb-24">
-    <Head label="reflection" title="What I took away from TikTok" />
+    <Head label="takeaway" title="What I took away from TikTok" />
 
     <Body>
-      This summer changed how I make design decisions. At TikTok, every choice had to hold up against numbers: a
-      creation flow with healthy metrics we couldn't pull down, backend data that decided what a repost could show, and
-      launch results that told us whether the work landed. I left more data-driven, checking what the numbers can
-      support before arguing for a direction. I also learned to ask what a feature is for before drawing it, and to
-      work closely with PM and engineering so a design holds up all the way to launch.
+      I came in ready to defend whichever flow looked best. TikTok had other plans. Making highlights from
+      stories already worked, so whatever I added for reposts had to leave those numbers alone, and the backend
+      had its own opinions about what a repost could even show. So I started asking our SDE what was possible
+      before opening Figma, and checking what the data could back up before falling for a direction. Most of the
+      real design decisions came out of those limits.
     </Body>
 
     <Polaroids />
